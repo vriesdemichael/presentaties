@@ -1,0 +1,643 @@
+{
+  "deck": "260302-kwartaalmeeting",
+  "slide_count": 9,
+  "aggregate_brand_ratio": {
+    "deep_blue": 0.0161,
+    "light_blue": 0.2617,
+    "accent_blue": 0.0906,
+    "accent_blue_pale": 0.0918,
+    "magenta": 0.0001,
+    "orange": 0.0001,
+    "white": 0.5396,
+    "black": 0.0
+  },
+  "archetype_counts": {
+    "standard_content": 8,
+    "minimal_statement": 1
+  },
+  "avg_edge_density": 0.0193,
+  "avg_occupancy": 0.4547,
+  "slides": [
+    {
+      "slide": "Slide1.PNG",
+      "top_colors": [
+        {
+          "hex": "#D8E8F8",
+          "ratio": 0.6339,
+          "nearest_brand": "light_blue",
+          "brand_distance": 8.6
+        },
+        {
+          "hex": "#88C8E0",
+          "ratio": 0.2526,
+          "nearest_brand": "accent_blue",
+          "brand_distance": 10.1
+        },
+        {
+          "hex": "#E8F0F8",
+          "ratio": 0.023,
+          "nearest_brand": "light_blue",
+          "brand_distance": 11.05
+        },
+        {
+          "hex": "#104070",
+          "ratio": 0.0228,
+          "nearest_brand": "deep_blue",
+          "brand_distance": 6.16
+        },
+        {
+          "hex": "#D8F0F8",
+          "ratio": 0.0076,
+          "nearest_brand": "light_blue",
+          "brand_distance": 5.1
+        },
+        {
+          "hex": "#4098D0",
+          "ratio": 0.0069,
+          "nearest_brand": "accent_blue",
+          "brand_distance": 96.28
+        },
+        {
+          "hex": "#006898",
+          "ratio": 0.0048,
+          "nearest_brand": "deep_blue",
+          "brand_distance": 57.04
+        },
+        {
+          "hex": "#D8E8F0",
+          "ratio": 0.0039,
+          "nearest_brand": "light_blue",
+          "brand_distance": 11.75
+        }
+      ],
+      "brand_ratio": {
+        "deep_blue": 0.0411,
+        "light_blue": 0.6752,
+        "accent_blue": 0.2764,
+        "accent_blue_pale": 0.0058,
+        "magenta": 0.0005,
+        "orange": 0.0011,
+        "white": 0.0001,
+        "black": 0.0
+      },
+      "dark_ratio": 0.0334,
+      "light_ratio": 0.6831,
+      "edge_density": 0.0114,
+      "occupancy": 0.9986,
+      "top_band_luminance": 0.8103,
+      "archetype": "standard_content"
+    },
+    {
+      "slide": "Slide2.PNG",
+      "top_colors": [
+        {
+          "hex": "#F8F8F8",
+          "ratio": 0.5788,
+          "nearest_brand": "white",
+          "brand_distance": 12.12
+        },
+        {
+          "hex": "#B0D8E8",
+          "ratio": 0.2319,
+          "nearest_brand": "accent_blue_pale",
+          "brand_distance": 10.49
+        },
+        {
+          "hex": "#78B0C8",
+          "ratio": 0.1142,
+          "nearest_brand": "accent_blue",
+          "brand_distance": 46.54
+        },
+        {
+          "hex": "#F0F8F8",
+          "ratio": 0.0088,
+          "nearest_brand": "white",
+          "brand_distance": 17.97
+        },
+        {
+          "hex": "#D8E8F0",
+          "ratio": 0.005,
+          "nearest_brand": "light_blue",
+          "brand_distance": 11.75
+        },
+        {
+          "hex": "#002858",
+          "ratio": 0.0042,
+          "nearest_brand": "deep_blue",
+          "brand_distance": 42.97
+        },
+        {
+          "hex": "#E8F0F8",
+          "ratio": 0.004,
+          "nearest_brand": "light_blue",
+          "brand_distance": 11.05
+        },
+        {
+          "hex": "#88B8D0",
+          "ratio": 0.0029,
+          "nearest_brand": "accent_blue",
+          "brand_distance": 30.03
+        }
+      ],
+      "brand_ratio": {
+        "deep_blue": 0.0179,
+        "light_blue": 0.012,
+        "accent_blue": 0.1425,
+        "accent_blue_pale": 0.2401,
+        "magenta": 0.0,
+        "orange": 0.0,
+        "white": 0.5875,
+        "black": 0.0
+      },
+      "dark_ratio": 0.0168,
+      "light_ratio": 0.599,
+      "edge_density": 0.0202,
+      "occupancy": 0.4024,
+      "top_band_luminance": 0.9771,
+      "archetype": "standard_content"
+    },
+    {
+      "slide": "Slide3.PNG",
+      "top_colors": [
+        {
+          "hex": "#F8F8F8",
+          "ratio": 0.5677,
+          "nearest_brand": "white",
+          "brand_distance": 12.12
+        },
+        {
+          "hex": "#D8E8F8",
+          "ratio": 0.207,
+          "nearest_brand": "light_blue",
+          "brand_distance": 8.6
+        },
+        {
+          "hex": "#78B0C8",
+          "ratio": 0.115,
+          "nearest_brand": "accent_blue",
+          "brand_distance": 46.54
+        },
+        {
+          "hex": "#B8D8F0",
+          "ratio": 0.0179,
+          "nearest_brand": "accent_blue_pale",
+          "brand_distance": 5.48
+        },
+        {
+          "hex": "#D8E8F0",
+          "ratio": 0.0063,
+          "nearest_brand": "light_blue",
+          "brand_distance": 11.75
+        },
+        {
+          "hex": "#F0F8F8",
+          "ratio": 0.0062,
+          "nearest_brand": "white",
+          "brand_distance": 17.97
+        },
+        {
+          "hex": "#E0F0F8",
+          "ratio": 0.0056,
+          "nearest_brand": "light_blue",
+          "brand_distance": 3.16
+        },
+        {
+          "hex": "#B0C8D8",
+          "ratio": 0.0027,
+          "nearest_brand": "accent_blue_pale",
+          "brand_distance": 31.72
+        }
+      ],
+      "brand_ratio": {
+        "deep_blue": 0.0142,
+        "light_blue": 0.2291,
+        "accent_blue": 0.1471,
+        "accent_blue_pale": 0.0356,
+        "magenta": 0.0,
+        "orange": 0.0,
+        "white": 0.574,
+        "black": 0.0
+      },
+      "dark_ratio": 0.0161,
+      "light_ratio": 0.8439,
+      "edge_density": 0.0245,
+      "occupancy": 0.4204,
+      "top_band_luminance": 0.9802,
+      "archetype": "standard_content"
+    },
+    {
+      "slide": "Slide4.PNG",
+      "top_colors": [
+        {
+          "hex": "#F8F8F8",
+          "ratio": 0.5802,
+          "nearest_brand": "white",
+          "brand_distance": 12.12
+        },
+        {
+          "hex": "#D8E8F8",
+          "ratio": 0.1911,
+          "nearest_brand": "light_blue",
+          "brand_distance": 8.6
+        },
+        {
+          "hex": "#B0D8E8",
+          "ratio": 0.1158,
+          "nearest_brand": "accent_blue_pale",
+          "brand_distance": 10.49
+        },
+        {
+          "hex": "#D8E8F0",
+          "ratio": 0.0091,
+          "nearest_brand": "light_blue",
+          "brand_distance": 11.75
+        },
+        {
+          "hex": "#F0F8F8",
+          "ratio": 0.0083,
+          "nearest_brand": "white",
+          "brand_distance": 17.97
+        },
+        {
+          "hex": "#B8D8F0",
+          "ratio": 0.0067,
+          "nearest_brand": "accent_blue_pale",
+          "brand_distance": 5.48
+        },
+        {
+          "hex": "#E0F0F8",
+          "ratio": 0.0059,
+          "nearest_brand": "light_blue",
+          "brand_distance": 3.16
+        },
+        {
+          "hex": "#104070",
+          "ratio": 0.0048,
+          "nearest_brand": "deep_blue",
+          "brand_distance": 6.16
+        }
+      ],
+      "brand_ratio": {
+        "deep_blue": 0.0178,
+        "light_blue": 0.2147,
+        "accent_blue": 0.0349,
+        "accent_blue_pale": 0.144,
+        "magenta": 0.0,
+        "orange": 0.0,
+        "white": 0.5886,
+        "black": 0.0
+      },
+      "dark_ratio": 0.0228,
+      "light_ratio": 0.8333,
+      "edge_density": 0.0291,
+      "occupancy": 0.4079,
+      "top_band_luminance": 0.9802,
+      "archetype": "standard_content"
+    },
+    {
+      "slide": "Slide5.PNG",
+      "top_colors": [
+        {
+          "hex": "#F8F8F8",
+          "ratio": 0.5825,
+          "nearest_brand": "white",
+          "brand_distance": 12.12
+        },
+        {
+          "hex": "#D8E8F8",
+          "ratio": 0.2243,
+          "nearest_brand": "light_blue",
+          "brand_distance": 8.6
+        },
+        {
+          "hex": "#B0D8E8",
+          "ratio": 0.1153,
+          "nearest_brand": "accent_blue_pale",
+          "brand_distance": 10.49
+        },
+        {
+          "hex": "#F0F8F8",
+          "ratio": 0.0101,
+          "nearest_brand": "white",
+          "brand_distance": 17.97
+        },
+        {
+          "hex": "#D8F0F8",
+          "ratio": 0.0068,
+          "nearest_brand": "light_blue",
+          "brand_distance": 5.1
+        },
+        {
+          "hex": "#E0F0F8",
+          "ratio": 0.0065,
+          "nearest_brand": "light_blue",
+          "brand_distance": 3.16
+        },
+        {
+          "hex": "#B8E0F0",
+          "ratio": 0.0041,
+          "nearest_brand": "accent_blue_pale",
+          "brand_distance": 3.74
+        },
+        {
+          "hex": "#104070",
+          "ratio": 0.0032,
+          "nearest_brand": "deep_blue",
+          "brand_distance": 6.16
+        }
+      ],
+      "brand_ratio": {
+        "deep_blue": 0.012,
+        "light_blue": 0.2473,
+        "accent_blue": 0.02,
+        "accent_blue_pale": 0.128,
+        "magenta": 0.0,
+        "orange": 0.0,
+        "white": 0.5926,
+        "black": 0.0
+      },
+      "dark_ratio": 0.0128,
+      "light_ratio": 0.8502,
+      "edge_density": 0.0174,
+      "occupancy": 0.4038,
+      "top_band_luminance": 0.9802,
+      "archetype": "standard_content"
+    },
+    {
+      "slide": "Slide6.PNG",
+      "top_colors": [
+        {
+          "hex": "#F8F8F8",
+          "ratio": 0.9608,
+          "nearest_brand": "white",
+          "brand_distance": 12.12
+        },
+        {
+          "hex": "#F0F8F8",
+          "ratio": 0.0062,
+          "nearest_brand": "white",
+          "brand_distance": 17.97
+        },
+        {
+          "hex": "#002858",
+          "ratio": 0.0027,
+          "nearest_brand": "deep_blue",
+          "brand_distance": 42.97
+        },
+        {
+          "hex": "#104070",
+          "ratio": 0.002,
+          "nearest_brand": "deep_blue",
+          "brand_distance": 6.16
+        },
+        {
+          "hex": "#D8E0E8",
+          "ratio": 0.0015,
+          "nearest_brand": "light_blue",
+          "brand_distance": 22.49
+        },
+        {
+          "hex": "#D0D8E0",
+          "ratio": 0.0013,
+          "nearest_brand": "accent_blue_pale",
+          "brand_distance": 30.43
+        },
+        {
+          "hex": "#B0C0D0",
+          "ratio": 0.0011,
+          "nearest_brand": "accent_blue",
+          "brand_distance": 41.45
+        },
+        {
+          "hex": "#8098B0",
+          "ratio": 0.001,
+          "nearest_brand": "accent_blue",
+          "brand_distance": 75.83
+        }
+      ],
+      "brand_ratio": {
+        "deep_blue": 0.0103,
+        "light_blue": 0.0068,
+        "accent_blue": 0.0104,
+        "accent_blue_pale": 0.0056,
+        "magenta": 0.0,
+        "orange": 0.0,
+        "white": 0.967,
+        "black": 0.0
+      },
+      "dark_ratio": 0.0129,
+      "light_ratio": 0.9813,
+      "edge_density": 0.0123,
+      "occupancy": 0.0207,
+      "top_band_luminance": 0.9721,
+      "archetype": "minimal_statement"
+    },
+    {
+      "slide": "Slide7.PNG",
+      "top_colors": [
+        {
+          "hex": "#F8F8F8",
+          "ratio": 0.5998,
+          "nearest_brand": "white",
+          "brand_distance": 12.12
+        },
+        {
+          "hex": "#D8E8F8",
+          "ratio": 0.2293,
+          "nearest_brand": "light_blue",
+          "brand_distance": 8.6
+        },
+        {
+          "hex": "#78B0C8",
+          "ratio": 0.115,
+          "nearest_brand": "accent_blue",
+          "brand_distance": 46.54
+        },
+        {
+          "hex": "#F0F8F8",
+          "ratio": 0.0058,
+          "nearest_brand": "white",
+          "brand_distance": 17.97
+        },
+        {
+          "hex": "#E0F0F8",
+          "ratio": 0.0055,
+          "nearest_brand": "light_blue",
+          "brand_distance": 3.16
+        },
+        {
+          "hex": "#E8F0F8",
+          "ratio": 0.0022,
+          "nearest_brand": "light_blue",
+          "brand_distance": 11.05
+        },
+        {
+          "hex": "#88B8D0",
+          "ratio": 0.0021,
+          "nearest_brand": "accent_blue",
+          "brand_distance": 30.03
+        },
+        {
+          "hex": "#104070",
+          "ratio": 0.002,
+          "nearest_brand": "deep_blue",
+          "brand_distance": 6.16
+        }
+      ],
+      "brand_ratio": {
+        "deep_blue": 0.012,
+        "light_blue": 0.2426,
+        "accent_blue": 0.1326,
+        "accent_blue_pale": 0.0072,
+        "magenta": 0.0,
+        "orange": 0.0,
+        "white": 0.6056,
+        "black": 0.0
+      },
+      "dark_ratio": 0.0115,
+      "light_ratio": 0.8567,
+      "edge_density": 0.0143,
+      "occupancy": 0.3881,
+      "top_band_luminance": 0.9721,
+      "archetype": "standard_content"
+    },
+    {
+      "slide": "Slide8.PNG",
+      "top_colors": [
+        {
+          "hex": "#F8F8F8",
+          "ratio": 0.4618,
+          "nearest_brand": "white",
+          "brand_distance": 12.12
+        },
+        {
+          "hex": "#D8E8F8",
+          "ratio": 0.3138,
+          "nearest_brand": "light_blue",
+          "brand_distance": 8.6
+        },
+        {
+          "hex": "#B0D8E8",
+          "ratio": 0.1156,
+          "nearest_brand": "accent_blue_pale",
+          "brand_distance": 10.49
+        },
+        {
+          "hex": "#D8E8F0",
+          "ratio": 0.0118,
+          "nearest_brand": "light_blue",
+          "brand_distance": 11.75
+        },
+        {
+          "hex": "#F0F8F8",
+          "ratio": 0.0079,
+          "nearest_brand": "white",
+          "brand_distance": 17.97
+        },
+        {
+          "hex": "#E0F0F8",
+          "ratio": 0.0071,
+          "nearest_brand": "light_blue",
+          "brand_distance": 3.16
+        },
+        {
+          "hex": "#B0C8D8",
+          "ratio": 0.0045,
+          "nearest_brand": "accent_blue_pale",
+          "brand_distance": 31.72
+        },
+        {
+          "hex": "#80A0B8",
+          "ratio": 0.0042,
+          "nearest_brand": "accent_blue",
+          "brand_distance": 64.79
+        }
+      ],
+      "brand_ratio": {
+        "deep_blue": 0.0118,
+        "light_blue": 0.3395,
+        "accent_blue": 0.0417,
+        "accent_blue_pale": 0.1374,
+        "magenta": 0.0,
+        "orange": 0.0,
+        "white": 0.4696,
+        "black": 0.0
+      },
+      "dark_ratio": 0.0193,
+      "light_ratio": 0.8385,
+      "edge_density": 0.0349,
+      "occupancy": 0.5266,
+      "top_band_luminance": 0.9721,
+      "archetype": "standard_content"
+    },
+    {
+      "slide": "Slide9.PNG",
+      "top_colors": [
+        {
+          "hex": "#F8F8F8",
+          "ratio": 0.4639,
+          "nearest_brand": "white",
+          "brand_distance": 12.12
+        },
+        {
+          "hex": "#D8E8F8",
+          "ratio": 0.3772,
+          "nearest_brand": "light_blue",
+          "brand_distance": 8.6
+        },
+        {
+          "hex": "#B0D8E8",
+          "ratio": 0.1153,
+          "nearest_brand": "accent_blue_pale",
+          "brand_distance": 10.49
+        },
+        {
+          "hex": "#F0F8F8",
+          "ratio": 0.0076,
+          "nearest_brand": "white",
+          "brand_distance": 17.97
+        },
+        {
+          "hex": "#E0F0F8",
+          "ratio": 0.0071,
+          "nearest_brand": "light_blue",
+          "brand_distance": 3.16
+        },
+        {
+          "hex": "#104070",
+          "ratio": 0.002,
+          "nearest_brand": "deep_blue",
+          "brand_distance": 6.16
+        },
+        {
+          "hex": "#B8E0F0",
+          "ratio": 0.0018,
+          "nearest_brand": "accent_blue_pale",
+          "brand_distance": 3.74
+        },
+        {
+          "hex": "#E8F0F8",
+          "ratio": 0.0011,
+          "nearest_brand": "light_blue",
+          "brand_distance": 11.05
+        }
+      ],
+      "brand_ratio": {
+        "deep_blue": 0.0082,
+        "light_blue": 0.3881,
+        "accent_blue": 0.0094,
+        "accent_blue_pale": 0.1227,
+        "magenta": 0.0,
+        "orange": 0.0,
+        "white": 0.4715,
+        "black": 0.0
+      },
+      "dark_ratio": 0.0087,
+      "light_ratio": 0.862,
+      "edge_density": 0.0096,
+      "occupancy": 0.5239,
+      "top_band_luminance": 0.9721,
+      "archetype": "standard_content"
+    }
+  ]
+}

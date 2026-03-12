@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Slidev zeepkist",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--prefix",
+				"c:\\Users\\vries\\Projects\\presentaties\\presentations\\zeepkist-agentic-coding",
+				"run",
+				"dev"
+			],
+			"isBackground": true
+		}
+	]
+}

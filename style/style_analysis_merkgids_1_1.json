@@ -1,0 +1,202 @@
+{
+  "set": "merkgids-1.1-mei-2022",
+  "image_count": 18,
+  "avg_occupancy": 0.4242,
+  "avg_edge_density": 0.0566,
+  "archetype_counts": {
+    "standard_content": 7,
+    "minimal_statement": 1,
+    "dense_information": 10
+  },
+  "max_occupancy": {
+    "image": "Page002.png",
+    "dark_ratio": 0.1267,
+    "light_ratio": 0.2844,
+    "occupancy": 0.9991,
+    "edge_density": 0.0335,
+    "top_band_luminance": 0.6378,
+    "archetype": "standard_content"
+  },
+  "min_occupancy": {
+    "image": "Page005.png",
+    "dark_ratio": 0.0296,
+    "light_ratio": 0.9303,
+    "occupancy": 0.0984,
+    "edge_density": 0.0608,
+    "top_band_luminance": 0.993,
+    "archetype": "minimal_statement"
+  },
+  "max_edge_density": {
+    "image": "Page004.png",
+    "dark_ratio": 0.0553,
+    "light_ratio": 0.7419,
+    "occupancy": 0.2893,
+    "edge_density": 0.1175,
+    "top_band_luminance": 0.8387,
+    "archetype": "dense_information"
+  },
+  "images": [
+    {
+      "image": "Page001.png",
+      "dark_ratio": 0.1394,
+      "light_ratio": 0.1005,
+      "occupancy": 0.9765,
+      "edge_density": 0.0962,
+      "top_band_luminance": 0.8018,
+      "archetype": "dense_information"
+    },
+    {
+      "image": "Page002.png",
+      "dark_ratio": 0.1267,
+      "light_ratio": 0.2844,
+      "occupancy": 0.9991,
+      "edge_density": 0.0335,
+      "top_band_luminance": 0.6378,
+      "archetype": "standard_content"
+    },
+    {
+      "image": "Page003.png",
+      "dark_ratio": 0.0698,
+      "light_ratio": 0.722,
+      "occupancy": 0.4843,
+      "edge_density": 0.0661,
+      "top_band_luminance": 0.8868,
+      "archetype": "dense_information"
+    },
+    {
+      "image": "Page004.png",
+      "dark_ratio": 0.0553,
+      "light_ratio": 0.7419,
+      "occupancy": 0.2893,
+      "edge_density": 0.1175,
+      "top_band_luminance": 0.8387,
+      "archetype": "dense_information"
+    },
+    {
+      "image": "Page005.png",
+      "dark_ratio": 0.0296,
+      "light_ratio": 0.9303,
+      "occupancy": 0.0984,
+      "edge_density": 0.0608,
+      "top_band_luminance": 0.993,
+      "archetype": "minimal_statement"
+    },
+    {
+      "image": "Page006.png",
+      "dark_ratio": 0.0474,
+      "light_ratio": 0.7068,
+      "occupancy": 0.4997,
+      "edge_density": 0.0541,
+      "top_band_luminance": 0.8331,
+      "archetype": "dense_information"
+    },
+    {
+      "image": "Page007.png",
+      "dark_ratio": 0.0698,
+      "light_ratio": 0.5177,
+      "occupancy": 0.5447,
+      "edge_density": 0.0435,
+      "top_band_luminance": 0.8692,
+      "archetype": "standard_content"
+    },
+    {
+      "image": "Page008.png",
+      "dark_ratio": 0.0371,
+      "light_ratio": 0.6279,
+      "occupancy": 0.6267,
+      "edge_density": 0.0333,
+      "top_band_luminance": 0.8616,
+      "archetype": "standard_content"
+    },
+    {
+      "image": "Page009.png",
+      "dark_ratio": 0.0413,
+      "light_ratio": 0.8724,
+      "occupancy": 0.2419,
+      "edge_density": 0.0311,
+      "top_band_luminance": 0.9391,
+      "archetype": "standard_content"
+    },
+    {
+      "image": "Page010.png",
+      "dark_ratio": 0.0328,
+      "light_ratio": 0.8016,
+      "occupancy": 0.5476,
+      "edge_density": 0.0649,
+      "top_band_luminance": 0.937,
+      "archetype": "dense_information"
+    },
+    {
+      "image": "Page011.png",
+      "dark_ratio": 0.0547,
+      "light_ratio": 0.8385,
+      "occupancy": 0.2851,
+      "edge_density": 0.0773,
+      "top_band_luminance": 0.944,
+      "archetype": "dense_information"
+    },
+    {
+      "image": "Page012.png",
+      "dark_ratio": 0.0201,
+      "light_ratio": 0.8546,
+      "occupancy": 0.2729,
+      "edge_density": 0.0496,
+      "top_band_luminance": 0.8705,
+      "archetype": "standard_content"
+    },
+    {
+      "image": "Page013.png",
+      "dark_ratio": 0.0504,
+      "light_ratio": 0.7081,
+      "occupancy": 0.3511,
+      "edge_density": 0.07,
+      "top_band_luminance": 0.8696,
+      "archetype": "dense_information"
+    },
+    {
+      "image": "Page014.png",
+      "dark_ratio": 0.0426,
+      "light_ratio": 0.8542,
+      "occupancy": 0.1836,
+      "edge_density": 0.0641,
+      "top_band_luminance": 0.9995,
+      "archetype": "dense_information"
+    },
+    {
+      "image": "Page015.png",
+      "dark_ratio": 0.0264,
+      "light_ratio": 0.8472,
+      "occupancy": 0.1823,
+      "edge_density": 0.0594,
+      "top_band_luminance": 0.8684,
+      "archetype": "dense_information"
+    },
+    {
+      "image": "Page016.png",
+      "dark_ratio": 0.0187,
+      "light_ratio": 0.8138,
+      "occupancy": 0.279,
+      "edge_density": 0.0366,
+      "top_band_luminance": 0.8692,
+      "archetype": "standard_content"
+    },
+    {
+      "image": "Page017.png",
+      "dark_ratio": 0.0257,
+      "light_ratio": 0.8337,
+      "occupancy": 0.2443,
+      "edge_density": 0.0554,
+      "top_band_luminance": 1.0,
+      "archetype": "dense_information"
+    },
+    {
+      "image": "Page018.png",
+      "dark_ratio": 0.0026,
+      "light_ratio": 0.496,
+      "occupancy": 0.5289,
+      "edge_density": 0.0054,
+      "top_band_luminance": 0.8742,
+      "archetype": "standard_content"
+    }
+  ]
+}
