@@ -1,0 +1,110 @@
+/* ================================================================
+   Rijksoverheid / Belastingdienst Slidev Theme — base styles
+   ================================================================ */
+
+/* ---- Fonts ---- */
+@font-face {
+  font-family: "RijksoverheidSansWebText";
+  font-stretch: 75% 125%;
+  font-style: normal;
+  font-weight: 200 800;
+  src: url("../assets/fonts/RijksSansWeb-Regular.woff2") format("woff2-variations");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RijksoverheidSansWebText";
+  font-stretch: 75% 125%;
+  font-style: italic;
+  font-weight: 200 800;
+  src: url("../assets/fonts/RijksSansWeb-Italic.woff2") format("woff2-variations");
+  font-display: swap;
+}
+
+/* ---- Design tokens ---- */
+:root {
+  --bd-donkerblauw:  #154273;
+  --bd-lichtblauw:   #DDEFF8;
+  --bd-accentblauw:  #8FCAE7;
+  --bd-paalblauw:    #B5DDEF;
+  --bd-magenta:      #A90061;
+  --bd-oranje:       #E17000;
+  --bd-tekst:        #1f2f3f;
+  --bd-subtekst:     #5E7F9A;
+}
+
+/* ---- Base ---- */
+.slidev-layout {
+  font-family: "RijksoverheidSansWebText", "Segoe UI", "Inter", Arial, sans-serif;
+  color: var(--bd-tekst);
+  box-sizing: border-box;
+}
+
+.slidev-layout h1 {
+  color: var(--bd-donkerblauw);
+  font-weight: 700;
+  margin-top: 0;
+}
+
+.slidev-layout h2,
+.slidev-layout h3 {
+  color: var(--bd-donkerblauw);
+  font-weight: 600;
+}
+
+.slidev-layout a {
+  color: var(--bd-donkerblauw);
+}
+
+.slidev-layout ul {
+  list-style: disc;
+  padding-left: 1.4rem;
+}
+
+.slidev-layout ol {
+  list-style: decimal;
+  padding-left: 1.4rem;
+}
+
+.slidev-layout li {
+  margin-bottom: 0.35rem;
+}
+
+/* ---- Utility classes ---- */
+.placeholder {
+  border: 2px dashed var(--bd-donkerblauw);
+  background: var(--bd-lichtblauw);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 0.8rem;
+  color: var(--bd-donkerblauw);
+  font-weight: 600;
+}
+
+.placeholder-sub {
+  font-weight: 400;
+  margin-top: 0.4rem;
+}
+
+.breakpoint {
+  background: #eef5f9;
+  border-left: 10px solid var(--bd-donkerblauw);
+  padding: 1rem;
+  margin-top: 0.8rem;
+}
+
+/* ---- Ribbon (applied via global-top.vue) ---- */
+.rijks-ribbon {
+  position: fixed;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.rijks-ribbon img {
+  width: 34px;
+  height: 85px;
+  display: block;
+}
