@@ -4,3 +4,8 @@
  *   slidev-theme-belastingdienst  (../../theme)
  */
 
+/* Wider text box for specific centered slides (e.g. Vraagstuk). */
+.slidev-layout.center.wide-content .prose {
+	max-width: min(1120px, 92vw);
+}
+

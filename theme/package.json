@@ -1,0 +1,11 @@
+{
+  "name": "slidev-theme-belastingdienst",
+  "version": "0.1.0",
+  "private": true,
+  "keywords": [
+    "slidev-theme"
+  ],
+  "engines": {
+    "slidev": ">=0.50.0"
+  }
+}

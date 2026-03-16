@@ -1,5 +1,5 @@
 ---
-theme: default
+theme: ../../theme
 title: Agentic Coding - Deel 1
 info: |
   Structuurversie (deel 1) met visuele placeholders.
@@ -9,12 +9,18 @@ drawings:
 mdc: true
 transition: slide-left
 colorSchema: light
-fonts:
-  sans: RijksoverheidSansWebText, Segoe UI, Inter, Arial, sans-serif
+layout: cover
+coverBg: /images/cover-bg.jpg
+coverTitle: Agentic coding
+subtitle: "Waarom nu?\nHoe doe je het?\nWat voor tools zijn er?\nWat kan je leren van de zeik blogs."
+date: 24 maart 2026
+spreker: "Michaël de Vries"
+meeting: "Zeepkist · Deel 1"
 ---
 
-<CoverSlide />
-
+---
+layout: agenda
+agendaImage: /images/robot-agenda.jpg
 ---
 
 # Agenda (Deel 1)
@@ -25,71 +31,48 @@ fonts:
 4. Wat ging fout in de praktijk (en waarom wij juist sterk staan)
 5. Teaser naar Deel 2 + pauze
 
-<div class="placeholder">
-  VISUELE PLACEHOLDER — Agenda-layout met split-view
-  <div class="placeholder-sub">
-    Links bullets, rechts illustratie/icoonblok in vlakke stijl.
-  </div>
-</div>
-
+---
+layout: text-image-right
+image: /images/agentic-speedup.jpg
+backgroundPosition: center
 ---
 
 # 1) Waarom nu? — Externe realiteit
 
 De softwarewereld beweegt sneller dan ooit:
 
-- Agentic features komen in IDE's, CLI's en platformtools
-- Teams buiten de Belastingdienst experimenteren al in productiecontext
-- De lat verschuift van "code schrijven" naar "systemen sturen"
+- Modellen zijn voorbij het kantelpunt waarop ze echt autonoom taken uit kunnen voeren
+- Agentic coding is de norm
+- Nu wachten betekent dat je over drie jaar een legacy dinosaurus bent
 
 Kernboodschap: afwachten is ook een strategische keuze (met kosten).
 
 ---
+layout: text-image-left
+image: /images/agents-loading.png
+---
 
 # Waarom nu? — Interne realiteit
 
-Binnen onze context zien we tegelijk:
+Agentic coding aanbesteding loopt
 
-- Toenemende complexiteit in ketens, platformen en governance
-- Druk op snelheid én kwaliteit
-- Groeiend belang van herhaalbaarheid en auditability
+dus... vibecoding Soon™
 
-Agentic coding is relevant als versneller van bestaand vakmanschap, niet als vervanger.
+**Nu is de tijd om voor te bereiden**
 
 ---
-
-# Waarom nu? — De komende golf
-
-Binnen afzienbare tijd komen coding agents breder beschikbaar en volwassener in gedrag.
-
-- Meer autonome uitvoering binnen guardrails
-- Betere contextverwerking over repository en workflows
-- Hogere verwachtingen van teams en stakeholders
-
-<div class="placeholder">
-  VISUELE PLACEHOLDER — Tijdlijn “nu -> komende 12-24 maanden”
-  <div class="placeholder-sub">
-    Markeer: huidige copilots, opkomst coding agents, verwachte standaardisering.
-  </div>
-</div>
-
+layout: text-images-right
 ---
 
-# 2) Beschikbare tools — Overzicht
+# 2) Beschikbare tools
 
-Toollandschap op dit moment:
+TBD — tekst over de toolcategorieën
 
-- Chat-assistenten (vraag/antwoord, uitleg, snippets)
-- IDE-assistenten (inline hulp, refactors, testondersteuning)
-- CLI/agent-workflows (taken over meerdere bestanden/repo-scope)
-- Platformintegraties (GitHub/Jira/CI-gedreven flows)
-
-<div class="placeholder">
-  VISUELE PLACEHOLDER — Toolmatrix met 4 kwadranten
-  <div class="placeholder-sub">
-    Assen: autonomie (laag-hoog) vs scope (lokaal-repo/organisatiebreed).
-  </div>
-</div>
+::images::
+<div class="placeholder">IDE afbeelding 1 — TBD</div>
+<div class="placeholder">IDE afbeelding 2 — TBD</div>
+<div class="placeholder">IDE afbeelding 3 — TBD</div>
+<div class="placeholder">IDE afbeelding 4 — TBD</div>
 
 ---
 
@@ -125,30 +108,43 @@ Doel van demo (kort):
 
 # 3) De evolutiecurve van modellen
 
-Van "veel handwerk in prompts" naar "proactieve contextgevoelige assistentie".
+Hoe beter het model, hoe minder je het hoeft te sturen — maar de fouten die overblijven zijn subtieler.
 
-- Vroege/zwakkere modellen: veel expliciete instructies nodig voor simpele taken
-- Huidige generatie: bruikbaar, maar nog variabel en contextgevoelig
-- Toekomstbeeld: modellen anticiperen beter op intentie en randvoorwaarden
-
-Belangrijk: volwassenheid van model én teamproces bepalen de waarde.
+- **Vroeger:** je bent menselijke linter — syntax, imports, hallucinations corrigeren
+- **Nu:** je bent code reviewer — logica, edge cases, state-management bewaken
+- **Straks:** je bent software architect — domein, koppeling, ontwerpprincipes bewaken
 
 ---
+layout: default
+---
 
-# Evolutiecurve — Conceptgrafiek
+# Cognitief budget: sturing per taak
 
-<div class="placeholder">
-  GRAFIEK PLACEHOLDER
-  <div class="placeholder-sub">
-    X-as: modelgeneratie/tijd
-    Y-as: benodigde expliciete sturing per taak
+<EvoBarChart />
 
-    Curve 1 (daalt): hoeveelheid handmatige promptsturing
-    Curve 2 (stijgt): taakbegrip en contextgevoeligheid
+---
+layout: default
+---
 
-    Ankerpunten: "GPT-OSS-achtig handwerk" -> "huidige copilots" -> "toekomstige proactieve agents".
-  </div>
-</div>
+# Anatomie van een fout
+
+<EvoErrorPyramid />
+
+---
+layout: default
+---
+
+# Commit history: gpt-oss vs Opus 4.6
+
+<EvoCommitHistory />
+
+---
+layout: default
+---
+
+# Merge conflict: de doom loop
+
+<EvoMergeMeltdown />
 
 ---
 
