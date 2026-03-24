@@ -53,21 +53,31 @@ function quoteWindowsArg(value) {
 }
 
 function getDeckBuildCommand(deck, outDir, base) {
-  const pnpmArgs = ['--dir', deck.dir, 'exec', 'slidev', 'build', '--base', base, '--out', outDir];
-
   if (process.platform === 'win32') {
-    const commandLine = ['corepack', 'pnpm', ...pnpmArgs].map(quoteWindowsArg).join(' ');
+    const windowsArgs = ['pnpm', '--dir', deck.dir, 'exec', 'slidev', 'build', '--base', base, '--out', outDir];
+    const commandLine = ['corepack', ...windowsArgs].map(quoteWindowsArg).join(' ');
 
     return {
       command: 'cmd.exe',
       args: ['/d', '/s', '/c', commandLine],
+      shell: false,
     };
   }
 
+  // On Linux/macOS run through the shell so PATH entries added by pnpm/action-setup
+  // are resolved correctly (same reason Windows uses cmd.exe).
+  const shellCmd = `pnpm --dir ${quoteShellArg(deck.dir)} exec slidev build --base ${quoteShellArg(base)} --out ${quoteShellArg(outDir)}`;
+
   return {
-    command: 'pnpm',
-    args: pnpmArgs,
+    command: '/bin/sh',
+    args: ['-c', shellCmd],
+    shell: false,
   };
+}
+
+function quoteShellArg(value) {
+  // Single-quote the value and escape any single quotes within it.
+  return `'${String(value).replace(/'/g, "'\\''")}'`;
 }
 
 async function exists(filePath) {
@@ -254,21 +264,24 @@ function buildIndexHtml(decks) {
 
 function runDeckBuild(deck, outDir, base) {
   const command = getDeckBuildCommand(deck, outDir, base);
+  console.log(`[build-pages] ${command.command} ${command.args.join(' ')}`);
+
   const result = spawnSync(
     command.command,
     command.args,
     {
       cwd: repoRoot,
       stdio: 'inherit',
+      shell: command.shell,
     },
   );
 
   if (result.error) {
-    throw result.error;
+    throw new Error(`Failed to spawn build process for ${deck.slug}: ${result.error.message}`);
   }
 
   if (result.status !== 0) {
-    throw new Error(`Build failed for ${deck.slug}.`);
+    throw new Error(`Build failed for ${deck.slug} (exit code: ${result.status ?? 'null'}).`);
   }
 }
 
