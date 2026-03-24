@@ -53,10 +53,10 @@ function quoteWindowsArg(value) {
 }
 
 function getDeckBuildCommand(deck, outDir, base) {
-  const args = ['pnpm', '--dir', deck.dir, 'exec', 'slidev', 'build', '--base', base, '--out', outDir];
+  const pnpmArgs = ['--dir', deck.dir, 'exec', 'slidev', 'build', '--base', base, '--out', outDir];
 
   if (process.platform === 'win32') {
-    const commandLine = ['corepack', ...args].map(quoteWindowsArg).join(' ');
+    const commandLine = ['corepack', 'pnpm', ...pnpmArgs].map(quoteWindowsArg).join(' ');
 
     return {
       command: 'cmd.exe',
@@ -65,8 +65,8 @@ function getDeckBuildCommand(deck, outDir, base) {
   }
 
   return {
-    command: 'corepack',
-    args,
+    command: 'pnpm',
+    args: pnpmArgs,
   };
 }
 
