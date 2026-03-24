@@ -271,16 +271,35 @@ function runDeckBuild(deck, outDir, base) {
     command.args,
     {
       cwd: repoRoot,
-      stdio: 'inherit',
+      // Pipe stdout+stderr so we can surface the build output in CI annotations
+      // on failure. We re-print them immediately after so the CI log still gets them.
+      stdio: ['inherit', 'pipe', 'pipe'],
       shell: command.shell,
+      encoding: 'utf8',
+      maxBuffer: 10 * 1024 * 1024,
     },
   );
 
+  // Re-print captured output so it appears in the CI step log.
+  if (result.stdout) process.stdout.write(result.stdout);
+  if (result.stderr) process.stderr.write(result.stderr);
+
   if (result.error) {
-    throw new Error(`Failed to spawn build process for ${deck.slug}: ${result.error.message}`);
+    const msg = `Failed to spawn build process for ${deck.slug}: ${result.error.message}`;
+    console.log(`::error::${msg}`);
+    throw new Error(msg);
   }
 
   if (result.status !== 0) {
+    // Surface the last 20 lines of combined output as a GitHub Actions error
+    // annotation so it's visible in the public check-runs/annotations API.
+    const combined = [result.stdout, result.stderr].filter(Boolean).join('\n');
+    const lines = combined.split('\n').filter((l) => l.trim()).slice(-20);
+    if (lines.length > 0) {
+      const encoded = lines.map((l) => l.replace(/\r/g, '')).join('%0A').slice(0, 2000);
+      console.log(`::error title=build-output-${deck.slug}::${encoded}`);
+    }
+
     throw new Error(`Build failed for ${deck.slug} (exit code: ${result.status ?? 'null'}).`);
   }
 }
