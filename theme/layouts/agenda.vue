@@ -10,16 +10,22 @@ defineProps({
     <div class="bd-agenda-content">
       <slot />
     </div>
-    <div
-      v-if="agendaImage"
-      class="bd-agenda-image"
-      :style="{
-        backgroundImage: `url(${agendaImage})`,
-        backgroundSize,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center bottom',
-      }"
-    />
+    <div class="bd-agenda-side">
+      <slot name="image">
+        <slot name="right">
+          <div
+            v-if="agendaImage"
+            class="bd-agenda-image"
+            :style="{
+              backgroundImage: `url(${agendaImage})`,
+              backgroundSize,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center bottom',
+            }"
+          />
+        </slot>
+      </slot>
+    </div>
   </div>
 </template>
 
@@ -38,6 +44,12 @@ defineProps({
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.bd-agenda-side {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .bd-agenda-image {

@@ -1,0 +1,36 @@
+{
+    "servers": {
+        "playwright": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@playwright/mcp@latest",
+                "--headless",
+                "--isolated",
+                "--viewport-size=1920,1080"
+            ]
+        },
+        "playwright-firefox": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@playwright/mcp@latest",
+                "--headless",
+                "--isolated",
+                "--browser=firefox",
+                "--viewport-size=1920,1080"
+            ]
+        },
+        "playwright-mobile": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@playwright/mcp@latest",
+                "--headless",
+                "--isolated",
+                "--device=iPhone 15"
+            ]
+        }
+    },
+    "inputs": []
+}

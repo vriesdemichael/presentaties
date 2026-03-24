@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  image: { type: String, required: true },
+  image: { type: String, default: '' },
   captionPosition: { type: String, default: 'bottom' }, // 'top' | 'bottom'
   backgroundSize: { type: String, default: 'contain' },
   backgroundPosition: { type: String, default: 'center' },
@@ -13,19 +13,28 @@ defineProps({
     :class="`bd-caption-${captionPosition}`"
   >
     <div v-if="captionPosition === 'top'" class="bd-caption">
-      <slot />
+      <slot name="caption">
+        <slot />
+      </slot>
     </div>
-    <div
-      class="bd-image-area"
-      :style="{
-        backgroundImage: `url(${image})`,
-        backgroundSize,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition,
-      }"
-    />
+    <div class="bd-image-area">
+      <slot name="image">
+        <div
+          v-if="image"
+          class="bd-image-background"
+          :style="{
+            backgroundImage: `url(${image})`,
+            backgroundSize,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition,
+          }"
+        />
+      </slot>
+    </div>
     <div v-if="captionPosition === 'bottom'" class="bd-caption">
-      <slot />
+      <slot name="caption">
+        <slot />
+      </slot>
     </div>
   </div>
 </template>
@@ -60,5 +69,10 @@ defineProps({
   flex: 1 1 0;
   min-height: 0;
   width: 100%;
+}
+
+.bd-image-background {
+  width: 100%;
+  height: 100%;
 }
 </style>

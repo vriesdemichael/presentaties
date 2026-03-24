@@ -11,7 +11,11 @@ defineProps({
 <template>
   <div class="slidev-layout bd-text-image-left">
     <div class="bd-image-panel">
-      <img :src="image" alt="" :style="{ maxWidth: imageMaxWidth, maxHeight: imageMaxHeight }" />
+      <slot name="image">
+        <slot name="left">
+          <img :src="image" alt="" :style="{ maxWidth: imageMaxWidth, maxHeight: imageMaxHeight }" />
+        </slot>
+      </slot>
     </div>
     <div class="bd-content">
       <slot />

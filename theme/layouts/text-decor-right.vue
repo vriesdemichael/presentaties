@@ -14,17 +14,19 @@ defineProps({
     </div>
 
     <div class="bd-right-panel">
-      <div
-        v-if="image"
-        class="bd-decor-image"
-        :style="{
-          backgroundImage: `url(${image})`,
-          backgroundSize,
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition,
-          opacity: backgroundOpacity,
-        }"
-      />
+      <slot name="decor">
+        <div
+          v-if="image"
+          class="bd-decor-image"
+          :style="{
+            backgroundImage: `url(${image})`,
+            backgroundSize,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition,
+            opacity: backgroundOpacity,
+          }"
+        />
+      </slot>
       <div class="bd-right-foreground">
         <slot name="right" />
       </div>
