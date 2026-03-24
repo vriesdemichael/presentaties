@@ -291,22 +291,6 @@ function runDeckBuild(deck, outDir, base) {
   }
 
   if (result.status !== 0) {
-    // Surface the first 30 lines of output as a GitHub Actions annotation (to get the actual error)
-    // AND the last 20 lines (to get the require stack / context).
-    const combined = [result.stdout, result.stderr].filter(Boolean).join('\n');
-    const allLines = combined.split('\n').filter((l) => l.trim());
-    const firstLines = allLines.slice(0, 30);
-    const lastLines = allLines.slice(-20);
-
-    if (firstLines.length > 0) {
-      const encodedFirst = firstLines.map((l) => l.replace(/\r/g, '')).join('%0A').slice(0, 2000);
-      console.log(`::error title=build-head-${deck.slug}::${encodedFirst}`);
-    }
-    if (lastLines.length > 0) {
-      const encodedLast = lastLines.map((l) => l.replace(/\r/g, '')).join('%0A').slice(0, 2000);
-      console.log(`::error title=build-tail-${deck.slug}::${encodedLast}`);
-    }
-
     throw new Error(`Build failed for ${deck.slug} (exit code: ${result.status ?? 'null'}).`);
   }
 }
