@@ -291,13 +291,20 @@ function runDeckBuild(deck, outDir, base) {
   }
 
   if (result.status !== 0) {
-    // Surface the last 20 lines of combined output as a GitHub Actions error
-    // annotation so it's visible in the public check-runs/annotations API.
+    // Surface the first 30 lines of output as a GitHub Actions annotation (to get the actual error)
+    // AND the last 20 lines (to get the require stack / context).
     const combined = [result.stdout, result.stderr].filter(Boolean).join('\n');
-    const lines = combined.split('\n').filter((l) => l.trim()).slice(-20);
-    if (lines.length > 0) {
-      const encoded = lines.map((l) => l.replace(/\r/g, '')).join('%0A').slice(0, 2000);
-      console.log(`::error title=build-output-${deck.slug}::${encoded}`);
+    const allLines = combined.split('\n').filter((l) => l.trim());
+    const firstLines = allLines.slice(0, 30);
+    const lastLines = allLines.slice(-20);
+
+    if (firstLines.length > 0) {
+      const encodedFirst = firstLines.map((l) => l.replace(/\r/g, '')).join('%0A').slice(0, 2000);
+      console.log(`::error title=build-head-${deck.slug}::${encodedFirst}`);
+    }
+    if (lastLines.length > 0) {
+      const encodedLast = lastLines.map((l) => l.replace(/\r/g, '')).join('%0A').slice(0, 2000);
+      console.log(`::error title=build-tail-${deck.slug}::${encodedLast}`);
     }
 
     throw new Error(`Build failed for ${deck.slug} (exit code: ${result.status ?? 'null'}).`);
