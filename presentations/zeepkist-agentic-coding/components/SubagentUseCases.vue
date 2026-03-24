@@ -1,3 +1,7 @@
+<script setup>
+const baseUrl = import.meta.env.BASE_URL
+</script>
+
 <template>
   <div class="subagent-usecases-slide">
     <div class="subagent-usecases-intro">
@@ -6,7 +10,7 @@
 
     <div class="subagent-usecase-row">
       <div class="subagent-usecase-media">
-        <img src="/images/explorer.png" alt="Gestileerde explorer die door bestanden en folders navigeert" class="subagent-usecase-image" />
+        <img :src="`${baseUrl}images/explorer.png`" alt="Gestileerde explorer die door bestanden en folders navigeert" class="subagent-usecase-image" />
       </div>
       <div class="subagent-usecase-copy">
         <div class="subagent-usecase-copy-title">Fast exploration of files</div>
@@ -16,7 +20,7 @@
 
     <div class="subagent-usecase-row">
       <div class="subagent-usecase-media">
-        <img src="/images/masked.png" alt="Gemaskerd gezicht als symbool voor persona switching" class="subagent-usecase-image" />
+        <img :src="`${baseUrl}images/masked.png`" alt="Gemaskerd gezicht als symbool voor persona switching" class="subagent-usecase-image" />
       </div>
       <div class="subagent-usecase-copy">
         <div class="subagent-usecase-copy-title">Switching persona</div>
@@ -26,7 +30,7 @@
 
     <div class="subagent-usecase-row">
       <div class="subagent-usecase-media">
-        <img src="/images/squire.png" alt="Ridder met schildknaap die werk overneemt als symbool voor offloading" class="subagent-usecase-image" />
+        <img :src="`${baseUrl}images/squire.png`" alt="Ridder met schildknaap die werk overneemt als symbool voor offloading" class="subagent-usecase-image" />
       </div>
       <div class="subagent-usecase-copy">
         <div class="subagent-usecase-copy-title">Offloading skills or MCP</div>

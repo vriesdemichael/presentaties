@@ -12,7 +12,7 @@ mdc: true
 transition: slide-left
 colorSchema: light
 layout: cover
-coverBg: /images/cover-bg.jpg
+coverBg: ./images/cover-bg.jpg
 coverTitle: Agentic coding
 subtitle: "Waarom nu?\nHoe doe je het?\nWat voor tools zijn er?\nWat kan je leren van de zeik blogs."
 date: 24 maart 2026
@@ -22,7 +22,7 @@ meeting: "Zeepkist · Deel 1"
 
 ---
 layout: agenda
-agendaImage: /images/robot-agenda.jpg
+agendaImage: ./images/robot-agenda.jpg
 ---
 
 # Agenda (Deel 1)
@@ -35,7 +35,7 @@ agendaImage: /images/robot-agenda.jpg
 
 ---
 layout: text-image-right
-image: /images/agentic-speedup.jpg
+image: ./images/agentic-speedup.jpg
 backgroundPosition: center
 ---
 
@@ -49,7 +49,7 @@ De softwarewereld beweegt sneller dan ooit:
 
 ---
 layout: text-image-left
-image: /images/agents-loading.png
+image: ./images/agents-loading.png
 ---
 
 # Waarom nu? — Interne realiteit
@@ -69,16 +69,16 @@ layout: default
 <div class="cli-tools-board">
   <div class="cli-tools-grid">
     <figure class="cli-tools-item">
-      <img src="/images/cli-tools/claude-code.webp" alt="Claude Code" />
+      <img :src="'images/cli-tools/claude-code.webp'" alt="Claude Code" />
     </figure>
     <figure class="cli-tools-item">
-      <img src="/images/cli-tools/copilot-cli.png" alt="GitHub Copilot CLI" />
+      <img :src="'images/cli-tools/copilot-cli.png'" alt="GitHub Copilot CLI" />
     </figure>
     <figure class="cli-tools-item">
-      <img src="/images/cli-tools/gemini-cli.png" alt="Gemini CLI" />
+      <img :src="'images/cli-tools/gemini-cli.png'" alt="Gemini CLI" />
     </figure>
     <figure class="cli-tools-item">
-      <img src="/images/cli-tools/opencode.png" alt="OpenCode" />
+      <img :src="'images/cli-tools/opencode.png'" alt="OpenCode" />
     </figure>
   </div>
   <p class="cli-tools-more">En veel meer...</p>
@@ -146,7 +146,7 @@ layout: center
 
 ---
 layout: text-image-right
-image: /images/review-ai.png
+image: ./images/review-ai.png
 backgroundPosition: center
 ---
 
@@ -162,7 +162,7 @@ Doordat modellen en coding tools beter worden verandert het werk van een develop
 
 <div class="role-evolution-visual">
   <img
-    src="/images/review-ai.png"
+    :src="'images/review-ai.png'"
     alt="Drie gestapelde panelen die de verschuiving tonen van menselijk implementeren naar AI-gedreven sprint review"
     class="role-evolution-visual-image"
   />
@@ -210,7 +210,7 @@ layout: default
 
 ---
 layout: text-image-right
-image: /images/cover-bg.jpg
+image: ./images/cover-bg.jpg
 ---
 
 # Zeikblogs
@@ -261,7 +261,7 @@ Wij hebben een volwassen mentaliteit over software development.
 
 <div class="positioning-visual">
   <img
-    src="/images/sadmf.png"
+    :src="'images/sadmf.png'"
     alt="Illustratie die een team toont dat klem zit tussen verantwoordelijkheden en externe afhankelijkheden"
     class="positioning-visual-image"
   />
@@ -580,7 +580,7 @@ class: pause-slide-page
 
 <div class="pause-slide">
   <img
-    src="/images/break-coffee-machine.png"
+    :src="'images/break-coffee-machine.png'"
     alt=""
     class="pause-slide-bg"
   >
@@ -594,7 +594,7 @@ class: pause-slide-page
 
   <div class="pause-slide-qr">
     <img
-      src="/images/qr-code.png"
+      :src="'images/qr-code.png'"
       alt="QR-code naar de bron van deze presentatie"
       class="pause-slide-qr-image"
     >
@@ -694,7 +694,7 @@ class: pause-slide-page
 
 ---
 layout: agenda
-agendaImage: /images/robot-agenda.jpg
+agendaImage: ./images/robot-agenda.jpg
 ---
 
 # Agenda (Deel 2)
@@ -706,7 +706,7 @@ agendaImage: /images/robot-agenda.jpg
 
 ---
 layout: text-image-right
-image: /images/caveman.png
+image: ./images/caveman.png
 imageMaxWidth: 92%
 imageMaxHeight: 88%
 ---
@@ -753,7 +753,7 @@ De mentale kaart die je nodig hebt voordat je gericht kunt debuggen.
 
 ---
 layout: text-image-left
-image: /images/caveman.png
+image: ./images/caveman.png
 ---
 
 <template #left>
@@ -918,7 +918,7 @@ image: /images/caveman.png
 
 ---
 layout: text-image-left
-image: /images/caveman.png
+image: ./images/caveman.png
 ---
 
 <template #left>
@@ -977,7 +977,7 @@ image: /images/caveman.png
 
 ---
 layout: text-image-right
-image: /images/caveman.png
+image: ./images/caveman.png
 ---
 
 <template #right>
@@ -1052,7 +1052,7 @@ layout: default
 
 ---
 layout: text-image-right
-image: /images/caveman.png
+image: ./images/caveman.png
 ---
 
 <template #right>

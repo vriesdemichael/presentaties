@@ -1,3 +1,7 @@
+<script setup>
+const baseUrl = import.meta.env.BASE_URL
+</script>
+
 <template>
   <div class="subagent-session-slide">
     <h1>Tools: Subagents</h1>
@@ -12,14 +16,14 @@
           <div class="subagent-chat-card">
             <div class="subagent-line subagent-line-user">
               <span class="subagent-avatar subagent-avatar-user">
-                <img src="/images/happy-dev.jpg" alt="Happy developer avatar" />
+                <img :src="`${baseUrl}images/happy-dev.jpg`" alt="Happy developer avatar" />
               </span>
               <div class="subagent-message subagent-message-user">Implement dark mode toggle.</div>
             </div>
             <div class="subagent-line subagent-line-agent">
               <div class="subagent-message subagent-message-agent">Ok, done.</div>
               <span class="subagent-avatar subagent-avatar-agent subagent-avatar-helpful">
-                <img src="/images/agent-avatar.png" alt="Helpful agent avatar" />
+                <img :src="`${baseUrl}images/agent-avatar.png`" alt="Helpful agent avatar" />
               </span>
             </div>
           </div>
@@ -27,7 +31,7 @@
           <div class="subagent-chat-card subagent-chat-card-review">
             <div class="subagent-line subagent-line-user">
               <span class="subagent-avatar subagent-avatar-user">
-                <img src="/images/happy-dev.jpg" alt="Happy developer avatar" />
+                <img :src="`${baseUrl}images/happy-dev.jpg`" alt="Happy developer avatar" />
               </span>
               <div class="subagent-message subagent-message-user">Review using grumpy reviewer skill.</div>
             </div>
@@ -35,19 +39,19 @@
             <div class="subagent-line subagent-line-agent">
               <div class="subagent-message subagent-message-review">Here are 10 things that were utterly garbage.</div>
               <span class="subagent-avatar subagent-avatar-agent">
-                <img src="/images/grumpy-dev.jpg" alt="Grumpy developer avatar" />
+                <img :src="`${baseUrl}images/grumpy-dev.jpg`" alt="Grumpy developer avatar" />
               </span>
             </div>
             <div class="subagent-line subagent-line-user">
               <span class="subagent-avatar subagent-avatar-user">
-                <img src="/images/happy-dev.jpg" alt="Happy developer avatar" />
+                <img :src="`${baseUrl}images/happy-dev.jpg`" alt="Happy developer avatar" />
               </span>
               <div class="subagent-message subagent-message-user">Implement fixes for these issues found in the review.</div>
             </div>
             <div class="subagent-line subagent-line-agent">
               <div class="subagent-message subagent-message-review">Go do it yourself.</div>
               <span class="subagent-avatar subagent-avatar-agent">
-                <img src="/images/grumpy-dev.jpg" alt="Grumpy developer avatar" />
+                <img :src="`${baseUrl}images/grumpy-dev.jpg`" alt="Grumpy developer avatar" />
               </span>
             </div>
           </div>
