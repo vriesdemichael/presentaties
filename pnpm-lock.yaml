@@ -57,6 +57,9 @@ importers:
       '@slidev/theme-default':
         specifier: latest
         version: 0.25.0
+      lz-string:
+        specifier: ^1.5.0
+        version: 1.5.0
       playwright-chromium:
         specifier: ^1.58.2
         version: 1.58.2
