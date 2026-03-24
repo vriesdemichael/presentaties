@@ -13,6 +13,7 @@
     "playwright-chromium": "^1.58.2"
   },
   "dependencies": {
-    "@slidev/theme-seriph": "^0.25.0"
+    "@slidev/theme-seriph": "^0.25.0",
+    "slidev-theme-belastingdienst": "file:../../theme"
   }
 }

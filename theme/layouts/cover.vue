@@ -12,8 +12,15 @@ defineProps({
 
 <template>
   <div class="slidev-layout bd-cover">
+    <div
+      v-if="$slots.background"
+      class="bd-cover-bg-slot"
+      :class="{ 'bd-cover-bg-slot--right-half': coverBgRightHalf }"
+    >
+      <slot name="background" />
+    </div>
     <img
-      v-if="coverBg"
+      v-else-if="coverBg"
       class="bd-cover-bg"
       :class="{ 'bd-cover-bg--right-half': coverBgRightHalf }"
       :src="coverBg"
@@ -32,6 +39,9 @@ defineProps({
               </span>
             </slot>
           </p>
+          <div v-if="$slots.default" class="bd-cover-body">
+            <slot />
+          </div>
         </div>
       </div>
       <div class="bd-cover-bottom">
@@ -65,6 +75,19 @@ defineProps({
   object-fit: contain;
   object-position: right bottom;
   z-index: 1;
+}
+
+.bd-cover-bg-slot {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.bd-cover-bg-slot--right-half {
+  left: auto;
+  right: 0;
+  width: 50%;
 }
 
 .bd-cover-bg--right-half {
@@ -127,6 +150,10 @@ defineProps({
   margin-bottom: 0;
   color: var(--bd-subtekst);
   max-width: 28ch;
+}
+
+.bd-cover-body {
+  margin-top: 1.25rem;
 }
 
 .bd-cover-footer {

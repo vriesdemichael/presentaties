@@ -1,0 +1,18 @@
+{
+  "name": "presentaties-workspace",
+  "private": true,
+  "scripts": {
+    "visual:test": "node ./scripts/run-visual-tests.mjs",
+    "visual:test:update": "node ./scripts/run-visual-tests.mjs --update"
+  },
+  "workspaces": [
+    "theme",
+    "addons/*",
+    "presentations/*"
+  ],
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "prettier": "^3.8.1",
+    "prettier-plugin-slidev": "^1.0.5"
+  }
+}

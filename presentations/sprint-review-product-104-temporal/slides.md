@@ -1,5 +1,5 @@
 ---
-theme: ../../theme
+theme: slidev-theme-belastingdienst
 title: Sprint Review - Product 104 Temporal
 info: |
   Structuurversie met alleen cover en agenda.
@@ -10,19 +10,34 @@ mdc: true
 transition: slide-left
 colorSchema: light
 layout: cover
-coverBg: /images/pipeline-image.png
 coverBgRightHalf: true
-coverTitle: Sprint review
-subtitle: "Product 104\nTemporal"
-date: 16 maart 2026
-spreker: "Team Product 104"
-meeting: "Sprint Review"
 ---
+
+::background::
+
+<img
+  src="/images/pipeline-image.png"
+  alt=""
+  style="width: 100%; height: 100%; object-fit: contain; object-position: right bottom; display: block;"
+/>
+
+::title::
+
+Sprint review
+
+::subtitle::
+
+Product 104<br>
+Temporal
+
+::footer::
+
+<div>16 maart 2026</div>
+<div>Team Product 104</div>
+<div>Sprint Review</div>
 
 ---
 layout: agenda
-agendaImage: /images/human-agenda.png
-backgroundSize: auto 66%
 ---
 
 # Agenda
@@ -32,9 +47,16 @@ backgroundSize: auto 66%
 3. Demo resultaten
 4. Vervolg
 
+::right::
+
+<img
+  src="/images/human-agenda.png"
+  alt=""
+  style="width: 100%; height: 100%; object-fit: contain; object-position: center bottom; display: block;"
+/>
+
 ---
 layout: text-image-right
-image: /images/iced-transparent.png
 ---
 
 # Waarom AI pipelines
@@ -45,11 +67,16 @@ image: /images/iced-transparent.png
   - queue mechanisme is maatwerk met rq
 - IECD heeft al lange tijd een feature freeze
 
+::image::
+
+<img
+  src="/images/iced-transparent.png"
+  alt=""
+  style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; mix-blend-mode: multiply;"
+/>
+
 ---
 layout: text-image-left
-image: /images/temporal-logo-white.svg
-imageMaxWidth: 180%
-imageMaxHeight: 180%
 ---
 
 # Demo opzet
@@ -61,6 +88,14 @@ imageMaxHeight: 180%
   - Classification (gpt-oss-120B)
 - Uitproberen!
 
+::image::
+
+<img
+  src="/images/temporal-logo-white.svg"
+  alt=""
+  style="max-width: 180%; max-height: 180%; object-fit: contain; display: block; mix-blend-mode: multiply;"
+/>
+
 ---
 layout: center
 ---
@@ -69,7 +104,6 @@ layout: center
 
 ---
 layout: text-image-right
-image: /images/emoji-questioning.png
 ---
 
 # Demo resultaten
@@ -86,6 +120,14 @@ Maar wel:
 - Veel garanties over output
 - Robuust met retries
 - Heel geschikt voor system-to-system
+
+::image::
+
+<img
+  src="/images/emoji-questioning.png"
+  alt=""
+  style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; mix-blend-mode: multiply;"
+/>
 
 ---
 layout: center
@@ -118,9 +160,6 @@ class: text-left wide-content
 
 ---
 layout: text-image-left
-image: /images/pydantic-logo-darkblue.svg
-imageMaxWidth: 58%
-imageMaxHeight: 58%
 ---
 
 # Vervolg:
@@ -132,3 +171,11 @@ Tweede demo met alternatief:
 Focus verleggen: 
 1. Simpel beginnen
 2. Later volwassen maken
+
+::image::
+
+<img
+  src="/images/pydantic-logo-darkblue.svg"
+  alt=""
+  style="max-width: 58%; max-height: 58%; object-fit: contain; display: block; mix-blend-mode: multiply;"
+/>

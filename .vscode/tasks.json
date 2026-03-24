@@ -9,9 +9,73 @@
 				"--prefix",
 				"c:\\Users\\vries\\Projects\\presentaties\\presentations\\zeepkist-agentic-coding",
 				"run",
-				"dev"
+				"dev",
+				"--",
+				"--remote",
+				"--bind",
+				"0.0.0.0",
+				"-p",
+				"3030"
 			],
 			"isBackground": true
+		},
+		{
+			"label": "Run Slidev sprint review",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--prefix",
+				"c:\\Users\\vries\\Projects\\presentaties\\presentations\\sprint-review-product-104-temporal",
+				"run",
+				"dev",
+				"--",
+				"--remote",
+				"--bind",
+				"0.0.0.0",
+				"-p",
+				"3030"
+			],
+			"isBackground": true
+		},
+		{
+			"label": "Visual test zeepkist",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"visual:test",
+				"zeepkist-agentic-coding"
+			]
+		},
+		{
+			"label": "Update zeepkist snapshots",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"visual:test:update",
+				"zeepkist-agentic-coding"
+			]
+		},
+		{
+			"label": "Visual test sprint review",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"visual:test",
+				"sprint-review-product-104-temporal"
+			]
+		},
+		{
+			"label": "Update sprint review snapshots",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"visual:test:update",
+				"sprint-review-product-104-temporal"
+			]
 		}
 	]
 }

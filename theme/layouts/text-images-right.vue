@@ -10,7 +10,9 @@ defineProps({
       <slot />
     </div>
     <div class="bd-images-panel">
-      <slot name="images" />
+      <slot name="images">
+        <slot name="right" />
+      </slot>
     </div>
   </div>
 </template>

@@ -3,6 +3,8 @@ defineProps({
   image: { type: String, required: true },
   backgroundSize: { type: String, default: 'contain' },
   backgroundPosition: { type: String, default: 'center' },
+  imageMaxWidth: { type: String, default: '100%' },
+  imageMaxHeight: { type: String, default: '100%' },
 })
 </script>
 
@@ -12,7 +14,11 @@ defineProps({
       <slot />
     </div>
     <div class="bd-image-panel">
-      <img :src="image" alt="" />
+      <slot name="image">
+        <slot name="right">
+          <img :src="image" alt="" :style="{ maxWidth: imageMaxWidth, maxHeight: imageMaxHeight }" />
+        </slot>
+      </slot>
     </div>
   </div>
 </template>

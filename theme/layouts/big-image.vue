@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  image: { type: String, required: true },
+  image: { type: String, default: '' },
   backgroundSize: { type: String, default: 'cover' },
   backgroundPosition: { type: String, default: 'center' },
 })
@@ -10,14 +10,19 @@ defineProps({
   <div
     class="slidev-layout bd-big-image"
     :style="{
-      backgroundImage: `url(${image})`,
+      backgroundImage: image ? `url(${image})` : undefined,
       backgroundSize,
       backgroundRepeat: 'no-repeat',
       backgroundPosition,
     }"
   >
-    <div v-if="$slots.default" class="bd-big-image-title">
-      <slot />
+    <div v-if="$slots.image" class="bd-big-image-media">
+      <slot name="image" />
+    </div>
+    <div v-if="$slots.caption || $slots.default" class="bd-big-image-title">
+      <slot name="caption">
+        <slot />
+      </slot>
     </div>
   </div>
 </template>
@@ -28,6 +33,11 @@ defineProps({
   width: 100%;
   height: 100%;
   padding: 0;
+}
+
+.bd-big-image-media {
+  position: absolute;
+  inset: 0;
 }
 
 .bd-big-image-title {
