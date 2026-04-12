@@ -1,9 +1,12 @@
 {
   "name": "presentaties-workspace",
   "private": true,
+  "packageManager": "pnpm@10.8.1",
   "scripts": {
-    "visual:test": "node ./scripts/run-visual-tests.mjs",
-    "visual:test:update": "node ./scripts/run-visual-tests.mjs --update"
+    "deck:list": "node ./scripts/run-deck.mjs list",
+    "deck:dev": "node ./scripts/run-deck.mjs dev",
+    "deck:build": "node ./scripts/run-deck.mjs build",
+    "deck:export": "node ./scripts/run-deck.mjs export"
   },
   "workspaces": [
     "theme",
@@ -11,7 +14,6 @@
     "presentations/*"
   ],
   "devDependencies": {
-    "@playwright/test": "^1.52.0",
     "prettier": "^3.8.1",
     "prettier-plugin-slidev": "^1.0.5"
   }

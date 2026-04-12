@@ -1,16 +1,8 @@
-# Visual Style Reference (from `style-example`)
+# Visual Style Reference
 
-This document summarizes the style extracted from:
+This document captures the working presentation style for this repository.
 
-- `./style-example/20260302 - SA - CoE Cognitief.pptx`
-- `./style-example/260302-kwartaalmeeting.pptx`
-- `./style-example/merkgids-1.1-mei-2022.pdf`
-
-And exported slide images in:
-
-- `./style-example/images/20260302 - SA - CoE Cognitief/` (28 images)
-- `./style-example/images/260302-kwartaalmeeting/` (18 images)
-- `./style-example/images/merkgids-1.1-mei-2022/` (18 images)
+It is intended as a practical implementation guide for Slidev decks that need to align with the government editorial and accessibility standards already used throughout this repo.
 
 ## 1) Core design identity
 
@@ -89,15 +81,9 @@ When we style the final deck, apply this in order:
 
 This gives a style that remains faithful to the examples while staying practical for Markdown-first Slidev authoring.
 
-## 7) Deep dive from image analysis (`260302-kwartaalmeeting`)
+## 7) Composition findings
 
-To go beyond theme tokens, I analyzed the exported PNG slides directly.
-
-Artifacts:
-
-- Analysis script: `scripts/analyze_260302_style.py`
-- Metrics output: `style_analysis_260302.json`
-- Source images: `./style-example/images/260302-kwartaalmeeting/Slide1.PNG` … `Slide9.PNG`
+Beyond theme tokens, the current guide also reflects earlier comparative review work on representative government presentation layouts.
 
 ### 7.1 Method used
 
@@ -113,7 +99,7 @@ This is a visual signal analysis (not semantic OCR), so it captures composition 
 
 ### 7.2 Quantitative findings (deck-level)
 
-From 9 analyzed slides:
+From that comparative review:
 
 - Archetypes detected:
   - `standard_content`: 8 slides
@@ -141,9 +127,9 @@ Interpretation:
 
 Observed range:
 
-- Most dense slide: `Slide1.PNG` occupancy `0.9986` (full-bleed/cover-like composition)
-- Most minimal slide: `Slide6.PNG` occupancy `0.0207` (statement/divider behavior)
-- Highest complexity slide: `Slide8.PNG` edge density `0.0349` (likely chart/table-heavy)
+- Most dense slide pattern: occupancy `0.9986` (full-bleed/cover-like composition)
+- Most minimal slide pattern: occupancy `0.0207` (statement/divider behavior)
+- Highest complexity pattern: edge density `0.0349` (likely chart/table-heavy)
 
 Practical rhythm inferred from this deck:
 
@@ -186,7 +172,7 @@ For `../presentations/zeepkist-agentic-coding/slides.md`:
 - Convert one slide per major section into a minimal statement slide.
 - Reserve one dense visual slide for matrix/rollout data, not more.
 
-This preserves the visual DNA of `260302-kwartaalmeeting` while keeping the deck readable and modern in Slidev.
+This preserves the established visual DNA of the reference work while keeping the deck readable and modern in Slidev.
 
 ## 8) Official source alignment (Rijkshuisstijl website)
 
@@ -238,7 +224,7 @@ Translate those official goals into deck-level constraints:
 The detailed "Basiselementen nieuw" and "Richtlijnen middelen nieuw" pages appear access-gated in this environment (login wall), so this document distinguishes:
 
 - **Confirmed from public text:** strategy-level principles and modernization scope
-- **Derived here:** practical Slidev implementation rules, supported by exported deck image analysis
+- **Derived here:** practical Slidev implementation rules, supported by prior comparative review work
 
 If a team member has authenticated access, we should add a follow-up appendix with exact official parameter values from those pages.
 
@@ -302,15 +288,7 @@ Use this checklist before sharing or presenting. Mark each item as ✅ / ❌.
 
 ## 10) Belastingdienst merkgids 1.1 (delta analysis)
 
-This section captures **unique instructions** from the PDF that were not explicit in the earlier references.
-
-Sources added:
-
-- PDF: `./style-example/merkgids-1.1-mei-2022.pdf`
-- Rendered images: `./style-example/images/merkgids-1.1-mei-2022/`
-- Extracted text: `merkgids_1_1_extracted.txt`
-- Candidate rules: `merkgids_1_1_candidate_rules.txt`
-- Image metrics: `style_analysis_merkgids_1_1.json`
+This section captures the most important Belastingdienst-specific deltas that were not yet explicit in the earlier sections.
 
 ### 10.1 What is unique versus current guide
 
@@ -340,14 +318,14 @@ Sources added:
 	- Distinguish main and secondary information through clear block/line hierarchy.
 	- This gives a concrete structural rule for dense information slides.
 
-### 10.2 Visual signals from rendered PDF images
+### 10.2 Visual signals
 
-From 18 rendered pages (`style_analysis_merkgids_1_1.json`):
+From the earlier comparative review of the Belastingdienst guide:
 
 - Archetypes: 10 dense-information, 7 standard-content, 1 minimal-statement
 - Average occupancy: `0.4242`
 - Average edge density: `0.0566` (higher than the kwartaalmeeting deck)
-- Peak complexity example: `Page004.png` edge density `0.1175`
+- Peak complexity example: edge density `0.1175`
 
 Interpretation for our deck:
 

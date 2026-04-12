@@ -14,6 +14,6 @@
   },
   "dependencies": {
     "@slidev/theme-seriph": "^0.25.0",
-    "slidev-theme-belastingdienst": "file:../../theme"
+    "slidev-theme-belastingdienst": "workspace:*"
   }
 }

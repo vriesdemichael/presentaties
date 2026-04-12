@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@slidev/theme-seriph": "^0.25.0",
-    "slidev-addon-reusable-widgets": "file:../../addons/reusable-widgets",
-    "slidev-theme-belastingdienst": "file:../../theme"
+    "slidev-addon-reusable-widgets": "workspace:*",
+    "slidev-theme-belastingdienst": "workspace:*"
   }
 }

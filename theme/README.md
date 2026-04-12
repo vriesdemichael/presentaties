@@ -20,15 +20,17 @@ That keeps the theme distributable without bundling every reusable visual into t
 
 ## Package-based use
 
-Presentations can consume this theme as a local package dependency:
+Inside this pnpm workspace, presentations should consume this theme via the workspace protocol:
 
 ```json
 {
 	"dependencies": {
-		"slidev-theme-belastingdienst": "file:../../theme"
+		"slidev-theme-belastingdienst": "workspace:*"
 	}
 }
 ```
+
+If the theme is later published, replace `workspace:*` with a normal semver version.
 
 Then in deck headmatter:
 

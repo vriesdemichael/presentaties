@@ -1,5 +1,5 @@
 ---
-theme: ../../theme
+theme: slidev-theme-belastingdienst
 title: Agentic Coding - Deel 1
 addons:
   - reusable-widgets

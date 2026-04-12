@@ -177,5 +177,5 @@ Focus verleggen:
 <img
   src="/images/pydantic-logo-darkblue.svg"
   alt=""
-  style="max-width: 58%; max-height: 58%; object-fit: contain; display: block; mix-blend-mode: multiply;"
+  style="width: 58%; height: auto; object-fit: contain; display: block; mix-blend-mode: multiply;"
 />

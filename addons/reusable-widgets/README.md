@@ -4,15 +4,17 @@ Optional Slidev addon for presentation widgets that are reusable across decks bu
 
 ## Use
 
-Add this addon as a local package dependency in the consuming deck:
+Inside this pnpm workspace, add this addon as a workspace dependency in the consuming deck:
 
 ```json
 {
   "dependencies": {
-    "slidev-addon-reusable-widgets": "file:../../addons/reusable-widgets"
+    "slidev-addon-reusable-widgets": "workspace:*"
   }
 }
 ```
+
+If the addon is later published, replace `workspace:*` with a normal semver version.
 
 Then enable it in deck headmatter next to the theme:
 

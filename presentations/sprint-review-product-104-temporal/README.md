@@ -3,8 +3,8 @@
 ## Getting started
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm run deck:dev -- sprint-review-product-104-temporal -- --remote --bind 0.0.0.0 -p 3030
 ```
 
 Then open the local URL shown in the terminal (usually `http://localhost:3030`).
@@ -17,7 +17,7 @@ Then open the local URL shown in the terminal (usually `http://localhost:3030`).
 ## Useful commands
 
 ```bash
-npm run dev
-npm run build
-npm run export
+pnpm run deck:dev -- sprint-review-product-104-temporal
+pnpm run deck:build -- sprint-review-product-104-temporal
+pnpm run deck:export -- sprint-review-product-104-temporal
 ```
