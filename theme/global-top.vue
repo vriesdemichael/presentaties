@@ -1,5 +1,7 @@
 <script setup>
-import beeldmerkUrl from './assets/beeldmerk-rijksoverheid.svg?url'
+import beeldmerkSvg from './assets/beeldmerk-rijksoverheid.svg?raw'
+
+const beeldmerkUrl = `data:image/svg+xml,${encodeURIComponent(beeldmerkSvg)}`
 </script>
 
 <template>
