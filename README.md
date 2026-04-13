@@ -88,3 +88,21 @@ Dus: niet per widget een addon maken, tenzij daar echt een duidelijke grens voor
 ## VS Code
 
 Er zijn twee taken in `.vscode/tasks.json` voor de bestaande decks. Die gebruiken dezelfde root workflow als de commando's hierboven.
+
+## GitHub Pages
+
+Er stond in deze repo geen bestaande Pages-automatisering meer: geen `.github/workflows/`, geen `docs/` publish target en geen `gh-pages` branch in de bereikbare historie van deze clone.
+
+De repo publiceert nu automatisch alle decks uit `presentations/` naar GitHub Pages via Actions.
+
+- elke deck wordt gebouwd naar een eigen subpad: `/<repo-naam>/<deck>/`
+- de Pages-root krijgt een eenvoudige index met links naar alle decks
+- `404.html` stuurt directe slide-URLs terug naar de juiste deck-SPA
+
+Lokaal dezelfde publish-build draaien:
+
+```bash
+pnpm run pages:build
+```
+
+De output komt in `.pages-dist/`.

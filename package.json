@@ -6,7 +6,8 @@
     "deck:list": "node ./scripts/run-deck.mjs list",
     "deck:dev": "node ./scripts/run-deck.mjs dev",
     "deck:build": "node ./scripts/run-deck.mjs build",
-    "deck:export": "node ./scripts/run-deck.mjs export"
+    "deck:export": "node ./scripts/run-deck.mjs export",
+    "pages:build": "node ./scripts/build-pages.mjs"
   },
   "workspaces": [
     "theme",
