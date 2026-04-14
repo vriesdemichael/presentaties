@@ -53,7 +53,7 @@ layout: text-image-right
 ::image::
 
 <img
-  src="/images/clipboard todo.png"
+  src="/images/clipboard-todo.png"
   alt="Clipboard met checklist"
   style="width: 100%; height: 100%; object-fit: contain; object-position: center center; display: block;"
 />
