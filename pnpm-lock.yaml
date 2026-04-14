@@ -57,6 +57,9 @@ importers:
       '@slidev/theme-seriph':
         specifier: ^0.25.0
         version: 0.25.0
+      lz-string:
+        specifier: ^1.5.0
+        version: 1.5.0
       slidev-addon-reusable-widgets:
         specifier: workspace:*
         version: link:../../addons/reusable-widgets
