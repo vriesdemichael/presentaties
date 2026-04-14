@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
 import { spawnSync } from 'node:child_process'
@@ -106,14 +106,17 @@ function quoteShellArg(value) {
 function buildDeck(deckName, repoName) {
   const deckDir = path.join(presentationsDir, deckName)
   const outDir = path.join(outputDir, deckName)
+  const tempOutDir = path.join(deckDir, '.pages-dist')
   const basePath = `/${repoName}/${deckName}/`
 
   console.log(`Building ${deckName} -> ${basePath}`)
 
+  rmSync(tempOutDir, { recursive: true, force: true })
+
   const result = process.platform === 'win32'
     ? spawnSync(
         'pnpm',
-        ['--dir', deckDir, 'exec', 'slidev', 'build', '--base', basePath, '--out', outDir],
+        ['--dir', deckDir, 'exec', 'slidev', 'build', '--base', basePath, '--out', tempOutDir],
         {
           stdio: 'inherit',
           shell: true,
@@ -121,7 +124,7 @@ function buildDeck(deckName, repoName) {
       )
     : spawnSync(
         '/bin/sh',
-        ['-c', `pnpm --dir ${quoteShellArg(deckDir)} exec slidev build --base ${quoteShellArg(basePath)} --out ${quoteShellArg(outDir)}`],
+        ['-c', `pnpm --dir ${quoteShellArg(deckDir)} exec slidev build --base ${quoteShellArg(basePath)} --out ${quoteShellArg(tempOutDir)}`],
         {
           stdio: 'inherit',
           shell: false,
@@ -131,6 +134,10 @@ function buildDeck(deckName, repoName) {
   if (typeof result.status !== 'number' || result.status !== 0) {
     process.exit(result.status ?? 1)
   }
+
+  rmSync(outDir, { recursive: true, force: true })
+  cpSync(tempOutDir, outDir, { recursive: true })
+  rmSync(tempOutDir, { recursive: true, force: true })
 }
 
 function writeLandingPage(decks, repoName) {
