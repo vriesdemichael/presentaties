@@ -99,6 +99,10 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;')
 }
 
+function quoteShellArg(value) {
+  return `'${String(value).replace(/'/g, "'\\''")}'`
+}
+
 function buildDeck(deckName, repoName) {
   const deckDir = path.join(presentationsDir, deckName)
   const outDir = path.join(outputDir, deckName)
@@ -106,14 +110,23 @@ function buildDeck(deckName, repoName) {
 
   console.log(`Building ${deckName} -> ${basePath}`)
 
-  const result = spawnSync(
-    'pnpm',
-    ['--dir', deckDir, 'exec', 'slidev', 'build', '--base', basePath, '--out', outDir],
-    {
-      stdio: 'inherit',
-      shell: process.platform === 'win32',
-    },
-  )
+  const result = process.platform === 'win32'
+    ? spawnSync(
+        'pnpm',
+        ['--dir', deckDir, 'exec', 'slidev', 'build', '--base', basePath, '--out', outDir],
+        {
+          stdio: 'inherit',
+          shell: true,
+        },
+      )
+    : spawnSync(
+        '/bin/sh',
+        ['-c', `pnpm --dir ${quoteShellArg(deckDir)} exec slidev build --base ${quoteShellArg(basePath)} --out ${quoteShellArg(outDir)}`],
+        {
+          stdio: 'inherit',
+          shell: false,
+        },
+      )
 
   if (typeof result.status !== 'number' || result.status !== 0) {
     process.exit(result.status ?? 1)
