@@ -99,8 +99,18 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;')
 }
 
-function quoteShellArg(value) {
-  return `'${String(value).replace(/'/g, "'\\''")}'`
+function getPnpmCommand() {
+  if (process.env.npm_execpath) {
+    return {
+      command: process.execPath,
+      args: [process.env.npm_execpath],
+    }
+  }
+
+  return {
+    command: 'pnpm',
+    args: [],
+  }
 }
 
 function buildDeck(deckName, repoName) {
@@ -108,30 +118,22 @@ function buildDeck(deckName, repoName) {
   const outDir = path.join(outputDir, deckName)
   const tempOutDir = path.join(deckDir, '.pages-dist')
   const basePath = `/${repoName}/${deckName}/`
+  const pnpm = getPnpmCommand()
 
   console.log(`Building ${deckName} -> ${basePath}`)
 
   rmSync(tempOutDir, { recursive: true, force: true })
 
-  const result = process.platform === 'win32'
-    ? spawnSync(
-        'pnpm',
-        ['--dir', deckDir, 'exec', 'slidev', 'build', '--base', basePath, '--out', tempOutDir],
-        {
-          stdio: 'inherit',
-          shell: true,
-        },
-      )
-    : spawnSync(
-        '/bin/sh',
-        ['-c', `pnpm --dir ${quoteShellArg(deckDir)} exec slidev build --base ${quoteShellArg(basePath)} --out ${quoteShellArg(tempOutDir)}`],
-        {
-          stdio: 'inherit',
-          shell: false,
-        },
-      )
+  const result = spawnSync(
+    pnpm.command,
+    [...pnpm.args, '--dir', deckDir, 'exec', 'slidev', 'build', '--base', basePath, '--out', tempOutDir],
+    {
+      stdio: 'inherit',
+    },
+  )
 
   if (typeof result.status !== 'number' || result.status !== 0) {
+    console.error(`Build failed for deck: ${deckName}`)
     process.exit(result.status ?? 1)
   }
 
