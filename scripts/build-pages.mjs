@@ -108,7 +108,7 @@ function buildDeck(deckName, repoName) {
 
   const result = spawnSync(
     'pnpm',
-    ['--dir', deckDir, 'run', 'build', '--', '--base', basePath, '--out', outDir],
+    ['--dir', deckDir, 'exec', 'slidev', 'build', '--base', basePath, '--out', outDir],
     {
       stdio: 'inherit',
       shell: process.platform === 'win32',
