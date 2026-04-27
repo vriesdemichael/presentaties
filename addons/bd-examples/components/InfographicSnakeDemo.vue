@@ -29,7 +29,8 @@ const demo = ref(null);
 const connPath = ref('');
 const viewBox = ref('0 0 100 100');
 
-const BEND_R = 20; // corner radius in layout px
+const BEND_R = 20;      // corner radius in layout px
+const SIDE_MARGIN = 40; // horizontal arm length past the last/first circle (2 × BEND_R)
 let ro = null;
 
 function measure() {
@@ -48,48 +49,56 @@ function measure() {
   const n1R = n1.getBoundingClientRect();
   const n2R = n2.getBoundingClientRect();
 
-  const r1R = rows[0].getBoundingClientRect();
-  const r2R = rows[1].getBoundingClientRect();
-
   // Scale factor: viewport CSS px → element layout px.
-  // getBoundingClientRect is in viewport px; offsetWidth is in layout px.
-  // Dividing by scale converts viewport measurements to the SVG coordinate space.
   const scale = dR.width / el.offsetWidth;
+  if (!scale) return; // not yet laid out
 
-  const W  = el.offsetWidth;
   const H  = el.offsetHeight;
   const y1 = ((n1R.top + n1R.bottom) / 2 - dR.top) / scale;
   const y2 = ((n2R.top + n2R.bottom) / 2 - dR.top) / scale;
 
-  // Place the horizontal bridge in the middle of the gap between the two rows
-  // (below row 1's captions, above row 2's content), not at the midpoint of
-  // the two dot-center y values which would fall inside the caption text.
-  const row1Bottom = (r1R.bottom - dR.top) / scale;
-  const row2Top    = (r2R.top    - dR.top) / scale;
-  const yH = (row1Bottom + row2Top) / 2;
+  // x coordinates of the C-shape corners: a fixed margin past the last/first circle.
+  // Using circle-relative offsets instead of the tail-div edges gives compact, equal arms.
+  // The CSS tail::after is suppressed via .snake-demo, so only the SVG draws here.
+  const lastNodes = rows[0].querySelectorAll('.bd-step-series-node');
+  const lastNode = lastNodes[lastNodes.length - 1];
+  const xLastCircle  = ((lastNode.getBoundingClientRect().left + lastNode.getBoundingClientRect().right) / 2 - dR.left) / scale;
+  const xFirstCircle = ((n2R.left + n2R.right) / 2 - dR.left) / scale;
+
+  // Clear the actual caption text, not just the circle. getBoundingClientRect on the
+  // caption element gives us the true rendered right/left extent of any overflowing text.
+  const lastWrapper   = lastNode.closest('.bd-step-wrapper');
+  const lastCaption   = lastWrapper?.querySelector('.bd-step-series-caption');
+  const xRight = lastCaption
+    ? (lastCaption.getBoundingClientRect().right - dR.left) / scale + SIDE_MARGIN
+    : xLastCircle + SIDE_MARGIN;
+
+  const firstWrapper  = n2.closest('.bd-step-wrapper');
+  const firstCaption  = firstWrapper?.querySelector('.bd-step-series-caption');
+  const xLeft = firstCaption
+    ? (firstCaption.getBoundingClientRect().left - dR.left) / scale - SIDE_MARGIN
+    : xFirstCircle - SIDE_MARGIN;
+
+  // Equal C heights: bridge exactly midway between the two circle-center Y values.
+  // The SVG sits at z-index 0 behind slide content, so text still renders on top.
+  const yH = (y1 + y2) / 2;
 
   const r  = BEND_R;
-  // Full 4-corner path:
-  //  (W-r, y1) ← top-right corner → right vertical → bottom-right corner
-  //  → horizontal bridge → bottom-left corner → left vertical
-  //  → row2-corner → (r, y2) [overlaps tailStart's first r px, invisible]
-  //
-  // tailEnd on row 1 provides the horizontal line to (W, y1).
-  // tailStart on row 2 provides the horizontal line from (0, y2) rightward.
-  // The SVG path overlaps each tail by BEND_R px at the junction (same
-  // color + stroke, so the overlap is invisible).
+  // Full path: last-circle → compact right arm → right corner → bridge → left corner → compact left arm → first-circle.
   connPath.value = [
-    `M ${W - r} ${y1}`,
-    `Q ${W} ${y1} ${W} ${y1 + r}`,
-    `L ${W} ${yH - r}`,
-    `Q ${W} ${yH} ${W - r} ${yH}`,
-    `L ${r} ${yH}`,
-    `Q 0 ${yH} 0 ${yH + r}`,
-    `L 0 ${y2 - r}`,
-    `Q 0 ${y2} ${r} ${y2}`,
+    `M ${xLastCircle} ${y1}`,
+    `L ${xRight - r} ${y1}`,
+    `Q ${xRight} ${y1} ${xRight} ${y1 + r}`,
+    `L ${xRight} ${yH - r}`,
+    `Q ${xRight} ${yH} ${xRight - r} ${yH}`,
+    `L ${xLeft + r} ${yH}`,
+    `Q ${xLeft} ${yH} ${xLeft} ${yH + r}`,
+    `L ${xLeft} ${y2 - r}`,
+    `Q ${xLeft} ${y2} ${xLeft + r} ${y2}`,
+    `L ${xFirstCircle} ${y2}`,
   ].join(' ');
 
-  viewBox.value = `0 0 ${W} ${H}`;
+  viewBox.value = `0 0 ${el.offsetWidth} ${H}`;
 }
 
 onMounted(() => {
@@ -127,9 +136,22 @@ onBeforeUnmount(() => ro?.disconnect());
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 4rem;
   width: 100%;
   padding: 0.5rem 1.5rem;
+}
+
+/* The SVG draws the full connector including horizontal arms past the last/first circle,
+   so the CSS tail ::after lines are not needed and would create a visual conflict.
+   ::after must be INSIDE :deep() to pierce Vue's scoped CSS on pseudo-elements. */
+.snake-demo :deep(.bd-step-tail::after) {
+  display: none;
+}
+
+/* The last step wrapper in row 1 draws a connector toward the tailEnd spacer.
+   With SVG handling that segment, suppress it to avoid a double line. */
+.snake-demo :deep(.bd-step-series:has(.bd-step-tail--end) .bd-step-wrapper:nth-last-child(2)::after) {
+  display: none;
 }
 
 .snake-connector {

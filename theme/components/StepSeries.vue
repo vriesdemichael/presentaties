@@ -149,7 +149,7 @@ const hasCaptions = computed(() =>
       ::after draws a full-width horizontal line at node-center height.
       The line extends from the LEFT edge of the container to the first dot.
     -->
-    <div v-if="tailStart" class="bd-step-tail" aria-hidden="true" />
+    <div v-if="tailStart" class="bd-step-tail bd-step-tail--start" aria-hidden="true" />
 
     <div
       v-for="(item, index) in normalizedItems"
@@ -183,7 +183,7 @@ const hasCaptions = computed(() =>
       ::after draws a full-width horizontal line at node-center height.
       The line extends from the last dot to the RIGHT edge of the container.
     -->
-    <div v-if="tailEnd" class="bd-step-tail" aria-hidden="true" />
+    <div v-if="tailEnd" class="bd-step-tail bd-step-tail--end" aria-hidden="true" />
   </div>
 </template>
 
@@ -384,5 +384,26 @@ const hasCaptions = computed(() =>
   white-space: normal;
   overflow-wrap: break-word;
   max-width: 100%;
+}
+
+/*
+ * In stretch mode the wrapper width >> nodeSize, so the connector ::after
+ * must span the full wrapper width + gap (center-to-center) rather than
+ * just nodeSize + gap.  100% resolves to the wrapper's computed width.
+ */
+.bd-step-series--stretch .bd-step-wrapper:not(:last-child)::after {
+  width: calc(100% + var(--bd-step-gap));
+}
+
+/*
+ * tailStart: the tail div sits before wrapper[0].  Its ::after naturally
+ * ends at the tail's right edge, leaving a flex-gap + half-node gap before
+ * circle 0's center.  In equal-flex layout every item has the same width W.
+ * Distance from tail.left → circle0.center = W + gap + W/2 = 1.5W + gap.
+ * Override right: auto + set width explicitly to reach exactly circle 0's center.
+ */
+.bd-step-series--stretch .bd-step-tail--start::after {
+  right: auto;
+  width: calc(150% + var(--bd-step-gap));
 }
 </style>
