@@ -166,7 +166,6 @@ const hasCaptions = computed(() =>
 <style scoped>
 /*
  * Outer row: flex with column-gap = stepGap.
- * The gap IS the connector space; the line is drawn by node::after.
  */
 .bd-step-series {
   display: flex;
@@ -178,24 +177,41 @@ const hasCaptions = computed(() =>
 }
 
 /*
- * Per-step wrapper: flex column, fixed width = nodeSize.
- * align-items: center centers node AND caption on the same axis.
+ * Per-step wrapper: flex column, width LOCKED to nodeSize.
+ * min-width: 0 overrides flex's default min-width: auto so caption content
+ * cannot force the wrapper wider than nodeSize. overflow: visible lets the
+ * caption overflow symmetrically on both sides.
+ * position: relative so ::after can be absolutely positioned.
+ *
+ * The connector ::after draws center-to-center:
+ *   left: 50%           → starts at horizontal center of the node (wrapper = nodeSize wide)
+ *   width: nodeSize + stepGap → spans to the center of the next node
+ *   top: nodeSize/2 - stroke/2 → vertically aligned to circle midline
+ * Circles are z-index: 1 so they paint on top of the line endpoints.
  */
 .bd-step-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 0 0 var(--bd-step-node-size);
+  min-width: 0;
+  overflow: visible;
   row-gap: 0.45rem;
 }
 
-/*
- * Node fills wrapper width exactly.
- * ::after draws the connector line from the circle's right edge across the
- * column-gap to the next circle — anchored directly to the circle, no
- * cross-element rounding gap possible.
- * z-index: 1 keeps circles on top of any line overlap.
- */
+.bd-step-wrapper:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: calc(var(--bd-step-node-size) + var(--bd-step-gap));
+  top: calc(var(--bd-step-node-size) / 2 - var(--bd-step-stroke-width) / 2);
+  height: var(--bd-step-stroke-width);
+  background: var(--bd-step-line-color);
+  z-index: 0;
+}
+
+/* Node fills wrapper width; z-index: 1 sits on top of the connector line. */
 .bd-step-series-node {
   position: relative;
   z-index: 1;
@@ -206,27 +222,6 @@ const hasCaptions = computed(() =>
   place-items: center;
   box-sizing: border-box;
   flex-shrink: 0;
-}
-
-/*
- * Connector line: absolute pseudo on the node, starts at the circle's right
- * edge (left: 100%), spans the full column-gap (width: stepGap).
- * top calc centers it on the circle midline.
- */
-.bd-step-series-node::after {
-  content: "";
-  position: absolute;
-  left: 100%;
-  width: var(--bd-step-gap);
-  top: calc(50% - var(--bd-step-stroke-width) / 2);
-  height: var(--bd-step-stroke-width);
-  background: var(--bd-step-line-color);
-  z-index: -1;
-}
-
-/* No connector after the last step */
-.bd-step-wrapper:last-child .bd-step-series-node::after {
-  display: none;
 }
 
 .bd-step-series--filled .bd-step-series-node {
