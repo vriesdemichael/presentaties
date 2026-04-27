@@ -10,6 +10,10 @@
 
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
+const props = defineProps({
+  rowGap: { type: String, default: '4rem' },
+});
+
 const row1 = [
   { label: "1", caption: "Aangifte",    body: "Belastingplichtige doet aangifte online" },
   { label: "2", caption: "Ontvangst",   body: "Belastingdienst ontvangt het verzoek" },
@@ -105,7 +109,7 @@ onBeforeUnmount(() => ro?.disconnect());
 </script>
 
 <template>
-  <div ref="demo" class="snake-demo">
+  <div ref="demo" class="snake-demo" :style="{ gap: props.rowGap }">
     <StepSeries :items="row1" stretch />
     <StepSeries :items="row2" stretch />
     <!-- SVG connector: drawn after mount so it aligns with measured node centers -->
@@ -130,7 +134,6 @@ onBeforeUnmount(() => ro?.disconnect());
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
   width: 100%;
   padding: 0.5rem 1.5rem;
 }
