@@ -204,20 +204,21 @@ const normalizedItems = computed(() =>
 }
 
 /*
- * Highlight row: subtle card background spans both the dot cell and label cell.
- * Padding-block is added to both cells so the highlight area feels proportional.
- * Border-radius is split across the two cells (left on dot, right on label).
+ * Highlight row: seamless card background across both columns.
+ *
+ * Instead of styling each cell separately (which creates gap artifacts from
+ * the column-gap), we style only the label cell and use a box-shadow with a
+ * large negative X-offset to paint the background "backward" over the gap
+ * and dot column. The shadow matches the element height (spread: 0), so it
+ * covers exactly the same row height as the label cell — which equals the
+ * dot cell height because both cells stretch to the same grid row height.
+ * The dot (z-index: 1) paints on top of this shadow, so the circle always
+ * appears inside the card. No border-radius — matches the square vlak style.
  */
-.bd-vsl-dot-cell[data-highlight] {
-  background: rgba(0, 118, 182, 0.1);
-  border-radius: 4px 0 0 4px;
-  padding-inline: 0.25rem;
-  padding-block: 0.4rem;
-}
-
 .bd-vsl-label-cell[data-highlight] {
   background: rgba(0, 118, 182, 0.1);
-  border-radius: 0 4px 4px 0;
+  /* Extend background leftward: gap + dotSize = left edge of the dot column */
+  box-shadow: calc(-1 * (var(--bd-vertical-step-label-gap) + var(--bd-vertical-step-size))) 0 0 0 rgba(0, 118, 182, 0.1);
   padding-inline-end: 0.6rem;
   padding-block: 0.4rem;
 }
