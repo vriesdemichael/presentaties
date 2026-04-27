@@ -460,9 +460,12 @@ pageTitle: StepSeries - slangverbinding over twee rijen
 <!--
   Boustrophedon (slang) voorbeeld: acht stappen verdeeld over twee rijen,
   verbonden door een StepSeriesJoin die de tijdlijn laat doorlopen.
-  Rij 1 loopt van links naar rechts (stap 1→4).
-  Rij 2 loopt van rechts naar links (stap 8→5) zodat stap 5 uiteindelijk
-  aansluit op een volgende rij of het einde markeert.
+  Rij 1 loopt van links naar rechts (stap 1→4), met een tailEnd die de lijn
+  naar de rechterrand trekt.
+  De StepSeriesJoin tekent een ∪-vorm die de rechterrand van rij 1 verbindt
+  met de linkerrand van rij 2.
+  Rij 2 loopt ook van links naar rechts (stap 5→8), met een tailStart die de
+  lijn vanuit de linkerrand ophaalt.
 -->
 <InfographicSnakeDemo />
 

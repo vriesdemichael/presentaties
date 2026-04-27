@@ -28,15 +28,13 @@
  */
 
 const props = defineProps({
-  /** Which side the bend curves on. 'right' for the normal boustrophedon. */
-  side: { type: String, default: "right" },
   /** Vertical gap between the two StepSeries rows. Must match the container. */
   rowGap: { type: String, default: "1.8rem" },
   /** Must match the StepSeries nodeSize prop for line-center alignment. */
   nodeSize: { type: String, default: "2.95rem" },
   lineColor: { type: String, default: "var(--bd-domeinkleur-lichtblauw)" },
   strokeWidth: { type: String, default: "2px" },
-  /** Corner radius of the U-bend. */
+  /** Corner radius of the bottom-left and bottom-right bends. */
   bendRadius: { type: String, default: "1.4rem" },
 });
 </script>
@@ -44,7 +42,6 @@ const props = defineProps({
 <template>
   <div
     class="bd-step-series-join"
-    :class="`bd-step-series-join--${side}`"
     :style="{
       '--join-row-gap': rowGap,
       '--join-node-size': nodeSize,
@@ -66,53 +63,37 @@ const props = defineProps({
   width: 100%;
   height: var(--join-row-gap);
   position: relative;
-  /* Allow the ::after to extend above/below the element bounds */
   overflow: visible;
   pointer-events: none;
 }
 
 /*
- * U-bend geometry:
+ * Full-width ∪ connector geometry:
  *
- *   top: -(nodeSize/2)
- *     → start at the connector line center of the row ABOVE
- *       (which is nodeSize/2 above the bottom edge of that series,
- *        which is the top edge of this join div)
+ *   The pseudo spans the full width (left:0, right:0) and overflows
+ *   upward by nodeSize/2 (to reach row 1's connector center) and
+ *   downward by nodeSize/2 (to reach row 2's connector center).
  *
- *   height: rowGap + nodeSize
- *     → spans from row-above's line center to row-below's line center
- *       (row-below's center is nodeSize/2 below the top of that series,
- *        which is the bottom edge of this join div)
+ *   Three borders: right leg ↓, bottom across, left leg ↑.
+ *   No top border (the tail lines of each StepSeries provide those).
+ *   Bottom corners are rounded (bottom-right and bottom-left).
  *
- *   border on three sides (no left) + border-radius = rounded C-curve
+ *   This connects tailEnd of row 1 (right edge) → curves down the right
+ *   side → crosses the full bottom → curves up the left side →
+ *   tailStart of row 2 (left edge).
  */
-.bd-step-series-join--right::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: calc(var(--join-node-size) / -2);
-  height: calc(var(--join-node-size) + var(--join-row-gap));
-  width: var(--join-bend-r);
-  border-top: var(--join-stroke) solid var(--join-line-color);
-  border-right: var(--join-stroke) solid var(--join-line-color);
-  border-bottom: var(--join-stroke) solid var(--join-line-color);
-  border-left: none;
-  border-radius: 0 var(--join-bend-r) var(--join-bend-r) 0;
-  box-sizing: border-box;
-}
-
-.bd-step-series-join--left::after {
+.bd-step-series-join::after {
   content: "";
   position: absolute;
   left: 0;
+  right: 0;
   top: calc(var(--join-node-size) / -2);
-  height: calc(var(--join-node-size) + var(--join-row-gap));
-  width: var(--join-bend-r);
-  border-top: var(--join-stroke) solid var(--join-line-color);
-  border-left: var(--join-stroke) solid var(--join-line-color);
+  bottom: calc(var(--join-node-size) / -2);
+  border-right: var(--join-stroke) solid var(--join-line-color);
   border-bottom: var(--join-stroke) solid var(--join-line-color);
-  border-right: none;
-  border-radius: var(--join-bend-r) 0 0 var(--join-bend-r);
+  border-left: var(--join-stroke) solid var(--join-line-color);
+  border-top: none;
+  border-radius: 0 0 var(--join-bend-r) var(--join-bend-r);
   box-sizing: border-box;
 }
 </style>

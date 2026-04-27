@@ -17,13 +17,13 @@ const row1 = [
   { label: "4", caption: "Beoordeling", body: "Inhoudelijke toetsing door de inspecteur" },
 ];
 
-// Row 2 items are ordered so step 8 is at the LEFT (where the U-bend arrives)
-// and step 5 is at the RIGHT (where a next join would depart, or the tail ends).
+// Row 2 continues in narrative order (5→6→7→8), left to right.
+// tailStart adds a lead-in line from the left edge (where the ∪ join arrives).
 const row2 = [
-  { label: "8", caption: "Archief",   body: "Dossier afgesloten en opgeslagen" },
-  { label: "7", caption: "Uitbetaling", body: "Teruggaaf overgemaakt" },
+  { label: "5", caption: "Uitspraak",   body: "Bezwaar afgehandeld" },
   { label: "6", caption: "Beschikking", body: "Definitieve aanslag vastgesteld" },
-  { label: "5", caption: "Uitspraak",  body: "Bezwaar afgehandeld" },
+  { label: "7", caption: "Uitbetaling", body: "Teruggaaf overgemaakt" },
+  { label: "8", caption: "Archief",     body: "Dossier afgesloten en opgeslagen" },
 ];
 </script>
 
@@ -41,7 +41,7 @@ const row2 = [
     />
     <StepSeries
       :items="row2"
-      tail-end
+      tail-start
       step-gap="4.5rem"
     />
   </div>
