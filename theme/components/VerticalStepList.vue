@@ -51,83 +51,96 @@ const normalizedItems = computed(() =>
       '--bd-vertical-step-body-size': bodySize,
     }"
   >
-    <div
-      v-for="item in normalizedItems"
-      :key="item.key"
-      class="bd-vertical-step-list-item"
-    >
-      <span
-        class="bd-vertical-step-list-dot"
-        :style="item.accentColor ? { background: item.accentColor } : {}"
-        aria-hidden="true"
-      ></span>
-      <span class="bd-vertical-step-list-label">{{ item.title }}</span>
-      <span v-if="item.body" class="bd-vertical-step-list-body">{{ item.body }}</span>
-    </div>
+    <template v-for="item in normalizedItems" :key="item.key">
+      <!--
+        Dot cell (column 1). Connector ::after anchored here:
+        - top: 50% = dot center (dot is flex-centered in the full row height)
+        - height: calc(100% + gap) = row height + gap = exact center-to-center
+        Selector :not(:nth-last-child(2)) excludes the last dot cell.
+        With alternating dot/label children (dot0 label0 dot1 label1 … dotN labelN),
+        the last dot cell is always the second-to-last child.
+      -->
+      <div
+        class="bd-vsl-dot-cell"
+        :style="item.accentColor ? { '--bd-vsl-dot-override': item.accentColor } : {}"
+      >
+        <span class="bd-vsl-dot" aria-hidden="true" />
+      </div>
+      <div class="bd-vsl-label-cell">
+        <span class="bd-vsl-label">{{ item.title }}</span>
+        <span v-if="item.body" class="bd-vsl-body">{{ item.body }}</span>
+      </div>
+    </template>
   </div>
 </template>
 
 <style scoped>
+/*
+ * Single flat grid: all items share one grid so row heights are
+ * determined by the tallest cell in each row (label + body text).
+ * The dot cell stretches to that same row height, giving a stable
+ * 50% midpoint that equals the dot's visual center.
+ */
 .bd-vertical-step-list {
-  position: relative;
   display: grid;
-  gap: var(--bd-vertical-step-gap);
-  width: max-content;
-  /* Clips the oversized connector pseudo-element below the last item */
-  overflow: clip;
-}
-
-.bd-vertical-step-list-item {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: var(--bd-vertical-step-size) minmax(0, 1fr);
-  align-items: center;
+  grid-template-columns: var(--bd-vertical-step-size) max-content;
+  row-gap: var(--bd-vertical-step-gap);
   column-gap: var(--bd-vertical-step-label-gap);
+  width: max-content;
 }
 
-.bd-vertical-step-list-dot {
-  grid-column: 1;
-  grid-row: 1;
+.bd-vsl-dot-cell {
   position: relative;
   z-index: 1;
-  width: var(--bd-vertical-step-size);
-  aspect-ratio: 1;
-  border-radius: 999px;
-  background: var(--bd-vertical-step-dot);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*
- * Connector: lives on the item (not the dot) so the dot's z-index: 1
- * paints above it without any stacking-context trickery.
- * top: 0 starts at the item top; the sub-pixel gap above the dot
- * (~0.6 DOM px) is invisible. height: 100vh is clipped by the list's
- * overflow: clip. Subsequent items (later in DOM, same z-index: 1)
- * also paint on top of this connector where it extends into their space.
+ * Connector geometry — mirrors the StepSeries wrapper::after approach,
+ * rotated 90°:
+ *   top: 50%                  → starts at dot center (50% of row height)
+ *   height: 100% + gap        → row height + gap = exactly center-to-center
+ *   z-index: -1               → paints behind the dot's solid fill
+ *
+ * The next row's dot (solid, later in DOM, same z-index: 1 stacking level)
+ * paints over and visually caps the connector endpoint.
  */
-.bd-vertical-step-list-item:not(:last-child)::after {
+.bd-vsl-dot-cell:not(:nth-last-child(2))::after {
   content: "";
   position: absolute;
-  left: calc(var(--bd-vertical-step-size) / 2 - 1px);
-  top: 0;
+  left: calc(50% - 1px);
+  top: 50%;
   width: 2px;
-  height: 100vh;
+  height: calc(100% + var(--bd-vertical-step-gap));
   background: var(--bd-vertical-step-line);
+  z-index: -1;
 }
 
-/* Label and body are in separate grid rows so the dot only aligns with the label row */
-.bd-vertical-step-list-label {
-  grid-column: 2;
-  grid-row: 1;
+.bd-vsl-dot {
+  display: block;
+  width: var(--bd-vertical-step-size);
+  height: var(--bd-vertical-step-size);
+  border-radius: 999px;
+  background: var(--bd-vsl-dot-override, var(--bd-vertical-step-dot));
+  flex-shrink: 0;
+}
+
+.bd-vsl-label-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bd-vsl-label {
   font-family: var(--bd-font-regular-stack);
   font-size: var(--bd-vertical-step-label-size);
   line-height: 1.12;
   color: var(--bd-vertical-step-text);
 }
 
-.bd-vertical-step-list-body {
-  grid-column: 2;
-  grid-row: 2;
+.bd-vsl-body {
   font-family: var(--bd-font-regular-stack);
   font-size: var(--bd-vertical-step-body-size);
   line-height: 1.2;
