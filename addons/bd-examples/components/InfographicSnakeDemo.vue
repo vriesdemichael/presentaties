@@ -95,7 +95,7 @@ onBeforeUnmount(() => ro?.disconnect());
 
 <template>
   <div ref="demo" class="snake-demo">
-    <StepSeries :items="row1" tail-end step-gap="4.5rem" />
+    <StepSeries :items="row1" step-gap="4.5rem" />
     <StepSeries :items="row2" step-gap="4.5rem" />
     <!-- SVG connector: drawn after mount so it aligns with measured node centers -->
     <svg
@@ -124,18 +124,8 @@ onBeforeUnmount(() => ro?.disconnect());
   padding: 0.5rem 1.5rem;
 }
 
-/* The SVG draws the full connector including the right semicircle arm,
-   so the CSS tail ::after lines are not needed and would create a visual conflict.
-   ::after must be INSIDE :deep() to pierce Vue's scoped CSS on pseudo-elements. */
-.snake-demo :deep(.bd-step-tail::after) {
-  display: none;
-}
-
-/* The last step wrapper in row 1 draws a connector toward the tailEnd spacer.
-   With SVG handling that segment, suppress it to avoid a double line. */
-.snake-demo :deep(.bd-step-series:has(.bd-step-tail--end) .bd-step-wrapper:nth-last-child(2)::after) {
-  display: none;
-}
+/* No CSS tail suppressors needed — neither row uses tail-end or tail-start,
+   so there are no ::after lines to conflict with the SVG connector. */
 
 .snake-connector {
   position: absolute;
