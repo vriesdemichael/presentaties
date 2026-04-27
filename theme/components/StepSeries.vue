@@ -1,5 +1,54 @@
 <script setup>
-import { computed } from "vue";
+/*
+  StepSeries — three levels of control, following the same pattern as Table:
+
+  ─────────────────────────────────────────────────────────
+  LEVEL 1 - PROP-DRIVEN  (plain text nodes and captions)
+  ─────────────────────────────────────────────────────────
+
+  <StepSeries :items="['1','2','3']" />
+
+  <StepSeries
+    variant="icon"
+    :items="[
+      { icon: 'formulier', caption: 'Signaal',       body: 'Eerste ontvangst' },
+      { icon: 'bewerken',  caption: 'Verduidelijken', body: 'Contact en context' },
+    ]"
+  />
+
+  ─────────────────────────────────────────────────────────
+  LEVEL 2A - #node SLOT  (custom content inside each circle)
+  ─────────────────────────────────────────────────────────
+
+  Slot provides: { item, index }
+  You return the *contents* of the circle — not the circle itself.
+  The circle shape, border and background are always rendered by the component.
+
+  <StepSeries variant="filled" :items="myItems">
+    <template #node="{ item, index }">
+      <span class="bd-ro-icon" style="font-size:1rem">{{ item.icon }}</span>
+    </template>
+  </StepSeries>
+
+  ─────────────────────────────────────────────────────────
+  LEVEL 2B - #caption SLOT  (custom content below each circle)
+  ─────────────────────────────────────────────────────────
+
+  Slot provides: { item, index }
+  You return the *contents* of the caption area.
+  Built-in caption classes (.bd-step-series-caption-title / -body) are available
+  for consistent typography; see :deep() rules below.
+
+  <StepSeries variant="icon" :items="myItems">
+    <template #caption="{ item, index }">
+      <div class="bd-step-series-caption">
+        <span class="bd-step-series-caption-title">{{ item.caption }}</span>
+        <span class="bd-step-series-caption-body" style="color:red">Custom</span>
+      </div>
+    </template>
+  </StepSeries>
+*/
+import { computed, useSlots } from "vue";
 
 const props = defineProps({
   items: { type: Array, default: () => [] },
@@ -19,14 +68,16 @@ const props = defineProps({
   captionBodySize: { type: String, default: "8.15pt" },
 });
 
+const slots = useSlots();
+
 const normalizedItems = computed(() =>
   (Array.isArray(props.items) ? props.items : []).map((item, index) => {
     if (typeof item === "object" && item !== null) {
-      if (import.meta.env.DEV && props.variant === "icon" && !item.icon) {
+      if (import.meta.env.DEV && props.variant === "icon" && !item.icon && !slots.node) {
         console.warn(
           `[StepSeries] item at index ${index} has no icon value. ` +
           `A fallback placeholder will be shown. ` +
-          `Provide an RO icon glyph name, e.g. icon: "check".`
+          `Provide an RO icon glyph name, e.g. icon: "check", or use the #node slot.`
         );
       }
       return {
@@ -50,8 +101,9 @@ const normalizedItems = computed(() =>
   }),
 );
 
+// Show caption row when prop-based captions exist OR a #caption slot is provided.
 const hasCaptions = computed(() =>
-  normalizedItems.value.some((item) => item.caption || item.body),
+  !!slots.caption || normalizedItems.value.some((item) => item.caption || item.body),
 );
 </script>
 
@@ -88,23 +140,18 @@ const hasCaptions = computed(() =>
         class="bd-step-series-node"
         :style="{ gridColumn: index * 2 + 1, gridRow: 1 }"
       >
-        <span v-if="variant !== 'icon'" class="bd-step-series-label">{{ item.label }}</span>
         <!--
-          icon variant: render the glyph name as an RO icon font span.
-          The glyph name is the descriptive part after the four-digit prefix
-          in the Rijksoverheid icon font catalogue, e.g.:
-            2019_formulier    → icon: "formulier"
-            3900_bewerken     → icon: "bewerken"
-            1034_tevredenheid → icon: "tevredenheid"
-
-          If item.icon is empty or the glyph is not found in the font,
-          the fallback "?" renders in red so the problem is immediately
-          visible on the slide (not just in the console).
+          #node slot: override the content INSIDE the circle.
+          The circle shape, border and background are always provided by the component.
+          Fallback renders the default label/icon based on variant.
         -->
-        <template v-else>
-          <span v-if="item.icon" class="bd-ro-icon bd-step-series-icon">{{ item.icon }}</span>
-          <span v-else class="bd-step-series-icon-missing" aria-label="ontbrekend icoon">?</span>
-        </template>
+        <slot name="node" :item="item" :index="index">
+          <span v-if="variant !== 'icon'" class="bd-step-series-label">{{ item.label }}</span>
+          <template v-else>
+            <span v-if="item.icon" class="bd-ro-icon bd-step-series-icon">{{ item.icon }}</span>
+            <span v-else class="bd-step-series-icon-missing" aria-label="ontbrekend icoon">?</span>
+          </template>
+        </slot>
       </div>
 
       <!-- Connector: row 1, even column between this node and the next -->
@@ -123,10 +170,18 @@ const hasCaptions = computed(() =>
         class="bd-step-series-caption-slot"
         :style="{ gridColumn: index * 2 + 1, gridRow: 2 }"
       >
-        <div v-if="item.caption || item.body" class="bd-step-series-caption">
-          <span v-if="item.caption" class="bd-step-series-caption-title">{{ item.caption }}</span>
-          <span v-if="item.body" class="bd-step-series-caption-body">{{ item.body }}</span>
-        </div>
+        <!--
+          #caption slot: override the content below each circle.
+          Fallback renders prop-based caption/body text.
+          Use .bd-step-series-caption-title and .bd-step-series-caption-body
+          classes for consistent typography when providing custom content.
+        -->
+        <slot name="caption" :item="item" :index="index">
+          <div v-if="item.caption || item.body" class="bd-step-series-caption">
+            <span v-if="item.caption" class="bd-step-series-caption-title">{{ item.caption }}</span>
+            <span v-if="item.body" class="bd-step-series-caption-body">{{ item.body }}</span>
+          </div>
+        </slot>
       </div>
     </template>
   </div>
@@ -236,16 +291,34 @@ const hasCaptions = computed(() =>
   text-align: center;
 }
 
-.bd-step-series-caption-title {
+/*
+ * Caption typography.
+ * Selectors use :deep() so they work whether the content is rendered
+ * by the component template (Level 1 props) OR injected via the #caption slot.
+ * The non-:deep() scoped versions are kept as fallback for older Vite/Vue versions.
+ */
+.bd-step-series-caption-title,
+.bd-step-series-caption-slot :deep(.bd-step-series-caption-title) {
   font-family: var(--bd-font-bold-stack);
   font-size: var(--bd-step-caption-size);
   line-height: 1.06;
   color: var(--bd-contrastkleur-lintblauw);
 }
 
-.bd-step-series-caption-body {
+.bd-step-series-caption-body,
+.bd-step-series-caption-slot :deep(.bd-step-series-caption-body) {
   font-size: var(--bd-step-caption-body-size);
   line-height: 1.16;
   color: rgba(0, 37, 94, 0.84);
+}
+
+/* .bd-step-series-caption wrapper used inside #caption slot */
+.bd-step-series-caption-slot :deep(.bd-step-series-caption) {
+  min-width: var(--bd-step-node-size);
+  width: max-content;
+  display: grid;
+  gap: 0.12rem;
+  justify-items: center;
+  text-align: center;
 }
 </style>
