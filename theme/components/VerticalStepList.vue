@@ -217,8 +217,8 @@ const normalizedItems = computed(() =>
  */
 .bd-vsl-label-cell[data-highlight] {
   background: rgba(0, 118, 182, 0.1);
-  /* Extend background leftward: gap + dotSize = left edge of the dot column */
-  box-shadow: calc(-1 * (var(--bd-vertical-step-label-gap) + var(--bd-vertical-step-size))) 0 0 0 rgba(0, 118, 182, 0.1);
+  /* Extend background leftward: gap + dotSize + ribbon-x-quarter (breathing room left of dots) */
+  box-shadow: calc(-1 * (var(--bd-vertical-step-label-gap) + var(--bd-vertical-step-size) + var(--ribbon-x-quarter))) 0 0 0 rgba(0, 118, 182, 0.1);
   padding-inline-end: 0.6rem;
   padding-block: 0.4rem;
 }
