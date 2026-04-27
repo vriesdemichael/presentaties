@@ -66,6 +66,13 @@ const props = defineProps({
   // captionBodySize defaults to ~85% of captionSize if omitted.
   captionSize: { type: String, default: "9.2pt" },
   captionBodySize: { type: String, default: "8.15pt" },
+  // Snake / boustrophedon connectors.
+  // tailEnd adds a spacer after the last node that extends the connector line
+  // to the right edge of the container (use with StepSeriesJoin).
+  // tailStart adds the same spacer before the first node (line from left edge).
+  // Either prop causes the series to stretch to width: 100%.
+  tailEnd: { type: Boolean, default: false },
+  tailStart: { type: Boolean, default: false },
 });
 
 const slots = useSlots();
@@ -119,7 +126,10 @@ const hasCaptions = computed(() =>
   -->
   <div
     class="bd-step-series"
-    :class="[`bd-step-series--${variant}`]"
+    :class="[
+      `bd-step-series--${variant}`,
+      (tailEnd || tailStart) && 'bd-step-series--stretch',
+    ]"
     :style="{
       '--bd-step-line-color': lineColor,
       '--bd-step-fill-color': fillColor,
@@ -134,6 +144,13 @@ const hasCaptions = computed(() =>
       '--bd-step-caption-body-size': captionBodySize,
     }"
   >
+    <!--
+      tailStart spacer: flex:1 div placed BEFORE the first node.
+      ::after draws a full-width horizontal line at node-center height.
+      The line extends from the LEFT edge of the container to the first dot.
+    -->
+    <div v-if="tailStart" class="bd-step-tail" aria-hidden="true" />
+
     <div
       v-for="(item, index) in normalizedItems"
       :key="item.key"
@@ -160,12 +177,21 @@ const hasCaptions = computed(() =>
         </slot>
       </div>
     </div>
+
+    <!--
+      tailEnd spacer: flex:1 div placed AFTER the last node.
+      ::after draws a full-width horizontal line at node-center height.
+      The line extends from the last dot to the RIGHT edge of the container.
+    -->
+    <div v-if="tailEnd" class="bd-step-tail" aria-hidden="true" />
   </div>
 </template>
 
 <style scoped>
 /*
  * Outer row: flex with column-gap = stepGap.
+ * --stretch: width: 100% when tailEnd or tailStart is used so the tail
+ * spacers can fill the remaining container width.
  */
 .bd-step-series {
   display: flex;
@@ -174,6 +200,34 @@ const hasCaptions = computed(() =>
   column-gap: var(--bd-step-gap);
   width: max-content;
   min-width: 0;
+}
+
+.bd-step-series--stretch {
+  width: 100%;
+}
+
+/*
+ * Tail spacer — fills all remaining flex space.
+ * ::after draws the horizontal connector line at the same vertical position
+ * as the inter-node connectors (nodeSize/2 from the top).
+ */
+.bd-step-tail {
+  flex: 1 0 0;
+  position: relative;
+  min-width: 0;
+  /* tall enough to contain the ::after without clipping */
+  min-height: var(--bd-step-node-size);
+}
+
+.bd-step-tail::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--bd-step-node-size) / 2 - var(--bd-step-stroke-width) / 2);
+  height: var(--bd-step-stroke-width);
+  background: var(--bd-step-line-color);
+  z-index: 0;
 }
 
 /*
@@ -304,5 +358,31 @@ const hasCaptions = computed(() =>
   gap: 0.12rem;
   justify-items: center;
   text-align: center;
+}
+
+/*
+ * In stretch mode (tailEnd / tailStart), wrappers share the full row width
+ * equally so captions must stay within their column.
+ */
+.bd-step-series--stretch .bd-step-wrapper {
+  flex: 1 1 0;
+}
+
+.bd-step-series--stretch .bd-step-series-caption-slot {
+  width: 100%;
+  overflow: hidden;
+}
+
+.bd-step-series--stretch .bd-step-series-caption,
+.bd-step-series--stretch .bd-step-series-caption-slot :deep(.bd-step-series-caption) {
+  width: 100%;
+  max-width: 100%;
+}
+
+.bd-step-series--stretch .bd-step-series-caption-body,
+.bd-step-series--stretch .bd-step-series-caption-slot :deep(.bd-step-series-caption-body) {
+  white-space: normal;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 </style>

@@ -451,6 +451,22 @@ pageTitle: Infographic voorbeeld - van melding naar uitkomst
 <InfographicCompositeDemo />
 
 ---
+layout: full-width
+showLogo: true
+pageTitle: StepSeries - slangverbinding over twee rijen
+
+---
+
+<!--
+  Boustrophedon (slang) voorbeeld: acht stappen verdeeld over twee rijen,
+  verbonden door een StepSeriesJoin die de tijdlijn laat doorlopen.
+  Rij 1 loopt van links naar rechts (stap 1→4).
+  Rij 2 loopt van rechts naar links (stap 8→5) zodat stap 5 uiteindelijk
+  aansluit op een volgende rij of het einde markeert.
+-->
+<InfographicSnakeDemo />
+
+---
 layout: split
 pageTitle: Afsluitende tekst
 mirror: true
