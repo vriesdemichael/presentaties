@@ -29,8 +29,7 @@ const demo = ref(null);
 const connPath = ref('');
 const viewBox = ref('0 0 100 100');
 
-const BEND_R = 20;      // corner radius in layout px
-const SIDE_MARGIN = 40; // horizontal arm length past the last/first circle (2 × BEND_R)
+const SIDE_MARGIN = 48; // horizontal arm length past the last caption edge (layout px)
 let ro = null;
 
 function measure() {
@@ -57,44 +56,28 @@ function measure() {
   const y1 = ((n1R.top + n1R.bottom) / 2 - dR.top) / scale;
   const y2 = ((n2R.top + n2R.bottom) / 2 - dR.top) / scale;
 
-  // x coordinates of the C-shape corners: a fixed margin past the last/first circle.
-  // Using circle-relative offsets instead of the tail-div edges gives compact, equal arms.
-  // The CSS tail::after is suppressed via .snake-demo, so only the SVG draws here.
+  // Right arm: clear the caption text of the last step on row 1.
   const lastNodes = rows[0].querySelectorAll('.bd-step-series-node');
-  const lastNode = lastNodes[lastNodes.length - 1];
+  const lastNode  = lastNodes[lastNodes.length - 1];
   const xLastCircle  = ((lastNode.getBoundingClientRect().left + lastNode.getBoundingClientRect().right) / 2 - dR.left) / scale;
   const xFirstCircle = ((n2R.left + n2R.right) / 2 - dR.left) / scale;
 
-  // Clear the actual caption text, not just the circle. getBoundingClientRect on the
-  // caption element gives us the true rendered right/left extent of any overflowing text.
-  const lastWrapper   = lastNode.closest('.bd-step-wrapper');
-  const lastCaption   = lastWrapper?.querySelector('.bd-step-series-caption');
+  const lastWrapper = lastNode.closest('.bd-step-wrapper');
+  const lastCaption = lastWrapper?.querySelector('.bd-step-series-caption');
   const xRight = lastCaption
     ? (lastCaption.getBoundingClientRect().right - dR.left) / scale + SIDE_MARGIN
     : xLastCircle + SIDE_MARGIN;
 
-  const firstWrapper  = n2.closest('.bd-step-wrapper');
-  const firstCaption  = firstWrapper?.querySelector('.bd-step-series-caption');
-  const xLeft = firstCaption
-    ? (firstCaption.getBoundingClientRect().left - dR.left) / scale - SIDE_MARGIN
-    : xFirstCircle - SIDE_MARGIN;
+  // True semicircle: radius = half the vertical distance between the two rows.
+  // SVG arc command draws the C-bulge to the right (clockwise sweep).
+  const bendR = (y2 - y1) / 2;
 
-  // Equal C heights: bridge exactly midway between the two circle-center Y values.
-  // The SVG sits at z-index 0 behind slide content, so text still renders on top.
-  const yH = (y1 + y2) / 2;
-
-  const r  = BEND_R;
-  // Full path: last-circle → compact right arm → right corner → bridge → left corner → compact left arm → first-circle.
+  // Path: last-circle → right arm → right semicircle (A) → return line → first-circle.
+  // Row 2 starts at the same left edge as row 1 (no tailStart), so xFirstCircle ≈ xLastCircle of row 1's start.
   connPath.value = [
     `M ${xLastCircle} ${y1}`,
-    `L ${xRight - r} ${y1}`,
-    `Q ${xRight} ${y1} ${xRight} ${y1 + r}`,
-    `L ${xRight} ${yH - r}`,
-    `Q ${xRight} ${yH} ${xRight - r} ${yH}`,
-    `L ${xLeft + r} ${yH}`,
-    `Q ${xLeft} ${yH} ${xLeft} ${yH + r}`,
-    `L ${xLeft} ${y2 - r}`,
-    `Q ${xLeft} ${y2} ${xLeft + r} ${y2}`,
+    `L ${xRight} ${y1}`,
+    `A ${bendR} ${bendR} 0 0 1 ${xRight} ${y2}`,
     `L ${xFirstCircle} ${y2}`,
   ].join(' ');
 
@@ -113,7 +96,7 @@ onBeforeUnmount(() => ro?.disconnect());
 <template>
   <div ref="demo" class="snake-demo">
     <StepSeries :items="row1" tail-end step-gap="4.5rem" />
-    <StepSeries :items="row2" tail-start step-gap="4.5rem" />
+    <StepSeries :items="row2" step-gap="4.5rem" />
     <!-- SVG connector: drawn after mount so it aligns with measured node centers -->
     <svg
       v-if="connPath"
@@ -141,7 +124,7 @@ onBeforeUnmount(() => ro?.disconnect());
   padding: 0.5rem 1.5rem;
 }
 
-/* The SVG draws the full connector including horizontal arms past the last/first circle,
+/* The SVG draws the full connector including the right semicircle arm,
    so the CSS tail ::after lines are not needed and would create a visual conflict.
    ::after must be INSIDE :deep() to pierce Vue's scoped CSS on pseudo-elements. */
 .snake-demo :deep(.bd-step-tail::after) {
