@@ -11,6 +11,10 @@ const props = defineProps({
   labelSize: { type: String, default: "16pt" },
   labelGap: { type: String, default: "1rem" },
   bodySize: { type: String, default: "0.85em" },
+  // Dashed overhangs above first / below last dot — indicate continuation
+  dashStart: { type: Boolean, default: false },
+  dashEnd: { type: Boolean, default: false },
+  dashLength: { type: String, default: "1.2rem" },
 });
 
 const normalizedItems = computed(() =>
@@ -25,6 +29,8 @@ const normalizedItems = computed(() =>
         body: item.body ? String(item.body) : "",
         // accentColor: per-item dot colour override (e.g. a signaalkleur)
         accentColor: item.accentColor ? String(item.accentColor) : "",
+        // highlight: draws a subtle card background across the full row
+        highlight: !!item.highlight,
       };
     }
     return {
@@ -32,6 +38,7 @@ const normalizedItems = computed(() =>
       title: String(item ?? ""),
       body: "",
       accentColor: "",
+      highlight: false,
     };
   }),
 );
@@ -40,6 +47,10 @@ const normalizedItems = computed(() =>
 <template>
   <div
     class="bd-vertical-step-list"
+    :class="{
+      'bd-vsl--dash-start': dashStart,
+      'bd-vsl--dash-end': dashEnd,
+    }"
     :style="{
       '--bd-vertical-step-dot': dotColor,
       '--bd-vertical-step-line': lineColor,
@@ -49,9 +60,10 @@ const normalizedItems = computed(() =>
       '--bd-vertical-step-label-size': labelSize,
       '--bd-vertical-step-label-gap': labelGap,
       '--bd-vertical-step-body-size': bodySize,
+      '--bd-vsl-dash-length': dashLength,
     }"
   >
-    <template v-for="item in normalizedItems" :key="item.key">
+    <template v-for="(item, index) in normalizedItems" :key="item.key">
       <!--
         Dot cell (column 1). Connector ::after anchored here:
         - top: 50% = dot center (dot is flex-centered in the full row height)
@@ -62,13 +74,27 @@ const normalizedItems = computed(() =>
       -->
       <div
         class="bd-vsl-dot-cell"
+        :data-highlight="item.highlight || undefined"
         :style="item.accentColor ? { '--bd-vsl-dot-override': item.accentColor } : {}"
       >
-        <span class="bd-vsl-dot" aria-hidden="true" />
+        <!--
+          #dot slot: replace the circle entirely.
+          Default: filled circle respecting dotColor / accentColor.
+        -->
+        <slot name="dot" :item="item" :index="index">
+          <span class="bd-vsl-dot" aria-hidden="true" />
+        </slot>
       </div>
-      <div class="bd-vsl-label-cell">
-        <span class="bd-vsl-label">{{ item.title }}</span>
-        <span v-if="item.body" class="bd-vsl-body">{{ item.body }}</span>
+      <div class="bd-vsl-label-cell" :data-highlight="item.highlight || undefined">
+        <!--
+          #content slot: replace the label + body area entirely.
+          Default: bd-vsl-label (title) + optional bd-vsl-body.
+          Use :deep(.bd-vsl-label) / :deep(.bd-vsl-body) to inherit theme styles.
+        -->
+        <slot name="content" :item="item" :index="index">
+          <span class="bd-vsl-label">{{ item.title }}</span>
+          <span v-if="item.body" class="bd-vsl-body">{{ item.body }}</span>
+        </slot>
       </div>
     </template>
   </div>
@@ -118,6 +144,50 @@ const normalizedItems = computed(() =>
   z-index: -1;
 }
 
+/*
+ * Dashed overhang above the first dot (dashStart).
+ * Indicates the process started before this slide.
+ * Uses ::before so it does not conflict with the connector ::after.
+ */
+.bd-vsl--dash-start .bd-vsl-dot-cell:first-child::before {
+  content: "";
+  position: absolute;
+  left: calc(50% - 1px);
+  bottom: 50%;
+  width: 2px;
+  height: var(--bd-vsl-dash-length);
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--bd-vertical-step-line) 0,
+    var(--bd-vertical-step-line) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  z-index: -1;
+}
+
+/*
+ * Dashed overhang below the last dot (dashEnd).
+ * Indicates the process continues beyond this slide.
+ * The normal connector rule excludes :nth-last-child(2), so ::after is free here.
+ */
+.bd-vsl--dash-end .bd-vsl-dot-cell:nth-last-child(2)::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 1px);
+  top: 50%;
+  width: 2px;
+  height: var(--bd-vsl-dash-length);
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--bd-vertical-step-line) 0,
+    var(--bd-vertical-step-line) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  z-index: -1;
+}
+
 .bd-vsl-dot {
   display: block;
   width: var(--bd-vertical-step-size);
@@ -131,6 +201,25 @@ const normalizedItems = computed(() =>
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+/*
+ * Highlight row: subtle card background spans both the dot cell and label cell.
+ * Padding-block is added to both cells so the highlight area feels proportional.
+ * Border-radius is split across the two cells (left on dot, right on label).
+ */
+.bd-vsl-dot-cell[data-highlight] {
+  background: rgba(0, 118, 182, 0.1);
+  border-radius: 4px 0 0 4px;
+  padding-inline: 0.25rem;
+  padding-block: 0.4rem;
+}
+
+.bd-vsl-label-cell[data-highlight] {
+  background: rgba(0, 118, 182, 0.1);
+  border-radius: 0 4px 4px 0;
+  padding-inline-end: 0.6rem;
+  padding-block: 0.4rem;
 }
 
 .bd-vsl-label {
