@@ -458,16 +458,25 @@ pageTitle: StepSeries - slangverbinding over twee rijen
 ---
 
 <!--
-  Boustrophedon (slang) voorbeeld: acht stappen verdeeld over twee rijen,
-  verbonden door een StepSeriesJoin die de tijdlijn laat doorlopen.
-  Rij 1 loopt van links naar rechts (stap 1→4), met een tailEnd die de lijn
-  naar de rechterrand trekt.
-  De StepSeriesJoin tekent een ∪-vorm die de rechterrand van rij 1 verbindt
-  met de linkerrand van rij 2.
-  Rij 2 loopt ook van links naar rechts (stap 5→8), met een tailStart die de
-  lijn vanuit de linkerrand ophaalt.
+  Boustrophedon (slang): acht stappen verdeeld over twee rijen, verbonden door
+  een S-vormige lijn. StepSeriesJoin neemt row1 en row2 als arrays en tekent
+  de verbindingslijn automatisch op basis van de werkelijke afmetingen.
+  Gebruik row-gap om de verticale ruimte tussen de rijen te regelen.
 -->
-<InfographicSnakeDemo />
+<StepSeriesJoin
+  :row1="[
+    { label: '1', caption: 'Aangifte',    body: 'Belastingplichtige doet aangifte online' },
+    { label: '2', caption: 'Ontvangst',   body: 'Belastingdienst ontvangt het verzoek' },
+    { label: '3', caption: 'Controle',    body: 'Gegevens worden gevalideerd' },
+    { label: '4', caption: 'Beoordeling', body: 'Inhoudelijke toetsing door de inspecteur' },
+  ]"
+  :row2="[
+    { label: '5', caption: 'Uitspraak',   body: 'Bezwaar afgehandeld' },
+    { label: '6', caption: 'Beschikking', body: 'Definitieve aanslag vastgesteld' },
+    { label: '7', caption: 'Uitbetaling', body: 'Teruggaaf overgemaakt' },
+    { label: '8', caption: 'Archief',     body: 'Dossier afgesloten en opgeslagen' },
+  ]"
+/>
 
 ---
 layout: split
