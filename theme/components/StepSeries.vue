@@ -109,13 +109,13 @@ const hasCaptions = computed(() =>
 
 <template>
   <!--
-    Per-step wrapper layout (Option B):
-    Outer container is a flex row. Each step is a wrapper div (flex column,
-    align-items: center, fixed width = nodeSize). Node and caption are siblings
-    inside the same flex context — both centered against the same nodeSize axis.
-    A caption wider than nodeSize overflows symmetrically per CSS spec.
-    Connectors are plain flex items between wrappers, pushed to circle midline
-    via margin-top.
+    Per-step wrapper layout (Option B, v2):
+    Outer container is a flex row with column-gap = stepGap.
+    Each step is a wrapper div (flex column, align-items: center, fixed width = nodeSize).
+    Node and caption are siblings in the same flex context — both centered against nodeSize.
+    The connector line is drawn as ::after on the node itself (left: 100%, width: stepGap),
+    anchored directly to the circle's right edge — no cross-element rounding gaps.
+    The last wrapper's ::after is suppressed with :last-child CSS.
   -->
   <div
     class="bd-step-series"
@@ -134,78 +134,52 @@ const hasCaptions = computed(() =>
       '--bd-step-caption-body-size': captionBodySize,
     }"
   >
-    <template v-for="(item, index) in normalizedItems" :key="item.key">
-      <!--
-        Per-step wrapper: flex column with align-items: center.
-        Node and caption are siblings inside the same flex context →
-        both get centered against the same fixed nodeSize width.
-        No cross-row coordination needed.
-      -->
-      <div class="bd-step-wrapper">
-        <!-- Circle node -->
-        <div class="bd-step-series-node">
-          <!--
-            #node slot: override the content INSIDE the circle.
-            The circle shape, border and background are always provided by the component.
-            Fallback renders the default label/icon based on variant.
-          -->
-          <slot name="node" :item="item" :index="index">
-            <span v-if="variant !== 'icon'" class="bd-step-series-label">{{ item.label }}</span>
-            <template v-else>
-              <span v-if="item.icon" class="bd-ro-icon bd-step-series-icon">{{ item.icon }}</span>
-              <span v-else class="bd-step-series-icon-missing" aria-label="ontbrekend icoon">?</span>
-            </template>
-          </slot>
-        </div>
-
-        <!-- Caption below the circle — centered by the same flex context as the node -->
-        <div
-          v-if="hasCaptions"
-          class="bd-step-series-caption-slot"
-        >
-          <!--
-            #caption slot: override the content below each circle.
-            Fallback renders prop-based caption/body text.
-            Use .bd-step-series-caption-title and .bd-step-series-caption-body
-            classes for consistent typography when providing custom content.
-          -->
-          <slot name="caption" :item="item" :index="index">
-            <div v-if="item.caption || item.body" class="bd-step-series-caption">
-              <span v-if="item.caption" class="bd-step-series-caption-title">{{ item.caption }}</span>
-              <span v-if="item.body" class="bd-step-series-caption-body">{{ item.body }}</span>
-            </div>
-          </slot>
-        </div>
+    <div
+      v-for="(item, index) in normalizedItems"
+      :key="item.key"
+      class="bd-step-wrapper"
+    >
+      <!-- Circle node. ::after draws the connector to the next step. -->
+      <div class="bd-step-series-node">
+        <slot name="node" :item="item" :index="index">
+          <span v-if="variant !== 'icon'" class="bd-step-series-label">{{ item.label }}</span>
+          <template v-else>
+            <span v-if="item.icon" class="bd-ro-icon bd-step-series-icon">{{ item.icon }}</span>
+            <span v-else class="bd-step-series-icon-missing" aria-label="ontbrekend icoon">?</span>
+          </template>
+        </slot>
       </div>
 
-      <!-- Connector line between steps — positioned at circle midline via margin-top -->
-      <div
-        v-if="index < normalizedItems.length - 1"
-        class="bd-step-series-connector"
-        aria-hidden="true"
-      />
-    </template>
+      <!-- Caption below the circle — centered by the same flex context as the node -->
+      <div v-if="hasCaptions" class="bd-step-series-caption-slot">
+        <slot name="caption" :item="item" :index="index">
+          <div v-if="item.caption || item.body" class="bd-step-series-caption">
+            <span v-if="item.caption" class="bd-step-series-caption-title">{{ item.caption }}</span>
+            <span v-if="item.body" class="bd-step-series-caption-body">{{ item.body }}</span>
+          </div>
+        </slot>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
 /*
- * Outer row: plain flex, top-aligned so caption height differences don't
- * pull connectors away from the circle midline.
+ * Outer row: flex with column-gap = stepGap.
+ * The gap IS the connector space; the line is drawn by node::after.
  */
 .bd-step-series {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  column-gap: var(--bd-step-gap);
   width: max-content;
   min-width: 0;
 }
 
 /*
  * Per-step wrapper: flex column, fixed width = nodeSize.
- * align-items: center centers BOTH the node and the caption against the
- * same nodeSize axis — even when the caption is wider (it overflows
- * symmetrically). This is unambiguous per-spec for a column flex container.
+ * align-items: center centers node AND caption on the same axis.
  */
 .bd-step-wrapper {
   display: flex;
@@ -215,7 +189,13 @@ const hasCaptions = computed(() =>
   row-gap: 0.45rem;
 }
 
-/* Node fills its wrapper width exactly. */
+/*
+ * Node fills wrapper width exactly.
+ * ::after draws the connector line from the circle's right edge across the
+ * column-gap to the next circle — anchored directly to the circle, no
+ * cross-element rounding gap possible.
+ * z-index: 1 keeps circles on top of any line overlap.
+ */
 .bd-step-series-node {
   position: relative;
   z-index: 1;
@@ -228,6 +208,27 @@ const hasCaptions = computed(() =>
   flex-shrink: 0;
 }
 
+/*
+ * Connector line: absolute pseudo on the node, starts at the circle's right
+ * edge (left: 100%), spans the full column-gap (width: stepGap).
+ * top calc centers it on the circle midline.
+ */
+.bd-step-series-node::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  width: var(--bd-step-gap);
+  top: calc(50% - var(--bd-step-stroke-width) / 2);
+  height: var(--bd-step-stroke-width);
+  background: var(--bd-step-line-color);
+  z-index: -1;
+}
+
+/* No connector after the last step */
+.bd-step-wrapper:last-child .bd-step-series-node::after {
+  display: none;
+}
+
 .bd-step-series--filled .bd-step-series-node {
   background: var(--bd-step-fill-color);
   color: var(--bd-step-text-color);
@@ -238,19 +239,6 @@ const hasCaptions = computed(() =>
   background: #ffffff;
   border: var(--bd-step-stroke-width) solid var(--bd-step-border-color);
   color: var(--bd-step-text-color);
-}
-
-/*
- * Connector: a fixed-width flex item between wrappers.
- * margin-top lifts it to the horizontal midline of the circle.
- * No pseudo-element needed.
- */
-.bd-step-series-connector {
-  flex: 0 0 var(--bd-step-gap);
-  align-self: flex-start;
-  margin-top: calc((var(--bd-step-node-size) / 2) - (var(--bd-step-stroke-width) / 2));
-  height: var(--bd-step-stroke-width);
-  background: var(--bd-step-line-color);
 }
 
 .bd-step-series-label {
