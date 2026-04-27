@@ -109,12 +109,13 @@ const hasCaptions = computed(() =>
 
 <template>
   <!--
-    Single shared grid: columns alternate nodeSize / stepGap (last stepGap unused).
-    Nodes → row 1, odd columns (1, 3, 5…)
-    Connectors → row 1, even columns (2, 4, 6…)
-    Captions → row 2, same odd columns as their node.
-    This guarantees node and caption centers are literally in the same column —
-    no separate containers to drift out of sync.
+    Per-step wrapper layout (Option B):
+    Outer container is a flex row. Each step is a wrapper div (flex column,
+    align-items: center, fixed width = nodeSize). Node and caption are siblings
+    inside the same flex context — both centered against the same nodeSize axis.
+    A caption wider than nodeSize overflows symmetrically per CSS spec.
+    Connectors are plain flex items between wrappers, pushed to circle midline
+    via margin-top.
   -->
   <div
     class="bd-step-series"
@@ -124,7 +125,6 @@ const hasCaptions = computed(() =>
       '--bd-step-fill-color': fillColor,
       '--bd-step-border-color': borderColor,
       '--bd-step-text-color': textColor,
-      '--bd-step-count': normalizedItems.length,
       '--bd-step-node-size': nodeSize,
       '--bd-step-gap': stepGap,
       '--bd-step-label-size': labelSize,
@@ -135,77 +135,87 @@ const hasCaptions = computed(() =>
     }"
   >
     <template v-for="(item, index) in normalizedItems" :key="item.key">
-      <!-- Node: row 1, odd column -->
-      <div
-        class="bd-step-series-node"
-        :style="{ gridColumn: index * 2 + 1, gridRow: 1 }"
-      >
-        <!--
-          #node slot: override the content INSIDE the circle.
-          The circle shape, border and background are always provided by the component.
-          Fallback renders the default label/icon based on variant.
-        -->
-        <slot name="node" :item="item" :index="index">
-          <span v-if="variant !== 'icon'" class="bd-step-series-label">{{ item.label }}</span>
-          <template v-else>
-            <span v-if="item.icon" class="bd-ro-icon bd-step-series-icon">{{ item.icon }}</span>
-            <span v-else class="bd-step-series-icon-missing" aria-label="ontbrekend icoon">?</span>
-          </template>
-        </slot>
+      <!--
+        Per-step wrapper: flex column with align-items: center.
+        Node and caption are siblings inside the same flex context →
+        both get centered against the same fixed nodeSize width.
+        No cross-row coordination needed.
+      -->
+      <div class="bd-step-wrapper">
+        <!-- Circle node -->
+        <div class="bd-step-series-node">
+          <!--
+            #node slot: override the content INSIDE the circle.
+            The circle shape, border and background are always provided by the component.
+            Fallback renders the default label/icon based on variant.
+          -->
+          <slot name="node" :item="item" :index="index">
+            <span v-if="variant !== 'icon'" class="bd-step-series-label">{{ item.label }}</span>
+            <template v-else>
+              <span v-if="item.icon" class="bd-ro-icon bd-step-series-icon">{{ item.icon }}</span>
+              <span v-else class="bd-step-series-icon-missing" aria-label="ontbrekend icoon">?</span>
+            </template>
+          </slot>
+        </div>
+
+        <!-- Caption below the circle — centered by the same flex context as the node -->
+        <div
+          v-if="hasCaptions"
+          class="bd-step-series-caption-slot"
+        >
+          <!--
+            #caption slot: override the content below each circle.
+            Fallback renders prop-based caption/body text.
+            Use .bd-step-series-caption-title and .bd-step-series-caption-body
+            classes for consistent typography when providing custom content.
+          -->
+          <slot name="caption" :item="item" :index="index">
+            <div v-if="item.caption || item.body" class="bd-step-series-caption">
+              <span v-if="item.caption" class="bd-step-series-caption-title">{{ item.caption }}</span>
+              <span v-if="item.body" class="bd-step-series-caption-body">{{ item.body }}</span>
+            </div>
+          </slot>
+        </div>
       </div>
 
-      <!-- Connector: row 1, even column between this node and the next -->
+      <!-- Connector line between steps — positioned at circle midline via margin-top -->
       <div
         v-if="index < normalizedItems.length - 1"
-        :key="`${item.key}-connector`"
         class="bd-step-series-connector"
-        :style="{ gridColumn: index * 2 + 2, gridRow: 1 }"
         aria-hidden="true"
-      ></div>
-
-      <!-- Caption: row 2, same odd column as its node -->
-      <div
-        v-if="hasCaptions"
-        :key="`${item.key}-caption`"
-        class="bd-step-series-caption-slot"
-        :style="{ gridColumn: index * 2 + 1, gridRow: 2 }"
-      >
-        <!--
-          #caption slot: override the content below each circle.
-          Fallback renders prop-based caption/body text.
-          Use .bd-step-series-caption-title and .bd-step-series-caption-body
-          classes for consistent typography when providing custom content.
-        -->
-        <slot name="caption" :item="item" :index="index">
-          <div v-if="item.caption || item.body" class="bd-step-series-caption">
-            <span v-if="item.caption" class="bd-step-series-caption-title">{{ item.caption }}</span>
-            <span v-if="item.body" class="bd-step-series-caption-body">{{ item.body }}</span>
-          </div>
-        </slot>
-      </div>
+      />
     </template>
   </div>
 </template>
 
 <style scoped>
 /*
- * Single shared grid. Columns alternate: nodeSize / stepGap / nodeSize / stepGap …
- * The last stepGap column is always empty; it is harmless and avoids a
- * calc(2N-1) expression that CSS cannot derive from a single count variable.
- *
- * repeat() with an integer custom property is well-supported in all Chromium,
- * Firefox, and Safari versions that can run Slidev.
+ * Outer row: plain flex, top-aligned so caption height differences don't
+ * pull connectors away from the circle midline.
  */
 .bd-step-series {
-  display: grid;
-  grid-template-columns: repeat(var(--bd-step-count), var(--bd-step-node-size) var(--bd-step-gap));
-  align-items: start;
-  row-gap: 0.45rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
   width: max-content;
   min-width: 0;
 }
 
-/* Node sits in its grid cell; grid column width = nodeSize so it fills exactly. */
+/*
+ * Per-step wrapper: flex column, fixed width = nodeSize.
+ * align-items: center centers BOTH the node and the caption against the
+ * same nodeSize axis — even when the caption is wider (it overflows
+ * symmetrically). This is unambiguous per-spec for a column flex container.
+ */
+.bd-step-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 var(--bd-step-node-size);
+  row-gap: 0.45rem;
+}
+
+/* Node fills its wrapper width exactly. */
 .bd-step-series-node {
   position: relative;
   z-index: 1;
@@ -215,6 +225,7 @@ const hasCaptions = computed(() =>
   display: grid;
   place-items: center;
   box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .bd-step-series--filled .bd-step-series-node {
@@ -230,22 +241,14 @@ const hasCaptions = computed(() =>
 }
 
 /*
- * Connector occupies the gap column between two nodes.
- * height = nodeSize so ::before top-percentage lands on the horizontal midline.
- * ::before extends left/right by strokeWidth to touch the adjacent circle edges.
+ * Connector: a fixed-width flex item between wrappers.
+ * margin-top lifts it to the horizontal midline of the circle.
+ * No pseudo-element needed.
  */
 .bd-step-series-connector {
-  position: relative;
-  width: 100%;
-  height: var(--bd-step-node-size);
-}
-
-.bd-step-series-connector::before {
-  content: "";
-  position: absolute;
-  left: calc(var(--bd-step-stroke-width) * -1);
-  right: calc(var(--bd-step-stroke-width) * -1);
-  top: calc((var(--bd-step-node-size) / 2) - (var(--bd-step-stroke-width) / 2));
+  flex: 0 0 var(--bd-step-gap);
+  align-self: flex-start;
+  margin-top: calc((var(--bd-step-node-size) / 2) - (var(--bd-step-stroke-width) / 2));
   height: var(--bd-step-stroke-width);
   background: var(--bd-step-line-color);
 }
@@ -272,14 +275,12 @@ const hasCaptions = computed(() =>
 }
 
 /*
- * Caption slot: same column as its node (set via inline gridColumn).
- * display: flex + justify-content: center lets wide caption text overflow
- * symmetrically to both sides of the node column.
+ * Caption slot: width: max-content so text is not word-wrapped to nodeSize.
+ * Centering is handled by the parent wrapper's align-items: center — the
+ * caption overflows symmetrically when it is wider than the node column.
  */
 .bd-step-series-caption-slot {
-  display: flex;
-  justify-content: center;
-  overflow: visible;
+  width: max-content;
 }
 
 .bd-step-series-caption {
