@@ -98,9 +98,10 @@ function measure() {
   const xFirstCircle = ((n2R.left + n2R.right) / 2 - dR.left) / scale;
 
   const lastCaption = lastNode.closest('.bd-step-wrapper')?.querySelector('.bd-step-series-caption');
-  const xRight = lastCaption
+  const xRightRaw = lastCaption
     ? (lastCaption.getBoundingClientRect().right - dR.left) / scale + SIDE_MARGIN
     : xLastCircle + SIDE_MARGIN;
+  const xRight = Math.min(xRightRaw, el.offsetWidth - 4);
 
   // Left arm: clear past the first caption on row 2.
   const firstCaption = n2.closest('.bd-step-wrapper')?.querySelector('.bd-step-series-caption');

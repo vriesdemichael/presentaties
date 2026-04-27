@@ -464,6 +464,7 @@ pageTitle: StepSeries - slangverbinding over twee rijen
   Gebruik row-gap om de verticale ruimte tussen de rijen te regelen.
 -->
 <StepSeriesJoin
+  step-gap="3rem"
   :row1="[
     { label: '1', caption: 'Aangifte',    body: 'Belastingplichtige doet aangifte online' },
     { label: '2', caption: 'Ontvangst',   body: 'Belastingdienst ontvangt het verzoek' },
