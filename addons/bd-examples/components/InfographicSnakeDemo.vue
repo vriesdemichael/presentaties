@@ -2,9 +2,8 @@
 /**
  * InfographicSnakeDemo — boustrophedon (snake) step series demo.
  *
- * Shows an 8-step process across two rows connected by a ∪-shaped SVG connector.
- * Row 1: steps 1–4, tailEnd (horizontal line extends to the right edge).
- * Row 2: steps 5–8, tailStart (horizontal line from the left edge to step 5).
+ * Shows an 8-step process across two rows connected by an S-shaped SVG connector.
+ * The bridge runs from the right side of row 1 across the gap to the left side of row 2.
  * The SVG connector is measured on mount so it aligns with the actual connector
  * lines regardless of caption height.
  */
@@ -29,7 +28,7 @@ const demo = ref(null);
 const connPath = ref('');
 const viewBox = ref('0 0 100 100');
 
-const SIDE_MARGIN = 48; // horizontal arm length past the last caption edge (layout px)
+const SIDE_MARGIN = 48; // horizontal arm length past the circle/caption edge (layout px)
 let ro = null;
 
 function measure() {
@@ -68,16 +67,28 @@ function measure() {
     ? (lastCaption.getBoundingClientRect().right - dR.left) / scale + SIDE_MARGIN
     : xLastCircle + SIDE_MARGIN;
 
-  // True semicircle: radius = half the vertical distance between the two rows.
-  // SVG arc command draws the C-bulge to the right (clockwise sweep).
-  const bendR = (y2 - y1) / 2;
+  // Left arm: keep the return C clear of the first step/caption on row 2.
+  const firstWrapper = n2.closest('.bd-step-wrapper');
+  const firstCaption = firstWrapper?.querySelector('.bd-step-series-caption');
+  const xLeftByCaption = firstCaption
+    ? (firstCaption.getBoundingClientRect().left - dR.left) / scale - SIDE_MARGIN
+    : xFirstCircle - SIDE_MARGIN;
+  const xLeft = Math.max(2, Math.min(xFirstCircle - SIDE_MARGIN, xLeftByCaption));
 
-  // Path: last-circle → right arm → right semicircle (A) → return line → first-circle.
-  // Row 2 starts at the same left edge as row 1 (no tailStart), so xFirstCircle ≈ xLastCircle of row 1's start.
+  // Proper snake: right C → bridge line → left C.
+  const yMid = (y1 + y2) / 2;
+  const bendR = (y2 - y1) / 4;
+
   connPath.value = [
     `M ${xLastCircle} ${y1}`,
-    `L ${xRight} ${y1}`,
-    `A ${bendR} ${bendR} 0 0 1 ${xRight} ${y2}`,
+    `L ${xRight - bendR} ${y1}`,
+    `Q ${xRight} ${y1} ${xRight} ${y1 + bendR}`,
+    `L ${xRight} ${yMid - bendR}`,
+    `Q ${xRight} ${yMid} ${xRight - bendR} ${yMid}`,
+    `L ${xLeft + bendR} ${yMid}`,
+    `Q ${xLeft} ${yMid} ${xLeft} ${yMid + bendR}`,
+    `L ${xLeft} ${y2 - bendR}`,
+    `Q ${xLeft} ${y2} ${xLeft + bendR} ${y2}`,
     `L ${xFirstCircle} ${y2}`,
   ].join(' ');
 
@@ -95,8 +106,8 @@ onBeforeUnmount(() => ro?.disconnect());
 
 <template>
   <div ref="demo" class="snake-demo">
-    <StepSeries :items="row1" step-gap="4.5rem" />
-    <StepSeries :items="row2" step-gap="4.5rem" />
+    <StepSeries :items="row1" stretch />
+    <StepSeries :items="row2" stretch />
     <!-- SVG connector: drawn after mount so it aligns with measured node centers -->
     <svg
       v-if="connPath"

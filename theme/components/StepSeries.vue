@@ -73,6 +73,10 @@ const props = defineProps({
   // Either prop causes the series to stretch to width: 100%.
   tailEnd: { type: Boolean, default: false },
   tailStart: { type: Boolean, default: false },
+  // stretch: distribute nodes evenly across the full container width without
+  // adding tail spacers. Use when the series is part of a multi-row snake
+  // layout and tails are not needed.
+  stretch: { type: Boolean, default: false },
 });
 
 const slots = useSlots();
@@ -128,7 +132,7 @@ const hasCaptions = computed(() =>
     class="bd-step-series"
     :class="[
       `bd-step-series--${variant}`,
-      (tailEnd || tailStart) && 'bd-step-series--stretch',
+      (tailEnd || tailStart || stretch) && 'bd-step-series--stretch',
     ]"
     :style="{
       '--bd-step-line-color': lineColor,
@@ -376,6 +380,13 @@ const hasCaptions = computed(() =>
 .bd-step-series--stretch .bd-step-series-caption,
 .bd-step-series--stretch .bd-step-series-caption-slot :deep(.bd-step-series-caption) {
   width: 100%;
+  max-width: 100%;
+}
+
+.bd-step-series--stretch .bd-step-series-caption-title,
+.bd-step-series--stretch .bd-step-series-caption-slot :deep(.bd-step-series-caption-title) {
+  white-space: normal;
+  overflow-wrap: break-word;
   max-width: 100%;
 }
 
