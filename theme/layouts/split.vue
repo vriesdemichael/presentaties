@@ -63,7 +63,7 @@ defineProps({
 
 .bd-text-heavy-bd-title {
   font-family: var(--bd-font-bold-stack);
-  font-size: 34pt;
+  font-size: var(--bd-text-display);
   line-height: 1.06;
   letter-spacing: -0.01em;
   max-width: 100%;

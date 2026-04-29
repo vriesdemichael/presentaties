@@ -93,6 +93,28 @@
   /* Semantic text colors */
   --bd-tekst-primair: #1f2f3f;
   --bd-tekst-secundair: #5e7f9a;
+
+  /*
+   * Typographic scale — presentation context.
+   *
+   * These tokens drive the global h1–h6 rules below and should also be
+   * referenced by layout/component scoped CSS instead of hardcoded pt values.
+   *
+   * Two display tokens sit above the heading scale:
+   *   --bd-text-display   big statement title  (split layout left column)
+   *   --bd-text-title     page title on content slides (full-width, chapter, etc.)
+   */
+  --bd-text-display: 28pt;   /* was 34pt in split layout                */
+  --bd-text-title:   19pt;   /* content-slide page title                */
+
+  --bd-h1-size: 26pt;        /* # markdown heading in slide body        */
+  --bd-h2-size: 20pt;        /* ## section break / major point          */
+  --bd-h3-size: 16pt;        /* ### sub-point                           */
+  --bd-h4-size: 13pt;        /* #### rarely used; matches small-label   */
+  --bd-h5-size: 11pt;
+  --bd-h6-size: 10pt;
+  --bd-body-size: 12pt;      /* base body / list text                   */
+
   --ribbon-x: 3.825cqw;
   --ribbon-x-quarter: calc(var(--ribbon-x) * 0.25);
   --ribbon-x-half: calc(var(--ribbon-x) * 0.5);
@@ -108,22 +130,64 @@
 /* ---- Base ---- */
 .slidev-layout {
   font-family: var(--bd-font-regular-stack);
+  font-size: var(--bd-body-size);
   color: var(--bd-tekst-primair);
   box-sizing: border-box;
 }
 
 .slidev-layout h1 {
   font-family: var(--bd-font-bold-stack);
+  font-size: var(--bd-h1-size);
   color: var(--bd-contrastkleur-lintblauw);
   font-weight: 400;
+  line-height: 1.1;
   margin-top: 0;
+  margin-bottom: 0.4em;
 }
 
-.slidev-layout h2,
-.slidev-layout h3 {
+.slidev-layout h2 {
   font-family: var(--bd-font-bold-stack);
+  font-size: var(--bd-h2-size);
   color: var(--bd-contrastkleur-lintblauw);
   font-weight: 400;
+  line-height: 1.15;
+  margin-top: 0.8em;
+  margin-bottom: 0.3em;
+}
+
+.slidev-layout h3 {
+  font-family: var(--bd-font-bold-stack);
+  font-size: var(--bd-h3-size);
+  color: var(--bd-contrastkleur-lintblauw);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-top: 0.6em;
+  margin-bottom: 0.25em;
+}
+
+.slidev-layout h4 {
+  font-family: var(--bd-font-bold-stack);
+  font-size: var(--bd-h4-size);
+  color: var(--bd-contrastkleur-lintblauw);
+  font-weight: 400;
+  line-height: 1.25;
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+}
+
+.slidev-layout h5,
+.slidev-layout h6 {
+  font-family: var(--bd-font-bold-stack);
+  font-size: var(--bd-h5-size);
+  color: var(--bd-contrastkleur-lintblauw);
+  font-weight: 400;
+  line-height: 1.3;
+  margin-top: 0.4em;
+  margin-bottom: 0.15em;
+}
+
+.slidev-layout h6 {
+  font-size: var(--bd-h6-size);
 }
 
 .slidev-layout em,
