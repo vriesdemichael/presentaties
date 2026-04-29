@@ -249,7 +249,7 @@ eyebrow: image-merktegel
 
 ---
 
-Voor grote statements
+Voor wanneer je een groot statement wilt maken
 
 ---
 layout: image-merktegel
@@ -264,6 +264,7 @@ eyebrow: Varianten
 Layouts hebben varianten om het gedrag of de stijl aan te passen. Dit is variant `detail`
 
 ```yaml
+layout: image-merktegel
 variant: detail
 ```
 
