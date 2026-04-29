@@ -73,11 +73,67 @@ chapterTitle: Inhoudsopgave
 
 <NumberedList
   :items="[
-    { label: 'Herbruikbare componenten', detail: 'Tabellen, diagrammen en infographic componenten' },
     { label: 'Maten en stijl', detail: 'Maatvoering en tekstopmaak' },
+    { label: 'Herbruikbare componenten', detail: 'Tabellen, diagrammen en infographic componenten' },
     { label: 'Voorbeelden', detail: 'Infographics en merktegelslides' },
   ]"
 />
+
+---
+layout: split
+pageTitle: Lint als maatvoering
+rightBackground: "#edf4f8"
+clicks: 3
+
+---
+
+## Vaste meeteenheid
+
+- De breedte van het lint is de basiseenheid `X`
+- De contentgrens ligt `1X` uit de buitenrand: `1/2 X` marge + `1/2 X` inset
+- Boven de content geldt: linthoogte + `1/2 X`
+- Tussen de twee contentvlakken ligt effectief `2X`
+
+## Vertaling naar slides
+
+- Plaats eerst het lint exact midden bovenaan
+- Gebruik in slides het SVG-lint van `1X x 2X`
+- Lees rechts: buitenkader = slide, oranje kader = contentgrens
+- Meet vanaf het hele slidevlak, niet vanaf een halve kolom
+
+::right::
+
+<MeasurementExplainer :clicks="$clicks" />
+
+---
+layout: split
+pageTitle: Titel tekstpagina 28pt
+rightBackground: "#8FCAE7"
+
+---
+
+## Sub titel 1 bold 20pt
+
+- Bodytekst plignia eprovit, aceperument plignit ent alit que eniat porro eossintcium quia cuscil endaect ascipiatem eos reni reptas qui comnis
+- Ectem sim as quid que necture velibusandis idipis
+- Minulluptate modis unti dolo discita tiberum quietam am
+
+## Sub titel 2 bold 20pt
+
+- Voluptam rescipsae dit aceatia por alicim ventori busant plignit ent alit que eniat porro
+
+::right::
+
+<div style="display: grid; grid-auto-rows: max-content; gap: 0.1rem; align-content: start; color: var(--bd-contrastkleur-lintblauw);">
+  <div>
+    <div style="font-size: 31pt; line-height: 1;">2.160.653</div>
+    <div style="margin-top: 0.18rem; font-size: var(--bd-body-size); line-height: 1.15;">ontvangen aangifte op 8 maart 2020</div>
+  </div>
+  <div>
+    <div style="font-size: 31pt; line-height: 1;">3%</div>
+    <div style="margin-top: 0.18rem; font-size: var(--bd-body-size); line-height: 1.15;">Stijging tov vorig jaar</div>
+  </div>
+</div>
 
 ---
 layout: image-merktegel
@@ -478,62 +534,6 @@ Zet `:legend="true"` voor een legendapaneel naast of onder de ring. Gebruik `leg
   #center slot: willekeurige content gecentreerd in het gat van de ring
   --donut-size: CSS-variabele voor hoogte/breedte van de ring — default 200px
 -->
-
----
-layout: split
-pageTitle: Lint als maatvoering
-rightBackground: "#edf4f8"
-clicks: 3
-
----
-
-## Vaste meeteenheid
-
-- De breedte van het lint is de basiseenheid `X`
-- De contentgrens ligt `1X` uit de buitenrand: `1/2 X` marge + `1/2 X` inset
-- Boven de content geldt: linthoogte + `1/2 X`
-- Tussen de twee contentvlakken ligt effectief `2X`
-
-## Vertaling naar slides
-
-- Plaats eerst het lint exact midden bovenaan
-- Gebruik in slides het SVG-lint van `1X x 2X`
-- Lees rechts: buitenkader = slide, oranje kader = contentgrens
-- Meet vanaf het hele slidevlak, niet vanaf een halve kolom
-
-::right::
-
-<MeasurementExplainer :clicks="$clicks" />
-
----
-layout: split
-pageTitle: Titel tekstpagina 28pt
-rightBackground: "#8FCAE7"
-
----
-
-## Sub titel 1 bold 20pt
-
-- Bodytekst plignia eprovit, aceperument plignit ent alit que eniat porro eossintcium quia cuscil endaect ascipiatem eos reni reptas qui comnis
-- Ectem sim as quid que necture velibusandis idipis
-- Minulluptate modis unti dolo discita tiberum quietam am
-
-## Sub titel 2 bold 20pt
-
-- Voluptam rescipsae dit aceatia por alicim ventori busant plignit ent alit que eniat porro
-
-::right::
-
-<div style="display: grid; grid-auto-rows: max-content; gap: 0.1rem; align-content: start; color: var(--bd-contrastkleur-lintblauw);">
-  <div>
-    <div style="font-size: 31pt; line-height: 1;">2.160.653</div>
-    <div style="margin-top: 0.18rem; font-size: var(--bd-body-size); line-height: 1.15;">ontvangen aangifte op 8 maart 2020</div>
-  </div>
-  <div>
-    <div style="font-size: 31pt; line-height: 1;">3%</div>
-    <div style="margin-top: 0.18rem; font-size: var(--bd-body-size); line-height: 1.15;">Stijging tov vorig jaar</div>
-  </div>
-</div>
 
 ---
 layout: full-width
