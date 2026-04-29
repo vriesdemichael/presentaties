@@ -219,18 +219,11 @@ Zo blijft de presentatie consistent met de huisstijl.
 
 ---
 layout: chapter
-variant: content-right
 chapterNumber: "Voorbeelden"
 chapterTitle: Herbruikbare layouts
+image: /images/voorbeeld-foto-2.jpg
 
 ---
-
-```yaml
----
-layout: chapter
-chapterTitle: Mijn sectietitel
----
-```
 
 ::subtitle::
 
@@ -247,7 +240,7 @@ eyebrow: image-merktegel
 
 ---
 
-Voor grote statements en overgangen tussen onderwerpen
+Voor grote statements
 
 ---
 layout: image-merktegel
