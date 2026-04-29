@@ -219,14 +219,11 @@ Zo blijft de presentatie consistent met de huisstijl.
 
 ---
 layout: chapter
+variant: content-right
 chapterNumber: "Voorbeelden"
 chapterTitle: Herbruikbare layouts
-subtitle: "Alle slides in deze presentatie zijn gemaakt met herbruikbare layouts. Dit is: `chapter`."
-image: /images/voorbeeld-foto-2.jpg
 
 ---
-
-::bottom::
 
 ```yaml
 ---
@@ -234,6 +231,10 @@ layout: chapter
 chapterTitle: Mijn sectietitel
 ---
 ```
+
+::subtitle::
+
+Alle slides in deze presentatie zijn gemaakt met herbruikbare layouts. Dit is: `chapter`.
 
 ---
 layout: image-merktegel
