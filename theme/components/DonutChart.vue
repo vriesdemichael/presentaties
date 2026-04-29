@@ -189,6 +189,8 @@ const viewBox = computed(() => {
   align-items: center;
   gap: 1.5rem;
   height: var(--donut-size, 200px);
+  /* Prevent flex parents with align-items:stretch from overriding the fixed height */
+  align-self: center;
 }
 
 /* ── Legend ──────────────────────────────────────────────── */

@@ -350,56 +350,113 @@ rightBackground: "#8FCAE7"
 <div style="font-family: var(--bd-font-bold-stack); font-size: var(--bd-text-display); line-height: 1.06; max-width: 9ch; color: var(--bd-contrastkleur-lintblauw);">Voorbeeld met tekst</div>
 
 ---
-layout: full-width
-showLogo: true
-pageTitle: DonutChart — ringdiagram component
+layout: split
+pageTitle: DonutChart
+mirror: true
+rightBackground: "#edf4f8"
+clicks: 3
 
 ---
 
-<div style="display: flex; gap: 2rem; align-items: flex-start; justify-content: center; flex: 1; min-height: 0;">
-  <DonutChart
-    style="--donut-size: 190px"
-    :segments="[
-      { value: 79, label: 'via Mijn Belastingdienst', valueLabel: '79%' },
-      { value: 14, label: 'via aangiftesoftware',     valueLabel: '14%' },
-      { value: 6,  label: 'via de Aangifte App',      valueLabel: '6%'  },
-      { value: 1,  label: 'op papier',                valueLabel: '1%'  },
-    ]"
-  />
+<div v-if="$clicks === 0">
 
-  <DonutChart
-    style="--donut-size: 190px"
-    :segments="[
-      { value: 79, label: 'via Mijn Belastingdienst', valueLabel: '79%', highlighted: true },
-      { value: 14, label: 'via aangiftesoftware',     valueLabel: '14%' },
-      { value: 6,  label: 'via de Aangifte App',      valueLabel: '6%'  },
-      { value: 1,  label: 'op papier',                valueLabel: '1%'  },
-    ]"
-    :legend="true"
-    legendTitle="9,3 miljoen"
-    legendSubtitle="aangiften ontvangen — 99% digitaal"
-  >
-    <template #center>
-      <div style="font-family: var(--bd-font-bold-stack); font-size: 1.4rem; color: var(--bd-contrastkleur-lintblauw); line-height: 1.1;">9,3<br><span style="font-size: 0.65rem; font-family: var(--bd-font-regular-stack);">mln</span></div>
-    </template>
-  </DonutChart>
+## Standaard gebruik
+
+Geef `segments` mee als array. Elk item heeft minimaal een `value`. Kleuren worden automatisch gekozen uit het merkpalet.
+
+- `label` verschijnt buiten de ring als tekst
+- `labelFormat: 'percent'` — standaard, berekend percentage
+- Kleuren: volgorde uit merkpaletvariabelen in CSS
+
 </div>
 
-<Vlak
-  fill="var(--bd-domeinkleur-lichtblauw-30)"
-  variant="info-grid"
-  :columns="2"
-  :items="[
-    { label: 'Eenvoudig gebruik', text: 'Geef segments mee met value, optioneel label en valueLabel. Kleuren worden automatisch uit het merkpalet gekozen.' },
-    { label: 'Legenda, center-slot en highlight', text: 'Zet legend op true voor een legendapaneel rechts naast de ring. Gebruik het center-slot voor content in het gat. Markeer een segment met highlighted: true.' },
+<div v-else-if="$clicks === 1">
+
+## `labelFormat` en `valueLabel`
+
+Met `labelFormat="value"` worden ruwe waarden getoond. Een `valueLabel` per segment overschrijft de berekende waarde, ongeacht `labelFormat`.
+
+- `labelFormat: 'value'` — toont `segment.value` direct
+- `valueLabel: '79%'` op segment 1 — overschrijft naar tekst naar keuze
+- Overige segmenten: tonen ruwe waarden (`14`, `6`, `1`)
+
+</div>
+
+<div v-else-if="$clicks === 2">
+
+## Segment uitlichten
+
+Voeg `highlighted: true` toe aan een segment om het verder van het midden af te plaatsen.
+
+- `highlighted: true` op het segment
+- `highlightOffset` prop bepaalt de uitsteekafstand in SVG-eenheden (standaard `7`)
+
+</div>
+
+<div v-else>
+
+## Legenda en center-slot
+
+Zet `:legend="true"` voor een legendapaneel naast de ring. Gebruik de `#center` slot voor vrije HTML gecentreerd in het gat.
+
+- `legendTitle` en `legendSubtitle` voor tekst boven de items
+- `#center` slot: vrije inhoud gecentreerd in het gat van de ring
+
+</div>
+
+::right::
+
+<DonutChart
+  v-if="$clicks === 0"
+  style="--donut-size: 280px"
+  :segments="[
+    { value: 79, label: 'Mijn BD' },
+    { value: 14, label: 'Software' },
+    { value: 6,  label: 'App' },
+    { value: 1,  label: 'Papier' },
   ]"
-  style="margin-top: auto;"
+/>
+
+<DonutChart
+  v-else-if="$clicks === 1"
+  style="--donut-size: 280px"
+  labelFormat="value"
+  :segments="[
+    { value: 79, label: 'Mijn BD',   valueLabel: '79%' },
+    { value: 14, label: 'Software' },
+    { value: 6,  label: 'App' },
+    { value: 1,  label: 'Papier' },
+  ]"
+/>
+
+<DonutChart
+  v-else-if="$clicks === 2"
+  style="--donut-size: 280px"
+  :segments="[
+    { value: 79, label: 'Mijn BD',  highlighted: true },
+    { value: 14, label: 'Software' },
+    { value: 6,  label: 'App' },
+    { value: 1,  label: 'Papier' },
+  ]"
+/>
+
+<DonutChart
+  v-else
+  style="--donut-size: 280px"
+  :legend="true"
+  legendTitle="9,3 miljoen"
+  legendSubtitle="99% digitaal ontvangen"
+  :segments="[
+    { value: 79, label: 'Mijn Belastingdienst', valueLabel: '79%', highlighted: true },
+    { value: 14, label: 'via aangiftesoftware',  valueLabel: '14%' },
+    { value: 6,  label: 'via de Aangifte App',   valueLabel: '6%'  },
+    { value: 1,  label: 'op papier',             valueLabel: '1%'  },
+  ]"
 >
-  <template #item="{ item }">
-    <strong>{{ item.label }}</strong>
-    <span>{{ item.text }}</span>
+  <template #center>
+    <div style="font-family: var(--bd-font-bold-stack); font-size: 1.4rem; color: var(--bd-contrastkleur-lintblauw); line-height: 1.1;">9,3<br><span style="font-size: 0.65rem; font-family: var(--bd-font-regular-stack);">mln</span></div>
   </template>
-</Vlak>
+</DonutChart>
 
 <!--
   DonutChart props:
