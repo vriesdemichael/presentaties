@@ -2,9 +2,9 @@
 theme: slidev-theme-belastingdienst
 addons:
   - bd-examples
-title: Corporate presentatie template
+title: Slidev belastingdienst thema
 info: |
-  PPT-achtige templatepresentatie op basis van de originele PowerPoint-bron.
+  Template en toelichting voor het Slidev Belastingdienst thema.
 class: text-left
 drawings:
   persist: false
@@ -26,7 +26,7 @@ date: 2026
 
 ::title::
 
-Onze bijdrage aan een financieel gezond Nederland
+Slidev belastingdienst thema
 
 ::footer::
 
@@ -44,22 +44,21 @@ speakerTeam: "[Team - met hoofdletter]"
 
 ---
 layout: fact-panel
-panelTitle: Wie zijn we?
+panelTitle: Waarom slidev?
 image: /images/voorbeeld-foto-1.jpg
 imageCropLeft: 34.381
 imageCropRight: 6.314
 rows:
 
 - iconName: gebouw_vws
-  lead: Eén van de grootste
-  body: overheidsorganisaties
+  lead: Herbruikbare layouts
+  body: Kant-en-klare layouts en componenten voor iedere dia
 - iconName: groep_mensen
-  lead: "28.500"
-  body: medewerkers
+  lead: Belastingdienst huisstijl
+  body: Gebaseerd op Rijkshuisstijl en merkrichtlijnen
 - iconName: financien
-  body: Onderdeel van het
-  lead: Ministerie van Financiën
-  reverse: true
+  lead: Eenvoudig met AI
+  body: Maak presentaties met een coding agent
 
 ---
 
