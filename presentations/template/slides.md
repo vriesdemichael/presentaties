@@ -498,7 +498,7 @@ pageTitle: Vlak — vormvarianten
 </div>
 
 <div style="display:flex; gap:2rem; align-items:flex-start;">
-  <Vlak shape="speech-bottom-right" fill="var(--bd-domeinkleur-lichtblauw-30)" style="flex:1; min-width:0; padding:1rem;">
+  <Vlak shape="speech-bottom-right" fill="var(--bd-domeinkleur-lichtblauw-30)" padding="1rem" style="flex:1; min-width:0;">
     Gebruik <code>shape="speech-bottom-right"</code> voor een tekstballon met staart rechtsonder — handig bij citaten of uitleg naast een afbeelding.
   </Vlak>
   <Vlak fill="var(--bd-domeinkleur-lichtblauw-30)" variant="info-grid" :columns="2"
