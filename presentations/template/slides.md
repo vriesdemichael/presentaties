@@ -50,13 +50,13 @@ imageCropLeft: 34.381
 imageCropRight: 6.314
 rows:
 
-- iconName: gebouw_vws
+- iconName: tegelweergave
   lead: Herbruikbare layouts
   body: Kant-en-klare layouts en componenten voor iedere dia
-- iconName: groep_mensen
+- iconName: rijkshuisstijl
   lead: Belastingdienst huisstijl
   body: Gebaseerd op Rijkshuisstijl en merkrichtlijnen
-- iconName: financien
+- iconName: intelligence
   lead: Eenvoudig met AI
   body: Maak presentaties met een coding agent
 
