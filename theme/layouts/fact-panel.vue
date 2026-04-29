@@ -250,7 +250,7 @@ const photoStyle = computed(() => {
   font-size: 22.5pt;
   font-weight: 400;
   line-height: 1;
-  white-space: nowrap;
+  overflow-wrap: break-word;
 }
 
 .bd-fact-panel-regular,
@@ -260,7 +260,7 @@ const photoStyle = computed(() => {
   font-size: 17.6pt;
   font-weight: 400;
   line-height: 1;
-  white-space: nowrap;
+  overflow-wrap: break-word;
 }
 
 .bd-fact-panel-copy :deep(.fact-panel-strong + .fact-panel-regular),
