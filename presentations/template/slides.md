@@ -219,14 +219,20 @@ Zo blijft de presentatie consistent met de huisstijl.
 
 ---
 layout: chapter
-chapterNumber: Hoofdstuk 1
-chapterTitle: Strategie en koers
-subtitle: Eerste versie van een hoofdstukdia om de sectie te markeren.
+chapterNumber: "Alle slides in deze presentatie zijn gemaakt met herbruikbare layouts. Dit is: chapter."
+chapterTitle: Herbruikbare layouts
 image: /images/voorbeeld-foto-2.jpg
 
 ---
 
-<!-- -->
+::bottom::
+
+```yaml
+---
+layout: chapter
+chapterTitle: Mijn sectietitel
+---
+```
 
 ---
 layout: image-merktegel
