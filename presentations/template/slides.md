@@ -121,10 +121,12 @@ chapterTitle: Inhoudsopgave
 
 ---
 layout: split
-pageTitle: Tabel — niveau 1 (props)
+pageTitle: Tabel
 rightBackground: "#ffffff"
 
 ---
+
+## Niveau 1
 
 De eenvoudigste manier: geef kolommen en rijen als arrays mee.
 Alle celinhoud is platte tekst. Gebruik dit niveau voor feitentabellen
@@ -150,10 +152,12 @@ zonder opmaak per cel.
 
 ---
 layout: split
-pageTitle: Tabel — niveau 2 (cell slot)
+pageTitle: Tabel
 rightBackground: "#ffffff"
 
 ---
+
+## Niveau 2
 
 Gebruik de `#cell` slot om afzonderlijke cellen eigen opmaak te geven,
 zoals een kleurcode of een icoon. De rijen worden nog steeds door het
@@ -198,10 +202,12 @@ component opgebouwd — jij levert alleen de inhoud van elke cel.
 
 ---
 layout: split
-pageTitle: Tabel — niveau 3 (default slot)
+pageTitle: Tabel
 rightBackground: "#ffffff"
 
 ---
+
+## Niveau 3
 
 Maximale controle: schrijf de rijen zelf als `<tr>` en `<td>`.
 De kopteksten komen nog van `:columns`, maar de body is volledig vrij.
@@ -344,42 +350,56 @@ rightBackground: "#8FCAE7"
 <div style="font-family: var(--bd-font-bold-stack); font-size: var(--bd-text-display); line-height: 1.06; max-width: 9ch; color: var(--bd-contrastkleur-lintblauw);">Voorbeeld met tekst</div>
 
 ---
-layout: split
+layout: full-width
+showLogo: true
 pageTitle: DonutChart — ringdiagram component
-rightBackground: "#edf4f8"
 
 ---
 
-Eenvoudig gebruik — kleuren uit merkpalet:
+<div style="display: flex; gap: 2rem; align-items: flex-start; justify-content: center; flex: 1; min-height: 0;">
+  <DonutChart
+    style="--donut-size: 190px"
+    :segments="[
+      { value: 79, label: 'via Mijn Belastingdienst', valueLabel: '79%' },
+      { value: 14, label: 'via aangiftesoftware',     valueLabel: '14%' },
+      { value: 6,  label: 'via de Aangifte App',      valueLabel: '6%'  },
+      { value: 1,  label: 'op papier',                valueLabel: '1%'  },
+    ]"
+  />
 
-<DonutChart
-  :segments="[
-    { value: 79, label: 'via Mijn Belastingdienst', valueLabel: '79%' },
-    { value: 14, label: 'via aangiftesoftware',     valueLabel: '14%' },
-    { value: 6,  label: 'via de Aangifte App',      valueLabel: '6%'  },
-    { value: 1,  label: 'op papier',                valueLabel: '1%'  },
+  <DonutChart
+    style="--donut-size: 190px"
+    :segments="[
+      { value: 79, label: 'via Mijn Belastingdienst', valueLabel: '79%', highlighted: true },
+      { value: 14, label: 'via aangiftesoftware',     valueLabel: '14%' },
+      { value: 6,  label: 'via de Aangifte App',      valueLabel: '6%'  },
+      { value: 1,  label: 'op papier',                valueLabel: '1%'  },
+    ]"
+    :legend="true"
+    legendTitle="9,3 miljoen"
+    legendSubtitle="aangiften ontvangen — 99% digitaal"
+  >
+    <template #center>
+      <div style="font-family: var(--bd-font-bold-stack); font-size: 1.4rem; color: var(--bd-contrastkleur-lintblauw); line-height: 1.1;">9,3<br><span style="font-size: 0.65rem; font-family: var(--bd-font-regular-stack);">mln</span></div>
+    </template>
+  </DonutChart>
+</div>
+
+<Vlak
+  fill="var(--bd-domeinkleur-lichtblauw-30)"
+  variant="info-grid"
+  :columns="2"
+  :items="[
+    { label: 'Eenvoudig gebruik', text: 'Geef segments mee met value, optioneel label en valueLabel. Kleuren worden automatisch uit het merkpalet gekozen.' },
+    { label: 'Legenda, center-slot en highlight', text: 'Zet :legend=\"true\" voor een legendapaneel rechts naast de ring. Gebruik #center slot voor content in het gat. Markeer een segment met highlighted: true.' },
   ]"
-/>
-
-::right::
-
-Met legenda, centerslot en uitgelicht segment:
-
-<DonutChart
-  :segments="[
-    { value: 79, label: 'via Mijn Belastingdienst', valueLabel: '79%', highlighted: true },
-    { value: 14, label: 'via aangiftesoftware',     valueLabel: '14%' },
-    { value: 6,  label: 'via de Aangifte App',      valueLabel: '6%'  },
-    { value: 1,  label: 'op papier',                valueLabel: '1%'  },
-  ]"
-  :legend="true"
-  legendTitle="9,3 miljoen"
-  legendSubtitle="aangiften ontvangen — 99% digitaal"
+  style="margin-top: auto;"
 >
-  <template #center>
-    <div style="font-family: var(--bd-font-bold-stack); font-size: 1.4rem; color: var(--bd-contrastkleur-lintblauw); line-height: 1.1;">9,3<br><span style="font-size: 0.65rem; font-family: var(--bd-font-regular-stack);">mln</span></div>
+  <template #item="{ item }">
+    <strong>{{ item.label }}</strong>
+    <span>{{ item.text }}</span>
   </template>
-</DonutChart>
+</Vlak>
 
 <!--
   DonutChart props:
