@@ -1,7 +1,6 @@
 <script setup>
 import logoTileSvg from '../../../theme/assets/beeldmerk-rijksoverheid.svg?raw'
-import lintAlsMeetlintPng from '../assets/lint-als-meetlint.png'
-import webLayoutRatiosPng from '../assets/web-layout-ratios.png'
+import vormtaalLintPng from '../assets/vormtaal-lint.png'
 
 const logoTileUrl = `data:image/svg+xml,${encodeURIComponent(logoTileSvg)}`
 
@@ -116,11 +115,11 @@ defineProps({
 
     <div class="bd-text-heavy-measurement-reference-strip">
       <figure class="bd-text-heavy-measurement-reference-card bd-text-heavy-measurement-reference-card--lint">
-        <img :src="lintAlsMeetlintPng" alt="Lint als meetlint met de X-maatvoering op het beeldmerk." />
+        <img :src="vormtaalLintPng" alt="Vormtaal lint: opbouw en verhoudingen van het lint." />
         <figcaption>Lint = maat <strong>X</strong></figcaption>
       </figure>
       <figure class="bd-text-heavy-measurement-reference-card bd-text-heavy-measurement-reference-card--web">
-        <img :src="webLayoutRatiosPng" alt="Weblayout met zichtbaar raster en X-verhoudingen." />
+        <img :src="vormtaalLintPng" alt="Vormtaal lint: rasterprincipe en contentgrenzen." />
         <figcaption>Zelfde rasterprincipe</figcaption>
       </figure>
     </div>
@@ -128,7 +127,7 @@ defineProps({
     <div v-if="clicks === 1" class="bd-text-heavy-measurement-overlay">
       <figure class="bd-text-heavy-measurement-overlay-card bd-text-heavy-measurement-overlay-card--lint">
         <div class="bd-text-heavy-measurement-overlay-kicker">Referentie 1</div>
-        <img :src="lintAlsMeetlintPng" alt="Lint als meetlint met de X-maatvoering op het beeldmerk." />
+        <img :src="vormtaalLintPng" alt="Vormtaal lint: opbouw en verhoudingen van het lint." />
         <figcaption>Het lint levert de basiseenheid <strong>X</strong> voor de slide-opbouw.</figcaption>
       </figure>
     </div>
@@ -136,7 +135,7 @@ defineProps({
     <div v-if="clicks === 2" class="bd-text-heavy-measurement-overlay">
       <figure class="bd-text-heavy-measurement-overlay-card bd-text-heavy-measurement-overlay-card--web">
         <div class="bd-text-heavy-measurement-overlay-kicker">Referentie 2</div>
-        <img :src="webLayoutRatiosPng" alt="Weblayout met zichtbaar raster en X-verhoudingen." />
+        <img :src="vormtaalLintPng" alt="Vormtaal lint: rasterprincipe en contentgrenzen." />
         <figcaption>Hetzelfde rasterprincipe vertaalt zich naar padding, gutters en contentgrenzen.</figcaption>
       </figure>
     </div>
@@ -228,13 +227,12 @@ defineProps({
   display: block;
   width: 100%;
   height: 2.55rem;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: center;
 }
 
 .bd-text-heavy-measurement-reference-card--lint img {
   object-fit: contain;
-  background: #4a4a4a;
 }
 
 .bd-text-heavy-measurement-reference-card figcaption {
@@ -274,8 +272,8 @@ defineProps({
 }
 
 .bd-text-heavy-measurement-overlay-card--web img {
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: center;
 }
 
 .bd-text-heavy-measurement-overlay-kicker {
