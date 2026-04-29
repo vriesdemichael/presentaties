@@ -136,6 +136,87 @@ of `###` voor 16pt (h3). De paginatitel bovenaan is altijd 19pt via `pageTitle`.
 </div>
 
 ---
+layout: split
+pageTitle: Kleuren
+rightBackground: "#ffffff"
+
+---
+
+## CSS-tokens
+
+Gebruik altijd de token-naam, nooit een vaste hex.
+Zo blijft de presentatie consistent met de huisstijl.
+
+- **Lintblauw** — koppen, iconen, dominante UI-elementen
+- **Lichtblauw-tints** — achtergronden, strepen, panels
+- **Accentkleuren** — dataseries in grafieken, highlights
+- **Signaalkleur** — status en waarschuwingen
+- **Tekst** — bodytekst en secundaire labels
+
+::right::
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:0.35rem 1rem; align-content:start; font-size:9pt; font-family:monospace;">
+
+  <div style="grid-column:1/-1; font-size:10pt; font-family:sans-serif; font-weight:bold; color:#154273; margin-bottom:0.1rem;">Contrast &amp; tekst</div>
+
+  <div style="display:flex; align-items:center; gap:0.4rem;">
+    <div style="width:2.2rem;height:1.1rem;background:#154273;border-radius:2px;flex-shrink:0;"></div>
+    <span>lintblauw<br><span style="opacity:.6">#154273</span></span>
+  </div>
+  <div style="display:flex; align-items:center; gap:0.4rem;">
+    <div style="width:2.2rem;height:1.1rem;background:#1f2f3f;border-radius:2px;flex-shrink:0;"></div>
+    <span>tekst-primair<br><span style="opacity:.6">#1f2f3f</span></span>
+  </div>
+
+  <div style="grid-column:1/-1; font-size:10pt; font-family:sans-serif; font-weight:bold; color:#154273; margin-top:0.4rem; margin-bottom:0.1rem;">Lichtblauw tints</div>
+
+  <div style="display:flex; align-items:center; gap:0.4rem;">
+    <div style="width:2.2rem;height:1.1rem;background:#8fcae7;border:1px solid #ccc;border-radius:2px;flex-shrink:0;"></div>
+    <span>lichtblauw<br><span style="opacity:.6">#8fcae7</span></span>
+  </div>
+  <div style="display:flex; align-items:center; gap:0.4rem;">
+    <div style="width:2.2rem;height:1.1rem;background:#cce7f4;border:1px solid #ccc;border-radius:2px;flex-shrink:0;"></div>
+    <span>lichtblauw-45<br><span style="opacity:.6">#cce7f4</span></span>
+  </div>
+  <div style="display:flex; align-items:center; gap:0.4rem;">
+    <div style="width:2.2rem;height:1.1rem;background:#ddeff8;border:1px solid #ccc;border-radius:2px;flex-shrink:0;"></div>
+    <span>lichtblauw-30<br><span style="opacity:.6">#ddeff8</span></span>
+  </div>
+  <div style="display:flex; align-items:center; gap:0.4rem;">
+    <div style="width:2.2rem;height:1.1rem;background:#eef7fc;border:1px solid #ccc;border-radius:2px;flex-shrink:0;"></div>
+    <span>lichtblauw-15<br><span style="opacity:.6">#eef7fc</span></span>
+  </div>
+
+  <div style="grid-column:1/-1; font-size:10pt; font-family:sans-serif; font-weight:bold; color:#154273; margin-top:0.4rem; margin-bottom:0.1rem;">Accent &amp; signaal</div>
+
+  <div style="display:flex; align-items:center; gap:0.4rem;">
+    <div style="width:2.2rem;height:1.1rem;background:#007bc7;border-radius:2px;flex-shrink:0;"></div>
+    <span>hemelblauw<br><span style="opacity:.6">#007bc7</span></span>
+  </div>
+  <div style="display:flex; align-items:center; gap:0.4rem;">
+    <div style="width:2.2rem;height:1.1rem;background:#ffb612;border-radius:2px;flex-shrink:0;"></div>
+    <span>donkergeel<br><span style="opacity:.6">#ffb612</span></span>
+  </div>
+  <div style="display:flex; align-items:center; gap:0.4rem;">
+    <div style="width:2.2rem;height:1.1rem;background:#e17000;border-radius:2px;flex-shrink:0;"></div>
+    <span>oranje<br><span style="opacity:.6">#e17000</span></span>
+  </div>
+  <div style="display:flex; align-items:center; gap:0.4rem;">
+    <div style="width:2.2rem;height:1.1rem;background:#a90061;border-radius:2px;flex-shrink:0;"></div>
+    <span>violet<br><span style="opacity:.6">#a90061</span></span>
+  </div>
+  <div style="display:flex; align-items:center; gap:0.4rem;">
+    <div style="width:2.2rem;height:1.1rem;background:#d52b1e;border-radius:2px;flex-shrink:0;"></div>
+    <span>rood<br><span style="opacity:.6">#d52b1e</span></span>
+  </div>
+  <div style="display:flex; align-items:center; gap:0.4rem;">
+    <div style="width:2.2rem;height:1.1rem;background:#39870c;border-radius:2px;flex-shrink:0;"></div>
+    <span>groen<br><span style="opacity:.6">#39870c</span></span>
+  </div>
+
+</div>
+
+---
 layout: image-merktegel
 backgroundImage: /images/voorbeeld-foto-2.jpg
 backgroundPosition: center 18%
