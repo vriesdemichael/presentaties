@@ -123,8 +123,11 @@ chapterTitle: Inhoudsopgave
 layout: split
 pageTitle: Tabel
 rightBackground: "#ffffff"
+clicks: 2
 
 ---
+
+<div v-if="$clicks === 0">
 
 ## Niveau 1
 
@@ -132,46 +135,65 @@ De eenvoudigste manier: geef kolommen en rijen als arrays mee.
 Alle celinhoud is platte tekst. Gebruik dit niveau voor feitentabellen
 zonder opmaak per cel.
 
+- `:columns` — array van kopteksten
+- `:rows` — array van rijen; elke rij is een array van celwaarden
+- Afwisselende rijen krijgen automatisch een lichtblauwe streep
+
+</div>
+
+<div v-else-if="$clicks === 1">
+
+## Niveau 2
+
+Gebruik de `#cell` slot om cellen eigen opmaak te geven, zoals een
+kleurcode of een icoon. Rijen worden nog steeds door `:rows` opgebouwd.
+
+- Slot ontvangt `{ value, row, rowIndex, colIndex }`
+- Jij levert de *inhoud* van de `<td>`, niet de `<td>` zelf
+- Alle overige kolommen vallen door naar platte tekst via `<template v-else>`
+
+</div>
+
+<div v-else>
+
+## Niveau 3
+
+Maximale controle: schrijf de rijen zelf als `<tr>` en `<td>`.
+Kopteksten komen nog van `:columns`, de body is volledig vrij.
+
+- Gebruik voor samengevoegde cellen, meerdere regels of rijhighlights
+- Even-rij-striping vervalt; voeg zelf `background` toe op `<td>`
+- Totaalrijen: gebruik `border-top` in plaats van een achtergrondkleur
+
+</div>
+
 ::right::
 
 <!--
-  Level 1: props only.
+  Niveau 1: props only.
   columns = array of header labels (strings).
   rows    = array of rows; each row is an array of cell values (strings).
   Even rows get a light-blue stripe automatically.
 -->
 <Table
+  v-if="$clicks === 0"
   :columns="['Kanaal', 'Q1 2025', 'Q2 2025', 'Trend']"
   :rows="[
-    ['Telefonie',          '91%', '94%', '↑'],
-    ['Post',               '68%', '61%', '↓'],
+    ['Telefonie',            '91%', '94%', '↑'],
+    ['Post',                 '68%', '61%', '↓'],
     ['Mijn Belastingdienst', '98%', '99%', '↑'],
-    ['Balie',              '82%', '82%', '→'],
+    ['Balie',                '82%', '82%', '→'],
   ]"
 />
 
----
-layout: split
-pageTitle: Tabel
-rightBackground: "#ffffff"
-
----
-
-## Niveau 2
-
-Gebruik de `#cell` slot om afzonderlijke cellen eigen opmaak te geven,
-zoals een kleurcode of een icoon. De rijen worden nog steeds door het
-component opgebouwd — jij levert alleen de inhoud van elke cel.
-
-::right::
-
 <!--
-  Level 2: cell scoped slot.
+  Niveau 2: #cell scoped slot.
   The slot receives: { value, row, rowIndex, colIndex }
   You return the *contents* of the <td>, not the <td> itself.
-  Here the last column (colIndex 3) gets a coloured trend indicator.
+  Here the last column (colIndex 3) gets a colour-coded trend indicator.
 -->
 <Table
+  v-else-if="$clicks === 1"
   :columns="['Kanaal', 'Q1 2025', 'Q2 2025', 'Trend']"
   :rows="[
     ['Telefonie',            '91%', '94%', 'stijging'],
@@ -181,10 +203,6 @@ component opgebouwd — jij levert alleen de inhoud van elke cel.
   ]"
 >
   <template #cell="{ value, colIndex }">
-    <!--
-      colIndex 3 = Trend column: render a colour-coded label.
-      All other columns fall through to plain text.
-    -->
     <span
       v-if="colIndex === 3"
       :style="{
@@ -200,32 +218,14 @@ component opgebouwd — jij levert alleen de inhoud van elke cel.
   </template>
 </Table>
 
----
-layout: split
-pageTitle: Tabel
-rightBackground: "#ffffff"
-
----
-
-## Niveau 3
-
-Maximale controle: schrijf de rijen zelf als `<tr>` en `<td>`.
-De kopteksten komen nog van `:columns`, maar de body is volledig vrij.
-Gebruik dit niveau voor samengevoegde cellen, meerdere regels per cel
-of rijgebaseerde highlights.
-
-::right::
-
 <!--
-  Level 3: default slot — full row control.
+  Niveau 3: default slot — full row control.
   - Write <tr> and <td> elements yourself inside <Table>.
   - :columns still drives the header row.
   - Even-row striping no longer applies; add backgrounds inline on <td>.
-  - Total rows: use a top border to signal "end of data" — avoid background
-    colour that competes visually with the header.
-  - You can use any HTML or Vue expression inside the cells.
+  - Total rows: use a top border to signal "end of data".
 -->
-<Table :columns="['Kanaal', 'Score', 'Toelichting']">
+<Table v-else :columns="['Kanaal', 'Score', 'Toelichting']">
   <tr>
     <td>Telefonie</td>
     <td><strong style="color:var(--bd-signaalkleur-groen)">94%</strong></td>
@@ -246,16 +246,20 @@ of rijgebaseerde highlights.
     <td style="background:var(--bd-domeinkleur-lichtblauw-15)"><strong>82%</strong></td>
     <td style="background:var(--bd-domeinkleur-lichtblauw-15)">Stabiel; geen afwijking</td>
   </tr>
-  <!--
-    Total row: border-top marks the "sum line" without competing with the header.
-    Bold weight is enough to signal importance.
-  -->
   <tr>
     <td style="border-top:2px solid var(--bd-contrastkleur-lintblauw);font-weight:bold">Totaal gemiddeld</td>
     <td style="border-top:2px solid var(--bd-contrastkleur-lintblauw);font-weight:bold">91%</td>
     <td style="border-top:2px solid var(--bd-contrastkleur-lintblauw);font-weight:bold">3 van 4 kanalen op of boven norm</td>
   </tr>
 </Table>
+
+<!--
+  Table props:
+  columns[]:    array van kopteksten (strings)
+  rows[][]:     array van rijen met celwaarden — optioneel bij gebruik van default slot
+  #cell slot:   { value, row, rowIndex, colIndex } — geeft controle per cel zonder volledige rijen te schrijven
+  default slot: volledige <tr><td> vrijheid — :columns drijft nog de koptekstrij
+-->
 
 ---
 layout: content-image
