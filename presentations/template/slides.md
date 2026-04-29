@@ -107,12 +107,12 @@ clicks: 3
 
 ---
 layout: split
-pageTitle: Typografie — tekstopmaak
+pageTitle: Typografie
 rightBackground: "#8FCAE7"
 
 ---
 
-## Koppen via markdown — 20pt
+## Tekstopmaak
 
 Schrijf `## Koptekst` voor een kop op 20pt (h2). Gebruik `#` voor 26pt (h1)
 of `###` voor 16pt (h3). De paginatitel bovenaan is altijd 19pt via `pageTitle`.
