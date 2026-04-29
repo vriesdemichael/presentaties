@@ -501,11 +501,9 @@ pageTitle: Vlak — vormvarianten
   <Vlak shape="speech-bottom-right" fill="var(--bd-domeinkleur-lichtblauw-30)" style="flex:1; min-width:0; padding:1rem;">
     Gebruik <code>shape="speech-bottom-right"</code> voor een tekstballon met staart rechtsonder — handig bij citaten of uitleg naast een afbeelding.
   </Vlak>
-  <Vlak fill="var(--bd-domeinkleur-lichtblauw-30)" variant="info-grid" :columns="2" :items="[]" style="flex:1; min-width:0;">
-    <template #default>
-      <p style="font-size:10pt;">Het <code>info-grid</code>-variant verdeelt de inhoud in een raster. Geef <code>:columns</code> mee voor het aantal kolommen.</p>
-    </template>
-  </Vlak>
+  <Vlak fill="var(--bd-domeinkleur-lichtblauw-30)" variant="info-grid" :columns="2"
+    :items="['Het info-grid-variant verdeelt de inhoud in een raster. Geef :columns mee voor het aantal kolommen.', 'De tweede kolom komt hier']"
+    style="flex:1; min-width:0;" />
 </div>
 
 ---
