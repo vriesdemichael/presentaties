@@ -221,7 +221,7 @@ Zo blijft de presentatie consistent met de huisstijl.
 layout: chapter
 chapterNumber: "Voorbeelden"
 chapterTitle: Herbruikbare layouts
-subtitle: "Alle slides in deze presentatie zijn gemaakt met herbruikbare layouts. Dit is: chapter."
+subtitle: "Alle slides in deze presentatie zijn gemaakt met herbruikbare layouts. Dit is: `chapter`."
 image: /images/voorbeeld-foto-2.jpg
 
 ---
@@ -242,11 +242,11 @@ backgroundPosition: center 18%
 backgroundOffsetY: 75%
 variant: statement
 placement: bottom-right
-eyebrow: Missie
+eyebrow: image-merktegel
 
 ---
 
-Bijdragen aan een financieel gezond Nederland
+Voor grote statements en overgangen tussen onderwerpen
 
 ---
 layout: image-merktegel
@@ -254,13 +254,11 @@ backgroundImage: /images/voorbeeld-foto-3.jpg
 backgroundPosition: center 51%
 variant: detail
 placement: bottom-left
-eyebrow: Strategie
+eyebrow: Varianten
 
 ---
 
-De Belastingdienst streeft ernaar dat burgers en bedrijven uit zichzelf
-(fiscale) regels naleven, dat wil zeggen zonder dwingende en kostbare
-acties van de kant van de Belastingdienst
+Layouts hebben varianten om het gedrag of de stijl aan te passen. Dit is variant `detail`.
 
 ---
 layout: split
