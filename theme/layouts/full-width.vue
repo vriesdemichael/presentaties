@@ -88,7 +88,7 @@ const props = defineProps({
 
 .bd-full-width-bd-title {
   font-family: var(--bd-font-bold-stack);
-  font-size: 19pt;
+  font-size: var(--bd-text-title);
   line-height: 1.1;
   letter-spacing: -0.01em;
   color: var(--bd-contrastkleur-lintblauw);
@@ -98,7 +98,7 @@ const props = defineProps({
 .bd-full-width-bd-subtitle {
   max-width: 52rem;
   font-family: var(--bd-font-regular-stack);
-  font-size: 13pt;
+  font-size: var(--bd-h4-size);
   line-height: 1.32;
   color: var(--bd-contrastkleur-lintblauw);
 }

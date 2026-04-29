@@ -14,7 +14,8 @@ Theme
 [X] Stappen, vlakken en lijnen https://huisstijl.belastingdienst.nl/beeld/infographics/componenten/
 [X] Steps snake around to second row
 [ ] Circle diagram in theme
-[ ] Vlak with right arrow to indicate blocks of steps
+[X] Vlak with right arrow to indicate blocks of steps
+[ ] Default slidev components with building blocks of theme (vlak, merktegel, etc)
 
 Cleanup
 [X] split old and new style theme (new in template, old in zeepkist and other presentations)

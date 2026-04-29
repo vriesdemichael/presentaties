@@ -106,26 +106,7 @@ const viewBox = computed(() => {
 <template>
   <div class="bd-donut" :class="{ 'bd-donut--with-legend': legend }">
 
-    <!-- Optional legend panel (left side) -->
-    <div v-if="legend" class="bd-donut-legend">
-      <div v-if="legendTitle" class="bd-donut-legend-title">{{ legendTitle }}</div>
-      <div v-if="legendSubtitle" class="bd-donut-legend-subtitle">{{ legendSubtitle }}</div>
-      <div class="bd-donut-legend-items">
-        <div v-for="(seg, i) in segData" :key="i" class="bd-donut-legend-item">
-          <span class="bd-donut-legend-swatch" :style="{ background: seg.color }" />
-          <span class="bd-donut-legend-text">
-            <strong v-if="segments[i].valueLabel" class="bd-donut-legend-value">
-              {{ segments[i].valueLabel }}
-            </strong>
-            <span v-if="segments[i].label" class="bd-donut-legend-desc">
-              {{ segments[i].label }}
-            </span>
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <!-- SVG donut -->
+    <!-- SVG donut (always first = left side) -->
     <div class="bd-donut-chart-wrap">
       <svg
         class="bd-donut-svg"
@@ -175,21 +156,44 @@ const viewBox = computed(() => {
       </div>
     </div>
 
+    <!-- Optional legend panel (right side of chart) -->
+    <div v-if="legend" class="bd-donut-legend">
+      <div v-if="legendTitle" class="bd-donut-legend-title">{{ legendTitle }}</div>
+      <div v-if="legendSubtitle" class="bd-donut-legend-subtitle">{{ legendSubtitle }}</div>
+      <div class="bd-donut-legend-items">
+        <div v-for="(seg, i) in segData" :key="i" class="bd-donut-legend-item">
+          <span class="bd-donut-legend-swatch" :style="{ background: seg.color }" />
+          <span class="bd-donut-legend-text">
+            <strong v-if="segments[i].valueLabel" class="bd-donut-legend-value">
+              {{ segments[i].valueLabel }}
+            </strong>
+            <span v-if="segments[i].label" class="bd-donut-legend-desc">
+              {{ segments[i].label }}
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <style scoped>
+/*
+ * Height is driven by --donut-size (default 200px).
+ * Override with style="--donut-size: 180px" on the component.
+ * Width is auto: chart is a fixed square, legend fills remaining space.
+ */
 .bd-donut {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  width: 100%;
-  height: 100%;
+  height: var(--donut-size, 200px);
 }
 
 /* ── Legend ──────────────────────────────────────────────── */
 .bd-donut-legend {
-  flex: 1.5;
+  flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -251,9 +255,14 @@ const viewBox = computed(() => {
 /* ── Chart wrap + SVG ────────────────────────────────────── */
 .bd-donut-chart-wrap {
   position: relative;
-  flex: 1;
-  min-width: 0;
-  aspect-ratio: 1;
+  /*
+   * Height = 100% of the bd-donut container (driven by --donut-size).
+   * Width is derived from aspect-ratio so the SVG stays square.
+   * flex-shrink: 0 prevents the flex algorithm from compressing the chart.
+   */
+  flex: 0 0 auto;
+  height: 100%;
+  aspect-ratio: 1 / 1;
 }
 
 .bd-donut-svg {

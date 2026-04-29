@@ -324,24 +324,24 @@ rightBackground: "#edf4f8"
 
 ---
 layout: split
-pageTitle: Titel tekstpagina 36pt
+pageTitle: Titel tekstpagina 28pt
 rightBackground: "#8FCAE7"
 
 ---
 
-## Sub titel 1 bold 24pt
+## Sub titel 1 bold 20pt
 
 - Bodytekst plignia eprovit, aceperument plignit ent alit que eniat porro eossintcium quia cuscil endaect ascipiatem eos reni reptas qui comnis
 - Ectem sim as quid que necture velibusandis idipis
 - Minulluptate modis unti dolo discita tiberum quietam am
 
-## Sub titel 2 bold 24pt
+## Sub titel 2 bold 20pt
 
 - Voluptam rescipsae dit aceatia por alicim ventori busant plignit ent alit que eniat porro
 
 ::right::
 
-<div style="font-family: var(--bd-font-bold-stack); font-size: 34pt; line-height: 1.06; max-width: 9ch; color: var(--bd-contrastkleur-lintblauw);">Voorbeeld met tekst</div>
+<div style="font-family: var(--bd-font-bold-stack); font-size: var(--bd-text-display); line-height: 1.06; max-width: 9ch; color: var(--bd-contrastkleur-lintblauw);">Voorbeeld met tekst</div>
 
 ---
 layout: split
@@ -350,30 +350,7 @@ rightBackground: "#edf4f8"
 
 ---
 
-<!--
-  DonutChart: brand-stijl ringdiagram. Segmenten krijgen automatisch een
-  kleur uit het merkpalet als geen expliciete kleur is opgegeven.
-
-  Props per segment:
-    value       – getal (verplicht)
-    color?      – CSS-variabele, bv. 'var(--bd-accentkleur-violet)'
-    label?      – legendatekst
-    valueLabel? – overschrijft het label buiten de ring én in de legenda
-    highlighted?– schuift het segment iets naar buiten
-
-  Componentprops:
-    innerRatio       – dikte ring (standaard 0.55; kleiner = dikker)
-    showLabels       – labels buiten de ring aan/uit (standaard true)
-    labelFormat      – 'percent' of 'value' (standaard 'percent')
-    highlightOffset  – uitsteek in SVG-eenheden (standaard 7)
-    legend           – toon legendapaneel links (standaard false)
-    legendTitle      – vette koptekst boven de legenda
-    legendSubtitle   – subkopje / inleiding boven de items
-
-  Center-slot: plaats willekeurige content in het gat van de ring.
--->
-
-Eenvoudig gebruik — kleuren vallen terug op merkpalet:
+Eenvoudig gebruik — kleuren uit merkpalet:
 
 <DonutChart
   :segments="[
@@ -382,12 +359,11 @@ Eenvoudig gebruik — kleuren vallen terug op merkpalet:
     { value: 6,  label: 'via de Aangifte App',      valueLabel: '6%'  },
     { value: 1,  label: 'op papier',                valueLabel: '1%'  },
   ]"
-  style="height: 200px;"
 />
 
 ::right::
 
-Met legenda, centerslot en highlight:
+Met legenda, centerslot en uitgelicht segment:
 
 <DonutChart
   :segments="[
@@ -399,12 +375,24 @@ Met legenda, centerslot en highlight:
   :legend="true"
   legendTitle="9,3 miljoen"
   legendSubtitle="aangiften ontvangen — 99% digitaal"
-  style="height: 220px;"
 >
   <template #center>
-    <div style="font-family: var(--bd-font-bold-stack); font-size: 1.4rem; color: var(--bd-contrastkleur-lintblauw); line-height: 1.1;">9,3<br><span style="font-size: 0.65rem; font-family: var(--bd-font-regular-stack);">miljoen</span></div>
+    <div style="font-family: var(--bd-font-bold-stack); font-size: 1.4rem; color: var(--bd-contrastkleur-lintblauw); line-height: 1.1;">9,3<br><span style="font-size: 0.65rem; font-family: var(--bd-font-regular-stack);">mln</span></div>
   </template>
 </DonutChart>
+
+<!--
+  DonutChart props:
+  segments[]:  { value, color?, label?, valueLabel?, highlighted? }
+  innerRatio:  dikte ring — default 0.55 (lager = dikker)
+  showLabels:  labels buiten ring — default true
+  labelFormat: 'percent' | 'value' — default 'percent'; per-segment valueLabel overschrijft
+  highlightOffset: uitsteek uitgelicht segment in SVG-eenheden — default 7
+  legend:      toon legendapaneel rechts naast ring — default false
+  legendTitle / legendSubtitle: tekst boven de legendaitems
+  #center slot: willekeurige content gecentreerd in het gat van de ring
+  --donut-size: CSS-variabele voor hoogte/breedte van de ring — default 200px
+-->
 
 ---
 layout: split
@@ -434,18 +422,18 @@ clicks: 3
 
 ---
 layout: split
-pageTitle: Titel tekstpagina 36pt
+pageTitle: Titel tekstpagina 28pt
 rightBackground: "#8FCAE7"
 
 ---
 
-## Sub titel 1 bold 24pt
+## Sub titel 1 bold 20pt
 
 - Bodytekst plignia eprovit, aceperument plignit ent alit que eniat porro eossintcium quia cuscil endaect ascipiatem eos reni reptas qui comnis
 - Ectem sim as quid que necture velibusandis idipis
 - Minulluptate modis unti dolo discita tiberum quietam am
 
-## Sub titel 2 bold 24pt
+## Sub titel 2 bold 20pt
 
 - Voluptam rescipsae dit aceatia por alicim ventori busant plignit ent alit que eniat porro
 
@@ -454,11 +442,11 @@ rightBackground: "#8FCAE7"
 <div style="display: grid; grid-auto-rows: max-content; gap: 0.1rem; align-content: start; color: var(--bd-contrastkleur-lintblauw);">
   <div>
     <div style="font-size: 31pt; line-height: 1;">2.160.653</div>
-    <div style="margin-top: 0.18rem; font-size: 12.5pt; line-height: 1.15;">ontvangen aangifte op 8 maart 2020</div>
+    <div style="margin-top: 0.18rem; font-size: var(--bd-body-size); line-height: 1.15;">ontvangen aangifte op 8 maart 2020</div>
   </div>
   <div>
     <div style="font-size: 31pt; line-height: 1;">3%</div>
-    <div style="margin-top: 0.18rem; font-size: 12.5pt; line-height: 1.15;">Stijging tov vorig jaar</div>
+    <div style="margin-top: 0.18rem; font-size: var(--bd-body-size); line-height: 1.15;">Stijging tov vorig jaar</div>
   </div>
 </div>
 

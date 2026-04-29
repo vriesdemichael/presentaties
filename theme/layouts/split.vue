@@ -73,7 +73,7 @@ defineProps({
   margin-top: 0.6rem;
   max-width: 27rem;
   font-family: var(--bd-font-regular-stack);
-  font-size: 12pt;
+  font-size: var(--bd-body-size);
   line-height: 1.33;
   color: var(--bd-contrastkleur-lintblauw);
 }
@@ -81,7 +81,7 @@ defineProps({
 .bd-text-heavy-bd-body :deep(h2) {
   margin: 1rem 0 0.2rem;
   font-family: var(--bd-font-bold-stack);
-  font-size: 24pt;
+  font-size: var(--bd-h2-size);
   line-height: 1.12;
   color: var(--bd-contrastkleur-lintblauw);
 }

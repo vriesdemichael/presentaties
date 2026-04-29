@@ -68,7 +68,7 @@ defineProps({
 .bd-chapter-bd-title {
   margin: 0;
   font-family: var(--bd-font-bold-stack);
-  font-size: 26.5pt;
+  font-size: var(--bd-text-display);
   line-height: 1.08;
 }
 
@@ -81,13 +81,13 @@ defineProps({
 
 .bd-chapter-bd-kicker {
   font-family: var(--bd-font-bold-stack);
-  font-size: 17pt;
+  font-size: var(--bd-h3-size);
   line-height: 1.08;
 }
 
 .bd-chapter-bd-subtitle {
   margin-top: 0.28rem;
-  font-size: 12.25pt;
+  font-size: var(--bd-body-size);
   line-height: 1.28;
   color: var(--bd-contrastkleur-lintblauw);
 }

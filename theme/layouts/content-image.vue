@@ -50,7 +50,7 @@ defineProps({
 
 .bd-content-image-bd-title {
   font-family: var(--bd-font-bold-stack);
-  font-size: 26pt;
+  font-size: var(--bd-text-display);
   line-height: 1.08;
 }
 
@@ -58,7 +58,7 @@ defineProps({
   margin-top: 0.7rem;
   max-width: 24rem;
   font-family: var(--bd-font-regular-stack);
-  font-size: 12pt;
+  font-size: var(--bd-body-size);
   line-height: 1.28;
   color: var(--bd-contrastkleur-lintblauw);
 }
@@ -66,7 +66,7 @@ defineProps({
 .bd-content-image-bd-body {
   margin-top: 1rem;
   font-family: var(--bd-font-regular-stack);
-  font-size: 13.5pt;
+  font-size: var(--bd-h4-size);
   line-height: 1.32;
 }
 
