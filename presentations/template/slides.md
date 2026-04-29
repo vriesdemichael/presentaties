@@ -79,21 +79,6 @@ eyebrow: Missie
 Bijdragen aan een financieel gezond Nederland
 
 ---
-layout: full-width
-pageTitle: Eerlijk en zorgvuldig belasting heffen en innen
-
----
-
-<HighlightsGrid :items="[
-  { iconName: 'financien', label: '404,8 miljard', sublabel: 'Verwachte\nBelastingontvangsten' },
-  { iconName: 'groep_mensen', label: '8,7 miljoen', sublabel: 'Aangiften\nInkomstenbelasting' },
-  { iconName: 'zakenman', label: '24,9 miljoen', sublabel: 'Aangiften\nMKB' },
-  { iconName: 'gebouw_vws', label: '1,1 miljoen', sublabel: 'Aangiften\nGrote ondernemingen' },
-]" />
-
-<InfoGridVlakDemo />
-
----
 layout: image-merktegel
 backgroundImage: /images/voorbeeld-foto-3.jpg
 backgroundPosition: center 51%
@@ -478,6 +463,52 @@ pageTitle: StepSeries - slangverbinding over twee rijen
     { label: '8', caption: 'Archief',     body: 'Dossier afgesloten en opgeslagen' },
   ]"
 />
+
+---
+layout: full-width
+pageTitle: Eerlijk en zorgvuldig belasting heffen en innen
+
+---
+
+<HighlightsGrid :items="[
+  { iconName: 'financien', label: '404,8 miljard', sublabel: 'Verwachte\nBelastingontvangsten' },
+  { iconName: 'groep_mensen', label: '8,7 miljoen', sublabel: 'Aangiften\nInkomstenbelasting' },
+  { iconName: 'zakenman', label: '24,9 miljoen', sublabel: 'Aangiften\nMKB' },
+  { iconName: 'gebouw_vws', label: '1,1 miljoen', sublabel: 'Aangiften\nGrote ondernemingen' },
+]" />
+
+<InfoGridVlakDemo />
+
+---
+layout: full-width
+pageTitle: Vlak — vormvarianten
+
+---
+
+<div style="display:flex; gap:0; align-items:stretch; height:140px; margin-bottom:1.5rem;">
+  <Vlak shape="chevron-right" fill="white" border="var(--bd-domeinkleur-lichtblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
+    <strong>1. Aanvraag</strong><br>Burger doet aangifte online
+  </Vlak>
+  <VlakChevron color="var(--bd-domeinkleur-lichtblauw)" size="24px" strokeWidth="1.5px" />
+  <Vlak shape="chevron-right" fill="white" border="var(--bd-domeinkleur-lichtblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
+    <strong>2. Ontvangst</strong><br>Belastingdienst verwerkt het verzoek
+  </Vlak>
+  <VlakChevron color="var(--bd-domeinkleur-lichtblauw)" size="24px" strokeWidth="1.5px" />
+  <Vlak fill="white" border="var(--bd-domeinkleur-lichtblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
+    <strong>3. Afhandeling</strong><br>Beslissing wordt vastgesteld
+  </Vlak>
+</div>
+
+<div style="display:flex; gap:2rem; align-items:flex-start;">
+  <Vlak shape="speech-bottom-right" fill="var(--bd-domeinkleur-lichtblauw-30)" style="flex:1; min-width:0; padding:1rem;">
+    Gebruik <code>shape="speech-bottom-right"</code> voor een tekstballon met staart rechtsonder — handig bij citaten of uitleg naast een afbeelding.
+  </Vlak>
+  <Vlak fill="var(--bd-domeinkleur-lichtblauw-30)" variant="info-grid" :columns="2" :items="[]" style="flex:1; min-width:0;">
+    <template #default>
+      <p style="font-size:10pt;">Het <code>info-grid</code>-variant verdeelt de inhoud in een raster. Geef <code>:columns</code> mee voor het aantal kolommen.</p>
+    </template>
+  </Vlak>
+</div>
 
 ---
 layout: split
