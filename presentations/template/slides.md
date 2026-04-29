@@ -65,6 +65,21 @@ rows:
 <!-- -->
 
 ---
+layout: chapter
+variant: content-right
+chapterTitle: Inhoudsopgave
+
+---
+
+<NumberedList
+  :items="[
+    { label: 'Herbruikbare componenten', detail: 'Tabellen, diagrammen en infographic componenten' },
+    { label: 'Maten en stijl', detail: 'Maatvoering en tekstopmaak' },
+    { label: 'Voorbeelden', detail: 'Infographics en merktegelslides' },
+  ]"
+/>
+
+---
 layout: image-merktegel
 backgroundImage: /images/voorbeeld-foto-2.jpg
 backgroundPosition: center 18%
@@ -101,22 +116,6 @@ image: /images/voorbeeld-foto-2.jpg
 ---
 
 <!-- -->
-
----
-layout: chapter
-variant: content-right
-chapterTitle: Inhoudsopgave
-
----
-
-<NumberedList
-  :items="[
-    { label: 'Wie zijn we?', detail: 'Organisatie, mensen en positionering' },
-    { label: 'Missie en strategie', detail: 'Financieel gezond Nederland als uitgangspunt' },
-    { label: 'Resultaten', detail: 'Ontvangsten, aangiften en dienstverlening' },
-    { label: 'Vooruitblik', detail: 'Aandachtspunten en vervolgstappen' },
-  ]"
-/>
 
 ---
 layout: split
