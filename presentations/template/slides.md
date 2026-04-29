@@ -391,7 +391,7 @@ pageTitle: DonutChart — ringdiagram component
   :columns="2"
   :items="[
     { label: 'Eenvoudig gebruik', text: 'Geef segments mee met value, optioneel label en valueLabel. Kleuren worden automatisch uit het merkpalet gekozen.' },
-    { label: 'Legenda, center-slot en highlight', text: 'Zet :legend=\"true\" voor een legendapaneel rechts naast de ring. Gebruik #center slot voor content in het gat. Markeer een segment met highlighted: true.' },
+    { label: 'Legenda, center-slot en highlight', text: 'Zet legend op true voor een legendapaneel rechts naast de ring. Gebruik het center-slot voor content in het gat. Markeer een segment met highlighted: true.' },
   ]"
   style="margin-top: auto;"
 >
