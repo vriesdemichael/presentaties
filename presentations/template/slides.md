@@ -386,9 +386,10 @@ Met `labelFormat="value"` worden ruwe waarden getoond. Een `valueLabel` per segm
 
 ## Segment uitlichten
 
-Voeg `highlighted: true` toe aan een segment om het verder van het midden af te plaatsen.
+Voeg `highlighted: true` toe aan een segment om het verder van het midden af te plaatsen. Combineer met een eigen `color` voor extra nadruk.
 
-- `highlighted: true` op het segment
+- `highlighted: true` op meerdere segmenten tegelijk mogelijk
+- `color: 'var(--bd-signaalkleur-donkergeel)'` overschrijft de automatische kleur
 - `highlightOffset` prop bepaalt de uitsteekafstand in SVG-eenheden (standaard `7`)
 
 </div>
@@ -434,9 +435,9 @@ Zet `:legend="true"` voor een legendapaneel naast of onder de ring. Gebruik `leg
   v-else-if="$clicks === 2"
   style="--donut-size: 280px"
   :segments="[
-    { value: 79, label: 'Mijn BD',  highlighted: true },
-    { value: 14, label: 'Software' },
-    { value: 6,  label: 'App' },
+    { value: 79, label: 'Mijn BD' },
+    { value: 14, label: 'Software', highlighted: true },
+    { value: 6,  label: 'App',      highlighted: true, color: 'var(--bd-signaalkleur-donkergeel)' },
     { value: 1,  label: 'Papier' },
   ]"
 />
