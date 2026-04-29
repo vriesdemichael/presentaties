@@ -219,8 +219,9 @@ Zo blijft de presentatie consistent met de huisstijl.
 
 ---
 layout: chapter
-chapterNumber: "Alle slides in deze presentatie zijn gemaakt met herbruikbare layouts. Dit is: chapter."
+chapterNumber: "Voorbeelden"
 chapterTitle: Herbruikbare layouts
+subtitle: "Alle slides in deze presentatie zijn gemaakt met herbruikbare layouts. Dit is: chapter."
 image: /images/voorbeeld-foto-2.jpg
 
 ---
