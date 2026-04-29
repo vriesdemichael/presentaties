@@ -269,6 +269,38 @@ variant: detail
 ```
 
 ---
+layout: content-image
+contentTitle: Tekst en beeld
+intro: Eerste versie van een presentatie-slide met tekst links en beeld rechts op de vaste middenas.
+image: /images/voorbeeld-foto-1.jpg
+---
+
+De beeldhelft blijft los van de teksthelft zodat beide vanuit dezelfde centrale
+vlakverdeling kunnen worden opgebouwd.
+
+---
+layout: split
+pageTitle: Tekst naast beeldvlak
+rightBackground: "#ffffff"
+
+---
+
+## Ruimere presentatiemarge
+
+- De lintmaat is het uitgangspunt; in presentaties mag content meer lucht krijgen dan de minimale 1/2 X
+- Daarom hanteren deze voorbeelden een ruimere zijmarge, zodat tekst en beeld beter aansluiten
+- Alleen achtergrondbeelden mogen tot aan de rand doorlopen; een zelfstandig beeldvlak niet
+
+## Plaatsaanduiding voor beeld
+
+- Deze grijze plaatshouder toont de veilige beeldzone
+- Een foto kan hier later worden geplaatst zonder marge- of leesregels te doorbreken
+
+::right::
+
+<Placeholder />
+
+---
 layout: split
 pageTitle: Tabel
 rightBackground: "#ffffff"
@@ -409,38 +441,6 @@ Kopteksten komen nog van `:columns`, de body is volledig vrij.
   #cell slot:   { value, row, rowIndex, colIndex } — geeft controle per cel zonder volledige rijen te schrijven
   default slot: volledige <tr><td> vrijheid — :columns drijft nog de koptekstrij
 -->
-
----
-layout: content-image
-contentTitle: Tekst en beeld
-intro: Eerste versie van een presentatie-slide met tekst links en beeld rechts op de vaste middenas.
-image: /images/voorbeeld-foto-1.jpg
----
-
-De beeldhelft blijft los van de teksthelft zodat beide vanuit dezelfde centrale
-vlakverdeling kunnen worden opgebouwd.
-
----
-layout: split
-pageTitle: Tekst naast beeldvlak
-rightBackground: "#ffffff"
-
----
-
-## Ruimere presentatiemarge
-
-- De lintmaat is het uitgangspunt; in presentaties mag content meer lucht krijgen dan de minimale 1/2 X
-- Daarom hanteren deze voorbeelden een ruimere zijmarge, zodat tekst en beeld beter aansluiten
-- Alleen achtergrondbeelden mogen tot aan de rand doorlopen; een zelfstandig beeldvlak niet
-
-## Plaatsaanduiding voor beeld
-
-- Deze grijze plaatshouder toont de veilige beeldzone
-- Een foto kan hier later worden geplaatst zonder marge- of leesregels te doorbreken
-
-::right::
-
-<Placeholder />
 
 ---
 layout: split
