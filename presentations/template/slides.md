@@ -443,14 +443,13 @@ Zet `:legend="true"` voor een legendapaneel naast of onder de ring. Gebruik `leg
 
 <DonutChart
   v-else
-  style="--donut-size: 280px"
+  style="--donut-size: 200px"
   :legend="true"
-  legend-position="below"
   :show-labels="false"
   legendTitle="9,3 miljoen"
   legendSubtitle="99% digitaal ontvangen"
   :segments="[
-    { value: 79, label: 'Mijn Belastingdienst', valueLabel: '79%', highlighted: true },
+    { value: 79, label: 'Mijn Belastingdienst', valueLabel: '79%' },
     { value: 14, label: 'via aangiftesoftware',  valueLabel: '14%' },
     { value: 6,  label: 'via de Aangifte App',   valueLabel: '6%'  },
     { value: 1,  label: 'op papier',             valueLabel: '1%'  },
