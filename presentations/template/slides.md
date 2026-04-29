@@ -444,6 +444,7 @@ Zet `:legend="true"` voor een legendapaneel naast de ring. Gebruik de `#center` 
   v-else
   style="--donut-size: 280px"
   :legend="true"
+  :show-labels="false"
   legendTitle="9,3 miljoen"
   legendSubtitle="99% digitaal ontvangen"
   :segments="[

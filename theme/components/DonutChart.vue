@@ -189,6 +189,8 @@ const viewBox = computed(() => {
   align-items: center;
   gap: 1.5rem;
   height: var(--donut-size, 200px);
+  /* Fill parent so legend flex:1 gets all remaining horizontal space */
+  width: 100%;
   /* Prevent flex parents with align-items:stretch from overriding the fixed height */
   align-self: center;
 }
