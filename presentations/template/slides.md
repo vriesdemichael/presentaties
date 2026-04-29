@@ -83,7 +83,7 @@ chapterTitle: Inhoudsopgave
 layout: split
 pageTitle: Lint als maatvoering
 rightBackground: "#edf4f8"
-clicks: 3
+clicks: 2
 
 ---
 

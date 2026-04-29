@@ -14,8 +14,8 @@ defineProps({
     <div
       class="bd-text-heavy-measurement-stage"
       :class="{
-        'bd-text-heavy-measurement-stage--focus': clicks >= 1 && clicks < 3,
-        'bd-text-heavy-measurement-stage--zoom-example': clicks >= 3,
+        'bd-text-heavy-measurement-stage--focus': clicks === 1,
+        'bd-text-heavy-measurement-stage--zoom-example': clicks >= 2,
       }"
     >
       <div class="bd-text-heavy-measurement-main">
@@ -114,29 +114,17 @@ defineProps({
     </div>
 
     <div class="bd-text-heavy-measurement-reference-strip">
-      <figure class="bd-text-heavy-measurement-reference-card bd-text-heavy-measurement-reference-card--lint">
+      <figure class="bd-text-heavy-measurement-reference-card">
         <img :src="vormtaalLintPng" alt="Vormtaal lint: opbouw en verhoudingen van het lint." />
         <figcaption>Lint = maat <strong>X</strong></figcaption>
-      </figure>
-      <figure class="bd-text-heavy-measurement-reference-card bd-text-heavy-measurement-reference-card--web">
-        <img :src="vormtaalLintPng" alt="Vormtaal lint: rasterprincipe en contentgrenzen." />
-        <figcaption>Zelfde rasterprincipe</figcaption>
       </figure>
     </div>
 
     <div v-if="clicks === 1" class="bd-text-heavy-measurement-overlay">
-      <figure class="bd-text-heavy-measurement-overlay-card bd-text-heavy-measurement-overlay-card--lint">
-        <div class="bd-text-heavy-measurement-overlay-kicker">Referentie 1</div>
+      <figure class="bd-text-heavy-measurement-overlay-card">
+        <div class="bd-text-heavy-measurement-overlay-kicker">Referentie</div>
         <img :src="vormtaalLintPng" alt="Vormtaal lint: opbouw en verhoudingen van het lint." />
         <figcaption>Het lint levert de basiseenheid <strong>X</strong> voor de slide-opbouw.</figcaption>
-      </figure>
-    </div>
-
-    <div v-if="clicks === 2" class="bd-text-heavy-measurement-overlay">
-      <figure class="bd-text-heavy-measurement-overlay-card bd-text-heavy-measurement-overlay-card--web">
-        <div class="bd-text-heavy-measurement-overlay-kicker">Referentie 2</div>
-        <img :src="vormtaalLintPng" alt="Vormtaal lint: rasterprincipe en contentgrenzen." />
-        <figcaption>Hetzelfde rasterprincipe vertaalt zich naar padding, gutters en contentgrenzen.</figcaption>
       </figure>
     </div>
   </div>
@@ -210,9 +198,7 @@ defineProps({
 }
 
 .bd-text-heavy-measurement-reference-strip {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.42rem;
+  display: block;
   transition: opacity 0.28s ease, transform 0.28s ease;
 }
 
