@@ -74,6 +74,7 @@ chapterTitle: Inhoudsopgave
 <NumberedList
   :items="[
     { label: 'Maten en stijl', detail: 'Maatvoering en tekstopmaak' },
+    { label: 'Herbruikbare layouts', detail: 'Layouts en kleurinstellingen' },
     { label: 'Herbruikbare componenten', detail: 'Tabellen, diagrammen en infographic componenten' },
     { label: 'Voorbeelden', detail: 'Infographics en merktegelslides' },
   ]"
@@ -217,6 +218,17 @@ Zo blijft de presentatie consistent met de huisstijl.
 </div>
 
 ---
+layout: chapter
+chapterNumber: Hoofdstuk 1
+chapterTitle: Strategie en koers
+subtitle: Eerste versie van een hoofdstukdia om de sectie te markeren.
+image: /images/voorbeeld-foto-2.jpg
+
+---
+
+<!-- -->
+
+---
 layout: image-merktegel
 backgroundImage: /images/voorbeeld-foto-2.jpg
 backgroundPosition: center 18%
@@ -242,17 +254,6 @@ eyebrow: Strategie
 De Belastingdienst streeft ernaar dat burgers en bedrijven uit zichzelf
 (fiscale) regels naleven, dat wil zeggen zonder dwingende en kostbare
 acties van de kant van de Belastingdienst
-
----
-layout: chapter
-chapterNumber: Hoofdstuk 1
-chapterTitle: Strategie en koers
-subtitle: Eerste versie van een hoofdstukdia om de sectie te markeren.
-image: /images/voorbeeld-foto-2.jpg
-
----
-
-<!-- -->
 
 ---
 layout: split
