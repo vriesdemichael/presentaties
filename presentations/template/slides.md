@@ -345,6 +345,69 @@ rightBackground: "#8FCAE7"
 
 ---
 layout: split
+pageTitle: DonutChart — ringdiagram component
+rightBackground: "#edf4f8"
+
+---
+
+<!--
+  DonutChart: brand-stijl ringdiagram. Segmenten krijgen automatisch een
+  kleur uit het merkpalet als geen expliciete kleur is opgegeven.
+
+  Props per segment:
+    value       – getal (verplicht)
+    color?      – CSS-variabele, bv. 'var(--bd-accentkleur-violet)'
+    label?      – legendatekst
+    valueLabel? – overschrijft het label buiten de ring én in de legenda
+    highlighted?– schuift het segment iets naar buiten
+
+  Componentprops:
+    innerRatio       – dikte ring (standaard 0.55; kleiner = dikker)
+    showLabels       – labels buiten de ring aan/uit (standaard true)
+    labelFormat      – 'percent' of 'value' (standaard 'percent')
+    highlightOffset  – uitsteek in SVG-eenheden (standaard 7)
+    legend           – toon legendapaneel links (standaard false)
+    legendTitle      – vette koptekst boven de legenda
+    legendSubtitle   – subkopje / inleiding boven de items
+
+  Center-slot: plaats willekeurige content in het gat van de ring.
+-->
+
+Eenvoudig gebruik — kleuren vallen terug op merkpalet:
+
+<DonutChart
+  :segments="[
+    { value: 79, label: 'via Mijn Belastingdienst', valueLabel: '79%' },
+    { value: 14, label: 'via aangiftesoftware',     valueLabel: '14%' },
+    { value: 6,  label: 'via de Aangifte App',      valueLabel: '6%'  },
+    { value: 1,  label: 'op papier',                valueLabel: '1%'  },
+  ]"
+  style="height: 200px;"
+/>
+
+::right::
+
+Met legenda, centerslot en highlight:
+
+<DonutChart
+  :segments="[
+    { value: 79, label: 'via Mijn Belastingdienst', valueLabel: '79%', highlighted: true },
+    { value: 14, label: 'via aangiftesoftware',     valueLabel: '14%' },
+    { value: 6,  label: 'via de Aangifte App',      valueLabel: '6%'  },
+    { value: 1,  label: 'op papier',                valueLabel: '1%'  },
+  ]"
+  :legend="true"
+  legendTitle="9,3 miljoen"
+  legendSubtitle="aangiften ontvangen — 99% digitaal"
+  style="height: 220px;"
+>
+  <template #center>
+    <div style="font-family: var(--bd-font-bold-stack); font-size: 1.4rem; color: var(--bd-contrastkleur-lintblauw); line-height: 1.1;">9,3<br><span style="font-size: 0.65rem; font-family: var(--bd-font-regular-stack);">miljoen</span></div>
+  </template>
+</DonutChart>
+
+---
+layout: split
 pageTitle: Lint als maatvoering
 rightBackground: "#edf4f8"
 clicks: 3
