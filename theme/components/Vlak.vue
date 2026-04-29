@@ -131,11 +131,49 @@ const rootStyle = computed(() => ({
 }
 
 /*
- * chevron-right: plain rectangle; the ">" connector is a sibling element
- * in the flex row (use VlakChevron component between Vlak items).
+ * chevron-right: pentagon shape where the right side forms a ">" pointing
+ * right. The tip is the rightmost point of the element itself — no separate
+ * connector component needed. Use a small gap between items in a flex row.
+ *
+ * Two-layer technique for the border:
+ *   outer .bd-vlak  = border color, clip-path to pentagon shape
+ *   inner .bd-vlak-body = fill color, clip-path to inset pentagon
+ *
+ * Pentagon coordinates (all within 0–100%):
+ *   rect body: x = 0 … 100% - tipSize
+ *   tip apex:  x = 100% (right edge of element), y = 50%
  */
 .bd-vlak--chevron-right {
-  border: var(--vlak-border-width) solid var(--vlak-border);
+  border: none;
+  background: var(--vlak-border);
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--vlak-tip-size)) 0,
+    calc(100% - var(--vlak-tip-size)) calc(50% - var(--vlak-tip-size)),
+    100% 50%,
+    calc(100% - var(--vlak-tip-size)) calc(50% + var(--vlak-tip-size)),
+    calc(100% - var(--vlak-tip-size)) 100%,
+    0 100%
+  );
+}
+
+/* Fill layer: same pentagon inset by border-width on each edge.
+   The 45° diagonal edges require √2 ≈ 1.414× the border-width as inset. */
+.bd-vlak--chevron-right .bd-vlak-body {
+  position: absolute;
+  inset: 0;
   background: var(--vlak-fill);
+  /* Keep content well clear of the tip column */
+  padding: var(--vlak-padding);
+  padding-right: var(--vlak-tip-size);
+  clip-path: polygon(
+    var(--vlak-border-width) var(--vlak-border-width),
+    calc(100% - var(--vlak-tip-size) - var(--vlak-border-width)) var(--vlak-border-width),
+    calc(100% - var(--vlak-tip-size) - var(--vlak-border-width)) calc(50% - var(--vlak-tip-size) + calc(var(--vlak-border-width) * 0.4142)),
+    calc(100% - calc(var(--vlak-border-width) * 1.4142)) 50%,
+    calc(100% - var(--vlak-tip-size) - var(--vlak-border-width)) calc(50% + var(--vlak-tip-size) - calc(var(--vlak-border-width) * 0.4142)),
+    calc(100% - var(--vlak-tip-size) - var(--vlak-border-width)) calc(100% - var(--vlak-border-width)),
+    var(--vlak-border-width) calc(100% - var(--vlak-border-width))
+  );
 }
 </style>

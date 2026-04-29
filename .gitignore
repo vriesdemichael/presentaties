@@ -4,3 +4,6 @@ dist/
 **/dist/
 .pages-dist/
 .playwright-mcp/
+presentations/template/export-png/
+presentations/template/slides-export/
+presentations/template/*.pdf

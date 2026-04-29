@@ -1,0 +1,10 @@
+{
+  "name": "slidev-addon-bd-examples",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Example and explainer components for the Belastingdienst Slidev template. Include as an addon in the template deck; remove when starting a real presentation.",
+  "keywords": [
+    "slidev-addon"
+  ],
+  "type": "module"
+}

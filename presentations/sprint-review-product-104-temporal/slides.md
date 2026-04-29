@@ -1,5 +1,5 @@
 ---
-theme: slidev-theme-belastingdienst
+theme: slidev-theme-belastingdienst-legacy
 title: Sprint Review - Product 104 Temporal
 info: |
   Structuurversie met alleen cover en agenda.

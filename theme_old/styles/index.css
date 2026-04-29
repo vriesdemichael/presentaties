@@ -1,0 +1,320 @@
+/* ================================================================
+   Rijksoverheid / Belastingdienst Slidev Theme — base styles
+   ================================================================ */
+
+/* ---- Fonts ---- */
+@font-face {
+  font-family: "ROregular";
+  src:
+    url("../assets/fonts/RijksSansWeb-Regular.woff2") format("woff2"),
+    url("https://download.belastingdienst.nl/assets/bold/rofonts/1.0.2/fonts/ROsanswebtextregular.woff2") format("woff2"),
+    url("https://download.belastingdienst.nl/assets/bold/rofonts/1.0.2/fonts/ROsanswebtextregular.woff") format("woff"),
+    url("../assets/fonts/RijksSansWeb-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RijksoverheidSansWebText Regula";
+  src:
+    url("../assets/fonts/RijksSansWeb-Regular.woff2") format("woff2"),
+    url("https://download.belastingdienst.nl/assets/bold/rofonts/1.0.2/fonts/ROsanswebtextregular.woff2") format("woff2"),
+    url("https://download.belastingdienst.nl/assets/bold/rofonts/1.0.2/fonts/ROsanswebtextregular.woff") format("woff"),
+    url("../assets/fonts/RijksSansWeb-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ROitalic";
+  src:
+    url("../assets/fonts/RijksSansWeb-Italic.woff2") format("woff2"),
+    url("https://download.belastingdienst.nl/assets/bold/rofonts/1.0.2/fonts/ROsanswebtextitalic.woff2") format("woff2"),
+    url("https://download.belastingdienst.nl/assets/bold/rofonts/1.0.2/fonts/ROsanswebtextitalic.woff") format("woff"),
+    url("../assets/fonts/RijksSansWeb-Italic.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RObold";
+  src:
+    url("../assets/fonts/RijksSansWeb-Bold.woff2") format("woff2"),
+    url("https://download.belastingdienst.nl/assets/bold/rofonts/1.0.2/fonts/ROsanswebtextbold.woff2") format("woff2"),
+    url("https://download.belastingdienst.nl/assets/bold/rofonts/1.0.2/fonts/ROsanswebtextbold.woff") format("woff"),
+    url("../assets/fonts/RijksSansWeb-Bold.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RijksoverheidSansWebText Bold";
+  src:
+    url("../assets/fonts/RijksSansWeb-Bold.woff2") format("woff2"),
+    url("https://download.belastingdienst.nl/assets/bold/rofonts/1.0.2/fonts/ROsanswebtextbold.woff2") format("woff2"),
+    url("https://download.belastingdienst.nl/assets/bold/rofonts/1.0.2/fonts/ROsanswebtextbold.woff") format("woff"),
+    url("../assets/fonts/RijksSansWeb-Bold.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RO Icons";
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("https://download.belastingdienst.nl/assets/fonts/rhsiconfont/rhsiconfont.woff2?e5c4eddf5a76f7a571fc09fd4ba15a56") format("woff2"),
+    url("https://download.belastingdienst.nl/assets/fonts/rhsiconfont/rhsiconfont.woff?e5c4eddf5a76f7a571fc09fd4ba15a56") format("woff"),
+    url("https://download.belastingdienst.nl/assets/fonts/rhsiconfont/rhsiconfont.ttf?e5c4eddf5a76f7a571fc09fd4ba15a56") format("truetype"),
+    url("https://download.belastingdienst.nl/assets/fonts/rhsiconfont/rhsiconfont.svg?e5c4eddf5a76f7a571fc09fd4ba15a56#rhsiconfont") format("svg");
+  font-display: swap;
+}
+
+/* ---- Design tokens ---- */
+:root {
+  --bd-font-regular-stack: "ROregular", "RijksoverheidSansWebText Regula", "RijksoverheidSansWebText", "Segoe UI", "Inter", Arial, sans-serif;
+  --bd-font-italic-stack: "ROitalic", "RijksoverheidSansWebText Regula", "RijksoverheidSansWebText", "Segoe UI", "Inter", Arial, sans-serif;
+  --bd-font-bold-stack: "RObold", "RijksoverheidSansWebText Bold", "ROregular", "RijksoverheidSansWebText Regula", "RijksoverheidSansWebText", "Segoe UI", "Inter", Arial, sans-serif;
+  --bd-donkerblauw:  #154273;
+  --bd-lichtblauw:   #DDEFF8;
+  --bd-accentblauw:  #8FCAE7;
+  --bd-paalblauw:    #B5DDEF;
+  --bd-magenta:      #A90061;
+  --bd-oranje:       #E17000;
+  --bd-tekst:        #1f2f3f;
+  --bd-subtekst:     #5E7F9A;
+  --bd-ppt-major-weight: 400;
+  --bd-ppt-minor-weight: 400;
+  --bd-ppt-cover-title-size: 48pt;
+  --bd-ppt-cover-title-autofit-scale: 0.705;
+  --bd-ppt-cover-title-line-height: 1.07;
+  --bd-ppt-cover-title-box-height: 26.6663%;
+  --bd-ppt-cover-title-letter-spacing: -0.02em;
+  --bd-ppt-cover-title-padding-top: 0.25%;
+  --bd-ppt-cover-title-padding-right: 1.76%;
+  --bd-ppt-cover-title-padding-bottom: 1.2%;
+  --bd-ppt-cover-title-padding-left: 1.76%;
+  --bd-ppt-cover-subtitle-size: 14pt;
+  --bd-ppt-cover-footer-size: 14pt;
+  --bd-ppt-cover-date-scale: 0.96;
+  --bd-ppt-speaker-title-size: 28pt;
+  --bd-ppt-body-size: 20pt;
+  --bd-ppt-fact-title-size: 40pt;
+  --bd-ppt-fact-lead-size: 25pt;
+  --bd-ppt-mission-label-size: 20pt;
+  --bd-ppt-mission-statement-size: 36pt;
+  --bd-ppt-mission-statement-scale: 0.84;
+  --bd-ppt-mission-statement-line-height: 0.9;
+  --bd-ppt-mission-statement-letter-spacing: -0.04em;
+  --bd-ppt-x: 3.825%;
+  --bd-ppt-half-x: calc(var(--bd-ppt-x) / 2);
+  --bd-ppt-quarter-x: calc(var(--bd-ppt-x) / 4);
+  --bd-ppt-double-x: calc(var(--bd-ppt-x) * 2);
+  --bd-ppt-ribbon-width: var(--bd-ppt-x);
+  --bd-ppt-ribbon-height: 10.4%;
+  --bd-ppt-ribbon-left: calc(50% - (var(--bd-ppt-ribbon-width) / 2));
+  --ribbon-x: var(--bd-ppt-ribbon-width, 100px);
+  --ribbon-x-quarter: calc(var(--ribbon-x) * 0.25);
+  --ribbon-x-half: calc(var(--ribbon-x) * 0.5);
+  --ribbon-x-three-quarters: calc(var(--ribbon-x) * 0.75);
+  --ribbon-x-double: calc(var(--ribbon-x) * 2);
+  --bd-ppt-side-margin: var(--bd-ppt-x);
+  --bd-ppt-half-pane-inset: calc(var(--bd-ppt-side-margin) * 2);
+  --bd-ppt-content-top: calc(var(--bd-ppt-ribbon-height) + var(--bd-ppt-half-x));
+}
+
+/* ---- Base ---- */
+.slidev-layout {
+  font-family: var(--bd-font-regular-stack);
+  color: var(--bd-tekst);
+  box-sizing: border-box;
+}
+
+.slidev-layout h1 {
+  font-family: var(--bd-font-bold-stack);
+  color: var(--bd-donkerblauw);
+  font-weight: 400;
+  margin-top: 0;
+}
+
+.slidev-layout h2,
+.slidev-layout h3 {
+  font-family: var(--bd-font-bold-stack);
+  color: var(--bd-donkerblauw);
+  font-weight: 400;
+}
+
+.slidev-layout em,
+.slidev-layout i {
+  font-family: var(--bd-font-italic-stack);
+  font-style: normal;
+}
+
+.slidev-layout a {
+  color: var(--bd-donkerblauw);
+}
+
+.slidev-layout ul {
+  list-style: disc;
+  padding-left: 1.4rem;
+}
+
+.slidev-layout ol {
+  list-style: decimal;
+  padding-left: 1.4rem;
+}
+
+.slidev-layout li {
+  margin-bottom: 0.35rem;
+}
+
+/* ---- Utility classes ---- */
+.placeholder {
+  border: 2px dashed var(--bd-donkerblauw);
+  background: var(--bd-lichtblauw);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 0.8rem;
+  color: var(--bd-donkerblauw);
+  font-weight: 600;
+}
+
+.placeholder-sub {
+  font-weight: 400;
+  margin-top: 0.4rem;
+}
+
+.breakpoint {
+  background: #eef5f9;
+  border-left: 10px solid var(--bd-donkerblauw);
+  padding: 1rem;
+  margin-top: 0.8rem;
+}
+
+.bd-ro-icon {
+  display: inline-block;
+  font-family: "RO Icons", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  text-rendering: geometricPrecision;
+  font-variant-ligatures: contextual common-ligatures discretionary-ligatures;
+  white-space: nowrap;
+  speak: none;
+}
+
+.bd-illustration-stage {
+  --bd-illustration-bubble-top: 15.4%;
+  --bd-illustration-bubble-left: 27.8%;
+  --bd-illustration-bubble-width: 29.6%;
+  --bd-illustration-bubble-radius: 19%;
+  --bd-illustration-bubble-bg: #dcecf6;
+  --bd-illustration-bubble-color: #75bbdf;
+  --bd-illustration-bubble-font-size: 63pt;
+  --bd-illustration-bubble-tail-right: 8.5%;
+  --bd-illustration-bubble-tail-bottom: -14.5%;
+  --bd-illustration-bubble-tail-width: 24%;
+  --bd-illustration-bubble-tail-height: 30%;
+  --bd-illustration-icon-font-size: 69cqh;
+  --bd-illustration-back-left: -16.8%;
+  --bd-illustration-back-bottom: -5.6%;
+  --bd-illustration-back-color: #c0dceb;
+  --bd-illustration-back-transform: scale(1.03);
+  --bd-illustration-front-right: -1.8%;
+  --bd-illustration-front-bottom: -6.1%;
+  --bd-illustration-front-color: #ffffff;
+  --bd-illustration-front-transform: scaleX(-1) scale(0.77);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.bd-illustration-bubble {
+  position: absolute;
+  z-index: 3;
+  top: var(--bd-illustration-bubble-top);
+  left: var(--bd-illustration-bubble-left);
+  width: var(--bd-illustration-bubble-width);
+  aspect-ratio: 1 / 0.82;
+  border-radius: var(--bd-illustration-bubble-radius);
+  background: var(--bd-illustration-bubble-bg);
+  color: var(--bd-illustration-bubble-color);
+  font-family: var(--bd-font-bold-stack);
+  font-size: var(--bd-illustration-bubble-font-size);
+  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+
+.bd-illustration-bubble::after {
+  content: "";
+  position: absolute;
+  right: var(--bd-illustration-bubble-tail-right);
+  bottom: var(--bd-illustration-bubble-tail-bottom);
+  width: var(--bd-illustration-bubble-tail-width);
+  height: var(--bd-illustration-bubble-tail-height);
+  background: inherit;
+  clip-path: polygon(0 0, 100% 92%, 30% 100%);
+}
+
+.bd-illustration-icon-layer {
+  position: absolute;
+  font-size: var(--bd-illustration-icon-font-size);
+}
+
+.bd-illustration-icon-layer--back {
+  z-index: 1;
+  left: var(--bd-illustration-back-left);
+  bottom: var(--bd-illustration-back-bottom);
+  color: var(--bd-illustration-back-color);
+  transform: var(--bd-illustration-back-transform);
+  transform-origin: bottom left;
+}
+
+.bd-illustration-icon-layer--front {
+  z-index: 2;
+  right: var(--bd-illustration-front-right);
+  bottom: var(--bd-illustration-front-bottom);
+  color: var(--bd-illustration-front-color);
+  transform: var(--bd-illustration-front-transform);
+  transform-origin: bottom right;
+}
+
+/* ---- Surface base (shared by all surface components) ---- */
+/*
+ * Applied via .bd-surface-base class on each surface component's root.
+ * Centralises the live --ribbon-x token derivations that are identical
+ * across Surface, SplitSurface and SplitMerktegelSurface.
+ */
+.bd-surface-base {
+  container-type: size;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ffffff;
+  padding: 0 !important;
+
+  --bd-ppt-x: var(--ribbon-x);
+  --bd-ppt-half-x: var(--ribbon-x-half);
+  --bd-ppt-quarter-x: var(--ribbon-x-quarter);
+  --bd-ppt-double-x: var(--ribbon-x-double);
+  --bd-ppt-ribbon-width: var(--ribbon-x);
+  --bd-ppt-ribbon-height: calc(var(--ribbon-x) * 1.5);
+  --bd-ppt-ribbon-left: calc(50% - (var(--bd-ppt-ribbon-width) / 2));
+  /* Default side margin = 1X. SplitSurface overrides to ½X in its own scoped style. */
+  --bd-ppt-side-margin: var(--ribbon-x);
+  --bd-ppt-content-top: calc(var(--bd-ppt-ribbon-height) + var(--ribbon-x-half));
+}
+
+.rijks-ribbon {
+  position: fixed;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.rijks-ribbon img {
+  width: 34px;
+  height: 85px;
+  display: block;
+}

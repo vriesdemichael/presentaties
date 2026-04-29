@@ -3,57 +3,137 @@
    ================================================================ */
 
 /* ---- Fonts ---- */
+/* Text fonts are bundled as local woff2 files — no remote fallbacks needed. */
 @font-face {
-  font-family: "RijksoverheidSansWebText";
-  font-stretch: 75% 125%;
-  font-style: normal;
-  font-weight: 200 800;
-  src: url("../assets/fonts/RijksSansWeb-Regular.woff2") format("woff2-variations");
+  font-family: "ROregular";
+  src: url("../assets/fonts/RijksSansWeb-Regular.woff2") format("woff2");
   font-display: swap;
 }
 
 @font-face {
-  font-family: "RijksoverheidSansWebText";
-  font-stretch: 75% 125%;
-  font-style: italic;
-  font-weight: 200 800;
-  src: url("../assets/fonts/RijksSansWeb-Italic.woff2") format("woff2-variations");
+  font-family: "ROitalic";
+  src: url("../assets/fonts/RijksSansWeb-Italic.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RObold";
+  src: url("../assets/fonts/RijksSansWeb-Bold.woff2") format("woff2");
+  font-display: swap;
+}
+
+/*
+ * RO Icons is a ligature/glyph icon font served from the Belastingdienst CDN.
+ * There is no local copy bundled with this theme, so all sources are remote.
+ * Source order: woff2 (modern) → woff (legacy) → ttf (old Android/iOS) → svg (very old iOS).
+ * The browser picks the first format it supports and ignores the rest.
+ * The query-string hash (e5c4…) is a cache-buster tied to the font version —
+ * update it when the CDN asset is versioned up.
+ */
+@font-face {
+  font-family: "RO Icons";
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("https://download.belastingdienst.nl/assets/fonts/rhsiconfont/rhsiconfont.woff2?e5c4eddf5a76f7a571fc09fd4ba15a56") format("woff2"),
+    url("https://download.belastingdienst.nl/assets/fonts/rhsiconfont/rhsiconfont.woff?e5c4eddf5a76f7a571fc09fd4ba15a56") format("woff"),
+    url("https://download.belastingdienst.nl/assets/fonts/rhsiconfont/rhsiconfont.ttf?e5c4eddf5a76f7a571fc09fd4ba15a56") format("truetype"),
+    url("https://download.belastingdienst.nl/assets/fonts/rhsiconfont/rhsiconfont.svg?e5c4eddf5a76f7a571fc09fd4ba15a56#rhsiconfont") format("svg");
   font-display: swap;
 }
 
 /* ---- Design tokens ---- */
 :root {
-  --bd-donkerblauw:  #154273;
-  --bd-lichtblauw:   #DDEFF8;
-  --bd-accentblauw:  #8FCAE7;
-  --bd-paalblauw:    #B5DDEF;
-  --bd-magenta:      #A90061;
-  --bd-oranje:       #E17000;
-  --bd-tekst:        #1f2f3f;
-  --bd-subtekst:     #5E7F9A;
+  --bd-font-regular-stack: "ROregular", "Segoe UI", "Inter", Arial, sans-serif;
+  --bd-font-italic-stack: "ROitalic", "Segoe UI", "Inter", Arial, sans-serif;
+  --bd-font-bold-stack: "RObold", "ROregular", "Segoe UI", "Inter", Arial, sans-serif;
+
+  /* Style-guide palette (temporary migration namespace). */
+  /* Contrastkleur */
+  --bd-contrastkleur-lintblauw: #154273;
+
+  /* Accentkleuren */
+  --bd-accentkleur-hemelblauw: #007bc7;
+  --bd-accentkleur-violet: #a90061;
+  --bd-accentkleur-oranje: #e17000;
+  --bd-accentkleur-donkergeel: #ffb612;
+
+  /* Signaalkleuren */
+  --bd-signaalkleur-hemelblauw: var(--bd-accentkleur-hemelblauw);
+  --bd-signaalkleur-rood: #d52b1e;
+  --bd-signaalkleur-oranje: var(--bd-accentkleur-oranje);
+  --bd-signaalkleur-donkergeel: var(--bd-accentkleur-donkergeel);
+  --bd-signaalkleur-groen: #39870c;
+
+  /* Shared color swatches with neutral names */
+  --bd-kleur-hemelblauw: var(--bd-accentkleur-hemelblauw);
+  --bd-kleur-violet: var(--bd-accentkleur-violet);
+  --bd-kleur-oranje: var(--bd-accentkleur-oranje);
+  --bd-kleur-donkergeel: var(--bd-accentkleur-donkergeel);
+  --bd-kleur-rood: var(--bd-signaalkleur-rood);
+  --bd-kleur-groen: var(--bd-signaalkleur-groen);
+
+  /* Domeinkleur en ondersteunende tinten */
+  --bd-domeinkleur-lichtblauw: #8fcae7;
+  --bd-domeinkleur-lichtblauw-75: #abd7ed;
+  --bd-domeinkleur-lichtblauw-60: #bcdef0;
+  --bd-domeinkleur-lichtblauw-45: #cce7f4;
+  --bd-domeinkleur-lichtblauw-30: #ddeff8;
+  --bd-domeinkleur-lichtblauw-15: #eef7fc;
+
+  /* Shared color swatches with neutral names */
+  --bd-kleur-lintblauw: var(--bd-contrastkleur-lintblauw);
+  --bd-kleur-lichtblauw: var(--bd-domeinkleur-lichtblauw);
+  --bd-kleur-lichtblauw-75: var(--bd-domeinkleur-lichtblauw-75);
+  --bd-kleur-lichtblauw-60: var(--bd-domeinkleur-lichtblauw-60);
+  --bd-kleur-lichtblauw-45: var(--bd-domeinkleur-lichtblauw-45);
+  --bd-kleur-lichtblauw-30: var(--bd-domeinkleur-lichtblauw-30);
+  --bd-kleur-lichtblauw-15: var(--bd-domeinkleur-lichtblauw-15);
+
+  /* Semantic text colors */
+  --bd-tekst-primair: #1f2f3f;
+  --bd-tekst-secundair: #5e7f9a;
+  --ribbon-x: 3.825cqw;
+  --ribbon-x-quarter: calc(var(--ribbon-x) * 0.25);
+  --ribbon-x-half: calc(var(--ribbon-x) * 0.5);
+  --ribbon-x-double: calc(var(--ribbon-x) * 2);
+  --ribbon-width: var(--ribbon-x);
+  --ribbon-height: calc(var(--ribbon-x) * 2);
+  --ribbon-left: calc(50% - (var(--ribbon-width) / 2));
+  --ribbon-side-margin: var(--ribbon-x);
+  --ribbon-half-pane-inset: calc(var(--ribbon-side-margin) * 2);
+  --ribbon-content-top: calc(var(--ribbon-height) + var(--ribbon-x-half));
 }
 
 /* ---- Base ---- */
 .slidev-layout {
-  font-family: "RijksoverheidSansWebText", "Segoe UI", "Inter", Arial, sans-serif;
-  color: var(--bd-tekst);
+  font-family: var(--bd-font-regular-stack);
+  color: var(--bd-tekst-primair);
   box-sizing: border-box;
 }
 
 .slidev-layout h1 {
-  color: var(--bd-donkerblauw);
-  font-weight: 700;
+  font-family: var(--bd-font-bold-stack);
+  color: var(--bd-contrastkleur-lintblauw);
+  font-weight: 400;
   margin-top: 0;
 }
 
 .slidev-layout h2,
 .slidev-layout h3 {
-  color: var(--bd-donkerblauw);
-  font-weight: 600;
+  font-family: var(--bd-font-bold-stack);
+  color: var(--bd-contrastkleur-lintblauw);
+  font-weight: 400;
+}
+
+.slidev-layout em,
+.slidev-layout i {
+  font-family: var(--bd-font-italic-stack);
+  font-style: normal;
 }
 
 .slidev-layout a {
-  color: var(--bd-donkerblauw);
+  color: var(--bd-contrastkleur-lintblauw);
 }
 
 .slidev-layout ul {
@@ -70,41 +150,31 @@
   margin-bottom: 0.35rem;
 }
 
-/* ---- Utility classes ---- */
-.placeholder {
-  border: 2px dashed var(--bd-donkerblauw);
-  background: var(--bd-lichtblauw);
-  border-radius: 8px;
-  padding: 1rem;
-  margin-top: 0.8rem;
-  color: var(--bd-donkerblauw);
-  font-weight: 600;
-}
-
-.placeholder-sub {
+.bd-ro-icon {
+  display: inline-block;
+  font-family: "RO Icons", sans-serif;
+  font-style: normal;
   font-weight: 400;
-  margin-top: 0.4rem;
+  line-height: 1;
+  letter-spacing: 0;
+  text-rendering: geometricPrecision;
+  font-variant-ligatures: contextual common-ligatures discretionary-ligatures;
+  white-space: nowrap;
+  speak: none;
 }
 
-.breakpoint {
-  background: #eef5f9;
-  border-left: 10px solid var(--bd-donkerblauw);
-  padding: 1rem;
-  margin-top: 0.8rem;
-}
-
-/* ---- Ribbon (applied via global-top.vue) ---- */
-.rijks-ribbon {
-  position: fixed;
-  top: -18px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  pointer-events: none;
-}
-
-.rijks-ribbon img {
-  width: 34px;
-  height: 85px;
-  display: block;
+/* ---- Shared layout bases ---- */
+/*
+ * Applied via either .bd-surface-base or .bd-layout-canvas.
+ * Both classes now use the same cqw-derived ribbon token system.
+ */
+.bd-surface-base,
+.bd-layout-canvas {
+  container-type: size;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ffffff;
+  padding: 0 !important;
 }

@@ -1,4 +1,5 @@
 packages:
   - theme
+  - theme_old
   - addons/*
   - presentations/*

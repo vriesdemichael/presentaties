@@ -16,6 +16,6 @@
     "@slidev/theme-seriph": "^0.25.0",
     "lz-string": "^1.5.0",
     "slidev-addon-reusable-widgets": "workspace:*",
-    "slidev-theme-belastingdienst": "workspace:*"
+    "slidev-theme-belastingdienst-legacy": "workspace:*"
   }
 }

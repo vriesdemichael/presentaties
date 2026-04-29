@@ -25,9 +25,9 @@ Vervang `zeepkist-agentic-coding` door een andere decknaam uit `deck:list`.
 
 ## Nieuwe presentatie starten
 
-Gebruik de template in `templates/deck/`.
+Gebruik voor een nieuwe presentatie de voorbeeldtemplate in `presentations/template/`.
 
-1. Kopieer `templates/deck/` naar `presentations/<jouw-deck-naam>/`
+1. Kopieer `presentations/template/` naar `presentations/<jouw-deck-naam>/`
 2. Pas in `package.json` de pakketnaam aan
 3. Pas in `slides.md` titel, datum en eerste slides aan
 4. Start lokaal met:

@@ -1,0 +1,30 @@
+FIX MCP servers voor playwright
+
+Skills
+[ ] filter/unpack the downloaded files.
+[ ] Rijkshuisstijl toevoegen
+[ ] Belastingdienst website (BOLD) toevoegen
+[ ] Explain theme
+
+Theme
+[ ] tiny bottom merktegel component
+[ ] mermaidjs theme in right style
+[X] statsheet examples
+[X] Explain layouts in the presentation
+[X] Stappen, vlakken en lijnen https://huisstijl.belastingdienst.nl/beeld/infographics/componenten/
+[X] Steps snake around to second row
+[ ] Circle diagram in theme
+[ ] Vlak with right arrow to indicate blocks of steps
+
+Cleanup
+[X] split old and new style theme (new in template, old in zeepkist and other presentations)
+[X] remove old pngs used for testing/development
+[X] remove unused assets in the presentations (not in the skills!)
+[X] PNG icons vervangen met icon set svg
+[X] Ribbon en beeldmerk via SVG uit download map
+
+Advanced stuff:
+[ ] Build vue components for the infographics
+[ ] Use iconify to allow usage of multiple icon sets gracefully 
+[ ] Migrate to bitbucket
+

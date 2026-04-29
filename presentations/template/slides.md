@@ -485,15 +485,13 @@ pageTitle: Vlak — vormvarianten
 
 ---
 
-<div style="display:flex; gap:0; align-items:stretch; height:140px; margin-bottom:1.5rem;">
+<div style="display:flex; gap:0.75rem; align-items:stretch; height:140px; margin-bottom:1.5rem;">
   <Vlak shape="chevron-right" fill="white" border="var(--bd-domeinkleur-lichtblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
     <strong>1. Aanvraag</strong><br>Burger doet aangifte online
   </Vlak>
-  <VlakChevron color="var(--bd-domeinkleur-lichtblauw)" />
   <Vlak shape="chevron-right" fill="white" border="var(--bd-domeinkleur-lichtblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
     <strong>2. Ontvangst</strong><br>Belastingdienst verwerkt het verzoek
   </Vlak>
-  <VlakChevron color="var(--bd-domeinkleur-lichtblauw)" />
   <Vlak fill="white" border="var(--bd-domeinkleur-lichtblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
     <strong>3. Afhandeling</strong><br>Beslissing wordt vastgesteld
   </Vlak>

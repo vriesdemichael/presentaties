@@ -142,7 +142,7 @@ function buildDeck(deckName, repoName) {
   rmSync(tempOutDir, { recursive: true, force: true })
 }
 
-function writeLandingPage(decks, repoName) {
+function renderLandingPageHtml(decks, repoName) {
   const deckItems = decks
     .map((deck) => {
       const meta = parseHeadmatter(deck)
@@ -157,7 +157,7 @@ function writeLandingPage(decks, repoName) {
     })
     .join('')
 
-  const html = `<!doctype html>
+  return `<!doctype html>
 <html lang="nl">
   <head>
     <meta charset="utf-8">
@@ -293,6 +293,48 @@ function writeLandingPage(decks, repoName) {
   </body>
 </html>
 `
+}
+
+function writeLandingPage(decks, repoName, filename = 'index.html') {
+  writeFileSync(path.join(outputDir, filename), renderLandingPageHtml(decks, repoName))
+}
+
+function writePreferredDeckRedirect(deckName) {
+  const html = `<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0; url=./${deckName}/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Presentatie openen</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: "RijksoverheidSansWebText", "Segoe UI", Arial, sans-serif;
+        color: #154273;
+        background: linear-gradient(180deg, rgba(221, 239, 248, 0.82) 0%, rgba(255, 255, 255, 1) 44%), #ffffff;
+      }
+      main {
+        width: min(36rem, calc(100vw - 3rem));
+        text-align: center;
+      }
+      a {
+        color: #154273;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>De standaardpresentatie wordt geopend.</p>
+      <p><a href="./${deckName}/">Open ${escapeHtml(deckName)}</a></p>
+      <p><a href="./decks.html">Bekijk alle decks</a></p>
+    </main>
+  </body>
+</html>
+`
 
   writeFileSync(path.join(outputDir, 'index.html'), html)
 }
@@ -339,6 +381,7 @@ function writeSpaFallback(repoName) {
 
 const decks = getDecks()
 const repoName = getRepositoryName()
+const preferredDeck = decks.includes('template') ? 'template' : null
 
 if (decks.length === 0) {
   console.error('No decks found in presentations/.')
@@ -352,7 +395,13 @@ for (const deck of decks) {
   buildDeck(deck, repoName)
 }
 
-writeLandingPage(decks, repoName)
+if (preferredDeck) {
+  writeLandingPage(decks, repoName, 'decks.html')
+  writePreferredDeckRedirect(preferredDeck)
+}
+else {
+  writeLandingPage(decks, repoName)
+}
 writeSpaFallback(repoName)
 writeFileSync(path.join(outputDir, '.nojekyll'), '')
 
