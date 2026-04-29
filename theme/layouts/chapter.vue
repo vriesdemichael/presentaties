@@ -73,7 +73,7 @@ defineProps({
 }
 
 .bd-chapter-bd-bottom {
-  width: calc(50% - (var(--ribbon-half-pane-inset) * 2));
+  width: calc(100% - (var(--ribbon-half-pane-inset) * 2));
   margin-top: var(--ribbon-x-half);
   margin-left: var(--ribbon-half-pane-inset);
   font-family: var(--bd-font-regular-stack);

@@ -227,7 +227,16 @@ image: /images/voorbeeld-foto-2.jpg
 
 ::subtitle::
 
-Alle slides in deze presentatie zijn gemaakt met herbruikbare layouts. Dit is: `chapter`.
+Alle slides in deze presentatie zijn gemaakt met herbruikbare layouts. Dit is: `chapter`
+
+::bottom::
+
+```yaml
+---
+layout: chapter
+chapterTitle: Mijn sectietitel
+---
+```
 
 ---
 layout: image-merktegel
