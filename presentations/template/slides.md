@@ -107,32 +107,32 @@ clicks: 3
 
 ---
 layout: split
-pageTitle: Titel tekstpagina 28pt
+pageTitle: Typografie — tekstopmaak
 rightBackground: "#8FCAE7"
 
 ---
 
-## Sub titel 1 bold 20pt
+## Koppen via markdown — 20pt
 
-- Bodytekst plignia eprovit, aceperument plignit ent alit que eniat porro eossintcium quia cuscil endaect ascipiatem eos reni reptas qui comnis
-- Ectem sim as quid que necture velibusandis idipis
-- Minulluptate modis unti dolo discita tiberum quietam am
+Schrijf `## Koptekst` voor een kop op 20pt (h2). Gebruik `#` voor 26pt (h1)
+of `###` voor 16pt (h3). De paginatitel bovenaan is altijd 19pt via `pageTitle`.
 
-## Sub titel 2 bold 20pt
+## Bodytekst en lijsten — 12pt
 
-- Voluptam rescipsae dit aceatia por alicim ventori busant plignit ent alit que eniat porro
+- Gewone alinea's en lijstitems renderen op 12pt
+- Gebruik `**vet**` of `_cursief_` voor nadruk
+- De koptekst links (28pt) is de display-grootte van het split-layout
 
 ::right::
 
-<div style="display: grid; grid-auto-rows: max-content; gap: 0.1rem; align-content: start; color: var(--bd-contrastkleur-lintblauw);">
-  <div>
-    <div style="font-size: 31pt; line-height: 1;">2.160.653</div>
-    <div style="margin-top: 0.18rem; font-size: var(--bd-body-size); line-height: 1.15;">ontvangen aangifte op 8 maart 2020</div>
-  </div>
-  <div>
-    <div style="font-size: 31pt; line-height: 1;">3%</div>
-    <div style="margin-top: 0.18rem; font-size: var(--bd-body-size); line-height: 1.15;">Stijging tov vorig jaar</div>
-  </div>
+<div style="display: grid; gap: 0.5rem; align-content: start; color: var(--bd-contrastkleur-lintblauw);">
+  <div style="font-size: 26pt; line-height: 1.1;"># H1 — 26pt</div>
+  <div style="font-size: 20pt; line-height: 1.1;">## H2 — 20pt</div>
+  <div style="font-size: 16pt; line-height: 1.1;">### H3 — 16pt</div>
+  <div style="font-size: 13pt; line-height: 1.1;">#### H4 — 13pt</div>
+  <div style="font-size: 12pt; line-height: 1.3; margin-top: 0.5rem;">Bodytekst — 12pt</div>
+  <div style="font-size: 19pt; line-height: 1.1; margin-top: 0.5rem; opacity: 0.6;">pageTitle — 19pt</div>
+  <div style="font-size: 28pt; line-height: 1.1; opacity: 0.6;">display (split) — 28pt</div>
 </div>
 
 ---
