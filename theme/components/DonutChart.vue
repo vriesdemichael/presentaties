@@ -194,7 +194,8 @@ const viewBox = computed(() => {
   gap: 1.5rem;
   /* Fill parent so legend flex:1 gets all remaining horizontal space */
   width: 100%;
-  /* Prevent flex parents with align-items:stretch from overriding alignment */
+  /* Row mode: use content height (don't stretch to pane height).
+   * Column mode overrides this back to stretch — see .bd-donut--below/above. */
   align-self: center;
 }
 
@@ -203,14 +204,24 @@ const viewBox = computed(() => {
   flex-direction: row-reverse;
 }
 
+/* Column variants: stretch to fill the parent height, center content vertically */
 .bd-donut--below,
 .bd-donut--above {
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;     /* center chart horizontally */
+  align-self: stretch;     /* fill parent pane height (overrides default align-self: center) */
+  justify-content: center; /* vertically center the chart+legend group */
 }
 
 .bd-donut--above {
   flex-direction: column-reverse;
+}
+
+/* In column mode the legend fills full width and sizes to content height */
+.bd-donut--below .bd-donut-legend,
+.bd-donut--above .bd-donut-legend {
+  width: 100%;
+  flex: 0 0 auto;
 }
 
 /* ── Legend ──────────────────────────────────────────────── */
