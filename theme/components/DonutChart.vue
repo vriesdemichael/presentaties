@@ -34,10 +34,13 @@ const props = defineProps({
   // How far highlighted slices are pushed outward (SVG units)
   highlightOffset: { type: Number, default: 7 },
 
-  // Legend panel (renders to the left of the SVG)
+  // Legend panel
   legend: { type: Boolean, default: false },
   legendTitle: { type: String, default: '' },
   legendSubtitle: { type: String, default: '' },
+  // Controls which side the legend appears relative to the chart.
+  // 'right' (default) | 'left' | 'below' | 'above'
+  legendPosition: { type: String, default: 'right' },
 })
 
 const innerR = computed(() => OUTER_R * props.innerRatio)
@@ -104,7 +107,7 @@ const viewBox = computed(() => {
 </script>
 
 <template>
-  <div class="bd-donut" :class="{ 'bd-donut--with-legend': legend }">
+  <div class="bd-donut" :class="[{ 'bd-donut--with-legend': legend }, legend ? `bd-donut--${legendPosition}` : '']">
 
     <!-- SVG donut (always first = left side) -->
     <div class="bd-donut-chart-wrap">
@@ -180,19 +183,34 @@ const viewBox = computed(() => {
 
 <style scoped>
 /*
- * Height is driven by --donut-size (default 200px).
+ * Size is driven by --donut-size (default 200px).
  * Override with style="--donut-size: 180px" on the component.
- * Width is auto: chart is a fixed square, legend fills remaining space.
+ * With legendPosition="right"|"left" the chart and legend sit side-by-side.
+ * With legendPosition="below"|"above" the legend stacks under/over the chart.
  */
 .bd-donut {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  height: var(--donut-size, 200px);
   /* Fill parent so legend flex:1 gets all remaining horizontal space */
   width: 100%;
-  /* Prevent flex parents with align-items:stretch from overriding the fixed height */
+  /* Prevent flex parents with align-items:stretch from overriding alignment */
   align-self: center;
+}
+
+/* ── Legend position variants ────────────────────────────── */
+.bd-donut--left {
+  flex-direction: row-reverse;
+}
+
+.bd-donut--below,
+.bd-donut--above {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bd-donut--above {
+  flex-direction: column-reverse;
 }
 
 /* ── Legend ──────────────────────────────────────────────── */
@@ -260,13 +278,13 @@ const viewBox = computed(() => {
 .bd-donut-chart-wrap {
   position: relative;
   /*
-   * Height = 100% of the bd-donut container (driven by --donut-size).
-   * Width is derived from aspect-ratio so the SVG stays square.
-   * flex-shrink: 0 prevents the flex algorithm from compressing the chart.
+   * Chart is always a fixed square driven by --donut-size.
+   * Using explicit width+height (not height:100%+aspect-ratio) so the chart
+   * renders correctly regardless of parent flex direction or height.
    */
   flex: 0 0 auto;
-  height: 100%;
-  aspect-ratio: 1 / 1;
+  width: var(--donut-size, 200px);
+  height: var(--donut-size, 200px);
 }
 
 .bd-donut-svg {

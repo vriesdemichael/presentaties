@@ -397,9 +397,10 @@ Voeg `highlighted: true` toe aan een segment om het verder van het midden af te 
 
 ## Legenda en center-slot
 
-Zet `:legend="true"` voor een legendapaneel naast de ring. Gebruik de `#center` slot voor vrije HTML gecentreerd in het gat.
+Zet `:legend="true"` voor een legendapaneel naast of onder de ring. Gebruik `legendPosition` (`right` · `left` · `below` · `above`) om de positie te bepalen. Gebruik de `#center` slot voor vrije HTML gecentreerd in het gat.
 
 - `legendTitle` en `legendSubtitle` voor tekst boven de items
+- `legendPosition`: `right` · `left` · `below` · `above` (default `right`)
 - `#center` slot: vrije inhoud gecentreerd in het gat van de ring
 
 </div>
@@ -444,6 +445,7 @@ Zet `:legend="true"` voor een legendapaneel naast de ring. Gebruik de `#center` 
   v-else
   style="--donut-size: 280px"
   :legend="true"
+  legend-position="below"
   :show-labels="false"
   legendTitle="9,3 miljoen"
   legendSubtitle="99% digitaal ontvangen"
@@ -466,7 +468,8 @@ Zet `:legend="true"` voor een legendapaneel naast de ring. Gebruik de `#center` 
   showLabels:  labels buiten ring — default true
   labelFormat: 'percent' | 'value' — default 'percent'; per-segment valueLabel overschrijft
   highlightOffset: uitsteek uitgelicht segment in SVG-eenheden — default 7
-  legend:      toon legendapaneel rechts naast ring — default false
+  legend:      toon legendapaneel — default false
+  legendPosition: positie van het legendapaneel — 'right' (default) | 'left' | 'below' | 'above'
   legendTitle / legendSubtitle: tekst boven de legendaitems
   #center slot: willekeurige content gecentreerd in het gat van de ring
   --donut-size: CSS-variabele voor hoogte/breedte van de ring — default 200px
