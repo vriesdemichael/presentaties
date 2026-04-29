@@ -261,7 +261,11 @@ eyebrow: Varianten
 
 ---
 
-Layouts hebben varianten om het gedrag of de stijl aan te passen. Dit is variant `detail`.
+Layouts hebben varianten om het gedrag of de stijl aan te passen. Dit is variant `detail`
+
+```yaml
+variant: detail
+```
 
 ---
 layout: split

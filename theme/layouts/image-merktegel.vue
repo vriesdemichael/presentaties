@@ -9,8 +9,8 @@ const contentMidline = 'calc(var(--ribbon-content-top) + ((100% - var(--ribbon-c
 
 const variantFrames = {
   statement: {
-    width: 'calc(var(--ribbon-x) * 12.7450980392)',
-    height: 'calc(var(--ribbon-x) * 4.3829852941)',
+    width: 'calc(var(--ribbon-x) * 10.2)',
+    height: 'calc(var(--ribbon-x) * 3.5)',
   },
   detail: {
     width: 'calc(var(--ribbon-x) * 13.4453594771)',
