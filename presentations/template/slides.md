@@ -384,13 +384,14 @@ Met `labelFormat="value"` worden ruwe waarden getoond. Een `valueLabel` per segm
 
 <div v-else-if="$clicks === 2">
 
-## Segment uitlichten
+## Ring aanpassen
 
-Voeg `highlighted: true` toe aan een segment om het verder van het midden af te plaatsen. Combineer met een eigen `color` voor extra nadruk.
+Voeg `highlighted: true` toe aan een segment om het verder van het midden af te plaatsen. Combineer met een eigen `color` voor extra nadruk. Met `innerRatio` bepaal je de dikte van de ring.
 
 - `highlighted: true` op meerdere segmenten tegelijk mogelijk
 - `color: 'var(--bd-signaalkleur-donkergeel)'` overschrijft de automatische kleur
 - `highlightOffset` prop bepaalt de uitsteekafstand in SVG-eenheden (standaard `7`)
+- `innerRatio` — fractie van de buitenstraal voor de binnenstraal (standaard `0.55`, hoger = dunner)
 
 </div>
 
@@ -434,6 +435,7 @@ Zet `:legend="true"` voor een legendapaneel naast of onder de ring. Gebruik `leg
 <DonutChart
   v-else-if="$clicks === 2"
   style="--donut-size: 280px"
+  :inner-ratio="0.72"
   :segments="[
     { value: 79, label: 'Mijn BD' },
     { value: 14, label: 'Software', highlighted: true },
@@ -464,7 +466,7 @@ Zet `:legend="true"` voor een legendapaneel naast of onder de ring. Gebruik `leg
 <!--
   DonutChart props:
   segments[]:  { value, color?, label?, valueLabel?, highlighted? }
-  innerRatio:  dikte ring — default 0.55 (lager = dikker)
+  innerRatio:  dikte ring — fractie van buitenstraal (default 0.55; hoger = dunner, bijv. 0.72)
   showLabels:  labels buiten ring — default true
   labelFormat: 'percent' | 'value' — default 'percent'; per-segment valueLabel overschrijft
   highlightOffset: uitsteek uitgelicht segment in SVG-eenheden — default 7
