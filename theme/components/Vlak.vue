@@ -23,6 +23,7 @@ const rootClass = computed(() => ({
   'bd-vlak--speech-bottom-right': props.shape === 'speech-bottom-right',
   'bd-vlak--arrow-right': props.shape === 'arrow-right',
   'bd-vlak--chevron-right': props.shape === 'chevron-right',
+  'bd-vlak--chevron-left': props.shape === 'chevron-left',
   'bd-vlak--info-grid': props.variant === 'info-grid',
 }))
 
@@ -174,6 +175,41 @@ const rootStyle = computed(() => ({
     calc(100% - var(--vlak-tip-size) - var(--vlak-border-width)) calc(50% + var(--vlak-tip-size) - calc(var(--vlak-border-width) * 0.4142)),
     calc(100% - var(--vlak-tip-size) - var(--vlak-border-width)) calc(100% - var(--vlak-border-width)),
     var(--vlak-border-width) calc(100% - var(--vlak-border-width))
+  );
+}
+
+/*
+ * chevron-left: pentagon shape where the left side forms a "<" pointing left.
+ * Mirror of chevron-right — tip at x=0, body from tipSize to 100%.
+ */
+.bd-vlak--chevron-left {
+  border: none;
+  background: var(--vlak-border);
+  clip-path: polygon(
+    100% 0,
+    var(--vlak-tip-size) 0,
+    var(--vlak-tip-size) calc(50% - var(--vlak-tip-size)),
+    0 50%,
+    var(--vlak-tip-size) calc(50% + var(--vlak-tip-size)),
+    var(--vlak-tip-size) 100%,
+    100% 100%
+  );
+}
+
+.bd-vlak--chevron-left .bd-vlak-body {
+  position: absolute;
+  inset: 0;
+  background: var(--vlak-fill);
+  padding: var(--vlak-padding);
+  padding-left: calc(var(--vlak-tip-size) + var(--vlak-padding));
+  clip-path: polygon(
+    calc(100% - var(--vlak-border-width)) var(--vlak-border-width),
+    calc(var(--vlak-tip-size) + var(--vlak-border-width)) var(--vlak-border-width),
+    calc(var(--vlak-tip-size) + var(--vlak-border-width)) calc(50% - var(--vlak-tip-size) + calc(var(--vlak-border-width) * 0.4142)),
+    calc(var(--vlak-border-width) * 1.4142) 50%,
+    calc(var(--vlak-tip-size) + var(--vlak-border-width)) calc(50% + var(--vlak-tip-size) - calc(var(--vlak-border-width) * 0.4142)),
+    calc(var(--vlak-tip-size) + var(--vlak-border-width)) calc(100% - var(--vlak-border-width)),
+    calc(100% - var(--vlak-border-width)) calc(100% - var(--vlak-border-width))
   );
 }
 </style>

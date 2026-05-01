@@ -1,6 +1,6 @@
 <script setup>
-import Surface from "../components/Surface.vue";
-import Ribbon from "../components/Ribbon.vue";
+import Surface from "../components/internal/Surface.vue";
+import Ribbon from "../components/internal/Ribbon.vue";
 
 const props = defineProps({
   pageTitle: { type: String, default: "" },

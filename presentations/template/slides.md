@@ -2,6 +2,7 @@
 theme: slidev-theme-belastingdienst
 addons:
   - bd-examples
+  - reusable-widgets
 title: Slidev belastingdienst thema
 info: |
   Template en toelichting voor het Slidev Belastingdienst thema.
@@ -32,6 +33,30 @@ Slidev belastingdienst thema
 
 <div>2026</div>
 
+<!--
+AGENT INSTRUCTIONS: USING THIS FILE AS A PRESENTATION TEMPLATE
+
+This file serves two purposes:
+  (1) a starting template for new presentations
+  (2) a component and layout reference for the slidev-theme-belastingdienst theme
+
+WHEN CREATING A NEW PRESENTATION — what to keep and fill in:
+  Slide 1  (cover)              update title, date, background image and footer
+  Slide 2  (speaker)            fill in speakerName, speakerRole, speakerTeam
+  Slide 3  (inhoudsopgave)      replace NumberedList items with your own sections
+  Slide 5  (Over dit sjabloon)  OPTIONAL: keep as onboarding for new colleagues; delete for production decks
+
+Delete everything from slide 4 (Waarom Slidev) onwards except slide 5 if you want to keep it:
+  All slides after slide 3 are demo and reference content, not meant for real presentations.
+
+HEADMATTER SETTINGS TO UPDATE:
+  title      your presentation title
+  date       current year or full date string
+  brandText  your business unit name if different from "Belastingdienst"
+  addons     remove "bd-examples" (only used for demo components in this template)
+             keep "reusable-widgets" if you use QuestionsIllustration or other shared widgets
+-->
+
 ---
 layout: speaker
 speakerName: "[Naam spreker]"
@@ -41,6 +66,23 @@ speakerTeam: "[Team - met hoofdletter]"
 ---
 
 <!-- -->
+
+---
+layout: chapter
+variant: content-right
+chapterTitle: Inhoudsopgave
+
+---
+
+<NumberedList
+  :items="[
+    { label: 'Introductie', detail: 'Waarom Slidev en hoe dit sjabloon werkt' },
+    { label: 'Maten en stijl', detail: 'Maatvoering en tekstopmaak' },
+    { label: 'Herbruikbare layouts', detail: 'Layouts en kleurinstellingen' },
+    { label: 'Herbruikbare componenten', detail: 'Tabellen, diagrammen en infographic componenten' },
+    { label: 'Voorbeelden', detail: 'Infographics en merktegelslides' },
+  ]"
+/>
 
 ---
 layout: fact-panel
@@ -65,20 +107,37 @@ rows:
 <!-- -->
 
 ---
-layout: chapter
-variant: content-right
-chapterTitle: Inhoudsopgave
+layout: split
+pageTitle: Over dit sjabloon
 
 ---
 
-<NumberedList
-  :items="[
-    { label: 'Maten en stijl', detail: 'Maatvoering en tekstopmaak' },
-    { label: 'Herbruikbare layouts', detail: 'Layouts en kleurinstellingen' },
-    { label: 'Herbruikbare componenten', detail: 'Tabellen, diagrammen en infographic componenten' },
-    { label: 'Voorbeelden', detail: 'Infographics en merktegelslides' },
-  ]"
-/>
+::left::
+
+## Als startpunt voor een presentatie
+
+Kopieer dit bestand en verwijder de demo-onderdelen:
+
+- Pas **slide 1** aan: titel, datum, achtergrond
+- Vul **slide 2** in met sprekersgegevens
+- Vervang de items in **slide 3** door je eigen secties
+- Verwijder alles na de inhoudsopgave — dat zijn demo-slides
+- Verwijder de addon `bd-examples` uit de headmatter
+
+::right::
+
+## Als componentenreferentie
+
+Alle layouts en componenten van het thema zijn hier gedemonstreerd:
+
+- **Introductie** — Waarom Slidev en hoe dit sjabloon werkt
+- **Lint als maatvoering** — uitleg over de maateenheid `X`
+- **Typografie & kleuren** — beschikbare tekststijlen en tokens
+- **Herbruikbare layouts** — alle layoutvarianten met voorbeeldcode
+- **Herbruikbare componenten** — Vlak, Tabel, DonutChart, HighlightsGrid, StepSeries en meer
+- **Voorbeelden** — complete infographic-slides als inspiratie
+
+Gebruik deze slides als naslagwerk bij het opbouwen van een nieuwe presentatie.
 
 ---
 layout: split
@@ -87,6 +146,8 @@ rightBackground: "#edf4f8"
 clicks: 2
 
 ---
+
+::left::
 
 ## Vaste meeteenheid
 
@@ -112,6 +173,8 @@ pageTitle: Typografie
 rightBackground: "#8FCAE7"
 
 ---
+
+::left::
 
 ## Tekstopmaak
 
@@ -142,6 +205,8 @@ pageTitle: Kleuren
 rightBackground: "#ffffff"
 
 ---
+
+::left::
 
 ## CSS-tokens
 
@@ -261,7 +326,7 @@ eyebrow: Varianten
 
 ---
 
-Layouts hebben varianten om het gedrag of de stijl aan te passen. Dit is variant `detail`
+Layouts hebben varianten om het gedrag of de stijl aan te passen. Dit is variant detail
 
 ```yaml
 layout: image-merktegel
@@ -278,6 +343,13 @@ image: /images/voorbeeld-foto-1.jpg
 De beeldhelft blijft los van de teksthelft zodat beide vanuit dezelfde centrale
 vlakverdeling kunnen worden opgebouwd.
 
+```yaml
+layout: content-image
+contentTitle: Tekst en beeld
+intro: Tekst links en beeld rechts...
+image: /images/voorbeeld-foto-1.jpg
+```
+
 ---
 layout: split
 pageTitle: Tekst naast beeldvlak
@@ -285,20 +357,108 @@ rightBackground: "#ffffff"
 
 ---
 
-## Ruimere presentatiemarge
+::left::
 
-- De lintmaat is het uitgangspunt; in presentaties mag content meer lucht krijgen dan de minimale 1/2 X
-- Daarom hanteren deze voorbeelden een ruimere zijmarge, zodat tekst en beeld beter aansluiten
-- Alleen achtergrondbeelden mogen tot aan de rand doorlopen; een zelfstandig beeldvlak niet
+In de split-layout heeft elk deelgebied zijn eigen contentgrenzen. Visuele content die je in een van de twee panelen plaatst past zich aan de contentbox aan — de randen worden gehandhaafd.
 
-## Plaatsaanduiding voor beeld
+```md
+---
+layout: split
+pageTitle: Tekst naast beeldvlak
+---
 
-- Deze grijze plaatshouder toont de veilige beeldzone
-- Een foto kan hier later worden geplaatst zonder marge- of leesregels te doorbreken
+::left::
+
+<!-- linker slot: tekst en uitleg -->
 
 ::right::
 
-<Placeholder />
+<img src="/images/kleurvlak-voorbeeld.svg" />
+```
+
+::right::
+
+<img src="/images/kleurvlak-voorbeeld.svg" style="width:100%; height:100%; object-fit:cover;" />
+
+---
+layout: chapter
+variant: content-right
+chapterNumber: "03"
+
+---
+
+::title::
+
+Herbruikbare componenten
+
+::subtitle::
+
+Componenten zijn Vue-elementen: aangepaste HTML-tags die je direct in je markdown plaatst. Je stuurt hun gedrag via properties (props) op de tag.
+
+::opposite::
+
+#### Voorbeeld van een component-tag in markdown
+
+```vue
+<DonutChart
+  title="Kanaalkeuze"
+  :segments="[
+    { label: 'Digitaal', value: 63 },
+    { label: 'Telefonie', value: 27 },
+    { label: 'Balie', value: 10 },
+  ]"
+/>
+```
+
+#### Beschikbare componenten
+
+<Transform :scale="0.55" origin="top left">
+<Vlak
+  variant="info-grid"
+  :columns="2"
+  fill="#ffffff"
+  :items="['DonutChart', 'HighlightsGrid', 'MerktegelLijn', 'NumberedList', 'QuestionsIllustration', 'StepSeries', 'StepSeriesJoin', 'Table', 'VerticalStepList', 'Vlak']"
+/>
+</Transform>
+
+---
+layout: full-width
+pageTitle: Vlak
+
+---
+
+<div style="display:flex; gap:2rem; align-items:flex-start; margin-bottom:1.5rem;">
+  <Vlak shape="speech-bottom-right" fill="var(--bd-domeinkleur-lichtblauw-30)" padding="1rem" style="flex:1; min-width:0;">
+    Gebruik <code>shape="speech-bottom-right"</code> voor een tekstballon met staart rechtsonder — handig bij citaten of uitleg naast een afbeelding.
+  </Vlak>
+  <Vlak fill="var(--bd-domeinkleur-lichtblauw-30)" variant="info-grid" :columns="2"
+    :items="['Het info-grid-variant verdeelt de inhoud in een raster. Geef <code>:columns</code> mee voor het aantal kolommen.', 'De tweede kolom komt hier']"
+    style="flex:1; min-width:0;" />
+</div>
+
+<div style="display:flex; gap:0.75rem; align-items:stretch; height:140px; margin-bottom:1.5rem;">
+  <Vlak shape="chevron-right" fill="white" border="var(--bd-domeinkleur-lichtblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
+    Vlakken met chevron
+  </Vlak>
+  <Vlak shape="chevron-right" fill="white" border="var(--bd-domeinkleur-lichtblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
+    Om een proces te visualiseren
+  </Vlak>
+  <Vlak fill="white" border="var(--bd-domeinkleur-lichtblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
+    In meerdere stappen
+  </Vlak>
+</div>
+
+<div style="display:flex; gap:0.75rem; align-items:stretch; height:120px; margin-bottom:1.5rem;">
+  <Vlak fill="white" border="var(--bd-contrastkleur-lintblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
+    Wat voor vlak je wilt
+  </Vlak>
+  <Vlak shape="chevron-left" fill="white" border="var(--bd-contrastkleur-lintblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
+    om aan te geven
+  </Vlak>
+  <Vlak shape="chevron-left" fill="white" border="var(--bd-contrastkleur-lintblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
+    Gebruik de varianten
+  </Vlak>
+</div>
 
 ---
 layout: split
@@ -307,6 +467,8 @@ rightBackground: "#ffffff"
 clicks: 2
 
 ---
+
+::left::
 
 <div v-if="$clicks === 0">
 
@@ -449,6 +611,8 @@ rightBackground: "#edf4f8"
 
 ---
 
+::left::
+
 ## Opbouw van het palet
 
 - Lichtblauw is de hoofdkleur: corporate en rustgevend voor de grafiek
@@ -466,101 +630,30 @@ rightBackground: "#edf4f8"
 <BarChart
   title="Grafiektitel"
   :rows="[
-    { label: 'Categorie 1', segments: [{ width: '42%', color: '#8FCAE7' }, { width: '8%', color: '#00689E' }, { width: '8%', color: '#A90061' }, { width: '7%', color: '#E17000' }] },
-    { label: 'Categorie 1', segments: [{ width: '7%', color: '#B5DDEF' }, { width: '7%', color: '#8FCAE7' }, { width: '7%', color: '#00689E' }, { width: '5%', color: '#A90061' }, { width: '4%', color: '#E17000' }] },
-    { label: 'Categorie 2', segments: [{ width: '9%', color: '#8FCAE7' }, { width: '8%', color: '#00689E' }, { width: '8%', color: '#A90061' }, { width: '26%', color: '#E17000' }] },
-    { label: 'Categorie 1', segments: [{ width: '13%', color: '#8FCAE7' }, { width: '8%', color: '#00689E' }, { width: '9%', color: '#A90061' }, { width: '4%', color: '#E17000' }] },
+    { label: 'Categorie 1', segments: [{ width: '42%', color: 'var(--bd-domeinkleur-lichtblauw)' }, { width: '8%', color: 'var(--bd-accentkleur-hemelblauw)' }, { width: '8%', color: 'var(--bd-accentkleur-violet)' }, { width: '7%', color: 'var(--bd-accentkleur-oranje)' }] },
+    { label: 'Categorie 1', segments: [{ width: '7%', color: 'var(--bd-domeinkleur-lichtblauw-60)' }, { width: '7%', color: 'var(--bd-domeinkleur-lichtblauw)' }, { width: '7%', color: 'var(--bd-accentkleur-hemelblauw)' }, { width: '5%', color: 'var(--bd-accentkleur-violet)' }, { width: '4%', color: 'var(--bd-accentkleur-oranje)' }] },
+    { label: 'Categorie 2', segments: [{ width: '9%', color: 'var(--bd-domeinkleur-lichtblauw)' }, { width: '8%', color: 'var(--bd-accentkleur-hemelblauw)' }, { width: '8%', color: 'var(--bd-accentkleur-violet)' }, { width: '26%', color: 'var(--bd-accentkleur-oranje)' }] },
+    { label: 'Categorie 1', segments: [{ width: '13%', color: 'var(--bd-domeinkleur-lichtblauw)' }, { width: '8%', color: 'var(--bd-accentkleur-hemelblauw)' }, { width: '9%', color: 'var(--bd-accentkleur-violet)' }, { width: '4%', color: 'var(--bd-accentkleur-oranje)' }] },
   ]"
   :legend="[
-    { label: 'Reeks 1', color: '#B5DDEF' },
-    { label: 'Reeks 2', color: '#8FCAE7' },
-    { label: 'Reeks 3', color: '#00689E' },
-    { label: 'Reeks 4', color: '#DDEFF8' },
-    { label: 'Reeks 5', color: '#A90061' },
-    { label: 'Reeks 6', color: '#E17000' },
+    { label: 'Reeks 1', color: 'var(--bd-domeinkleur-lichtblauw-60)' },
+    { label: 'Reeks 2', color: 'var(--bd-domeinkleur-lichtblauw)' },
+    { label: 'Reeks 3', color: 'var(--bd-accentkleur-hemelblauw)' },
+    { label: 'Reeks 4', color: 'var(--bd-domeinkleur-lichtblauw-30)' },
+    { label: 'Reeks 5', color: 'var(--bd-accentkleur-violet)' },
+    { label: 'Reeks 6', color: 'var(--bd-accentkleur-oranje)' },
   ]"
 />
 
 ---
 layout: split
-pageTitle: Titel tekstpagina 28pt
-rightBackground: "#8FCAE7"
-
----
-
-## Sub titel 1 bold 20pt
-
-- Bodytekst plignia eprovit, aceperument plignit ent alit que eniat porro eossintcium quia cuscil endaect ascipiatem eos reni reptas qui comnis
-- Ectem sim as quid que necture velibusandis idipis
-- Minulluptate modis unti dolo discita tiberum quietam am
-
-## Sub titel 2 bold 20pt
-
-- Voluptam rescipsae dit aceatia por alicim ventori busant plignit ent alit que eniat porro
-
-::right::
-
-<div style="font-family: var(--bd-font-bold-stack); font-size: var(--bd-text-display); line-height: 1.06; max-width: 9ch; color: var(--bd-contrastkleur-lintblauw);">Voorbeeld met tekst</div>
-
----
-layout: split
 pageTitle: DonutChart
-mirror: true
-rightBackground: "#edf4f8"
+leftBackground: "#edf4f8"
 clicks: 3
 
 ---
 
-<div v-if="$clicks === 0">
-
-## Standaard gebruik
-
-Geef `segments` mee als array. Elk item heeft minimaal een `value`. Kleuren worden automatisch gekozen uit het merkpalet.
-
-- `label` verschijnt buiten de ring als tekst
-- `labelFormat: 'percent'` — standaard, berekend percentage
-- Kleuren: volgorde uit merkpaletvariabelen in CSS
-
-</div>
-
-<div v-else-if="$clicks === 1">
-
-## `labelFormat` en `valueLabel`
-
-Met `labelFormat="value"` worden ruwe waarden getoond. Een `valueLabel` per segment overschrijft de berekende waarde, ongeacht `labelFormat`.
-
-- `labelFormat: 'value'` — toont `segment.value` direct
-- `valueLabel: '79%'` op segment 1 — overschrijft naar tekst naar keuze
-- Overige segmenten: tonen ruwe waarden (`14`, `6`, `1`)
-
-</div>
-
-<div v-else-if="$clicks === 2">
-
-## Ring aanpassen
-
-Voeg `highlighted: true` toe aan een segment om het verder van het midden af te plaatsen. Combineer met een eigen `color` voor extra nadruk. Met `innerRatio` bepaal je de dikte van de ring.
-
-- `highlighted: true` op meerdere segmenten tegelijk mogelijk
-- `color: 'var(--bd-signaalkleur-donkergeel)'` overschrijft de automatische kleur
-- `highlightOffset` prop bepaalt de uitsteekafstand in SVG-eenheden (standaard `7`)
-- `innerRatio` — fractie van de buitenstraal voor de binnenstraal (standaard `0.55`, hoger = dunner)
-
-</div>
-
-<div v-else>
-
-## Legenda en center-slot
-
-Zet `:legend="true"` voor een legendapaneel naast of onder de ring. Gebruik `legendPosition` (`right` · `left` · `below` · `above`) om de positie te bepalen. Gebruik de `#center` slot voor vrije HTML gecentreerd in het gat.
-
-- `legendTitle` en `legendSubtitle` voor tekst boven de items
-- `legendPosition`: `right` · `left` · `below` · `above` (default `right`)
-- `#center` slot: vrije inhoud gecentreerd in het gat van de ring
-
-</div>
-
-::right::
+::left::
 
 <DonutChart
   v-if="$clicks === 0"
@@ -615,6 +708,57 @@ Zet `:legend="true"` voor een legendapaneel naast of onder de ring. Gebruik `leg
     <div style="font-family: var(--bd-font-bold-stack); font-size: 1.4rem; color: var(--bd-contrastkleur-lintblauw); line-height: 1.1;">9,3<br><span style="font-size: 0.65rem; font-family: var(--bd-font-regular-stack);">mln</span></div>
   </template>
 </DonutChart>
+
+::right::
+
+<div v-if="$clicks === 0">
+
+## Standaard gebruik
+
+Geef `segments` mee als array. Elk item heeft minimaal een `value`. Kleuren worden automatisch gekozen uit het merkpalet.
+
+- `label` verschijnt buiten de ring als tekst
+- `labelFormat: 'percent'` — standaard, berekend percentage
+- Kleuren: volgorde uit merkpaletvariabelen in CSS
+
+</div>
+
+<div v-else-if="$clicks === 1">
+
+## `labelFormat` en `valueLabel`
+
+Met `labelFormat="value"` worden ruwe waarden getoond. Een `valueLabel` per segment overschrijft de berekende waarde, ongeacht `labelFormat`.
+
+- `labelFormat: 'value'` — toont `segment.value` direct
+- `valueLabel: '79%'` op segment 1 — overschrijft naar tekst naar keuze
+- Overige segmenten: tonen ruwe waarden (`14`, `6`, `1`)
+
+</div>
+
+<div v-else-if="$clicks === 2">
+
+## Ring aanpassen
+
+Voeg `highlighted: true` toe aan een segment om het verder van het midden af te plaatsen. Combineer met een eigen `color` voor extra nadruk. Met `innerRatio` bepaal je de dikte van de ring.
+
+- `highlighted: true` op meerdere segmenten tegelijk mogelijk
+- `color: 'var(--bd-signaalkleur-donkergeel)'` overschrijft de automatische kleur
+- `highlightOffset` prop bepaalt de uitsteekafstand in SVG-eenheden (standaard `7`)
+- `innerRatio` — fractie van de buitenstraal voor de binnenstraal (standaard `0.55`, hoger = dunner)
+
+</div>
+
+<div v-else>
+
+## Legenda en center-slot
+
+Zet `:legend="true"` voor een legendapaneel naast of onder de ring. Gebruik `legendPosition` (`right` · `left` · `below` · `above`) om de positie te bepalen. Gebruik de `#center` slot voor vrije HTML gecentreerd in het gat.
+
+- `legendTitle` en `legendSubtitle` voor tekst boven de items
+- `legendPosition`: `right` · `left` · `below` · `above` (default `right`)
+- `#center` slot: vrije inhoud gecentreerd in het gat van de ring
+
+</div>
 
 <!--
   DonutChart props:
@@ -712,45 +856,56 @@ pageTitle: Eerlijk en zorgvuldig belasting heffen en innen
 
 ---
 layout: full-width
-pageTitle: Vlak — vormvarianten
+pageTitle: MerktegelLijn — statusbalk onderaan
 
 ---
 
-<div style="display:flex; gap:0.75rem; align-items:stretch; height:140px; margin-bottom:1.5rem;">
-  <Vlak shape="chevron-right" fill="white" border="var(--bd-domeinkleur-lichtblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
-    <strong>1. Aanvraag</strong><br>Burger doet aangifte online
-  </Vlak>
-  <Vlak shape="chevron-right" fill="white" border="var(--bd-domeinkleur-lichtblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
-    <strong>2. Ontvangst</strong><br>Belastingdienst verwerkt het verzoek
-  </Vlak>
-  <Vlak fill="white" border="var(--bd-domeinkleur-lichtblauw)" borderWidth="1.5px" style="flex:1; min-width:0;">
-    <strong>3. Afhandeling</strong><br>Beslissing wordt vastgesteld
-  </Vlak>
+De **MerktegelLijn** plaatst de kenmerkende merktegel-trapvorm in de lintbreedte-strip buiten de inhoudsgrens. Bedoeld voor presentatiebrede context zoals een hoofdstuknummer of slideteller. De stap valt altijd op 50%; de verhoogde kant is altijd 1 lintbreedte hoog.
+
+<div v-click-hide="1">
+
+```vue
+<!-- Outline variant — strip ¼ lintbreedte hoog -->
+<MerktegelLijn variant="outline" :stripHeight="0.25">Hoofdstuk 1 — Inleiding</MerktegelLijn>
+```
+
 </div>
 
-<div style="display:flex; gap:2rem; align-items:flex-start;">
-  <Vlak shape="speech-bottom-right" fill="var(--bd-domeinkleur-lichtblauw-30)" padding="1rem" style="flex:1; min-width:0;">
-    Gebruik <code>shape="speech-bottom-right"</code> voor een tekstballon met staart rechtsonder — handig bij citaten of uitleg naast een afbeelding.
-  </Vlak>
-  <Vlak fill="var(--bd-domeinkleur-lichtblauw-30)" variant="info-grid" :columns="2"
-    :items="['Het info-grid-variant verdeelt de inhoud in een raster. Geef :columns mee voor het aantal kolommen.', 'De tweede kolom komt hier']"
-    style="flex:1; min-width:0;" />
+<div v-click="1">
+
+```vue
+<!-- Filled variant — standaard strip (1 lintbreedte) -->
+<MerktegelLijn variant="filled" color="var(--bd-domeinkleur-lichtblauw-75)">
+  Hoofdstuk 1 — Inleiding
+</MerktegelLijn>
+```
+
+</div>
+
+<div v-click-hide="1" style="position: absolute; bottom: calc(-1 * var(--ribbon-x)); left: calc(-1 * var(--ribbon-x)); right: calc(-1 * var(--ribbon-x)); z-index: 10;">
+  <MerktegelLijn variant="outline" :stripHeight="0.25">Hoofdstuk 1 — Inleiding</MerktegelLijn>
+</div>
+
+<div v-click="1" style="position: absolute; bottom: calc(-1 * var(--ribbon-x)); left: calc(-1 * var(--ribbon-x)); right: calc(-1 * var(--ribbon-x)); z-index: 10;">
+  <MerktegelLijn variant="filled" color="var(--bd-domeinkleur-lichtblauw-75)">
+    Hoofdstuk 1 — Inleiding
+  </MerktegelLijn>
 </div>
 
 ---
 layout: split
-pageTitle: Afsluitende tekst
-mirror: true
-leftBackground: "#edf4f8"
-rightBackground: "#8FCAE7"
-rightPadding: "0"
+leftBackground: "#8FCAE7"
+rightBackground: "#edf4f8"
+leftInset: "0"
 
 ---
+
+::left::
+
+<QuestionsIllustration />
+
+::right::
 
 ## Vragen?
 
 Deze slide is een voorbeeld voor een afsluitende slide. Hier zijn iconen en het vlak component gebruikt voor een visuele ondersteuning van de vraagstelling.
-
-::right::
-
-<QuestionsIllustration />

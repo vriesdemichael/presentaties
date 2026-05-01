@@ -1,6 +1,6 @@
 <script setup>
 import { computed, useSlots } from 'vue'
-import Ribbon from '../components/Ribbon.vue'
+import Ribbon from '../components/internal/Ribbon.vue'
 const slots = useSlots()
 
 const props = defineProps({

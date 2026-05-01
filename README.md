@@ -1,13 +1,19 @@
 # Presentaties
 
-Kleine Slidev workspace voor teampresentaties.
+Kleine Slidev workspace voor teampresentaties, gebouwd op het `slidev-theme-belastingdienst` thema.
+
+## Het thema
+
+Presentaties in deze repo gebruiken het gedeelde thema in `./theme/`. Het thema levert layouts, merkchrome, kleur- en typografietokens en herbruikbare componenten.
+
+De template-deck in `presentations/template/` is zelf-documentarisch: elke layout en elk component is gedemonstreerd met uitleg en codevoorbeelden. Gebruik dit als startpunt én als naslag bij het bouwen van nieuwe slides.
 
 ## Snel starten
 
 ```bash
 pnpm install
 pnpm run deck:list
-pnpm run deck:dev -- zeepkist-agentic-coding
+pnpm run deck:dev -- template
 ```
 
 Open daarna de lokale URL uit de terminal, meestal `http://localhost:3030`.
@@ -16,12 +22,12 @@ Open daarna de lokale URL uit de terminal, meestal `http://localhost:3030`.
 
 ```bash
 pnpm run deck:list
-pnpm run deck:dev -- zeepkist-agentic-coding
-pnpm run deck:build -- zeepkist-agentic-coding
-pnpm run deck:export -- zeepkist-agentic-coding
+pnpm run deck:dev -- <deck-naam>
+pnpm run deck:build -- <deck-naam>
+pnpm run deck:export -- <deck-naam>
 ```
 
-Vervang `zeepkist-agentic-coding` door een andere decknaam uit `deck:list`.
+Vervang `<deck-naam>` door een naam uit `deck:list`.
 
 ## Nieuwe presentatie starten
 
@@ -41,7 +47,7 @@ pnpm run deck:dev -- <jouw-deck-naam>
 Voor nu is dit de tijdelijke werkwijze:
 
 - teammates werken vanuit een fork of kopie van deze repo
-- `theme/` en `addons/reusable-widgets/` worden als workspace packages gebruikt
+- `theme/` en `addons/` worden als workspace packages gebruikt
 - de template verwacht dus nog geen externe package registry
 
 Doelbeeld:
@@ -63,7 +69,12 @@ Totdat Nexus beschikbaar is, is de workspace/fork-variant de juiste tussenstap.
 
 Gebruik niet automatisch het `reusable-widgets` addon.
 
-Hanteer deze keuze:
+Er zijn twee addons in deze repo:
+
+- **`addons/bd-examples`** — explainer-componenten die alleen in de template-deck worden gebruikt (`Placeholder`, demo-helpers, enzovoort). **Verwijder dit addon wanneer je de template kopieert voor een echte presentatie.** Het is niet bedoeld voor distributie.
+- **`addons/reusable-widgets`** — optionele widgets die echt in meerdere decks terugkomen (bijv. `GitLogCompare`). Voeg dit alleen toe als een widget in twee of meer decks nodig is.
+
+Hanteer verder deze keuze:
 
 - `theme/`: voor layouts, styling, merkuitstraling en vaste theme-onderdelen
 - `presentations/<deck>/components/`: voor eenmalige deck-specifieke visuals
@@ -84,6 +95,7 @@ Dus: niet per widget een addon maken, tenzij daar echt een duidelijke grens voor
 - Zet optionele herbruikbare visuals in `addons/reusable-widgets/`
 - Gebruik `pnpm`, niet npm
 - Houd theme en addon package-namen stabiel; die worden later de basis voor registry-publicatie
+- Gebruik altijd CSS custom property tokens (`var(--bd-*)`) voor kleuren en spacing — geen UnoCSS/Tailwind kleurklassen zoals `bg-blue-100`
 
 ## VS Code
 

@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "slidev-theme-belastingdienst": "workspace:*",
-    "slidev-addon-bd-examples": "workspace:*"
+    "slidev-addon-bd-examples": "workspace:*",
+    "slidev-addon-reusable-widgets": "workspace:*"
   }
 }

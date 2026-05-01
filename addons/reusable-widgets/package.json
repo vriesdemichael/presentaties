@@ -7,5 +7,8 @@
   ],
   "engines": {
     "slidev": ">=0.50.0"
+  },
+  "peerDependencies": {
+    "slidev-theme-belastingdienst": "*"
   }
 }

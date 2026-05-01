@@ -32,6 +32,8 @@ const normalizedItems = computed(() =>
   display: grid;
   gap: 1rem;
   width: 100%;
+  --bd-nl-index-size: var(--bd-h3-size);   /* number badge font — 16pt */
+  --bd-nl-label-size: var(--bd-h2-size);   /* label heading font — 20pt */
 }
 
 .bd-numbered-list-item {
@@ -50,12 +52,12 @@ const normalizedItems = computed(() =>
   background: var(--bd-domeinkleur-lichtblauw);
   color: var(--bd-contrastkleur-lintblauw);
   font-family: var(--bd-font-bold-stack);
-  font-size: 16pt;
+  font-size: var(--bd-nl-index-size);
 }
 
 .bd-numbered-list-label {
   font-family: var(--bd-font-bold-stack);
-  font-size: 18pt;
+  font-size: var(--bd-nl-label-size);
   line-height: 1.15;
   color: var(--bd-contrastkleur-lintblauw);
 }

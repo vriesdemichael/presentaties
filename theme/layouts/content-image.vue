@@ -1,5 +1,5 @@
 <script setup>
-import SplitSurface from '../components/SplitSurface.vue'
+import SplitSurface from '../components/internal/SplitSurface.vue'
 
 defineProps({
   contentTitle: { type: String, default: '' },
@@ -7,12 +7,26 @@ defineProps({
   body: { type: String, default: '' },
   image: { type: String, default: '' },
   imageFit: { type: String, default: 'cover' },
+  imageLeft: { type: Boolean, default: false },
+  textBackground: { type: String, default: '#edf4f8' },
 })
 </script>
 
 <template>
-  <SplitSurface class="bd-content-image-bd" primary-background="#edf4f8" secondary-background="#ffffff">
-    <template #primary>
+  <SplitSurface
+    class="bd-content-image-bd"
+    :left-background="imageLeft ? 'transparent' : textBackground"
+    :right-background="imageLeft ? textBackground : 'transparent'"
+  >
+    <template v-if="imageLeft" #left>
+      <div class="bd-content-image-bd-media">
+        <slot name="media">
+          <img v-if="image" :src="image" alt="" :style="{ objectFit: imageFit }" />
+        </slot>
+      </div>
+    </template>
+
+    <template v-if="imageLeft" #right>
       <div class="bd-content-image-bd-copy">
         <div v-if="contentTitle || $slots.title" class="bd-content-image-bd-title" role="heading" aria-level="1">
           <slot name="title">{{ contentTitle }}</slot>
@@ -26,7 +40,21 @@ defineProps({
       </div>
     </template>
 
-    <template #secondary>
+    <template v-if="!imageLeft" #left>
+      <div class="bd-content-image-bd-copy">
+        <div v-if="contentTitle || $slots.title" class="bd-content-image-bd-title" role="heading" aria-level="1">
+          <slot name="title">{{ contentTitle }}</slot>
+        </div>
+        <div v-if="intro || $slots.intro" class="bd-content-image-bd-intro">
+          <slot name="intro">{{ intro }}</slot>
+        </div>
+        <div class="bd-content-image-bd-body">
+          <slot>{{ body }}</slot>
+        </div>
+      </div>
+    </template>
+
+    <template v-if="!imageLeft" #right>
       <div class="bd-content-image-bd-media">
         <slot name="media">
           <img v-if="image" :src="image" alt="" :style="{ objectFit: imageFit }" />

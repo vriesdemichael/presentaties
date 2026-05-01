@@ -1,5 +1,5 @@
 <script setup>
-import SplitMerktegelSurface from '../components/SplitMerktegelSurface.vue'
+import SplitMerktegelSurface from '../components/internal/SplitMerktegelSurface.vue'
 
 defineProps({
   variant: { type: String, default: 'full-bleed-image' },
@@ -105,9 +105,11 @@ defineProps({
 
 .bd-chapter-bd-opposite--content-right {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  padding: calc(var(--ribbon-content-top) + var(--ribbon-x)) var(--ribbon-half-pane-inset) var(--ribbon-half-pane-inset);
+  padding: var(--ribbon-content-top) var(--ribbon-half-pane-inset) var(--ribbon-half-pane-inset);
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .bd-chapter-bd-image img {
@@ -128,5 +130,6 @@ defineProps({
 
 .bd-chapter-bd-opposite--content-right :deep(*) {
   box-sizing: border-box;
+  max-width: 100%;
 }
 </style>

@@ -1,6 +1,6 @@
 <script setup>
 import { computed, useSlots } from 'vue'
-import MerktegelBase from './MerktegelBase.vue'
+import MerktegelBase from './internal/MerktegelBase.vue'
 
 const slots = useSlots()
 
@@ -25,10 +25,10 @@ const variantTokens = {
     tabPadding: '0.7rem 0.8rem 0.08rem 1rem',
     bodyPadding: '1.82rem 0.42rem 0.3rem 1rem',
     tabFontFamily: 'var(--bd-font-bold-stack)',
-    tabFontSize: '18pt',
+    tabFontSize: 'calc(var(--ribbon-x) * 0.64)',
     tabFontWeight: 400,
     bodyFontFamily: 'var(--bd-font-regular-stack)',
-    bodyFontSize: '18pt',
+    bodyFontSize: 'calc(var(--ribbon-x) * 0.64)',
     bodyFontWeight: 400,
     bodyLineHeight: '1.2',
     bodyLetterSpacing: '0',
@@ -94,8 +94,8 @@ const rootStyle = computed(() => ({
 
 <style scoped>
 .bd-merktegel-overlay {
-  --merktegel-statement-eyebrow-size: 20pt;
-  --merktegel-statement-headline-size: 36pt;
+  --merktegel-statement-eyebrow-size: calc(var(--ribbon-x) * 0.57);
+  --merktegel-statement-headline-size: calc(var(--ribbon-x) * 1.02);
   --merktegel-statement-headline-scale: 0.84;
   --merktegel-statement-headline-line-height: 0.9;
   --merktegel-statement-headline-letter-spacing: -0.04em;

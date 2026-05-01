@@ -351,7 +351,7 @@ const hasCaptions = computed(() =>
 .bd-step-series-caption-slot :deep(.bd-step-series-caption-body) {
   font-size: var(--bd-step-caption-body-size);
   line-height: 1.16;
-  color: rgba(0, 37, 94, 0.84);
+  color: var(--bd-tekst-primair);
 }
 
 /* .bd-step-series-caption wrapper used inside #caption slot */

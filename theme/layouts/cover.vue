@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import beeldmerkSvg from '../assets/beeldmerk-rijksoverheid.svg?raw'
 import woordmerkPng from '../assets/woordmerk-belastingdienst.png'
-import MerktegelBase from '../components/MerktegelBase.vue'
+import MerktegelBase from '../components/internal/MerktegelBase.vue'
 
 const beeldmerkUrl = `data:image/svg+xml,${encodeURIComponent(beeldmerkSvg)}`
 
@@ -11,7 +11,7 @@ const props = defineProps({
   coverBgRightHalf: { type: Boolean, default: false },
   coverTitle: { type: String, default: '' },
   subtitle: { type: String, default: '' },
-  date: { type: String, default: '' },
+  date: { type: [String, Number], default: '' },
   spreker: { type: String, default: '' },
   meeting: { type: String, default: '' },
   brandText: { type: String, default: 'Belastingdienst' },

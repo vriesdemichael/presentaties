@@ -109,10 +109,10 @@ const normalizedItems = computed(() =>
  */
 .bd-vertical-step-list {
   display: grid;
-  grid-template-columns: var(--bd-vertical-step-size) max-content;
+  grid-template-columns: var(--bd-vertical-step-size) 1fr;
   row-gap: var(--bd-vertical-step-gap);
   column-gap: var(--bd-vertical-step-label-gap);
-  width: max-content;
+  width: 100%;
 }
 
 .bd-vsl-dot-cell {
@@ -216,9 +216,9 @@ const normalizedItems = computed(() =>
  * appears inside the card. No border-radius — matches the square vlak style.
  */
 .bd-vsl-label-cell[data-highlight] {
-  background: rgba(0, 118, 182, 0.1);
+  background: color-mix(in srgb, var(--bd-accentkleur-hemelblauw) 10%, transparent);
   /* Extend background leftward: gap + dotSize + ribbon-x-quarter (breathing room left of dots) */
-  box-shadow: calc(-1 * (var(--bd-vertical-step-label-gap) + var(--bd-vertical-step-size) + var(--ribbon-x-quarter))) 0 0 0 rgba(0, 118, 182, 0.1);
+  box-shadow: calc(-1 * (var(--bd-vertical-step-label-gap) + var(--bd-vertical-step-size) + var(--ribbon-x-quarter))) 0 0 0 color-mix(in srgb, var(--bd-accentkleur-hemelblauw) 10%, transparent);
   padding-inline-end: 0.6rem;
   padding-block: 0.4rem;
 }
@@ -234,6 +234,6 @@ const normalizedItems = computed(() =>
   font-family: var(--bd-font-regular-stack);
   font-size: var(--bd-vertical-step-body-size);
   line-height: 1.2;
-  color: rgba(0, 37, 94, 0.72);
+  color: var(--bd-tekst-secundair);
 }
 </style>

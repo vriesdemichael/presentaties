@@ -1,5 +1,5 @@
 <script setup>
-import Surface from "../components/Surface.vue";
+import Surface from "../components/internal/Surface.vue";
 
 defineProps({
   background: { type: String, default: "#ffffff" },

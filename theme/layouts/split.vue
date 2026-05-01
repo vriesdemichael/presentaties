@@ -1,40 +1,39 @@
 <script setup>
-import SplitSurface from '../components/SplitSurface.vue'
-import Ribbon from '../components/Ribbon.vue'
+import SplitSurface from '../components/internal/SplitSurface.vue'
+import Ribbon from '../components/internal/Ribbon.vue'
 
 defineProps({
   pageTitle: { type: String, default: '' },
-  mirror: { type: Boolean, default: false },
   leftBackground: { type: String, default: '#ffffff' },
   rightBackground: { type: String, default: 'var(--bd-domeinkleur-lichtblauw-30)' },
-  rightPadding: { type: String, default: '' },
+  leftInset: { type: String, default: '' },
+  rightInset: { type: String, default: '' },
 })
 </script>
 
 <template>
   <SplitSurface
     class="bd-text-heavy-bd"
-    :mirror="mirror"
-    :primary-background="leftBackground"
-    :secondary-background="rightBackground"
+    :left-background="leftBackground"
+    :right-background="rightBackground"
   >
     <template #logo>
       <Ribbon />
     </template>
 
-    <template #primary>
-      <div class="bd-text-heavy-bd-copy">
+    <template #left>
+      <div class="bd-text-heavy-bd-copy" :style="leftInset ? { '--bd-text-heavy-left-padding': leftInset } : undefined">
         <div class="bd-text-heavy-bd-title" role="heading" aria-level="1">
           <slot name="title">{{ pageTitle }}</slot>
         </div>
         <div class="bd-text-heavy-bd-body">
-          <slot />
+          <slot name="left" />
         </div>
       </div>
     </template>
 
-    <template #secondary>
-      <div class="bd-text-heavy-bd-right" :style="rightPadding ? { '--bd-text-heavy-right-padding': rightPadding } : undefined">
+    <template #right>
+      <div class="bd-text-heavy-bd-right" :style="rightInset ? { '--bd-text-heavy-right-padding': rightInset } : undefined">
         <slot name="right" />
       </div>
     </template>
@@ -47,6 +46,7 @@ defineProps({
   --bd-text-heavy-top-clearance: var(--ribbon-content-top);
   --bd-text-heavy-side-padding: var(--ribbon-half-pane-inset);
   --bd-text-heavy-pane-padding: var(--bd-text-heavy-top-clearance) var(--bd-text-heavy-side-padding) var(--bd-text-heavy-side-padding) var(--bd-text-heavy-side-padding);
+  --bd-text-heavy-left-padding: var(--bd-text-heavy-pane-padding);
   --bd-text-heavy-right-padding: var(--bd-text-heavy-pane-padding);
 }
 
@@ -57,7 +57,9 @@ defineProps({
 }
 
 .bd-text-heavy-bd-copy {
-  padding: var(--bd-text-heavy-pane-padding);
+  display: flex;
+  flex-direction: column;
+  padding: var(--bd-text-heavy-left-padding);
   color: var(--bd-contrastkleur-lintblauw);
 }
 
@@ -70,8 +72,10 @@ defineProps({
 }
 
 .bd-text-heavy-bd-body {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
   margin-top: 0.6rem;
-  max-width: 27rem;
   font-family: var(--bd-font-regular-stack);
   font-size: var(--bd-body-size);
   line-height: 1.33;
@@ -79,6 +83,7 @@ defineProps({
 }
 
 .bd-text-heavy-bd-body :deep(h2) {
+  max-width: 27rem;
   margin: 1rem 0 0.2rem;
   font-family: var(--bd-font-bold-stack);
   font-size: var(--bd-h2-size);
@@ -91,10 +96,12 @@ defineProps({
 }
 
 .bd-text-heavy-bd-body :deep(p) {
+  max-width: 27rem;
   margin: 0;
 }
 
 .bd-text-heavy-bd-body :deep(ul) {
+  max-width: 27rem;
   margin: 0.2rem 0 0;
   padding-left: 1rem;
 }
@@ -110,13 +117,9 @@ defineProps({
 
 .bd-text-heavy-bd-right {
   display: flex;
+  flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
   padding: var(--bd-text-heavy-right-padding);
-}
-
-.bd-text-heavy-bd-right > :deep(*) {
-  flex: 1 1 auto;
-  min-height: 0;
 }
 </style>

@@ -48,7 +48,17 @@
   --bd-font-italic-stack: "ROitalic", "Segoe UI", "Inter", Arial, sans-serif;
   --bd-font-bold-stack: "RObold", "ROregular", "Segoe UI", "Inter", Arial, sans-serif;
 
-  /* Style-guide palette (temporary migration namespace). */
+  /*
+   * Token naming convention — two parallel namespaces exist:
+   *
+   *   Semantic (preferred in component CSS):  --bd-contrastkleur-*, --bd-accentkleur-*, --bd-domeinkleur-*
+   *   Shorthand (for ad-hoc slide styling):   --bd-kleur-*
+   *
+   * Use semantic names in theme/component CSS — they communicate brand intent.
+   * Use shorthand aliases in slide Markdown or inline styles where brevity matters.
+   * Both resolve to the same value; there is no functional difference.
+   */
+
   /* Contrastkleur */
   --bd-contrastkleur-lintblauw: #154273;
 
@@ -224,7 +234,43 @@
   text-rendering: geometricPrecision;
   font-variant-ligatures: contextual common-ligatures discretionary-ligatures;
   white-space: nowrap;
-  speak: none;
+}
+
+/* ---- Code blocks ---- */
+
+/* Block code: square corners, themed border, controlled spacing */
+.slidev-layout .slidev-code {
+  margin: 0.6em 0;
+}
+
+.slidev-layout .slidev-code pre,
+.slidev-layout pre.shiki,
+.slidev-layout pre {
+  border-radius: 0 !important;
+  border: 1px solid var(--bd-domeinkleur-lichtblauw-45) !important;
+  padding: 0.65em 1em !important;
+  margin: 0;
+  font-size: calc(var(--bd-body-size) * 0.88);
+  line-height: 1.6;
+}
+
+/* Reset any inner code element overrides from Shiki */
+.slidev-layout .slidev-code pre code {
+  border-radius: 0;
+  padding: 0;
+  background: transparent !important;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Inline code: matches the flat vlak aesthetic */
+.slidev-layout :not(pre) > code {
+  border-radius: 0 !important;
+  background: var(--bd-domeinkleur-lichtblauw-15) !important;
+  border: 1px solid var(--bd-domeinkleur-lichtblauw-45);
+  color: var(--bd-contrastkleur-lintblauw);
+  padding: 0.1em 0.35em;
+  font-size: 0.9em;
 }
 
 /* ---- Shared layout bases ---- */

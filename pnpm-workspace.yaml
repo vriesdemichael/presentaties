@@ -3,3 +3,8 @@ packages:
   - theme_old
   - addons/*
   - presentations/*
+
+onlyBuiltDependencies:
+  - better-sqlite3
+  - esbuild
+  - playwright-chromium

@@ -68,6 +68,9 @@ importers:
       slidev-addon-bd-examples:
         specifier: workspace:*
         version: link:../../addons/bd-examples
+      slidev-addon-reusable-widgets:
+        specifier: workspace:*
+        version: link:../../addons/reusable-widgets
       slidev-theme-belastingdienst:
         specifier: workspace:*
         version: link:../../theme

@@ -2,10 +2,11 @@
 
 ## Scope
 
-This repository contains multiple presentations and shared style assets.
+This repository contains multiple presentations and a shared Slidev theme.
 
 - Presentations live in `./presentations/`
-- Shared style assets live in `./style/`
+- The shared theme lives in `./theme/`
+- Addons live in `./addons/`
 
 ## Required Slide Workflow
 
@@ -15,17 +16,37 @@ When creating, editing, or validating any presentation in this repo, agents **mu
 2. Use the local Slidev skill at `./.agents/skills/slidev` (see `./.agents/skills/slidev/SKILL.md`) for Slidev-specific guidance and operations.
 3. Prefer editing Slidev source (`slides.md` and related Slidev config/assets) over external presentation formats.
 4. Reuse a single Slidev dev server instance on port `3030` whenever live preview is needed.
-5. When starting that shared dev server from VS Code tasks, pass `--remote --bind 0.0.0.0 -p 3030`.
+5. Start the dev server with `pnpm run deck:dev -- <deck-name>` from the repo root, or `pnpm slidev --remote --bind 0.0.0.0 -p 3030` from within the deck folder. Always pass `--remote --bind 0.0.0.0 -p 3030` so the server is reachable across environments (including WSL2, containers, or remote machines).
 6. Never start additional Slidev dev servers on alternate ports unless the user explicitly asks for that.
 7. Never run Slidev dev servers in the foreground. Treat them as long-running background processes only.
 
+## Theme
+
+The shared theme is `slidev-theme-belastingdienst`, located in `./theme/`.
+
+- Layouts live in `./theme/layouts/` — see `./theme/README.md` for the full reference
+- Components live in `./theme/components/`
+- Global CSS tokens live in `./theme/styles/`
+
+**The template deck at `./presentations/template/` is the primary reference** for what the theme provides. It is self-documenting: every layout and component is demonstrated with usage examples and code snippets. Always consult it before building new slides.
+
+### Addons
+
+- `addons/bd-examples` — template-only explainer components (`Placeholder`, `MeasurementExplainer`, etc.). **Remove this addon when copying the template for a real presentation.** It is not meant for distribution.
+- `addons/reusable-widgets` — optional widgets shared across multiple decks (e.g. `GitLogCompare`). Add this only when a widget is genuinely reused in two or more decks.
+
+### Styling rules
+
+- Always use the CSS custom property tokens (e.g. `var(--bd-domeinkleur-lichtblauw-30)`) for colors and spacing.
+- **Do not use UnoCSS / Tailwind color utilities** such as `bg-blue-100`, `text-blue-900`, `border-gray-300`. These bypass the brand tokens and produce inconsistent results.
+- Layout utilities (`flex`, `grid`, `gap-4`, `w-full`) are fine.
+- Use `Vlak` (with its `shape`, `fill`, `border` props) as the sanctioned way to put content in a styled box. Do not reach for raw `<div style="...">` with hardcoded hex values.
+
 ## Mandatory Style Compliance
 
-All presentation work must **strictly follow** the style guide:
+All presentation work must **strictly follow** the Belastingdienst style guide. The style guide skills (`belastingdienst-huisstijl`, `rijkshuisstijl`) are available as agent skills — use them.
 
-- `./style/STYLE_REFERENCE.md`
-
-This is not optional. Treat this guide as the source of truth for:
+This is not optional. Treat the style guide as the source of truth for:
 
 - typography and color usage
 - composition/layout archetypes
@@ -39,10 +60,10 @@ If a requested slide conflicts with the style guide, adjust the slide to match t
 ## Execution Rules for Agents
 
 - Do not introduce custom visual styles that are not covered by the style guide.
-- Reuse existing style patterns before inventing new ones.
-- Keep style assets centralized in `./style/`.
+- Reuse existing theme components and layouts before inventing new ones.
+- Keep theme-level styling in `./theme/styles/`.
 - Keep presentation-specific content in `./presentations/<presentation-name>/`.
-- When in doubt, choose the strictest interpretation of `./style/STYLE_REFERENCE.md`.
+- When in doubt, choose the strictest interpretation of the style guide.
 
 ## Visual Debugging with Playwright MCP
 
@@ -153,7 +174,7 @@ Chromium is cached globally after the first run; subsequent starts are fast.
 
 For any PR that changes presentation content or styling, agents must include a checklist result based on:
 
-- `./style/STYLE_REFERENCE.md` → section **"9) Slide compliance checklist (quick pass/fail)"**
+- The Belastingdienst style guide (available via the `belastingdienst-huisstijl` skill) → section **"9) Slide compliance checklist (quick pass/fail)"**
 
 Required PR output:
 

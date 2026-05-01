@@ -1,6 +1,6 @@
 <script setup>
 import { computed, useSlots } from 'vue'
-import Ribbon from '../components/Ribbon.vue'
+import Ribbon from '../components/internal/Ribbon.vue'
 import MerktegelOverlay from '../components/MerktegelOverlay.vue'
 import { resolveObjectPosition, toLength, toScale } from '../lib/media-positioning'
 
@@ -20,10 +20,12 @@ const variantFrames = {
 
 const placementFrames = {
   'bottom-right': {
+    width: 'calc(50% - var(--ribbon-x))',
     right: 'var(--ribbon-x)',
     bottom: 'var(--ribbon-x)',
   },
   'bottom-left': {
+    width: 'calc(50% - var(--ribbon-x))',
     left: 'var(--ribbon-x)',
     bottom: 'var(--ribbon-x)',
   },

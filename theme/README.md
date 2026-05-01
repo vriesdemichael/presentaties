@@ -11,10 +11,11 @@ This package is the shared Slidev theme used by decks in this repository.
 Keep this split:
 
 - `theme/` for theme-level styling, layouts, and primitives
+- `addons/bd-examples/` for template-only explainer components (remove when copying the template for a real deck)
 - `addons/reusable-widgets/` for optional visuals reused across multiple decks
 - `presentations/<deck>/components/` for deck-specific one-offs
 
-That keeps the theme reusable without bundling every deck-specific teaching aid into the base package.
+That keeps the theme reusable without bundling every deck-specific teaching aid or example component into the base package.
 
 ## Using the theme in this workspace
 

@@ -11,13 +11,13 @@ function normalizeIconName(value) {
 }
 
 function normalizeItem(item) {
-  const icon = item?.icon ? String(item.icon) : ''
+  const iconSrc = item?.iconSrc ? String(item.iconSrc) : ''
   const iconName = normalizeIconName(item?.iconName)
   const label = item?.label ? String(item.label) : item?.value ? String(item.value) : ''
   const sublabel = item?.sublabel ? String(item.sublabel) : item?.body ? String(item.body) : ''
 
-  if (!icon && !iconName && !label && !sublabel) return null
-  return { icon, iconName, label, sublabel }
+  if (!iconSrc && !iconName && !label && !sublabel) return null
+  return { iconSrc, iconName, label, sublabel }
 }
 
 const renderedItems = computed(() => {
@@ -34,7 +34,6 @@ const renderedItems = computed(() => {
 
   return all
     .slice(0, 6)
-    .map((item) => ({ ...item, iconSrc: item.icon || '' }))
 })
 
 const gridStyle = computed(() => {

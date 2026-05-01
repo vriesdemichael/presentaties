@@ -7,15 +7,16 @@ Skills
 [ ] Explain theme
 
 Theme
-[ ] tiny bottom merktegel component
+[X] tiny bottom merktegel component
 [ ] mermaidjs theme in right style
 [X] statsheet examples
 [X] Explain layouts in the presentation
 [X] Stappen, vlakken en lijnen https://huisstijl.belastingdienst.nl/beeld/infographics/componenten/
 [X] Steps snake around to second row
-[ ] Circle diagram in theme
+[X] Circle diagram in theme
 [X] Vlak with right arrow to indicate blocks of steps
-[ ] Default slidev components with building blocks of theme (vlak, merktegel, etc)
+[X] Default slidev components with building blocks of theme (vlak, merktegel, etc)
+[X] Merktegel fix size https://huisstijl.belastingdienst.nl/basiselementen/merktegel-2/
 
 Cleanup
 [X] split old and new style theme (new in template, old in zeepkist and other presentations)
