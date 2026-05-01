@@ -62,8 +62,7 @@
     </tr>
   </Table>
 
-  Note: even-row striping is not applied when using the default slot
-  because the component no longer controls which rows are rendered.
+  Note: the default style is minimal — horizontal dividers only, no backgrounds or stripes.
   Add row backgrounds inline (as above) or via a class if you need them.
 -->
 <script setup>
@@ -87,7 +86,7 @@ defineProps({
             .bd-table-auto-row scopes the even-row stripe to component-
             rendered rows, so slot-provided rows (level 3) are never overridden.
           -->
-          <tr v-for="(row, rowIndex) in rows" :key="`row-${rowIndex}`" class="bd-table-auto-row">
+          <tr v-for="(row, rowIndex) in rows" :key="`row-${rowIndex}`">
             <td v-for="(cell, cellIndex) in row" :key="`${rowIndex}-${cellIndex}`">
               <slot name="cell" :value="cell" :row="row" :row-index="rowIndex" :col-index="cellIndex">
                 {{ cell }}
@@ -107,7 +106,6 @@ defineProps({
   width: 100%;
   overflow: auto;
   background: transparent;
-  border: 1px solid var(--bd-domeinkleur-lichtblauw-30);
 }
 .bd-table {
   width: 100%;
@@ -121,25 +119,24 @@ defineProps({
  * td can be template-rendered (level 1/2) OR slot-provided (level 3).
  * :deep() makes the selector pierce the slot boundary so level-3 rows
  * receive the same border / padding / background treatment.
+ *
+ * Default style: horizontal lines only (no outer border, no vertical borders).
+ * A slightly heavier bottom border separates the header from the body.
+ * No alternating row background by default — keep it minimal.
  */
 .bd-table th,
 .bd-table :deep(td) {
-  border: 1px solid var(--bd-domeinkleur-lichtblauw-45);
+  border: none;
+  border-bottom: 1px solid var(--bd-domeinkleur-lichtblauw-45);
   padding: 0.55rem 0.7rem;
   text-align: left;
   vertical-align: top;
+  background: transparent;
 }
 .bd-table th {
-  background: var(--bd-domeinkleur-lichtblauw-60);
   color: var(--bd-contrastkleur-lintblauw);
   font-family: var(--bd-font-bold-stack);
   font-weight: 400;
-}
-.bd-table :deep(tbody td) {
-  background: transparent;
-}
-/* Even-row stripe — scoped to auto-rows so level-3 slot rows are unaffected. */
-.bd-table :deep(.bd-table-auto-row:nth-child(even) td) {
-  background: var(--bd-domeinkleur-lichtblauw-15);
+  border-bottom: 2px solid var(--bd-domeinkleur-lichtblauw-60);
 }
 </style>

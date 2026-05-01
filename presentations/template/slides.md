@@ -480,7 +480,7 @@ zonder opmaak per cel.
 
 - `:columns` — array van kopteksten
 - `:rows` — array van rijen; elke rij is een array van celwaarden
-- Afwisselende rijen krijgen automatisch een lichtblauwe streep
+- Standaard: minimale opmaak met alleen horizontale lijnen
 
 </div>
 
