@@ -10,8 +10,9 @@ const props = defineProps({
   showLogo: { type: Boolean, default: true },
   /** Aligns body slot children along the cross-axis (horizontal).
    *  Use 'flex-end' to push a diagram to the right when only the diagram
-   *  is in the body slot and the description lives in pageSubtitle. */
-  contentAlign: { type: String, default: "flex-start" },
+   *  is in the body slot and the description lives in pageSubtitle.
+   *  Defaults to 'stretch' so children fill the full body width. */
+  contentAlign: { type: String, default: "stretch" },
   /** Distributes body slot children along the main-axis (vertical).
    *  Use 'center' to vertically center a single diagram in the body. */
   contentJustify: { type: String, default: "flex-start" },
