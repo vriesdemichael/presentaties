@@ -7,5 +7,10 @@
   ],
   "engines": {
     "slidev": ">=0.50.0"
+  },
+  "slidev": {
+    "defaults": {
+      "favicon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCAxMjUiPjxyZWN0IHdpZHRoPSI1MCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiMxNTQyNzMiLz48cG9seWdvbiBwb2ludHM9IjAsMTAwIDI1LDg1IDUwLDEwMCA1MCwxMjUgMCwxMjUiIGZpbGw9IiMxNTQyNzMiLz48L3N2Zz4="
+    }
   }
 }
