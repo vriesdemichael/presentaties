@@ -963,10 +963,12 @@ sequenceDiagram
 ---
 layout: full-width
 pageTitle: Mermaid — Stroomdiagram
+pageSubtitle: Visualiseer beslissingslogica of processtromen.
+contentJustify: center
 
 ---
 
-Visualiseer beslissingslogica of processtromen.
+<div class="mermaid-wide">
 
 ```mermaid
 flowchart LR
@@ -981,16 +983,22 @@ flowchart LR
     F -->|Nee| X
 ```
 
+</div>
+
+<style>
+.mermaid-wide { width: 100%; }
+.mermaid-wide svg { width: 100% !important; height: auto !important; }
+</style>
+
 ---
 layout: full-width
 pageTitle: Mermaid — Gantt
 pageSubtitle: Toon projectplanning en mijlpalen.
-contentAlign: flex-end
 contentJustify: center
 
 ---
 
-<div class="mermaid-fill">
+<div class="mermaid-wide">
 
 ```mermaid
 gantt
@@ -1010,8 +1018,8 @@ gantt
 </div>
 
 <style>
-.mermaid-fill { width: 60%; }
-.mermaid-fill svg { width: 100% !important; height: auto !important; }
+.mermaid-wide { width: 100%; }
+.mermaid-wide svg { width: 100% !important; height: auto !important; }
 </style>
 
 ---
