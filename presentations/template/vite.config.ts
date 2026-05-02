@@ -1,3 +1,5 @@
+import { roIconsPlugin } from '../../theme/lib/vite-plugin-ro-icons'
+
 export default {
   server: {
     host: '0.0.0.0',
@@ -7,4 +9,7 @@ export default {
       interval: 500,
     },
   },
+  plugins: [
+    roIconsPlugin(),
+  ],
 }

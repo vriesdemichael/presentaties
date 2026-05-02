@@ -853,154 +853,78 @@ Zet `:legend="true"` voor een legendapaneel naast of onder de ring. Gebruik `leg
 
 ---
 layout: split
-pageTitle: Icoontjes met Iconify
-clicks: 2
+pageTitle: RO Icons
+clicks: 1
 
 ---
 
-::left::
-
 <!--
-  Icons in Slidev worden opgelost via @unplugin-icons + Iconify.
-  Installeer een set eenmalig als devDependency, daarna direct bruikbaar.
+  RO Icons: Rijksoverheid glyph font exposed as Iconify-compatible Vue components.
 
-  Beschikbare sets in dit sjabloon:
-    @iconify-json/carbon  →  prefix carbon
-    @iconify-json/ph      →  prefix ph
+  Two APIs available:
 
-  Gebruik:
-    <carbon-home />               single icon
-    <ph-envelope-bold />          met weight variant (thin|light|regular|bold|fill|duotone)
-    <carbon-home class="text-3xl text-bd-lintblauw" />
+  1. Autocomplete-friendly (recommended):
+       <RoIcon name="man_vooraanzicht" />
+     - name prop is typed as RoIconName — IDE autocomplete works
+     - Optional: size="2rem", label="Accessible label"
 
-  Meer sets: https://icones.js.org
-  Zoek iconen: https://icon-sets.iconify.design
+  2. Iconify-style auto-component (no autocomplete):
+       <RoManVooraanzicht />
+     - PascalCase: Ro + icon-name with underscores converted to TitleCase
+
+  Gallery shows all available icons (searchable, live filter).
+  Plugin auto-updates from CDN on dev/build start; falls back to committed cache offline.
 -->
+
+::left::
 
 <div v-if="$clicks === 0">
 
-## Carbon (IBM Design)
+## Gebruik
 
-Professioneel en neutraal — goed voor zakelijke inhoud.
+Aanbevolen — typed prop met autocomplete:
 
 ```html
-<carbon-home />
-<carbon-document />
-<carbon-user-avatar />
-<carbon-warning />
-<carbon-chart-bar />
-<carbon-email />
+<RoIcon name="man_vooraanzicht" />
+<RoIcon name="baby" size="3rem" />
+<RoIcon name="huis" label="Huis" />
 ```
 
-Stijlen als gewone HTML: `class="text-2xl text-bd-lintblauw"`
+Iconify-stijl (geen autocomplete):
+
+```html
+<RoManVooraanzicht />
+<RoBaby class="text-3xl" />
+```
+
+Erft kleur en grootte van de parent.
 
 </div>
 
 <div v-if="$clicks === 1">
 
-## Phosphor Icons
+## Hoe het werkt
 
-Veelzijdige set met zes gewichten.
+Het thema laadt het font van de BD CDN:
+
+```css
+font-family: "RO Icons";
+src: url("https://download.belastingdienst.nl/...")
+```
+
+`<RoIcon>` rendert als een ligature-span:
 
 ```html
-<!-- regulier (standaard) -->
-<ph-house />
-<ph-envelope />
-
-<!-- vet / gevuld -->
-<ph-house-bold />
-<ph-envelope-fill />
-
-<!-- omtrek -->
-<ph-house-thin />
-<ph-envelope-light />
+<span class="bd-ro-icon">man_vooraanzicht</span>
 ```
 
-</div>
-
-<div v-if="$clicks === 2">
-
-## Extra sets installeren
-
-```bash
-# kies een set op https://icones.js.org
-pnpm add -D @iconify-json/mdi
-pnpm add -D @iconify-json/tabler
-pnpm add -D @iconify-json/lucide
-```
-
-Na installatie direct bruikbaar:
-
-```html
-<mdi-account />
-<tabler-home />
-<lucide-user />
-```
-
-Geen extra configuratie nodig.
+Geen SVG-bestanden, geen bundel — altijd actueel.
 
 </div>
 
 ::right::
 
-<div v-if="$clicks === 0" class="icon-demo-grid">
-  <div class="icon-demo-item"><carbon-home class="icon-demo-icon" /><span>home</span></div>
-  <div class="icon-demo-item"><carbon-document class="icon-demo-icon" /><span>document</span></div>
-  <div class="icon-demo-item"><carbon-user-avatar class="icon-demo-icon" /><span>user-avatar</span></div>
-  <div class="icon-demo-item"><carbon-warning class="icon-demo-icon" /><span>warning</span></div>
-  <div class="icon-demo-item"><carbon-chart-bar class="icon-demo-icon" /><span>chart-bar</span></div>
-  <div class="icon-demo-item"><carbon-email class="icon-demo-icon" /><span>email</span></div>
-  <div class="icon-demo-item"><carbon-calendar class="icon-demo-icon" /><span>calendar</span></div>
-  <div class="icon-demo-item"><carbon-settings class="icon-demo-icon" /><span>settings</span></div>
-  <div class="icon-demo-item"><carbon-search class="icon-demo-icon" /><span>search</span></div>
-</div>
-
-<div v-if="$clicks === 1" class="icon-demo-grid">
-  <div class="icon-demo-item"><ph-house class="icon-demo-icon" /><span>house</span></div>
-  <div class="icon-demo-item"><ph-house-bold class="icon-demo-icon" /><span>house-bold</span></div>
-  <div class="icon-demo-item"><ph-house-fill class="icon-demo-icon" /><span>house-fill</span></div>
-  <div class="icon-demo-item"><ph-envelope class="icon-demo-icon" /><span>envelope</span></div>
-  <div class="icon-demo-item"><ph-envelope-bold class="icon-demo-icon" /><span>envelope-bold</span></div>
-  <div class="icon-demo-item"><ph-envelope-fill class="icon-demo-icon" /><span>envelope-fill</span></div>
-  <div class="icon-demo-item"><ph-user class="icon-demo-icon" /><span>user</span></div>
-  <div class="icon-demo-item"><ph-user-bold class="icon-demo-icon" /><span>user-bold</span></div>
-  <div class="icon-demo-item"><ph-user-fill class="icon-demo-icon" /><span>user-fill</span></div>
-</div>
-
-<div v-if="$clicks === 2" style="display:flex; flex-direction:column; justify-content:center; height:100%; gap:1.5rem;">
-  <div style="font-size:13pt; color:var(--bd-tekst-secundair);">Elk geïnstalleerd pakket voegt direct een nieuw prefix toe.</div>
-  <div class="icon-demo-grid" style="grid-template-columns: repeat(4, 1fr);">
-    <div class="icon-demo-item"><carbon-home class="icon-demo-icon" /><span>carbon</span></div>
-    <div class="icon-demo-item"><ph-house class="icon-demo-icon" /><span>ph</span></div>
-    <div class="icon-demo-item" style="opacity:0.35"><carbon-home class="icon-demo-icon" /><span>mdi</span></div>
-    <div class="icon-demo-item" style="opacity:0.35"><carbon-home class="icon-demo-icon" /><span>tabler</span></div>
-  </div>
-  <div style="font-size:9pt; color:var(--bd-tekst-secundair);">Vervaagde sets zijn nog niet geïnstalleerd.</div>
-</div>
-
-<style scoped>
-.icon-demo-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.2rem;
-  align-content: start;
-}
-.icon-demo-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  color: var(--bd-contrastkleur-lintblauw);
-}
-.icon-demo-item span {
-  font-size: 8pt;
-  color: var(--bd-tekst-secundair);
-  text-align: center;
-}
-.icon-demo-icon {
-  font-size: 2.4rem;
-}
-</style>
+<RoIconGallery icon-size="1.6rem" />
 
 ---
 

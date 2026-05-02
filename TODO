@@ -17,6 +17,9 @@ Theme
 [X] Vlak with right arrow to indicate blocks of steps
 [X] Default slidev components with building blocks of theme (vlak, merktegel, etc)
 [X] Merktegel fix size https://huisstijl.belastingdienst.nl/basiselementen/merktegel-2/
+[ ] iconify — RO Icons vite plugin done, RoIcon component + gallery done
+[X] scrollable icon overview
+
 
 Cleanup
 [X] split old and new style theme (new in template, old in zeepkist and other presentations)
@@ -27,6 +30,6 @@ Cleanup
 
 Advanced stuff:
 [ ] Build vue components for the infographics
-[ ] Use iconify to allow usage of multiple icon sets gracefully 
+[ ] Use iconify to allow usage of multiple icon sets gracefully — RO Icons done via vite plugin + RoIcon component
 [ ] Migrate to bitbucket
 
