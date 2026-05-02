@@ -10,7 +10,36 @@
   },
   "slidev": {
     "defaults": {
-      "favicon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCAxMjUiPjxyZWN0IHdpZHRoPSI1MCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiMxNTQyNzMiLz48cG9seWdvbiBwb2ludHM9IjAsMTAwIDI1LDg1IDUwLDEwMCA1MCwxMjUgMCwxMjUiIGZpbGw9IiMxNTQyNzMiLz48L3N2Zz4="
+      "favicon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCAxMjUiPjxyZWN0IHdpZHRoPSI1MCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiMxNTQyNzMiLz48cG9seWdvbiBwb2ludHM9IjAsMTAwIDI1LDg1IDUwLDEwMCA1MCwxMjUgMCwxMjUiIGZpbGw9IiMxNTQyNzMiLz48L3N2Zz4=",
+      "mermaid": {
+        "theme": "base",
+        "themeVariables": {
+          "background": "#ffffff",
+          "primaryColor": "#eef7fc",
+          "primaryTextColor": "#1f2f3f",
+          "primaryBorderColor": "#007bc7",
+          "lineColor": "#154273",
+          "secondaryColor": "#cce7f4",
+          "tertiaryColor": "#bcdef0",
+          "mainBkg": "#eef7fc",
+          "nodeBorder": "#007bc7",
+          "clusterBkg": "#ddeff8",
+          "titleColor": "#154273",
+          "edgeLabelBackground": "#ffffff",
+          "signalColor": "#154273",
+          "signalTextColor": "#1f2f3f",
+          "activationBkgColor": "#cce7f4",
+          "activationBorderColor": "#007bc7",
+          "actorBkg": "#eef7fc",
+          "actorBorder": "#007bc7",
+          "actorTextColor": "#1f2f3f",
+          "actorLineColor": "#154273",
+          "noteBkgColor": "#cce7f4",
+          "noteTextColor": "#1f2f3f",
+          "fontFamily": "ROregular, 'Segoe UI', Arial, sans-serif",
+          "fontSize": "14px"
+        }
+      }
     }
   }
 }

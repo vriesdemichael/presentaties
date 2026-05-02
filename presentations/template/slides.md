@@ -929,6 +929,106 @@ Geen SVG-bestanden, geen bundel — altijd actueel.
 <RoIconGallery icon-size="1.6rem" />
 
 ---
+layout: full-width
+pageTitle: Mermaid — Sequentiediagram
+zoom: 0.65
+
+---
+
+Modelleer interacties tussen systemen of actoren over tijd.
+
+```mermaid
+sequenceDiagram
+    participant B as Burger
+    participant P as MijnBD
+    participant T as Belastingdienst
+    B->>P: Inloggen via DigiD
+    P->>T: Vooringevulde gegevens ophalen
+    T-->>P: Gegevens retour
+    P-->>B: Aangifte vooringevuld
+    B->>P: Aangifte indienen
+    P->>T: Aangifte verwerken
+    T-->>B: Ontvangstbevestiging
+```
+
+---
+layout: full-width
+pageTitle: Mermaid — Stroomdiagram
+zoom: 0.35
+
+---
+
+Visualiseer beslissingslogica of processtromen.
+
+```mermaid
+flowchart TD
+    A([Toeslagaanvraag]) --> B{Inkomen binnen grens?}
+    B -->|Ja| C{Toeslagpartner?}
+    B -->|Nee| X([Afgewezen])
+    C -->|Ja| D[Inkomens combineren]
+    C -->|Nee| E[Eigen inkomen]
+    D --> F{Gecombineerd binnen grens?}
+    E --> F
+    F -->|Ja| G([Toeslag toegekend])
+    F -->|Nee| X
+```
+
+---
+layout: full-width
+pageTitle: Mermaid — Gantt
+
+---
+
+Toon projectplanning en mijlpalen.
+
+```mermaid
+gantt
+    title Portaal migratie
+    dateFormat YYYY-MM-DD
+    section Analyse
+        Requirements          :done, 2026-01-05, 2026-01-30
+        Architectuur          :done, 2026-02-01, 2026-02-28
+    section Ontwikkeling
+        Backend               :active, 2026-03-01, 2026-04-30
+        Frontend              :2026-03-15, 2026-05-15
+    section Testen & livegang
+        Acceptatietest        :2026-05-16, 2026-06-13
+        Productie deployment  :milestone, 2026-06-30, 0d
+```
+
+---
+layout: full-width
+pageTitle: Mermaid — ER-diagram
+zoom: 0.75
+
+---
+
+Modelleer entiteiten en relaties in een datamodel.
+
+```mermaid
+erDiagram
+    BELASTINGPLICHTIGE {
+        string bsn PK
+        string naam
+        date geboortedatum
+    }
+    AANGIFTE {
+        string id PK
+        string bsn FK
+        int belastingjaar
+        decimal te_betalen
+    }
+    TOESLAG {
+        string id PK
+        string bsn FK
+        string type
+        decimal maandbedrag
+    }
+    BELASTINGPLICHTIGE ||--o{ AANGIFTE : "dient in"
+    BELASTINGPLICHTIGE ||--o{ TOESLAG : "ontvangt"
+```
+
+---
 
 <TemplateInfographicArrowDemo />
 

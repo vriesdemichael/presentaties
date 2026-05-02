@@ -4,6 +4,10 @@ export default {
   server: {
     host: '0.0.0.0',
     allowedHosts: true,
+    fs: {
+      strict: false,
+      allow: ['../..'],
+    },
     watch: {
       usePolling: true,
       interval: 500,

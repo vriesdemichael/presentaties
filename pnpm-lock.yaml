@@ -4,6 +4,8 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+packageExtensionsChecksum: sha256-GKYmyXP9d1h8TON41t2GC1HxMR/QVuZ2xdXW97Z46Yo=
+
 importers:
 
   .:
@@ -75,12 +77,6 @@ importers:
         specifier: workspace:*
         version: link:../../theme
     devDependencies:
-      '@iconify-json/carbon':
-        specifier: ^1.2.20
-        version: 1.2.20
-      '@iconify-json/ph':
-        specifier: ^1.2.2
-        version: 1.2.2
       '@slidev/cli':
         specifier: ^52.0.0
         version: 52.14.2(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@nuxt/kit@3.21.2)(@types/markdown-it@14.1.2)(@types/node@22.19.17)(@vue/compiler-sfc@3.5.32)(markdown-it@14.1.1)(playwright-chromium@1.59.1)(postcss@8.5.9)
@@ -5289,6 +5285,7 @@ snapshots:
 
   local-pkg@1.1.2:
     dependencies:
+      '@vue/compiler-sfc': 3.5.32
       mlly: 1.8.2
       pkg-types: 2.3.0
       quansync: 0.2.11
