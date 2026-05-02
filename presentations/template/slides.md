@@ -954,14 +954,13 @@ sequenceDiagram
 ---
 layout: full-width
 pageTitle: Mermaid — Stroomdiagram
-zoom: 0.35
 
 ---
 
 Visualiseer beslissingslogica of processtromen.
 
 ```mermaid
-flowchart TD
+flowchart LR
     A([Toeslagaanvraag]) --> B{Inkomen binnen grens?}
     B -->|Ja| C{Toeslagpartner?}
     B -->|Nee| X([Afgewezen])
