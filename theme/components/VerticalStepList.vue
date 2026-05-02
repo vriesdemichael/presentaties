@@ -216,11 +216,33 @@ const normalizedItems = computed(() =>
  * appears inside the card. No border-radius — matches the square vlak style.
  */
 .bd-vsl-label-cell[data-highlight] {
+  position: relative;
   background: color-mix(in srgb, var(--bd-accentkleur-hemelblauw) 10%, transparent);
-  /* Extend background leftward: gap + dotSize + ribbon-x-quarter (breathing room left of dots) */
+  /*
+   * Left: extend background over the gap + dot column + ribbon breathing room.
+   */
   box-shadow: calc(-1 * (var(--bd-vertical-step-label-gap) + var(--bd-vertical-step-size) + var(--ribbon-x-quarter))) 0 0 0 color-mix(in srgb, var(--bd-accentkleur-hemelblauw) 10%, transparent);
   padding-inline-end: 0.6rem;
   padding-block: 0.4rem;
+}
+
+/*
+ * Extend the highlight band to the right.
+ *
+ * ::after is absolutely positioned starting from the label cell's right edge
+ * and extends 9999px rightward. The nearest overflow:hidden ancestor
+ * (slidev-layout) clips it at the slide boundary — creating a seamless band
+ * that fills to the slide edge regardless of the container's max-width.
+ */
+.bd-vsl-label-cell[data-highlight]::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 9999px;
+  background: color-mix(in srgb, var(--bd-accentkleur-hemelblauw) 10%, transparent);
+  pointer-events: none;
 }
 
 .bd-vsl-label {

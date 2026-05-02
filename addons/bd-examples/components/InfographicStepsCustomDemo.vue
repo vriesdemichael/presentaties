@@ -85,6 +85,7 @@ const timelineItems = [
   flex-direction: column;
   gap: 1.4rem;
   padding: 0.2rem 0;
+  max-width: 50%;
 }
 
 .tl-demo__intro {

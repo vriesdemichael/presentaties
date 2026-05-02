@@ -51,7 +51,7 @@ export default (): MermaidConfig => ({
     taskTextDarkColor: '#154273',
     taskTextOutsideColor: '#154273',
     taskTextClickableColor: '#007bc7',
-    activeTaskBkgColor: '#154273',   // donkerblauw — in-progress (dark → Mermaid auto-selects white text)
+    activeTaskBkgColor: '#8fcae7',   // lichtblauw — in-progress; darker than regular (#cce7f4) for visual prominence, readable with dark navy text
     activeTaskBorderColor: '#007bc7',
     doneTaskBkgColor: '#b2d7ef',     // lighter blue — completed
     doneTaskBorderColor: '#007bc7',
