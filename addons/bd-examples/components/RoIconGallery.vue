@@ -57,12 +57,13 @@ declare module 'virtual:ro-icons/names' {
         placeholder="Zoek icoon…"
         type="search"
       />
-      <label class="ro-icon-gallery-toggle" title="Schakel tussen RoIcon en Iconify-stijl">
+      <label class="ro-icon-gallery-toggle" title="Selecteer de tag-stijl die wordt gekopieerd bij klikken op een icoon">
         <span :class="{ 'ro-icon-gallery-toggle-active': !useIconify }">RoIcon</span>
         <span class="ro-icon-gallery-toggle-track" @click="useIconify = !useIconify">
           <span class="ro-icon-gallery-toggle-thumb" :class="{ 'is-right': useIconify }" />
         </span>
         <span :class="{ 'ro-icon-gallery-toggle-active': useIconify }">Iconify</span>
+        <span class="ro-icon-gallery-toggle-hint">kopieert bij klik</span>
       </label>
       <span class="ro-icon-gallery-count">{{ filtered.length }} / {{ names.length }}</span>
     </div>
@@ -156,6 +157,13 @@ declare module 'virtual:ro-icons/names' {
 
 .ro-icon-gallery-toggle-thumb.is-right {
   left: calc(100% - 0.9rem);
+}
+
+.ro-icon-gallery-toggle-hint {
+  font-size: 0.5rem;
+  color: var(--bd-grijs-90, #999);
+  font-style: italic;
+  white-space: nowrap;
 }
 
 .ro-icon-gallery-count {
