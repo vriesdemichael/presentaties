@@ -1005,6 +1005,59 @@ erDiagram
 </style>
 
 ---
+layout: full-width
+pageTitle: Mermaid — Taartdiagram
+pageSubtitle: Toon verhoudingen en aandelen van een geheel.
+contentAlign: center
+contentJustify: center
+
+---
+
+<div class="mermaid-fill">
+
+```mermaid
+pie title Belastingopbrengsten 2025
+    "Inkomstenbelasting" : 42
+    "BTW" : 31
+    "Vennootschapsbelasting" : 15
+    "Loonheffing" : 8
+    "Overig" : 4
+```
+
+</div>
+
+<style>
+.mermaid-fill { width: 55%; }
+.mermaid-fill svg { width: 100% !important; height: auto !important; }
+</style>
+
+---
+layout: full-width
+pageTitle: Mermaid — XY-grafiek
+pageSubtitle: Toon trends en vergelijkingen over tijd of categorieën.
+zoom: 0.75
+
+---
+
+<div class="mermaid-fill">
+
+```mermaid
+xychart-beta
+    title "Ingediende aangiften per kwartaal"
+    x-axis ["Q1 2023", "Q2 2023", "Q3 2023", "Q4 2023", "Q1 2024", "Q2 2024"]
+    y-axis "Aantal (x1000)" 0 --> 600
+    bar [320, 410, 280, 520, 345, 430]
+    line [310, 395, 290, 505, 350, 440]
+```
+
+</div>
+
+<style>
+.mermaid-fill { width: 100%; }
+.mermaid-fill svg { width: 100% !important; height: auto !important; }
+</style>
+
+---
 
 <TemplateInfographicArrowDemo />
 
