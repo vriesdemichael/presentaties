@@ -897,6 +897,8 @@ Iconify-stijl (geen autocomplete):
 <RoBaby class="text-3xl" />
 ```
 
+Zie ook: [Slidev Icons docs](https://sli.dev/features/icons)
+
 Erft kleur en grootte van de parent.
 
 </div>

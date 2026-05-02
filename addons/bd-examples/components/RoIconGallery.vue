@@ -66,6 +66,13 @@ declare module 'virtual:ro-icons/names' {
         <span class="ro-icon-gallery-toggle-hint">kopieert bij klik</span>
       </label>
       <span class="ro-icon-gallery-count">{{ filtered.length }} / {{ names.length }}</span>
+      <a
+        class="ro-icon-gallery-docs-link"
+        href="https://sli.dev/features/icons"
+        target="_blank"
+        rel="noopener"
+        title="Slidev Icons documentatie"
+      >docs ↗</a>
     </div>
     <div class="ro-icon-gallery-grid">
       <div
@@ -166,7 +173,20 @@ declare module 'virtual:ro-icons/names' {
   white-space: nowrap;
 }
 
-.ro-icon-gallery-count {
+.ro-icon-gallery-docs-link {
+  font-size: 0.6rem;
+  color: var(--bd-domeinkleur-lichtblauw, #007bc7);
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+.ro-icon-gallery-docs-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+
   font-size: 0.65rem;
   color: var(--bd-grijs-90, #666);
   white-space: nowrap;
