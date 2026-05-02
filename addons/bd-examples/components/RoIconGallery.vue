@@ -186,7 +186,7 @@ declare module 'virtual:ro-icons/names' {
   text-decoration: underline;
 }
 
-
+.ro-icon-gallery-count {
   font-size: 0.65rem;
   color: var(--bd-grijs-90, #666);
   white-space: nowrap;
