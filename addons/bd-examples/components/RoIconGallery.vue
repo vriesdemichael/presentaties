@@ -13,12 +13,31 @@ withDefaults(defineProps<{
 })
 
 const filter = ref('')
+const useIconify = ref(false)
+const copiedName = ref<string | null>(null)
 
 const filtered = computed<string[]>(() =>
   filter.value
     ? names.filter((n: string) => n.toLowerCase().includes(filter.value.toLowerCase()))
     : names
 )
+
+/** man_vooraanzicht → RoManVooraanzicht */
+function toPascal(name: string): string {
+  return 'Ro' + name.split(/[_-]/).map((s: string) => s.charAt(0).toUpperCase() + s.slice(1)).join('')
+}
+
+function tagFor(name: string): string {
+  return useIconify.value
+    ? `<${toPascal(name)} />`
+    : `<RoIcon name="${name}" />`
+}
+
+async function copyTag(name: string) {
+  await navigator.clipboard.writeText(tagFor(name))
+  copiedName.value = name
+  setTimeout(() => { copiedName.value = null }, 1200)
+}
 </script>
 
 <script lang="ts">
@@ -38,6 +57,13 @@ declare module 'virtual:ro-icons/names' {
         placeholder="Zoek icoon…"
         type="search"
       />
+      <label class="ro-icon-gallery-toggle" title="Schakel tussen RoIcon en Iconify-stijl">
+        <span :class="{ 'ro-icon-gallery-toggle-active': !useIconify }">RoIcon</span>
+        <span class="ro-icon-gallery-toggle-track" @click="useIconify = !useIconify">
+          <span class="ro-icon-gallery-toggle-thumb" :class="{ 'is-right': useIconify }" />
+        </span>
+        <span :class="{ 'ro-icon-gallery-toggle-active': useIconify }">Iconify</span>
+      </label>
       <span class="ro-icon-gallery-count">{{ filtered.length }} / {{ names.length }}</span>
     </div>
     <div class="ro-icon-gallery-grid">
@@ -45,14 +71,18 @@ declare module 'virtual:ro-icons/names' {
         v-for="name in filtered"
         :key="name"
         class="ro-icon-gallery-item"
-        :title="name"
+        :class="{ 'is-copied': copiedName === name }"
+        :title="tagFor(name)"
+        @click="copyTag(name)"
       >
         <span
           class="bd-ro-icon ro-icon-gallery-glyph"
           :style="{ fontSize: iconSize }"
           aria-hidden="true"
         >{{ name }}</span>
-        <span class="ro-icon-gallery-label">{{ name }}</span>
+        <span class="ro-icon-gallery-label">
+          {{ copiedName === name ? '✓ gekopieerd' : name }}
+        </span>
       </div>
     </div>
   </div>
@@ -87,6 +117,47 @@ declare module 'virtual:ro-icons/names' {
   border-color: var(--bd-domeinkleur-lichtblauw, #007bc7);
 }
 
+/* Toggle */
+.ro-icon-gallery-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.6rem;
+  color: var(--bd-grijs-90, #666);
+  user-select: none;
+  cursor: pointer;
+}
+
+.ro-icon-gallery-toggle-active {
+  color: var(--bd-domeinkleur-donkerblauw, #154273);
+  font-weight: 600;
+}
+
+.ro-icon-gallery-toggle-track {
+  position: relative;
+  width: 2rem;
+  height: 1rem;
+  background: var(--bd-grijs-midden, #ccc);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ro-icon-gallery-toggle-thumb {
+  position: absolute;
+  top: 0.1rem;
+  left: 0.1rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  background: white;
+  border-radius: 50%;
+  transition: left 0.2s;
+}
+
+.ro-icon-gallery-toggle-thumb.is-right {
+  left: calc(100% - 0.9rem);
+}
+
 .ro-icon-gallery-count {
   font-size: 0.65rem;
   color: var(--bd-grijs-90, #666);
@@ -113,12 +184,16 @@ declare module 'virtual:ro-icons/names' {
   text-align: center;
   padding: 0.3rem 0.2rem;
   border-radius: 4px;
-  cursor: default;
+  cursor: pointer;
   transition: background 0.15s;
 }
 
 .ro-icon-gallery-item:hover {
   background: var(--bd-grijs-licht, #f5f5f5);
+}
+
+.ro-icon-gallery-item.is-copied {
+  background: var(--bd-status-success-licht, #e8f5e9);
 }
 
 .ro-icon-gallery-glyph {
@@ -132,6 +207,11 @@ declare module 'virtual:ro-icons/names' {
   color: var(--bd-grijs-90, #404040);
   word-break: break-word;
   line-height: 1.2;
+}
+
+.ro-icon-gallery-item.is-copied .ro-icon-gallery-label {
+  color: var(--bd-status-success, #2e7d32);
+  font-weight: 600;
 }
 </style>
 
