@@ -7,3 +7,5 @@ dist/
 presentations/template/export-png/
 presentations/template/slides-export/
 presentations/template/*.pdf
+# Debug/temp screenshots created at repo root (e.g. by Playwright MCP)
+/*.png
