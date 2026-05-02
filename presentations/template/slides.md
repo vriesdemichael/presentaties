@@ -931,11 +931,13 @@ Geen SVG-bestanden, geen bundel — altijd actueel.
 ---
 layout: full-width
 pageTitle: Mermaid — Sequentiediagram
-zoom: 0.65
+pageSubtitle: Modelleer interacties tussen systemen of actoren over tijd.
+contentAlign: flex-end
+contentJustify: center
 
 ---
 
-Modelleer interacties tussen systemen of actoren over tijd.
+<div class="mermaid-fill">
 
 ```mermaid
 sequenceDiagram
@@ -950,6 +952,13 @@ sequenceDiagram
     P->>T: Aangifte verwerken
     T-->>B: Ontvangstbevestiging
 ```
+
+</div>
+
+<style>
+.mermaid-fill { width: 60%; }
+.mermaid-fill svg { width: 100% !important; height: auto !important; }
+</style>
 
 ---
 layout: full-width
@@ -975,10 +984,13 @@ flowchart LR
 ---
 layout: full-width
 pageTitle: Mermaid — Gantt
+pageSubtitle: Toon projectplanning en mijlpalen.
+contentAlign: flex-end
+contentJustify: center
 
 ---
 
-Toon projectplanning en mijlpalen.
+<div class="mermaid-fill">
 
 ```mermaid
 gantt
@@ -995,14 +1007,23 @@ gantt
         Productie deployment  :milestone, 2026-06-30, 0d
 ```
 
+</div>
+
+<style>
+.mermaid-fill { width: 60%; }
+.mermaid-fill svg { width: 100% !important; height: auto !important; }
+</style>
+
 ---
 layout: full-width
 pageTitle: Mermaid — ER-diagram
-zoom: 0.75
+pageSubtitle: Modelleer entiteiten en relaties in een datamodel.
+contentAlign: flex-end
+contentJustify: center
 
 ---
 
-Modelleer entiteiten en relaties in een datamodel.
+<div class="mermaid-fill">
 
 ```mermaid
 erDiagram
@@ -1026,6 +1047,13 @@ erDiagram
     BELASTINGPLICHTIGE ||--o{ AANGIFTE : "dient in"
     BELASTINGPLICHTIGE ||--o{ TOESLAG : "ontvangt"
 ```
+
+</div>
+
+<style>
+.mermaid-fill { width: 60%; }
+.mermaid-fill svg { width: 100% !important; height: auto !important; }
+</style>
 
 ---
 

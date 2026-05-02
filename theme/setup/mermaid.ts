@@ -51,13 +51,13 @@ export default (): MermaidConfig => ({
     taskTextDarkColor: '#154273',
     taskTextOutsideColor: '#154273',
     taskTextClickableColor: '#007bc7',
-    activeTaskBkgColor: '#007bc7',   // hemelblauw — in-progress
-    activeTaskBorderColor: '#154273',
+    activeTaskBkgColor: '#154273',   // donkerblauw — in-progress (dark → Mermaid auto-selects white text)
+    activeTaskBorderColor: '#007bc7',
     doneTaskBkgColor: '#b2d7ef',     // lighter blue — completed
     doneTaskBorderColor: '#007bc7',
     critBkgColor: '#d52b1e',         // rood — critical path (semantic)
     critBorderColor: '#9c1b14',
-    todayLineColor: '#d52b1e',       // rood — today indicator
+    todayLineColor: '#e17000',       // signaalkleur-oranje — distinct from critBkgColor red
 
     // ── ER diagram ──────────────────────────────────────────────────────────
     attributeBackgroundColorEven: '#eef7fc',

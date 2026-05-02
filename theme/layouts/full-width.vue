@@ -8,6 +8,13 @@ const props = defineProps({
   background: { type: String, default: "#ffffff" },
   contentPadding: { type: String, default: "0" },
   showLogo: { type: Boolean, default: true },
+  /** Aligns body slot children along the cross-axis (horizontal).
+   *  Use 'flex-end' to push a diagram to the right when only the diagram
+   *  is in the body slot and the description lives in pageSubtitle. */
+  contentAlign: { type: String, default: "flex-start" },
+  /** Distributes body slot children along the main-axis (vertical).
+   *  Use 'center' to vertically center a single diagram in the body. */
+  contentJustify: { type: String, default: "flex-start" },
 });
 </script>
 
@@ -106,6 +113,8 @@ const props = defineProps({
 .bd-full-width-bd-body {
   display: flex;
   flex-direction: column;
+  align-items: v-bind(contentAlign);
+  justify-content: v-bind(contentJustify);
   gap: var(--ribbon-x);
   min-height: 0;
   height: 100%;
