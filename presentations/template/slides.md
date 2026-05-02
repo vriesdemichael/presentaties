@@ -505,18 +505,17 @@ Maximale controle: schrijf de rijen zelf als `<tr>` en `<td>`.
 Kopteksten komen nog van `:columns`, de body is volledig vrij.
 
 - Gebruik voor samengevoegde cellen, meerdere regels of rijhighlights
-- Even-rij-striping vervalt; voeg zelf `background` toe op `<td>`
-- Totaalrijen: gebruik `border-top` in plaats van een achtergrondkleur
+- Row striping does not apply; add `background` inline on `<td>` if needed
+- Totaalrijen: gebruik `border-top` om het einde van de data aan te geven
 
 </div>
 
 ::right::
 
 <!--
-  Niveau 1: props only.
+  Level 1: props only.
   columns = array of header labels (strings).
   rows    = array of rows; each row is an array of cell values (strings).
-  Even rows get a light-blue stripe automatically.
 -->
 <Table
   v-if="$clicks === 0"
@@ -562,10 +561,10 @@ Kopteksten komen nog van `:columns`, de body is volledig vrij.
 </Table>
 
 <!--
-  Niveau 3: default slot — full row control.
+  Level 3: default slot — full row control.
   - Write <tr> and <td> elements yourself inside <Table>.
   - :columns still drives the header row.
-  - Even-row striping no longer applies; add backgrounds inline on <td>.
+  - Row striping does not apply; add backgrounds inline on <td> if needed.
   - Total rows: use a top border to signal "end of data".
 -->
 <Table v-else :columns="['Kanaal', 'Score', 'Toelichting']">
@@ -606,43 +605,121 @@ Kopteksten komen nog van `:columns`, de body is volledig vrij.
 
 ---
 layout: split
-pageTitle: Kleurkeuze in grafiek
+pageTitle: BarChart
 rightBackground: "#edf4f8"
+clicks: 2
 
 ---
 
 ::left::
 
-## Opbouw van het palet
+<!--
+  BarChart — gebruik bars[] voor gestapelde (horizontal) of gegroepeerde (vertical) balkgrafieken.
+  Klik door om de drie varianten te zien.
+-->
 
-- Lichtblauw is de hoofdkleur: corporate en rustgevend voor de grafiek
-- Donkerblauw draagt titels en labels voor leesbaarheid
-- De bleke ondergrond houdt de grafiek visueel los van het tekstvlak
+<div v-if="$clicks === 0">
 
-## Accentkleuren voor nadruk
+## Enkelvoudige balk
 
-- Magenta en oranje markeren uitzonderingen of onderscheidende reeksen
-- De extra blauwtint geeft hiërarchie binnen een dataserie zonder het palet te verstoren
-- Zo blijft de grafiek herkenbaar Belastingdienst én goed scanbaar
+Eén reeks — legenda wordt automatisch verborgen.
+
+```vue
+<BarChart
+  title="Klanttevredenheid"
+  :bars="[
+    { label: 'Telefonie', values: { Score: 72 } },
+    { label: 'Post',      values: { Score: 58 } },
+    { label: 'Online',    values: { Score: 85 } },
+  ]"
+/>
+```
+
+Props: `bars`, `title`, `showValues`, `labelWidth`, `max`
+
+</div>
+
+<div v-if="$clicks === 1">
+
+## Gestapelde balk (horizontal)
+
+Meerdere reeksen per balk, proportioneel gestapeld op 100%.
+
+```vue
+<BarChart
+  :bars="[
+    { label: 'Telefonie',
+      values: { Tevreden: 70, Neutraal: 20, Ontevreden: 10 } },
+    { label: 'Post',
+      values: { Tevreden: 45, Neutraal: 30, Ontevreden: 25 } },
+  ]"
+  :showValues="true"
+/>
+```
+
+Props: ook `series` voor kleuroverschrijving
+
+</div>
+
+<div v-if="$clicks === 2">
+
+## Gegroepeerde kolommen (vertical)
+
+Elke label-groep toont één kolom per reeks naast elkaar.
+
+```vue
+<BarChart
+  direction="vertical"
+  :bars="[
+    { label: 'Q1', values: { 'Kanaal A': 42, 'Kanaal B': 28 } },
+    { label: 'Q2', values: { 'Kanaal A': 55, 'Kanaal B': 37 } },
+    { label: 'Q3', values: { 'Kanaal A': 61, 'Kanaal B': 44 } },
+  ]"
+  :showValues="true"
+/>
+```
+
+Props: `direction="vertical"`, `legend`, `max`
+
+</div>
 
 ::right::
 
 <BarChart
-  title="Grafiektitel"
-  :rows="[
-    { label: 'Categorie 1', segments: [{ width: '42%', color: 'var(--bd-domeinkleur-lichtblauw)' }, { width: '8%', color: 'var(--bd-accentkleur-hemelblauw)' }, { width: '8%', color: 'var(--bd-accentkleur-violet)' }, { width: '7%', color: 'var(--bd-accentkleur-oranje)' }] },
-    { label: 'Categorie 1', segments: [{ width: '7%', color: 'var(--bd-domeinkleur-lichtblauw-60)' }, { width: '7%', color: 'var(--bd-domeinkleur-lichtblauw)' }, { width: '7%', color: 'var(--bd-accentkleur-hemelblauw)' }, { width: '5%', color: 'var(--bd-accentkleur-violet)' }, { width: '4%', color: 'var(--bd-accentkleur-oranje)' }] },
-    { label: 'Categorie 2', segments: [{ width: '9%', color: 'var(--bd-domeinkleur-lichtblauw)' }, { width: '8%', color: 'var(--bd-accentkleur-hemelblauw)' }, { width: '8%', color: 'var(--bd-accentkleur-violet)' }, { width: '26%', color: 'var(--bd-accentkleur-oranje)' }] },
-    { label: 'Categorie 1', segments: [{ width: '13%', color: 'var(--bd-domeinkleur-lichtblauw)' }, { width: '8%', color: 'var(--bd-accentkleur-hemelblauw)' }, { width: '9%', color: 'var(--bd-accentkleur-violet)' }, { width: '4%', color: 'var(--bd-accentkleur-oranje)' }] },
+  v-if="$clicks === 0"
+  title="Klanttevredenheid"
+  :bars="[
+    { label: 'Telefonie', values: { Score: 72 } },
+    { label: 'Post',      values: { Score: 58 } },
+    { label: 'Online',    values: { Score: 85 } },
+    { label: 'App',       values: { Score: 91 } },
   ]"
-  :legend="[
-    { label: 'Reeks 1', color: 'var(--bd-domeinkleur-lichtblauw-60)' },
-    { label: 'Reeks 2', color: 'var(--bd-domeinkleur-lichtblauw)' },
-    { label: 'Reeks 3', color: 'var(--bd-accentkleur-hemelblauw)' },
-    { label: 'Reeks 4', color: 'var(--bd-domeinkleur-lichtblauw-30)' },
-    { label: 'Reeks 5', color: 'var(--bd-accentkleur-violet)' },
-    { label: 'Reeks 6', color: 'var(--bd-accentkleur-oranje)' },
+  :showValues="true"
+/>
+
+<BarChart
+  v-if="$clicks === 1"
+  title="Tevredenheid per kanaal"
+  :bars="[
+    { label: 'Telefonie', values: { Tevreden: 70, Neutraal: 20, Ontevreden: 10 } },
+    { label: 'Post',      values: { Tevreden: 45, Neutraal: 30, Ontevreden: 25 } },
+    { label: 'Online',    values: { Tevreden: 80, Neutraal: 15, Ontevreden: 5 } },
+    { label: 'App',       values: { Tevreden: 88, Neutraal: 10, Ontevreden: 2 } },
   ]"
+  :showValues="true"
+/>
+
+<BarChart
+  v-if="$clicks === 2"
+  direction="vertical"
+  title="Contactvolume per kwartaal"
+  :bars="[
+    { label: 'Q1', values: { 'Kanaal A': 42, 'Kanaal B': 28 } },
+    { label: 'Q2', values: { 'Kanaal A': 55, 'Kanaal B': 37 } },
+    { label: 'Q3', values: { 'Kanaal A': 61, 'Kanaal B': 44 } },
+    { label: 'Q4', values: { 'Kanaal A': 70, 'Kanaal B': 52 } },
+  ]"
+  :showValues="true"
 />
 
 ---
