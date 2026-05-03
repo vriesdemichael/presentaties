@@ -1083,30 +1083,40 @@ pageTitle: Infographic voorbeeld - van melding naar uitkomst
 layout: full-width
 showLogo: true
 pageTitle: StepSeriesJoin — slangverbinding
+zoom: 0.65
 
 ---
 
-Gebruik **StepSeriesJoin** voor een stappenlijn die over twee rijen loopt. De component tekent de S-vormige verbindingslijn automatisch op basis van de werkelijke afmetingen. Gebruik `step-gap` om de horizontale ruimte tussen stappen te regelen; gebruik `row-gap` voor de verticale afstand.
+Gebruik **StepSeriesJoin** voor een stappenlijn die over twee rijen loopt. De component tekent de S-vormige verbindingslijn automatisch op basis van de werkelijke afmetingen. Gebruik `step-gap` voor horizontale ruimte; `row-gap` voor verticale afstand.
 
 ```vue
 <StepSeriesJoin
   step-gap="3rem"
-  :row1="[
-    { label: '1', caption: 'Stap A', body: '...' },
-    { label: '2', caption: 'Stap B', body: '...' },
-  ]"
-  :row2="[
-    { label: '3', caption: 'Stap C', body: '...' },
-    { label: '4', caption: 'Stap D', body: '...' },
-  ]"
+  :row1="[{ label: '1', caption: 'Stap A', body: '...' }, ...]"
+  :row2="[{ label: '3', caption: 'Stap C', body: '...' }, ...]"
 />
 ```
 
-> Zie de voorgaande slide voor een volledig voorbeeld met 8 stappen.
+<StepSeriesJoin
+  step-gap="3rem"
+  :row1="[
+    { label: '1', caption: 'Aangifte',    body: 'Belastingplichtige doet aangifte online' },
+    { label: '2', caption: 'Ontvangst',   body: 'Belastingdienst ontvangt het verzoek' },
+    { label: '3', caption: 'Controle',    body: 'Gegevens worden gevalideerd' },
+    { label: '4', caption: 'Beoordeling', body: 'Inhoudelijke toetsing door de inspecteur' },
+  ]"
+  :row2="[
+    { label: '5', caption: 'Uitspraak',   body: 'Bezwaar afgehandeld' },
+    { label: '6', caption: 'Beschikking', body: 'Definitieve aanslag vastgesteld' },
+    { label: '7', caption: 'Uitbetaling', body: 'Teruggaaf overgemaakt' },
+    { label: '8', caption: 'Archief',     body: 'Dossier afgesloten en opgeslagen' },
+  ]"
+/>
 
 ---
 layout: full-width
 pageTitle: HighlightsGrid — kerngetallen
+zoom: 0.8
 
 ---
 
@@ -1122,6 +1132,8 @@ Gebruik **HighlightsGrid** voor een rij met prominente cijfers of statistieken, 
 <HighlightsGrid :items="[
   { iconName: 'financien', label: '404,8 miljard', sublabel: 'Verwachte\nBelastingontvangsten' },
   { iconName: 'groep_mensen', label: '8,7 miljoen', sublabel: 'Aangiften\nInkomstenbelasting' },
+  { iconName: 'zakenman', label: '24,9 miljoen', sublabel: 'Aangiften\nMKB' },
+  { iconName: 'gebouw_vws', label: '1,1 miljoen', sublabel: 'Aangiften\nGrote ondernemingen' },
 ]" />
 
 ---
