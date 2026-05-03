@@ -74,7 +74,6 @@ chapterTitle: Inhoudsopgave
     { label: 'Maten en stijl', detail: 'Maatvoering en tekstopmaak' },
     { label: 'Herbruikbare layouts', detail: 'Layouts en kleurinstellingen' },
     { label: 'Herbruikbare componenten', detail: 'Tabellen, diagrammen en infographic componenten' },
-    { label: 'Voorbeelden', detail: 'Infographics en merktegelslides' },
   ]"
 />
 
@@ -212,7 +211,7 @@ Zo blijft de presentatie consistent met de huisstijl.
 
 ---
 layout: chapter
-chapterNumber: "Voorbeelden"
+chapterNumber: "03"
 chapterTitle: Herbruikbare layouts
 image: /images/voorbeeld-foto-2.jpg
 
@@ -331,7 +330,7 @@ pageTitle: Mijn titel
 ---
 layout: chapter
 variant: content-right
-chapterNumber: "03"
+chapterNumber: "04"
 
 ---
 
@@ -1083,16 +1082,26 @@ pageTitle: Infographic voorbeeld - van melding naar uitkomst
 ---
 layout: full-width
 showLogo: true
-pageTitle: StepSeries - slangverbinding over twee rijen
+pageTitle: StepSeriesJoin — slangverbinding
 
 ---
 
-<!--
-  Boustrophedon (slang): acht stappen verdeeld over twee rijen, verbonden door
-  een S-vormige lijn. StepSeriesJoin neemt row1 en row2 als arrays en tekent
-  de verbindingslijn automatisch op basis van de werkelijke afmetingen.
-  Gebruik row-gap om de verticale ruimte tussen de rijen te regelen.
--->
+Gebruik **StepSeriesJoin** voor een stappenlijn die over twee rijen loopt. De component tekent de S-vormige verbindingslijn automatisch op basis van de werkelijke afmetingen. Gebruik `step-gap` om de horizontale ruimte tussen stappen te regelen; gebruik `row-gap` voor de verticale afstand.
+
+```vue
+<StepSeriesJoin
+  step-gap="3rem"
+  :row1="[
+    { label: '1', caption: 'Stap A', body: '...' },
+    { label: '2', caption: 'Stap B', body: '...' },
+  ]"
+  :row2="[
+    { label: '3', caption: 'Stap C', body: '...' },
+    { label: '4', caption: 'Stap D', body: '...' },
+  ]"
+/>
+```
+
 <StepSeriesJoin
   step-gap="3rem"
   :row1="[
@@ -1111,9 +1120,18 @@ pageTitle: StepSeries - slangverbinding over twee rijen
 
 ---
 layout: full-width
-pageTitle: Eerlijk en zorgvuldig belasting heffen en innen
+pageTitle: HighlightsGrid — kerngetallen
 
 ---
+
+Gebruik **HighlightsGrid** voor een rij met prominente cijfers of statistieken, elk met een icoon, een label en een sublabel. Geschikt voor opvallende feiten op de voorkant van een sectie.
+
+```vue
+<HighlightsGrid :items="[
+  { iconName: 'financien', label: '404,8 miljard', sublabel: 'Verwachte\nBelastingontvangsten' },
+  { iconName: 'groep_mensen', label: '8,7 miljoen', sublabel: 'Aangiften\nInkomstenbelasting' },
+]" />
+```
 
 <HighlightsGrid :items="[
   { iconName: 'financien', label: '404,8 miljard', sublabel: 'Verwachte\nBelastingontvangsten' },
