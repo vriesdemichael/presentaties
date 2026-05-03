@@ -3,7 +3,7 @@ theme: slidev-theme-belastingdienst
 addons:
   - bd-examples
   - reusable-widgets
-title: Slidev belastingdienst thema — demonstratie
+title: Belastingdienst thema: demonstratie
 info: |
   Volledig overzicht van alle layouts en componenten in het slidev-theme-belastingdienst thema.
 class: text-left
@@ -27,7 +27,7 @@ date: 2026
 
 ::title::
 
-Slidev belastingdienst thema
+Belastingdienst thema
 **Thema-demonstratie**
 
 ::footer::
@@ -47,7 +47,7 @@ Use this deck to:
   - verify that theme changes render correctly
 
 To start a new presentation, copy presentations/template/ instead.
-This deck is not meant to be copied — it uses the bd-examples addon
+This deck is not meant to be copied: it uses the bd-examples addon
 for demo-only helper components that should not appear in real decks.
 -->
 
@@ -91,7 +91,7 @@ rows:
 - iconName: rijkshuisstijl
   lead: Belastingdienst huisstijl
   body: Gebaseerd op Rijkshuisstijl en merkrichtlijnen
-- iconName: intelligence
+- iconName: computer
   lead: Eenvoudig met AI
   body: Maak presentaties met een coding agent
 
@@ -111,17 +111,16 @@ pageTitle: Over deze demonstratiedeck
 
 Dit is de **thema-demonstratie** voor `slidev-theme-belastingdienst`. Elke layout en elk component van het thema is hier gedemonstreerd met uitleg en voorbeeldcode.
 
-Gebruik deze deck als **naslagwerk** bij het opbouwen van een nieuwe presentatie — niet als startpunt om te kopiëren. Het `bd-examples` addon bevat demo-helpersdie niet bedoeld zijn voor echte presentaties.
+Gebruik deze deck als **naslagwerk** bij het opbouwen van een nieuwe presentatie: niet als startpunt om te kopiëren. Het `bd-examples` addon bevat demo-helpers die niet bedoeld zijn voor echte presentaties.
 
 ::right::
 
 ## Opbouw
 
-- **Lint als maatvoering** — de basiseenheid `X`
-- **Typografie & kleuren** — beschikbare tekststijlen en tokens
-- **Herbruikbare layouts** — alle layoutvarianten met voorbeeldcode
-- **Herbruikbare componenten** — Vlak, Tabel, DonutChart, HighlightsGrid, StepSeries en meer
-- **Compositie-voorbeelden** — complete slides als inspiratie
+- **Lint als maatvoering**: de basiseenheid `X`
+- **Typografie en kleuren**: beschikbare tekststijlen en tokens
+- **Herbruikbare layouts**: alle layoutvarianten met voorbeeldcode
+- **Herbruikbare componenten**: Vlak, Tabel, DonutChart, HighlightsGrid, StepSeries en meer
 
 Voor een nieuwe presentatie: gebruik `presentations/template/` als startpunt.
 
@@ -167,7 +166,7 @@ rightBackground: "#8FCAE7"
 Schrijf `## Koptekst` voor een kop op 20pt (h2). Gebruik `#` voor 26pt (h1)
 of `###` voor 16pt (h3). De paginatitel bovenaan is altijd 19pt via `pageTitle`.
 
-## Bodytekst en lijsten — 12pt
+## Bodytekst en lijsten (12pt)
 
 - Gewone alinea's en lijstitems renderen op 12pt
 - Gebruik `**vet**` of `_cursief_` voor nadruk
@@ -176,13 +175,13 @@ of `###` voor 16pt (h3). De paginatitel bovenaan is altijd 19pt via `pageTitle`.
 ::right::
 
 <div style="display: grid; gap: 0.5rem; align-content: start; color: var(--bd-contrastkleur-lintblauw);">
-  <div style="font-size: 26pt; line-height: 1.1;"># H1 — 26pt</div>
-  <div style="font-size: 20pt; line-height: 1.1;">## H2 — 20pt</div>
-  <div style="font-size: 16pt; line-height: 1.1;">### H3 — 16pt</div>
-  <div style="font-size: 13pt; line-height: 1.1;">#### H4 — 13pt</div>
-  <div style="font-size: 12pt; line-height: 1.3; margin-top: 0.5rem;">Bodytekst — 12pt</div>
-  <div style="font-size: 19pt; line-height: 1.1; margin-top: 0.5rem; opacity: 0.6;">pageTitle — 19pt</div>
-  <div style="font-size: 28pt; line-height: 1.1; opacity: 0.6;">display (split) — 28pt</div>
+  <div style="font-size: 26pt; line-height: 1.1;"># H1 (26pt)</div>
+  <div style="font-size: 20pt; line-height: 1.1;">## H2 (20pt)</div>
+  <div style="font-size: 16pt; line-height: 1.1;">### H3 (16pt)</div>
+  <div style="font-size: 13pt; line-height: 1.1;">#### H4 (13pt)</div>
+  <div style="font-size: 12pt; line-height: 1.3; margin-top: 0.5rem;">Bodytekst (12pt)</div>
+  <div style="font-size: 19pt; line-height: 1.1; margin-top: 0.5rem; opacity: 0.6;">pageTitle (19pt)</div>
+  <div style="font-size: 28pt; line-height: 1.1; opacity: 0.6;">display, split (28pt)</div>
 </div>
 
 ---
@@ -199,11 +198,11 @@ rightBackground: "#ffffff"
 Gebruik altijd de token-naam, nooit een vaste hex.
 Zo blijft de presentatie consistent met de huisstijl.
 
-- **Lintblauw** — koppen, iconen, dominante UI-elementen
-- **Lichtblauw-tints** — achtergronden, strepen, panels
-- **Accentkleuren** — dataseries in grafieken, highlights
-- **Signaalkleur** — status en waarschuwingen
-- **Tekst** — bodytekst en secundaire labels
+- **Lintblauw**: koppen, iconen, dominante UI-elementen
+- **Lichtblauw-tints**: achtergronden, strepen, panels
+- **Accentkleuren**: dataseries in grafieken, highlights
+- **Signaalkleur**: status en waarschuwingen
+- **Tekst**: bodytekst en secundaire labels
 
 ::right::
 
@@ -286,7 +285,7 @@ rightBackground: "#ffffff"
 
 ::left::
 
-In de split-layout heeft elk deelgebied zijn eigen contentgrenzen. Visuele content die je in een van de twee panelen plaatst past zich aan de contentbox aan — de randen worden gehandhaafd.
+In de split-layout heeft elk deelgebied zijn eigen contentgrenzen. Visuele content die je in een van de twee panelen plaatst past zich aan de contentbox aan. De randen worden gehandhaafd.
 
 ```md
 ---
@@ -310,7 +309,7 @@ pageTitle: Tekst naast beeldvlak
 ---
 layout: full-width
 pageTitle: Volledig scherm
-pageSubtitle: Inhoudsgebied loopt door tot de rechterrand — geen rechter inhoudsgrens.
+pageSubtitle: Inhoudsgebied loopt door tot de rechterrand; geen rechter inhoudsgrens.
 
 ---
 
@@ -376,7 +375,7 @@ pageTitle: Vlak
 
 <div style="display:flex; gap:2rem; align-items:flex-start; margin-bottom:1.5rem;">
   <Vlak shape="speech-bottom-right" fill="var(--bd-domeinkleur-lichtblauw-30)" padding="1rem" style="flex:1; min-width:0;">
-    Gebruik <code>shape="speech-bottom-right"</code> voor een tekstballon met staart rechtsonder — handig bij citaten of uitleg naast een afbeelding.
+    Gebruik <code>shape="speech-bottom-right"</code> voor een tekstballon met staart rechtsonder: handig bij citaten of uitleg naast een afbeelding.
   </Vlak>
   <Vlak fill="var(--bd-domeinkleur-lichtblauw-30)" variant="info-grid" :columns="2"
     :items="['Het info-grid-variant verdeelt de inhoud in een raster. Geef <code>:columns</code> mee voor het aantal kolommen.', 'De tweede kolom komt hier']"
@@ -425,8 +424,8 @@ De eenvoudigste manier: geef kolommen en rijen als arrays mee.
 Alle celinhoud is platte tekst. Gebruik dit niveau voor feitentabellen
 zonder opmaak per cel.
 
-- `:columns` — array van kopteksten
-- `:rows` — array van rijen; elke rij is een array van celwaarden
+- `:columns`: array van kopteksten
+- `:rows`: array van rijen; elke rij is een array van celwaarden
 - Standaard: minimale opmaak met alleen horizontale lijnen
 
 </div>
@@ -508,7 +507,7 @@ Kopteksten komen nog van `:columns`, de body is volledig vrij.
 </Table>
 
 <!--
-  Level 3: default slot — full row control.
+  Level 3: default slot: full row control.
   - Write <tr> and <td> elements yourself inside <Table>.
   - :columns still drives the header row.
   - Row striping does not apply; add backgrounds inline on <td> if needed.
@@ -545,9 +544,9 @@ Kopteksten komen nog van `:columns`, de body is volledig vrij.
 <!--
   Table props:
   columns[]:    array van kopteksten (strings)
-  rows[][]:     array van rijen met celwaarden — optioneel bij gebruik van default slot
-  #cell slot:   { value, row, rowIndex, colIndex } — geeft controle per cel zonder volledige rijen te schrijven
-  default slot: volledige <tr><td> vrijheid — :columns drijft nog de koptekstrij
+  rows[][]:     array van rijen met celwaarden, optioneel bij gebruik van default slot
+  #cell slot:   { value, row, rowIndex, colIndex }: geeft controle per cel zonder volledige rijen te schrijven
+  default slot: volledige <tr><td> vrijheid; :columns drijft nog de koptekstrij
 -->
 
 ---
@@ -561,7 +560,7 @@ clicks: 2
 ::left::
 
 <!--
-  BarChart — gebruik bars[] voor gestapelde (horizontal) of gegroepeerde (vertical) balkgrafieken.
+  BarChart: gebruik bars[] voor gestapelde (horizontal) of gegroepeerde (vertical) balkgrafieken.
   Klik door om de drie varianten te zien.
 -->
 
@@ -569,7 +568,7 @@ clicks: 2
 
 ## Enkelvoudige balk
 
-Eén reeks — legenda wordt automatisch verborgen.
+Eén reeks. Legenda wordt automatisch verborgen.
 
 ```vue
 <BarChart
@@ -742,7 +741,7 @@ clicks: 3
 Geef `segments` mee als array. Elk item heeft minimaal een `value`. Kleuren worden automatisch gekozen uit het merkpalet.
 
 - `label` verschijnt buiten de ring als tekst
-- `labelFormat: 'percent'` — standaard, berekend percentage
+- `labelFormat: 'percent'`: standaard, berekend percentage
 - Kleuren: volgorde uit merkpaletvariabelen in CSS
 
 </div>
@@ -753,8 +752,8 @@ Geef `segments` mee als array. Elk item heeft minimaal een `value`. Kleuren word
 
 Met `labelFormat="value"` worden ruwe waarden getoond. Een `valueLabel` per segment overschrijft de berekende waarde, ongeacht `labelFormat`.
 
-- `labelFormat: 'value'` — toont `segment.value` direct
-- `valueLabel: '79%'` op segment 1 — overschrijft naar tekst naar keuze
+- `labelFormat: 'value'`: toont `segment.value` direct
+- `valueLabel: '79%'` op segment 1: overschrijft naar tekst naar keuze
 - Overige segmenten: tonen ruwe waarden (`14`, `6`, `1`)
 
 </div>
@@ -768,7 +767,7 @@ Voeg `highlighted: true` toe aan een segment om het verder van het midden af te 
 - `highlighted: true` op meerdere segmenten tegelijk mogelijk
 - `color: 'var(--bd-signaalkleur-donkergeel)'` overschrijft de automatische kleur
 - `highlightOffset` prop bepaalt de uitsteekafstand in SVG-eenheden (standaard `7`)
-- `innerRatio` — fractie van de buitenstraal voor de binnenstraal (standaard `0.55`, hoger = dunner)
+- `innerRatio`: fractie van de buitenstraal voor de binnenstraal (standaard `0.55`, hoger = dunner)
 
 </div>
 
@@ -787,15 +786,15 @@ Zet `:legend="true"` voor een legendapaneel naast of onder de ring. Gebruik `leg
 <!--
   DonutChart props:
   segments[]:  { value, color?, label?, valueLabel?, highlighted? }
-  innerRatio:  dikte ring — fractie van buitenstraal (default 0.55; hoger = dunner, bijv. 0.72)
-  showLabels:  labels buiten ring — default true
-  labelFormat: 'percent' | 'value' — default 'percent'; per-segment valueLabel overschrijft
-  highlightOffset: uitsteek uitgelicht segment in SVG-eenheden — default 7
-  legend:      toon legendapaneel — default false
-  legendPosition: positie van het legendapaneel — 'right' (default) | 'left' | 'below' | 'above'
+  innerRatio:  dikte ring: fractie van buitenstraal (default 0.55; hoger = dunner, bijv. 0.72)
+  showLabels:  labels buiten ring, default true
+  labelFormat: 'percent' | 'value', default 'percent'; per-segment valueLabel overschrijft
+  highlightOffset: uitsteek uitgelicht segment in SVG-eenheden, default 7
+  legend:      toon legendapaneel, default false
+  legendPosition: positie van het legendapaneel: 'right' (default) | 'left' | 'below' | 'above'
   legendTitle / legendSubtitle: tekst boven de legendaitems
   #center slot: willekeurige content gecentreerd in het gat van de ring
-  --donut-size: CSS-variabele voor hoogte/breedte van de ring — default 200px
+  --donut-size: CSS-variabele voor hoogte/breedte van de ring, default 200px
 -->
 
 ---
@@ -812,7 +811,7 @@ clicks: 1
 
   1. Autocomplete-friendly (recommended):
        <RoIcon name="man_vooraanzicht" />
-     - name prop is typed as RoIconName — IDE autocomplete works
+     - name prop is typed as RoIconName: IDE autocomplete works
      - Optional: size="2rem", label="Accessible label"
 
   2. Iconify-style auto-component (no autocomplete):
@@ -829,7 +828,7 @@ clicks: 1
 
 ## Gebruik
 
-Aanbevolen — typed prop met autocomplete:
+Aanbevolen: typed prop met autocomplete:
 
 ```html
 <RoIcon name="man_vooraanzicht" />
@@ -867,7 +866,7 @@ src: url("https://download.belastingdienst.nl/...")
 <span class="bd-ro-icon">man_vooraanzicht</span>
 ```
 
-Geen SVG-bestanden, geen bundel — altijd actueel.
+Geen SVG-bestanden, geen bundel, altijd actueel.
 
 </div>
 
@@ -877,7 +876,7 @@ Geen SVG-bestanden, geen bundel — altijd actueel.
 
 ---
 layout: full-width
-pageTitle: MerktegelLijn — statusbalk onderaan
+pageTitle: MerktegelLijn: statusbalk onderaan
 
 ---
 
@@ -886,8 +885,8 @@ De **MerktegelLijn** plaatst de kenmerkende merktegel-trapvorm in de lintbreedte
 <div v-click-hide="1">
 
 ```vue
-<!-- Outline variant — strip ¼ lintbreedte hoog -->
-<MerktegelLijn variant="outline" :stripHeight="0.25">Hoofdstuk 1 — Inleiding</MerktegelLijn>
+<!-- Outline variant: strip ¼ lintbreedte hoog -->
+<MerktegelLijn variant="outline" :stripHeight="0.25">Hoofdstuk 1: Inleiding</MerktegelLijn>
 ```
 
 </div>
@@ -895,27 +894,27 @@ De **MerktegelLijn** plaatst de kenmerkende merktegel-trapvorm in de lintbreedte
 <div v-click="1">
 
 ```vue
-<!-- Filled variant — standaard strip (1 lintbreedte) -->
+<!-- Filled variant: standaard strip (1 lintbreedte) -->
 <MerktegelLijn variant="filled" color="var(--bd-domeinkleur-lichtblauw-75)">
-  Hoofdstuk 1 — Inleiding
+  Hoofdstuk 1: Inleiding
 </MerktegelLijn>
 ```
 
 </div>
 
 <div v-click-hide="1" style="position: absolute; bottom: calc(-1 * var(--ribbon-x)); left: calc(-1 * var(--ribbon-x)); right: calc(-1 * var(--ribbon-x)); z-index: 10;">
-  <MerktegelLijn variant="outline" :stripHeight="0.25">Hoofdstuk 1 — Inleiding</MerktegelLijn>
+  <MerktegelLijn variant="outline" :stripHeight="0.25">Hoofdstuk 1: Inleiding</MerktegelLijn>
 </div>
 
 <div v-click="1" style="position: absolute; bottom: calc(-1 * var(--ribbon-x)); left: calc(-1 * var(--ribbon-x)); right: calc(-1 * var(--ribbon-x)); z-index: 10;">
   <MerktegelLijn variant="filled" color="var(--bd-domeinkleur-lichtblauw-75)">
-    Hoofdstuk 1 — Inleiding
+    Hoofdstuk 1: Inleiding
   </MerktegelLijn>
 </div>
 
 ---
 layout: full-width
-pageTitle: Mermaid — Sequentiediagram
+pageTitle: Mermaid: Sequentiediagram
 pageSubtitle: Modelleer interacties tussen systemen of actoren over tijd.
 contentAlign: flex-end
 contentJustify: center
@@ -947,7 +946,7 @@ sequenceDiagram
 
 ---
 layout: full-width
-pageTitle: Mermaid — Stroomdiagram
+pageTitle: Mermaid: Stroomdiagram
 pageSubtitle: Visualiseer beslissingslogica of processtromen.
 contentJustify: center
 
@@ -977,7 +976,7 @@ flowchart LR
 
 ---
 layout: full-width
-pageTitle: Mermaid — Gantt
+pageTitle: Mermaid: Gantt
 pageSubtitle: Toon projectplanning en mijlpalen.
 contentJustify: center
 
@@ -1009,7 +1008,7 @@ gantt
 
 ---
 layout: full-width
-pageTitle: Mermaid — ER-diagram
+pageTitle: Mermaid: ER-diagram
 pageSubtitle: Modelleer entiteiten en relaties in een datamodel.
 contentAlign: flex-end
 contentJustify: center
@@ -1082,7 +1081,7 @@ pageTitle: Infographic voorbeeld - van melding naar uitkomst
 ---
 layout: full-width
 showLogo: true
-pageTitle: StepSeriesJoin — slangverbinding
+pageTitle: StepSeriesJoin: slangverbinding
 zoom: 0.65
 
 ---
@@ -1115,7 +1114,7 @@ Gebruik **StepSeriesJoin** voor een stappenlijn die over twee rijen loopt. De co
 
 ---
 layout: full-width
-pageTitle: HighlightsGrid — kerngetallen
+pageTitle: HighlightsGrid: kerngetallen
 zoom: 0.8
 
 ---
@@ -1152,7 +1151,7 @@ leftInset: "0"
 
 ## Vragen?
 
-De illustratie gebruikt de **`<QuestionsIllustration />`** component uit de `slidev-addon-reusable-widgets` addon — een groeiende collectie herbruikbare widgets voor decks in dit repo.
+De illustratie gebruikt de **`<QuestionsIllustration />`** component uit de `slidev-addon-reusable-widgets` addon: een groeiende collectie herbruikbare widgets voor decks in dit repo.
 
 Voeg de addon toe aan je deck:
 
