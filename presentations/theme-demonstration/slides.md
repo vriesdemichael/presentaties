@@ -1140,8 +1140,6 @@ Gebruik **HighlightsGrid** voor een rij met prominente cijfers of statistieken, 
   { iconName: 'gebouw_vws', label: '1,1 miljoen', sublabel: 'Aangiften\nGrote ondernemingen' },
 ]" />
 
-<InfoGridVlakDemo />
-
 ---
 layout: split
 leftBackground: "#8FCAE7"
