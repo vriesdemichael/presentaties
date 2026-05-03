@@ -3,7 +3,7 @@ theme: slidev-theme-belastingdienst
 addons:
   - bd-examples
   - reusable-widgets
-title: Belastingdienst thema: demonstratie
+title: "Belastingdienst thema: demonstratie"
 info: |
   Volledig overzicht van alle layouts en componenten in het slidev-theme-belastingdienst thema.
 class: text-left
@@ -27,8 +27,8 @@ date: 2026
 
 ::title::
 
-Belastingdienst thema
-**Thema-demonstratie**
+Belastingdienst
+**Themademonstratie**
 
 ::footer::
 
@@ -91,7 +91,7 @@ rows:
 - iconName: rijkshuisstijl
   lead: Belastingdienst huisstijl
   body: Gebaseerd op Rijkshuisstijl en merkrichtlijnen
-- iconName: computer
+- iconName: laptop
   lead: Eenvoudig met AI
   body: Maak presentaties met een coding agent
 
