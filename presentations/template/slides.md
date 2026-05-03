@@ -322,6 +322,26 @@ pageTitle: Tekst naast beeldvlak
 <img src="/images/kleurvlak-voorbeeld.svg" style="width:100%; height:100%; object-fit:cover;" />
 
 ---
+layout: full-width
+pageTitle: Volledig scherm
+pageSubtitle: Inhoudsgebied loopt door tot de rechterrand — geen rechter inhoudsgrens.
+
+---
+
+Gebruik **full-width** voor brede visualisaties: diagrammen, infographics of panoramische beelden. De linker inhoudsgrens (en daarmee de paginatitel) blijft intact; de rechterrand is open.
+
+<Vlak fill="var(--bd-domeinkleur-lichtblauw-15)" style="margin-top: 1.25rem; padding: 1.5rem; text-align: center; color: var(--bd-donkerblauw);">
+  ← Inhoudsgebied loopt door tot de rechterrand van de slide →
+</Vlak>
+
+```yaml
+---
+layout: full-width
+pageTitle: Mijn titel
+---
+```
+
+---
 layout: chapter
 variant: content-right
 chapterNumber: "03"
@@ -871,6 +891,44 @@ Geen SVG-bestanden, geen bundel — altijd actueel.
 
 ---
 layout: full-width
+pageTitle: MerktegelLijn — statusbalk onderaan
+
+---
+
+De **MerktegelLijn** plaatst de kenmerkende merktegel-trapvorm in de lintbreedte-strip buiten de inhoudsgrens. Bedoeld voor presentatiebrede context zoals een hoofdstuknummer of slideteller. De stap valt altijd op 50%; de verhoogde kant is altijd 1 lintbreedte hoog.
+
+<div v-click-hide="1">
+
+```vue
+<!-- Outline variant — strip ¼ lintbreedte hoog -->
+<MerktegelLijn variant="outline" :stripHeight="0.25">Hoofdstuk 1 — Inleiding</MerktegelLijn>
+```
+
+</div>
+
+<div v-click="1">
+
+```vue
+<!-- Filled variant — standaard strip (1 lintbreedte) -->
+<MerktegelLijn variant="filled" color="var(--bd-domeinkleur-lichtblauw-75)">
+  Hoofdstuk 1 — Inleiding
+</MerktegelLijn>
+```
+
+</div>
+
+<div v-click-hide="1" style="position: absolute; bottom: calc(-1 * var(--ribbon-x)); left: calc(-1 * var(--ribbon-x)); right: calc(-1 * var(--ribbon-x)); z-index: 10;">
+  <MerktegelLijn variant="outline" :stripHeight="0.25">Hoofdstuk 1 — Inleiding</MerktegelLijn>
+</div>
+
+<div v-click="1" style="position: absolute; bottom: calc(-1 * var(--ribbon-x)); left: calc(-1 * var(--ribbon-x)); right: calc(-1 * var(--ribbon-x)); z-index: 10;">
+  <MerktegelLijn variant="filled" color="var(--bd-domeinkleur-lichtblauw-75)">
+    Hoofdstuk 1 — Inleiding
+  </MerktegelLijn>
+</div>
+
+---
+layout: full-width
 pageTitle: Mermaid — Sequentiediagram
 pageSubtitle: Modelleer interacties tussen systemen of actoren over tijd.
 contentAlign: flex-end
@@ -1080,44 +1138,6 @@ pageTitle: Eerlijk en zorgvuldig belasting heffen en innen
 <InfoGridVlakDemo />
 
 ---
-layout: full-width
-pageTitle: MerktegelLijn — statusbalk onderaan
-
----
-
-De **MerktegelLijn** plaatst de kenmerkende merktegel-trapvorm in de lintbreedte-strip buiten de inhoudsgrens. Bedoeld voor presentatiebrede context zoals een hoofdstuknummer of slideteller. De stap valt altijd op 50%; de verhoogde kant is altijd 1 lintbreedte hoog.
-
-<div v-click-hide="1">
-
-```vue
-<!-- Outline variant — strip ¼ lintbreedte hoog -->
-<MerktegelLijn variant="outline" :stripHeight="0.25">Hoofdstuk 1 — Inleiding</MerktegelLijn>
-```
-
-</div>
-
-<div v-click="1">
-
-```vue
-<!-- Filled variant — standaard strip (1 lintbreedte) -->
-<MerktegelLijn variant="filled" color="var(--bd-domeinkleur-lichtblauw-75)">
-  Hoofdstuk 1 — Inleiding
-</MerktegelLijn>
-```
-
-</div>
-
-<div v-click-hide="1" style="position: absolute; bottom: calc(-1 * var(--ribbon-x)); left: calc(-1 * var(--ribbon-x)); right: calc(-1 * var(--ribbon-x)); z-index: 10;">
-  <MerktegelLijn variant="outline" :stripHeight="0.25">Hoofdstuk 1 — Inleiding</MerktegelLijn>
-</div>
-
-<div v-click="1" style="position: absolute; bottom: calc(-1 * var(--ribbon-x)); left: calc(-1 * var(--ribbon-x)); right: calc(-1 * var(--ribbon-x)); z-index: 10;">
-  <MerktegelLijn variant="filled" color="var(--bd-domeinkleur-lichtblauw-75)">
-    Hoofdstuk 1 — Inleiding
-  </MerktegelLijn>
-</div>
-
----
 layout: split
 leftBackground: "#8FCAE7"
 rightBackground: "#edf4f8"
@@ -1133,4 +1153,12 @@ leftInset: "0"
 
 ## Vragen?
 
-Deze slide is een voorbeeld voor een afsluitende slide. Hier zijn iconen en het vlak component gebruikt voor een visuele ondersteuning van de vraagstelling.
+De illustratie gebruikt de **`<QuestionsIllustration />`** component uit de `slidev-addon-reusable-widgets` addon — een groeiende collectie herbruikbare widgets voor decks in dit repo.
+
+Voeg de addon toe aan je deck:
+
+```yaml
+# headmatter
+addons:
+  - reusable-widgets
+```

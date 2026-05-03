@@ -35,6 +35,7 @@ addons:
 
 ## Current widgets
 
+- `QuestionsIllustration`
 - `GitLogCompare`
 - `EvoCommitHistory`
 - `EvoErrorPyramid`
