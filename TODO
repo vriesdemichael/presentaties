@@ -8,7 +8,7 @@ Skills
 
 Theme
 [X] tiny bottom merktegel component
-[ ] mermaidjs theme in right style
+[X] mermaidjs theme in right style
 [X] statsheet examples
 [X] Explain layouts in the presentation
 [X] Stappen, vlakken en lijnen https://huisstijl.belastingdienst.nl/beeld/infographics/componenten/
@@ -21,6 +21,7 @@ Theme
 [X] scrollable icon overview
 [ ] bold components reuse
 
+
 Cleanup
 [X] split old and new style theme (new in template, old in zeepkist and other presentations)
 [X] remove old pngs used for testing/development
@@ -30,6 +31,9 @@ Cleanup
 
 Advanced stuff:
 [ ] Build vue components for the infographics
-[ ] Use iconify to allow usage of multiple icon sets gracefully — RO Icons done via vite plugin + RoIcon component
+[X] Use iconify to allow usage of multiple icon sets gracefully — RO Icons done via vite plugin + RoIcon component
 [ ] Migrate to bitbucket
 
+Testing:
+[ ] Dogfood by creating next presentation in new style
+[ ] Share with colleagues for feedback

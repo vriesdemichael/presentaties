@@ -6,14 +6,16 @@ Kleine Slidev workspace voor teampresentaties, gebouwd op het `slidev-theme-bela
 
 Presentaties in deze repo gebruiken het gedeelde thema in `./theme/`. Het thema levert layouts, merkchrome, kleur- en typografietokens en herbruikbare componenten.
 
-De template-deck in `presentations/template/` is zelf-documentarisch: elke layout en elk component is gedemonstreerd met uitleg en codevoorbeelden. Gebruik dit als startpunt én als naslag bij het bouwen van nieuwe slides.
+De thema-demonstratie in `presentations/theme-demonstration/` is zelf-documentarisch: elke layout en elk component is gedemonstreerd met uitleg en codevoorbeelden. Gebruik dit als naslag bij het bouwen van nieuwe slides.
+
+Voor een nieuwe presentatie: gebruik `presentations/template/` als startpunt.
 
 ## Snel starten
 
 ```bash
 pnpm install
 pnpm run deck:list
-pnpm run deck:dev -- template
+pnpm run deck:dev -- theme-demonstration
 ```
 
 Open daarna de lokale URL uit de terminal, meestal `http://localhost:3030`.
@@ -31,7 +33,7 @@ Vervang `<deck-naam>` door een naam uit `deck:list`.
 
 ## Nieuwe presentatie starten
 
-Gebruik voor een nieuwe presentatie de voorbeeldtemplate in `presentations/template/`.
+Gebruik `presentations/template/` als startpunt voor een nieuwe presentatie.
 
 1. Kopieer `presentations/template/` naar `presentations/<jouw-deck-naam>/`
 2. Pas in `package.json` de pakketnaam aan
@@ -41,6 +43,8 @@ Gebruik voor een nieuwe presentatie de voorbeeldtemplate in `presentations/templ
 ```bash
 pnpm run deck:dev -- <jouw-deck-naam>
 ```
+
+De thema-demonstratie in `presentations/theme-demonstration/` is de volledige naslag voor alle beschikbare layouts en componenten.
 
 ## Huidig deelmodel
 
@@ -71,7 +75,7 @@ Gebruik niet automatisch het `reusable-widgets` addon.
 
 Er zijn twee addons in deze repo:
 
-- **`addons/bd-examples`** — explainer-componenten die alleen in de template-deck worden gebruikt (`Placeholder`, demo-helpers, enzovoort). **Verwijder dit addon wanneer je de template kopieert voor een echte presentatie.** Het is niet bedoeld voor distributie.
+- **`addons/bd-examples`** — explainer-componenten die alleen in de thema-demonstratie-deck worden gebruikt (`Placeholder`, demo-helpers, enzovoort). **Voeg dit addon niet toe aan een echte presentatie.** Het is niet bedoeld voor distributie.
 - **`addons/reusable-widgets`** — optionele widgets die echt in meerdere decks terugkomen (bijv. `GitLogCompare`). Voeg dit alleen toe als een widget in twee of meer decks nodig is.
 
 Hanteer verder deze keuze:

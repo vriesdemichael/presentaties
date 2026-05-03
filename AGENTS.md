@@ -28,11 +28,13 @@ The shared theme is `slidev-theme-belastingdienst`, located in `./theme/`.
 - Components live in `./theme/components/`
 - Global CSS tokens live in `./theme/styles/`
 
-**The template deck at `./presentations/template/` is the primary reference** for what the theme provides. It is self-documenting: every layout and component is demonstrated with usage examples and code snippets. Always consult it before building new slides.
+**The theme demonstration deck at `./presentations/theme-demonstration/` is the primary reference** for what the theme provides. It is self-documenting: every layout and component is demonstrated with usage examples and code snippets. Always consult it before building new slides.
+
+**To start a new presentation, copy `./presentations/template/`** — it contains the minimal structure (cover, speaker, agenda, content slides, vragen) without demo content.
 
 ### Addons
 
-- `addons/bd-examples` — template-only explainer components (`Placeholder`, `MeasurementExplainer`, etc.). **Remove this addon when copying the template for a real presentation.** It is not meant for distribution.
+- `addons/bd-examples` — demo-only explainer components (`Placeholder`, `MeasurementExplainer`, etc.) used exclusively in the theme-demonstration deck. **Do not add this addon to real presentations.**
 - `addons/reusable-widgets` — optional widgets shared across multiple decks (e.g. `GitLogCompare`). Add this only when a widget is genuinely reused in two or more decks.
 
 ### Styling rules

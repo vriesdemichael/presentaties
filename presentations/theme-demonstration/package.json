@@ -1,5 +1,5 @@
 {
-  "name": "template-slides",
+  "name": "theme-demonstration-slides",
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,6 +13,8 @@
     "playwright-chromium": "^1.58.2"
   },
   "dependencies": {
-    "slidev-theme-belastingdienst": "workspace:*"
+    "slidev-theme-belastingdienst": "workspace:*",
+    "slidev-addon-bd-examples": "workspace:*",
+    "slidev-addon-reusable-widgets": "workspace:*"
   }
 }
