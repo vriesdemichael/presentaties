@@ -876,7 +876,7 @@ Geen SVG-bestanden, geen bundel, altijd actueel.
 
 ---
 layout: full-width
-pageTitle: MerktegelLijn: statusbalk onderaan
+pageTitle: "MerktegelLijn: statusbalk onderaan"
 
 ---
 
@@ -914,7 +914,7 @@ De **MerktegelLijn** plaatst de kenmerkende merktegel-trapvorm in de lintbreedte
 
 ---
 layout: full-width
-pageTitle: Mermaid: Sequentiediagram
+pageTitle: "Mermaid: Sequentiediagram"
 pageSubtitle: Modelleer interacties tussen systemen of actoren over tijd.
 contentAlign: flex-end
 contentJustify: center
@@ -946,7 +946,7 @@ sequenceDiagram
 
 ---
 layout: full-width
-pageTitle: Mermaid: Stroomdiagram
+pageTitle: "Mermaid: Stroomdiagram"
 pageSubtitle: Visualiseer beslissingslogica of processtromen.
 contentJustify: center
 
@@ -976,7 +976,7 @@ flowchart LR
 
 ---
 layout: full-width
-pageTitle: Mermaid: Gantt
+pageTitle: "Mermaid: Gantt"
 pageSubtitle: Toon projectplanning en mijlpalen.
 contentJustify: center
 
@@ -1008,7 +1008,7 @@ gantt
 
 ---
 layout: full-width
-pageTitle: Mermaid: ER-diagram
+pageTitle: "Mermaid: ER-diagram"
 pageSubtitle: Modelleer entiteiten en relaties in een datamodel.
 contentAlign: flex-end
 contentJustify: center
@@ -1081,7 +1081,7 @@ pageTitle: Infographic voorbeeld - van melding naar uitkomst
 ---
 layout: full-width
 showLogo: true
-pageTitle: StepSeriesJoin: slangverbinding
+pageTitle: "StepSeriesJoin: slangverbinding"
 zoom: 0.65
 
 ---
@@ -1114,7 +1114,7 @@ Gebruik **StepSeriesJoin** voor een stappenlijn die over twee rijen loopt. De co
 
 ---
 layout: full-width
-pageTitle: HighlightsGrid: kerngetallen
+pageTitle: "HighlightsGrid: kerngetallen"
 zoom: 0.8
 
 ---
