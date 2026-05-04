@@ -1,4 +1,4 @@
----
+﻿---
 theme: slidev-theme-belastingdienst
 addons:
   - bd-examples
@@ -20,7 +20,7 @@ date: 2026
 ::background::
 
 <img
-  src="/images/voorbeeld-foto-4.jpg"
+  :src="$withBase('/images/voorbeeld-foto-4.jpg')"
   alt=""
   style="position: absolute; left: -5.34%; top: 0; width: 128.39%; height: 152.17%; max-width: none; display: block;"
 />
@@ -299,12 +299,12 @@ pageTitle: Tekst naast beeldvlak
 
 ::right::
 
-<img src="/images/kleurvlak-voorbeeld.svg" />
+<img :src="$withBase('/images/kleurvlak-voorbeeld.svg')" />
 ```
 
 ::right::
 
-<img src="/images/kleurvlak-voorbeeld.svg" style="width:100%; height:100%; object-fit:cover;" />
+<img :src="$withBase('/images/kleurvlak-voorbeeld.svg')" style="width:100%; height:100%; object-fit:cover;" />
 
 ---
 layout: full-width

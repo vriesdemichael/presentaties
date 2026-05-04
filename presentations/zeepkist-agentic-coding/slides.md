@@ -1,4 +1,4 @@
----
+﻿---
 theme: slidev-theme-belastingdienst-legacy
 title: Agentic Coding - Deel 1
 addons:
@@ -69,16 +69,16 @@ layout: default
 <div class="cli-tools-board">
   <div class="cli-tools-grid">
     <figure class="cli-tools-item">
-      <img src="/images/cli-tools/claude-code.webp" alt="Claude Code" />
+      <img :src="$withBase('/images/cli-tools/claude-code.webp')" alt="Claude Code" />
     </figure>
     <figure class="cli-tools-item">
-      <img src="/images/cli-tools/copilot-cli.png" alt="GitHub Copilot CLI" />
+      <img :src="$withBase('/images/cli-tools/copilot-cli.png')" alt="GitHub Copilot CLI" />
     </figure>
     <figure class="cli-tools-item">
-      <img src="/images/cli-tools/gemini-cli.png" alt="Gemini CLI" />
+      <img :src="$withBase('/images/cli-tools/gemini-cli.png')" alt="Gemini CLI" />
     </figure>
     <figure class="cli-tools-item">
-      <img src="/images/cli-tools/opencode.png" alt="OpenCode" />
+      <img :src="$withBase('/images/cli-tools/opencode.png')" alt="OpenCode" />
     </figure>
   </div>
   <p class="cli-tools-more">En veel meer...</p>
@@ -162,7 +162,7 @@ Doordat modellen en coding tools beter worden verandert het werk van een develop
 
 <div class="role-evolution-visual">
   <img
-    src="/images/review-ai.png"
+    :src="$withBase('/images/review-ai.png')"
     alt="Drie gestapelde panelen die de verschuiving tonen van menselijk implementeren naar AI-gedreven sprint review"
     class="role-evolution-visual-image"
   />
@@ -261,7 +261,7 @@ Wij hebben een volwassen mentaliteit over software development.
 
 <div class="positioning-visual">
   <img
-    src="/images/sadmf.png"
+    :src="$withBase('/images/sadmf.png')"
     alt="Illustratie die een team toont dat klem zit tussen verantwoordelijkheden en externe afhankelijkheden"
     class="positioning-visual-image"
   />
@@ -580,7 +580,7 @@ class: pause-slide-page
 
 <div class="pause-slide">
   <img
-    src="/images/break-coffee-machine.png"
+    :src="$withBase('/images/break-coffee-machine.png')"
     alt=""
     class="pause-slide-bg"
   >
@@ -594,7 +594,7 @@ class: pause-slide-page
 
   <div class="pause-slide-qr">
     <img
-      src="/images/qr-code.png"
+      :src="$withBase('/images/qr-code.png')"
       alt="QR-code naar de bron van deze presentatie"
       class="pause-slide-qr-image"
     >

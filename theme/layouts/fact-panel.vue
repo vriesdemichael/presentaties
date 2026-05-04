@@ -1,6 +1,7 @@
 <script setup>
 import { computed, useSlots } from 'vue'
 import Ribbon from '../components/internal/Ribbon.vue'
+import { withBase } from '../lib/with-base'
 const slots = useSlots()
 
 const props = defineProps({
@@ -67,6 +68,8 @@ const photoStyle = computed(() => {
     width: `${(100 / visiblePercent) * 100}%`,
   }
 })
+
+const resolvedImage = computed(() => withBase(props.image))
 </script>
 
 <template>
@@ -75,7 +78,7 @@ const photoStyle = computed(() => {
 
     <div class="bd-fact-panel-photo">
       <slot name="photo">
-        <img v-if="image" :src="image" alt="" :style="photoStyle" />
+        <img v-if="image" :src="resolvedImage" alt="" :style="photoStyle" />
       </slot>
     </div>
 

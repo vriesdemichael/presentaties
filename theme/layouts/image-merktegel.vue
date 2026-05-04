@@ -3,6 +3,7 @@ import { computed, useSlots } from 'vue'
 import Ribbon from '../components/internal/Ribbon.vue'
 import MerktegelOverlay from '../components/MerktegelOverlay.vue'
 import { resolveObjectPosition, toLength, toScale } from '../lib/media-positioning'
+import { withBase } from '../lib/with-base'
 
 const slots = useSlots()
 const contentMidline = 'calc(var(--ribbon-content-top) + ((100% - var(--ribbon-content-top)) / 2))'
@@ -59,7 +60,7 @@ const props = defineProps({
   tabFill: { type: String, default: '' },
 })
 
-const resolvedBackgroundImage = computed(() => props.backgroundImage)
+const resolvedBackgroundImage = computed(() => withBase(props.backgroundImage))
 const normalizedBackgroundScale = computed(() => toScale(props.backgroundScale))
 const normalizedBackgroundOffsetX = computed(() => toLength(props.backgroundOffsetX))
 const normalizedBackgroundOffsetY = computed(() => toLength(props.backgroundOffsetY))

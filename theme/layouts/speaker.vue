@@ -1,15 +1,19 @@
 <script setup>
+import { computed } from 'vue'
 import logoTileSvg from '../assets/beeldmerk-rijksoverheid.svg?raw'
 import bgPng from '../assets/speaker-layout-background.png'
+import { withBase } from '../lib/with-base'
 
 const logoTileUrl = `data:image/svg+xml,${encodeURIComponent(logoTileSvg)}`
 
-defineProps({
+const props = defineProps({
   speakerName: { type: String, default: '' },
   speakerRole: { type: String, default: '' },
   speakerTeam: { type: String, default: '' },
   logoSrc: { type: String, default: '' },
 })
+
+const resolvedLogoSrc = computed(() => withBase(props.logoSrc) || logoTileUrl)
 </script>
 
 <template>
@@ -18,7 +22,7 @@ defineProps({
 
     <div class="bd-speaker-logo">
       <slot name="logo">
-        <img :src="logoSrc || logoTileUrl" alt="" />
+        <img :src="resolvedLogoSrc" alt="" />
       </slot>
     </div>
 

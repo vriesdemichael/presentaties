@@ -170,9 +170,39 @@ npx -y playwright install chromium
 
 Chromium is cached globally after the first run; subsequent starts are fast.
 
+## Windows Environment Considerations
+
+These are known quirks of running agents on Windows in this repo. They are not blocking, but knowing them avoids wasted turns.
+
+### Starting a persistent background server
+
+`detach: true` on the Copilot CLI `powershell` tool exits the outer pnpm/node process immediately on Windows, killing the Slidev child process with it. Use `Start-Process` instead:
+
+```powershell
+$deckDir = "C:\...\presentations\<deck-name>"
+Start-Process -FilePath "cmd.exe" `
+  -ArgumentList "/c echo n | pnpm slidev --remote --bind 0.0.0.0 -p 3030 > `"$env:TEMP\slidev.log`" 2>&1" `
+  -WorkingDirectory $deckDir `
+  -WindowStyle Hidden
+```
+
+`echo n |` pre-answers Slidev's interactive addon install prompt (see below). Check the log file to confirm startup.
+
+### Workspace addons still prompt for install
+
+Even after adding an addon as a workspace dependency (`workspace:*` in `package.json`) and running `pnpm install` from the repo root — confirming the symlink exists in `node_modules` — Slidev may still prompt *"addon not found, install it?"* when the server starts. This appears to be a Slidev bug where its addon resolver re-checks the npm registry instead of trusting `node_modules`. The workaround is to pipe `echo n |` into the server command (the addon is already linked; the prompt is a false alarm).
+
+### WSL2 background processes die with the session
+
+Running `wsl bash -c "... &"` does **not** keep the background process alive — the WSL session exits and kills all child processes. This repo runs fine on native Windows; prefer the `Start-Process` approach above. If a WSL2 Slidev instance is already running on port 3030, identify its PID via `netstat -ano | Select-String ":3030"` and kill it before starting a new server.
+
+### Hot-reload does not work through detached servers
+
+A Slidev server started via `Start-Process` has no TTY, so Vite's HMR websocket may not reconnect properly after source edits. If the browser shows stale slide counts or content after editing `slides.md`, kill the process and restart rather than waiting for hot-reload.
+
 ---
 
-## Pull Request Checklist (Mandatory)
+
 
 For any PR that changes presentation content or styling, agents must include a checklist result based on:
 

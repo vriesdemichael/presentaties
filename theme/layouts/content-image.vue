@@ -1,7 +1,9 @@
 <script setup>
+import { computed } from 'vue'
 import SplitSurface from '../components/internal/SplitSurface.vue'
+import { withBase } from '../lib/with-base'
 
-defineProps({
+const props = defineProps({
   contentTitle: { type: String, default: '' },
   intro: { type: String, default: '' },
   body: { type: String, default: '' },
@@ -10,6 +12,8 @@ defineProps({
   imageLeft: { type: Boolean, default: false },
   textBackground: { type: String, default: '#edf4f8' },
 })
+
+const resolvedImage = computed(() => withBase(props.image))
 </script>
 
 <template>
@@ -21,7 +25,7 @@ defineProps({
     <template v-if="imageLeft" #left>
       <div class="bd-content-image-bd-media">
         <slot name="media">
-          <img v-if="image" :src="image" alt="" :style="{ objectFit: imageFit }" />
+          <img v-if="image" :src="resolvedImage" alt="" :style="{ objectFit: imageFit }" />
         </slot>
       </div>
     </template>
@@ -57,7 +61,7 @@ defineProps({
     <template v-if="!imageLeft" #right>
       <div class="bd-content-image-bd-media">
         <slot name="media">
-          <img v-if="image" :src="image" alt="" :style="{ objectFit: imageFit }" />
+          <img v-if="image" :src="resolvedImage" alt="" :style="{ objectFit: imageFit }" />
         </slot>
       </div>
     </template>
