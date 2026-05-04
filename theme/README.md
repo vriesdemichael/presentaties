@@ -71,7 +71,7 @@ Legacy layouts such as `agenda`, `text-image-right`, `text-image-left`, `text-im
 | `full-width` | General content slides with optional heading/subheading | `pageTitle`, `pageSubtitle`, `background`, `contentPadding`, `showLogo` | default, `title`, `subtitle`, `logo` | Best general-purpose content layout when you want the ribbon and a flexible single content area. |
 | `split` | Fixed 50/50 text + visual composition | `pageTitle`, `mirror`, `leftBackground`, `rightBackground`, `rightPadding` | default, `title`, `right`, `logo` | Split is intentionally fixed at 50/50. Use `mirror` to swap sides. |
 | `content-image` | Text on the left, image or custom media on the right | `contentTitle`, `intro`, `body`, `image`, `imageFit` | default, `title`, `intro`, `media` | All three left-side regions (`title`, `intro`, body) are optional. Omit `contentTitle` and don't use `::title::` and the title div is not rendered at all — useful when you want to put any content in the left pane without a fixed heading. |
-| `cover` | Title slide with Belastingdienst cover composition | `coverBg`, `coverBgRightHalf`, `coverTitle`, `subtitle`, `date`, `spreker`, `meeting`, `brandText` | default, `background`, `title`, `subtitle`, `footer`, `brand` | `subtitle` prop supports line breaks by splitting on `\\n`. The default slot renders extra body copy under the title/subtitle block. |
+| `cover` | Title slide with Belastingdienst cover composition | `coverBg`, `coverBgRightHalf`, `coverBgObjectPosition`, `coverBgScale`, `coverTitle`, `subtitle`, `date`, `spreker`, `meeting`, `brandText` | default, `background`, `title`, `subtitle`, `footer`, `brand` | `coverBgObjectPosition` sets the CSS `object-position` for the background image (e.g. `"left top"`, `"20% 0%"`). `coverBgScale` zooms the image (e.g. `1.3` = 130%). The `::background::` slot is the escape hatch for custom/composited backgrounds. `subtitle` prop supports line breaks by splitting on `\\n`. |
 | `speaker` | Speaker introduction slide | `speakerName`, `speakerRole`, `speakerTeam`, `logoSrc` | default, `title`, `logo` | Default slot replaces the role/team block. There is no `illustration` slot in the current implementation. |
 | `chapter` | Section divider with merktegel left half | `variant`, `chapterNumber`, `chapterTitle`, `subtitle`, `image`, `mirror` | default, `title`, `chapterNumber`, `subtitle`, `bottom`, `opposite` | `variant: full-bleed-image` uses the `image` prop on the opposite side. `variant: content-right` lets you place content on the opposite side via the `opposite` or default slot. |
 | `fact-panel` | Structured fact rows next to a photo | `panelTitle`, `image`, `imageCropLeft`, `imageCropRight`, `logoSrc`, `rows` | `photo`, `logo`, `title` | Fact rows are prop-driven through `rows`. The layout currently normalizes and renders up to 4 rows. |
@@ -155,11 +155,16 @@ date: 24 april 2026
 spreker: Voornaam Achternaam
 meeting: Teamoverleg
 coverBg: /images/cover-photo.jpg
-coverBgRightHalf: true
+coverBgObjectPosition: "left top"
+coverBgScale: 1.3
 ---
 ```
 
-Use slots on `cover` when the built-in prop structure is not enough:
+`coverBgObjectPosition` accepts any CSS `object-position` value — keywords (`left top`, `center`) or percentages (`20% 0%`). It controls which part of the image stays in view when the image is cropped to fill the frame.
+
+`coverBgScale` zooms the image beyond its natural fill (e.g. `1.3` = 130%). Omit it (or set `1`) for no extra zoom.
+
+Use slots on `cover` when the built-in prop structure is not enough (e.g. composited backgrounds, custom markup in the title):
 
 ```md
 ---

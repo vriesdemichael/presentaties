@@ -2,14 +2,14 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Run Slidev zeepkist",
+			"label": "deck:dev",
 			"type": "shell",
 			"command": "pnpm",
 			"args": [
 				"run",
 				"deck:dev",
 				"--",
-				"zeepkist-agentic-coding",
+				"${input:deckName}",
 				"--",
 				"--remote",
 				"--bind",
@@ -17,25 +17,15 @@
 				"-p",
 				"3030"
 			],
-			"isBackground": true
-		},
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	],
+	"inputs": [
 		{
-			"label": "Run Slidev sprint review",
-			"type": "shell",
-			"command": "pnpm",
-			"args": [
-				"run",
-				"deck:dev",
-				"--",
-				"sprint-review-product-104-temporal",
-				"--",
-				"--remote",
-				"--bind",
-				"0.0.0.0",
-				"-p",
-				"3030"
-			],
-			"isBackground": true
+			"id": "deckName",
+			"type": "promptString",
+			"description": "Deck name (run 'pnpm run deck:list' to see available decks)"
 		}
 	]
 }

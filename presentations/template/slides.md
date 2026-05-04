@@ -12,6 +12,8 @@ colorSchema: light
 layout: cover
 brandText: Belastingdienst
 date: 2026
+coverBg: /images/cover-background.jpg
+coverBgObjectPosition: "center top"
 ---
 
 <!--
@@ -22,7 +24,10 @@ The full theme reference is at presentations/theme-demonstration/.
 
 WHAT TO UPDATE:
   headmatter   title, date, brandText (your business unit)
-  Slide 1      title (::title:: slot), date in ::footer::, background image
+               coverBg: path to your cover photo (in public/images/)
+               coverBgObjectPosition: CSS object-position to control crop anchor
+               coverBgScale: optional zoom factor (e.g. 1.3); omit if not needed
+  Slide 1      title (::title:: slot), date in ::footer::
   Slide 2      speakerName, speakerRole, speakerTeam
   Slide 3      replace NumberedList items with your own sections
 
@@ -31,14 +36,6 @@ ADDONS:
   or other shared widgets. Do not add "bd-examples" — that is
   demo-only and not intended for real presentations.
 -->
-
-::background::
-
-<img
-  src="/images/cover-background.jpg"
-  alt=""
-  style="position: absolute; left: -5.34%; top: 0; width: 128.39%; height: 152.17%; max-width: none; display: block;"
-/>
 
 ::title::
 

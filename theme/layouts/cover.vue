@@ -9,6 +9,10 @@ const beeldmerkUrl = `data:image/svg+xml,${encodeURIComponent(beeldmerkSvg)}`
 const props = defineProps({
   coverBg: { type: String, default: '' },
   coverBgRightHalf: { type: Boolean, default: false },
+  /** CSS object-position value for the cover background image (e.g. "20% 0%", "left top", "center"). */
+  coverBgObjectPosition: { type: String, default: 'center center' },
+  /** Scale factor applied to the cover background image (e.g. 1.3 for 130%). Values above 1 zoom in. */
+  coverBgScale: { type: Number, default: 1 },
   coverTitle: { type: String, default: '' },
   subtitle: { type: String, default: '' },
   date: { type: [String, Number], default: '' },
@@ -33,6 +37,10 @@ const subtitleLines = computed(() => (props.subtitle ? props.subtitle.split('\n'
       v-else-if="coverBg"
       class="bd-cover-bg"
       :class="{ 'bd-cover-bg--right-half': coverBgRightHalf }"
+      :style="{
+        objectPosition: coverBgObjectPosition,
+        transform: coverBgScale !== 1 ? `scale(${coverBgScale})` : undefined,
+      }"
       :src="coverBg"
       alt=""
     />
@@ -115,7 +123,8 @@ const subtitleLines = computed(() => (props.subtitle ? props.subtitle.split('\n'
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  transform-origin: center center;
+  overflow: hidden;
 }
 
 .bd-cover-bg-slot {

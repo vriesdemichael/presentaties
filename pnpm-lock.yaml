@@ -67,6 +67,22 @@ importers:
 
   presentations/template:
     dependencies:
+      slidev-theme-belastingdienst:
+        specifier: workspace:*
+        version: link:../../theme
+    devDependencies:
+      '@slidev/cli':
+        specifier: ^52.0.0
+        version: 52.14.2(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@nuxt/kit@3.21.2)(@types/markdown-it@14.1.2)(@types/node@22.19.17)(@vue/compiler-sfc@3.5.32)(markdown-it@14.1.1)(playwright-chromium@1.59.1)(postcss@8.5.9)
+      '@slidev/theme-default':
+        specifier: latest
+        version: 0.25.0
+      playwright-chromium:
+        specifier: ^1.58.2
+        version: 1.59.1
+
+  presentations/theme-demonstration:
+    dependencies:
       slidev-addon-bd-examples:
         specifier: workspace:*
         version: link:../../addons/bd-examples

@@ -1,6 +1,6 @@
 packages:
   - theme
-  - theme_old
+  - theme_legacy
   - addons/*
   - presentations/*
 

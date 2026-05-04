@@ -24,6 +24,7 @@ Open daarna de lokale URL uit de terminal, meestal `http://localhost:3030`.
 
 ```bash
 pnpm run deck:list
+pnpm run deck:new -- <deck-naam>
 pnpm run deck:dev -- <deck-naam>
 pnpm run deck:build -- <deck-naam>
 pnpm run deck:export -- <deck-naam>
@@ -33,16 +34,13 @@ Vervang `<deck-naam>` door een naam uit `deck:list`.
 
 ## Nieuwe presentatie starten
 
-Gebruik `presentations/template/` als startpunt voor een nieuwe presentatie.
-
-1. Kopieer `presentations/template/` naar `presentations/<jouw-deck-naam>/`
-2. Pas in `package.json` de pakketnaam aan
-3. Pas in `slides.md` titel, datum en eerste slides aan
-4. Start lokaal met:
-
 ```bash
-pnpm run deck:dev -- <jouw-deck-naam>
+pnpm run deck:new -- <jouw-deck-naam>
+pnpm install
+pnpm run deck:dev -- <jouw-deck-naam> -- --remote --bind 0.0.0.0 -p 3030
 ```
+
+`deck:new` kopieert de template, past de pakketnaam aan en geeft de volgende stappen. Pas daarna in `presentations/<jouw-deck-naam>/slides.md` de titel, datum en spreker aan.
 
 De thema-demonstratie in `presentations/theme-demonstration/` is de volledige naslag voor alle beschikbare layouts en componenten.
 
@@ -66,6 +64,8 @@ Totdat Nexus beschikbaar is, is de workspace/fork-variant de juiste tussenstap.
 
 - `presentations/<deck>/slides.md`: inhoud van een presentatie
 - `presentations/<deck>/components/`: deck-specifieke componenten
+- `presentations/<deck>/public/images/`: afbeeldingen die alleen door dat deck worden gebruikt
+- `reusable-images/`: afbeeldingen die in meerdere decks terugkomen (zie `reusable-images/README.md`)
 - `theme/`: gedeelde layouts, styling en globale Slidev-theme onderdelen
 - `addons/reusable-widgets/`: herbruikbare widgets voor meerdere decks
 

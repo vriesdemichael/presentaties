@@ -1,4 +1,4 @@
-// AUTO-GENERATED -- do not edit manually.
+// AUTO-GENERATED — do not edit manually.
 // Updated automatically at dev/build startup from:
 // https://download.belastingdienst.nl/assets/fonts/rhsiconfont/rhsiconfont.svg?e5c4eddf5a76f7a571fc09fd4ba15a56
 
