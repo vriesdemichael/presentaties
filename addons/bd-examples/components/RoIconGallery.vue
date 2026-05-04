@@ -16,10 +16,12 @@ const filter = ref('')
 const useIconify = ref(false)
 const copiedName = ref<string | null>(null)
 
+const sorted = [...names].sort((a, b) => a.localeCompare(b))
+
 const filtered = computed<string[]>(() =>
   filter.value
-    ? names.filter((n: string) => n.toLowerCase().includes(filter.value.toLowerCase()))
-    : names
+    ? sorted.filter((n: string) => n.toLowerCase().includes(filter.value.toLowerCase()))
+    : sorted
 )
 
 /** man_vooraanzicht → RoManVooraanzicht */

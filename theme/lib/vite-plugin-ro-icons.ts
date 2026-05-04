@@ -113,12 +113,12 @@ export function roIconsPlugin(): Plugin {
     async buildStart() {
       const fresh = await fetchNamesFromCDN()
       if (fresh && fresh.length > 0 && fresh.length !== names.length) {
-        names = fresh
+        names = [...fresh].sort((a, b) => a.localeCompare(b))
         writeCache(names)
         writeTypeFile(names)
         console.info(`[ro-icons] Updated: ${names.length} icons cached from CDN.`)
       } else if (fresh && fresh.length > 0) {
-        names = fresh
+        names = [...fresh].sort((a, b) => a.localeCompare(b))
       } else if (names.length > 0) {
         console.info(`[ro-icons] CDN unreachable — using ${names.length} cached icons.`)
       } else {
