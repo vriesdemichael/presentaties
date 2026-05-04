@@ -28,8 +28,7 @@ WHAT TO UPDATE:
                coverBgObjectPosition: CSS object-position to control crop anchor
                coverBgScale: optional zoom factor (e.g. 1.3); omit if not needed
   Slide 1      title (::title:: slot), date in ::footer::
-  Slide 2      speakerName, speakerRole, speakerTeam
-  Slide 3      replace NumberedList items with your own sections
+  Slide 2      replace NumberedList items with your own sections
 
 ADDONS:
   Add "reusable-widgets" to addons if you use QuestionsIllustration
@@ -44,16 +43,6 @@ ADDONS:
 ::footer::
 
 <div>2026</div>
-
----
-layout: speaker
-speakerName: "[Naam spreker]"
-speakerRole: "[functie - met kleine letter]"
-speakerTeam: "[Team - met hoofdletter]"
-
----
-
-<!-- -->
 
 ---
 layout: chapter
