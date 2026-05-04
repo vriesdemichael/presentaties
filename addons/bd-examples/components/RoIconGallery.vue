@@ -58,6 +58,7 @@ declare module 'virtual:ro-icons/names' {
         class="ro-icon-gallery-filter"
         placeholder="Zoek icoon…"
         type="search"
+        @search="filter = ($event.target as HTMLInputElement).value"
       />
       <label class="ro-icon-gallery-toggle" title="Selecteer de tag-stijl die wordt gekopieerd bij klikken op een icoon">
         <span :class="{ 'ro-icon-gallery-toggle-active': !useIconify }">RoIcon</span>
@@ -93,6 +94,9 @@ declare module 'virtual:ro-icons/names' {
         <span class="ro-icon-gallery-label">
           {{ copiedName === name ? '✓ gekopieerd' : name }}
         </span>
+      </div>
+      <div v-if="filtered.length === 0 && filter" class="ro-icon-gallery-empty">
+        Geen iconen gevonden voor "{{ filter }}"
       </div>
     </div>
   </div>
@@ -242,6 +246,15 @@ declare module 'virtual:ro-icons/names' {
 .ro-icon-gallery-item.is-copied .ro-icon-gallery-label {
   color: var(--bd-status-success, #2e7d32);
   font-weight: 600;
+}
+
+.ro-icon-gallery-empty {
+  width: 100%;
+  padding: 1rem;
+  font-size: 0.65rem;
+  color: var(--bd-grijs-90, #666);
+  text-align: center;
+  font-style: italic;
 }
 </style>
 
