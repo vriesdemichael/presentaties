@@ -13,6 +13,6 @@
     "playwright-chromium": "^1.58.2"
   },
   "dependencies": {
-    "slidev-theme-belastingdienst": "workspace:*"
+    "slidev-theme-belastingdienst-legacy": "workspace:*"
   }
 }

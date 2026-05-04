@@ -4,6 +4,7 @@
   "packageManager": "pnpm@10.8.1",
   "scripts": {
     "deck:list": "node ./scripts/run-deck.mjs list",
+    "deck:new": "node ./scripts/run-deck.mjs new",
     "deck:dev": "node ./scripts/run-deck.mjs dev",
     "deck:build": "node ./scripts/run-deck.mjs build",
     "deck:export": "node ./scripts/run-deck.mjs export",
@@ -15,7 +16,10 @@
     "presentations/*"
   ],
   "devDependencies": {
+    "better-sqlite3": "^12.9.0",
+    "lz4js": "^0.2.0",
     "prettier": "^3.8.1",
-    "prettier-plugin-slidev": "^1.0.5"
+    "prettier-plugin-slidev": "^1.0.5",
+    "sql.js": "^1.14.1"
   }
 }

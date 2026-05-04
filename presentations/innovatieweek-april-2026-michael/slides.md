@@ -1,5 +1,5 @@
 ---
-theme: slidev-theme-belastingdienst
+theme: slidev-theme-belastingdienst-legacy
 title: Innovatieweek april 2026 - Michael
 info: |
   Eerste opzet voor de Innovatieweek-presentatie.

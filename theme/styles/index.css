@@ -3,57 +3,211 @@
    ================================================================ */
 
 /* ---- Fonts ---- */
+/* Text fonts are bundled as local woff2 files — no remote fallbacks needed. */
 @font-face {
-  font-family: "RijksoverheidSansWebText";
-  font-stretch: 75% 125%;
-  font-style: normal;
-  font-weight: 200 800;
-  src: url("../assets/fonts/RijksSansWeb-Regular.woff2") format("woff2-variations");
+  font-family: "ROregular";
+  src: url("../assets/fonts/RijksSansWeb-Regular.woff2") format("woff2");
   font-display: swap;
 }
 
 @font-face {
-  font-family: "RijksoverheidSansWebText";
-  font-stretch: 75% 125%;
-  font-style: italic;
-  font-weight: 200 800;
-  src: url("../assets/fonts/RijksSansWeb-Italic.woff2") format("woff2-variations");
+  font-family: "ROitalic";
+  src: url("../assets/fonts/RijksSansWeb-Italic.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RObold";
+  src: url("../assets/fonts/RijksSansWeb-Bold.woff2") format("woff2");
+  font-display: swap;
+}
+
+/*
+ * RO Icons is a ligature/glyph icon font served from the Belastingdienst CDN.
+ * There is no local copy bundled with this theme, so all sources are remote.
+ * Source order: woff2 (modern) → woff (legacy) → ttf (old Android/iOS) → svg (very old iOS).
+ * The browser picks the first format it supports and ignores the rest.
+ * The query-string hash (e5c4…) is a cache-buster tied to the font version —
+ * update it when the CDN asset is versioned up.
+ */
+@font-face {
+  font-family: "RO Icons";
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("https://download.belastingdienst.nl/assets/fonts/rhsiconfont/rhsiconfont.woff2?e5c4eddf5a76f7a571fc09fd4ba15a56") format("woff2"),
+    url("https://download.belastingdienst.nl/assets/fonts/rhsiconfont/rhsiconfont.woff?e5c4eddf5a76f7a571fc09fd4ba15a56") format("woff"),
+    url("https://download.belastingdienst.nl/assets/fonts/rhsiconfont/rhsiconfont.ttf?e5c4eddf5a76f7a571fc09fd4ba15a56") format("truetype"),
+    url("https://download.belastingdienst.nl/assets/fonts/rhsiconfont/rhsiconfont.svg?e5c4eddf5a76f7a571fc09fd4ba15a56#rhsiconfont") format("svg");
   font-display: swap;
 }
 
 /* ---- Design tokens ---- */
 :root {
-  --bd-donkerblauw:  #154273;
-  --bd-lichtblauw:   #DDEFF8;
-  --bd-accentblauw:  #8FCAE7;
-  --bd-paalblauw:    #B5DDEF;
-  --bd-magenta:      #A90061;
-  --bd-oranje:       #E17000;
-  --bd-tekst:        #1f2f3f;
-  --bd-subtekst:     #5E7F9A;
+  --bd-font-regular-stack: "ROregular", "Segoe UI", "Inter", Arial, sans-serif;
+  --bd-font-italic-stack: "ROitalic", "Segoe UI", "Inter", Arial, sans-serif;
+  --bd-font-bold-stack: "RObold", "ROregular", "Segoe UI", "Inter", Arial, sans-serif;
+
+  /*
+   * Token naming convention — two parallel namespaces exist:
+   *
+   *   Semantic (preferred in component CSS):  --bd-contrastkleur-*, --bd-accentkleur-*, --bd-domeinkleur-*
+   *   Shorthand (for ad-hoc slide styling):   --bd-kleur-*
+   *
+   * Use semantic names in theme/component CSS — they communicate brand intent.
+   * Use shorthand aliases in slide Markdown or inline styles where brevity matters.
+   * Both resolve to the same value; there is no functional difference.
+   */
+
+  /* Contrastkleur */
+  --bd-contrastkleur-lintblauw: #154273;
+
+  /* Accentkleuren */
+  --bd-accentkleur-hemelblauw: #007bc7;
+  --bd-accentkleur-violet: #a90061;
+  --bd-accentkleur-oranje: #e17000;
+  --bd-accentkleur-donkergeel: #ffb612;
+
+  /* Signaalkleuren */
+  --bd-signaalkleur-hemelblauw: var(--bd-accentkleur-hemelblauw);
+  --bd-signaalkleur-rood: #d52b1e;
+  --bd-signaalkleur-oranje: var(--bd-accentkleur-oranje);
+  --bd-signaalkleur-donkergeel: var(--bd-accentkleur-donkergeel);
+  --bd-signaalkleur-groen: #39870c;
+
+  /* Shared color swatches with neutral names */
+  --bd-kleur-hemelblauw: var(--bd-accentkleur-hemelblauw);
+  --bd-kleur-violet: var(--bd-accentkleur-violet);
+  --bd-kleur-oranje: var(--bd-accentkleur-oranje);
+  --bd-kleur-donkergeel: var(--bd-accentkleur-donkergeel);
+  --bd-kleur-rood: var(--bd-signaalkleur-rood);
+  --bd-kleur-groen: var(--bd-signaalkleur-groen);
+
+  /* Domeinkleur en ondersteunende tinten */
+  --bd-domeinkleur-lichtblauw: #8fcae7;
+  --bd-domeinkleur-lichtblauw-75: #abd7ed;
+  --bd-domeinkleur-lichtblauw-60: #bcdef0;
+  --bd-domeinkleur-lichtblauw-45: #cce7f4;
+  --bd-domeinkleur-lichtblauw-30: #ddeff8;
+  --bd-domeinkleur-lichtblauw-15: #eef7fc;
+
+  /* Shared color swatches with neutral names */
+  --bd-kleur-lintblauw: var(--bd-contrastkleur-lintblauw);
+  --bd-kleur-lichtblauw: var(--bd-domeinkleur-lichtblauw);
+  --bd-kleur-lichtblauw-75: var(--bd-domeinkleur-lichtblauw-75);
+  --bd-kleur-lichtblauw-60: var(--bd-domeinkleur-lichtblauw-60);
+  --bd-kleur-lichtblauw-45: var(--bd-domeinkleur-lichtblauw-45);
+  --bd-kleur-lichtblauw-30: var(--bd-domeinkleur-lichtblauw-30);
+  --bd-kleur-lichtblauw-15: var(--bd-domeinkleur-lichtblauw-15);
+
+  /* Semantic text colors */
+  --bd-tekst-primair: #1f2f3f;
+  --bd-tekst-secundair: #5e7f9a;
+
+  /*
+   * Typographic scale — presentation context.
+   *
+   * These tokens drive the global h1–h6 rules below and should also be
+   * referenced by layout/component scoped CSS instead of hardcoded pt values.
+   *
+   * Two display tokens sit above the heading scale:
+   *   --bd-text-display   big statement title  (split layout left column)
+   *   --bd-text-title     page title on content slides (full-width, chapter, etc.)
+   */
+  --bd-text-display: 28pt;   /* was 34pt in split layout                */
+  --bd-text-title:   19pt;   /* content-slide page title                */
+
+  --bd-h1-size: 26pt;        /* # markdown heading in slide body        */
+  --bd-h2-size: 20pt;        /* ## section break / major point          */
+  --bd-h3-size: 16pt;        /* ### sub-point                           */
+  --bd-h4-size: 13pt;        /* #### rarely used; matches small-label   */
+  --bd-h5-size: 11pt;
+  --bd-h6-size: 10pt;
+  --bd-body-size: 12pt;      /* base body / list text                   */
+
+  --ribbon-x: 3.825cqw;
+  --ribbon-x-quarter: calc(var(--ribbon-x) * 0.25);
+  --ribbon-x-half: calc(var(--ribbon-x) * 0.5);
+  --ribbon-x-double: calc(var(--ribbon-x) * 2);
+  --ribbon-width: var(--ribbon-x);
+  --ribbon-height: calc(var(--ribbon-x) * 2);
+  --ribbon-left: calc(50% - (var(--ribbon-width) / 2));
+  --ribbon-side-margin: var(--ribbon-x);
+  --ribbon-half-pane-inset: calc(var(--ribbon-side-margin) * 2);
+  --ribbon-content-top: calc(var(--ribbon-height) + var(--ribbon-x-half));
 }
 
 /* ---- Base ---- */
 .slidev-layout {
-  font-family: "RijksoverheidSansWebText", "Segoe UI", "Inter", Arial, sans-serif;
-  color: var(--bd-tekst);
+  font-family: var(--bd-font-regular-stack);
+  font-size: var(--bd-body-size);
+  color: var(--bd-tekst-primair);
   box-sizing: border-box;
 }
 
 .slidev-layout h1 {
-  color: var(--bd-donkerblauw);
-  font-weight: 700;
+  font-family: var(--bd-font-bold-stack);
+  font-size: var(--bd-h1-size);
+  color: var(--bd-contrastkleur-lintblauw);
+  font-weight: 400;
+  line-height: 1.1;
   margin-top: 0;
+  margin-bottom: 0.4em;
 }
 
-.slidev-layout h2,
+.slidev-layout h2 {
+  font-family: var(--bd-font-bold-stack);
+  font-size: var(--bd-h2-size);
+  color: var(--bd-contrastkleur-lintblauw);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-top: 0.8em;
+  margin-bottom: 0.3em;
+}
+
 .slidev-layout h3 {
-  color: var(--bd-donkerblauw);
-  font-weight: 600;
+  font-family: var(--bd-font-bold-stack);
+  font-size: var(--bd-h3-size);
+  color: var(--bd-contrastkleur-lintblauw);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-top: 0.6em;
+  margin-bottom: 0.25em;
+}
+
+.slidev-layout h4 {
+  font-family: var(--bd-font-bold-stack);
+  font-size: var(--bd-h4-size);
+  color: var(--bd-contrastkleur-lintblauw);
+  font-weight: 400;
+  line-height: 1.25;
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+}
+
+.slidev-layout h5,
+.slidev-layout h6 {
+  font-family: var(--bd-font-bold-stack);
+  font-size: var(--bd-h5-size);
+  color: var(--bd-contrastkleur-lintblauw);
+  font-weight: 400;
+  line-height: 1.3;
+  margin-top: 0.4em;
+  margin-bottom: 0.15em;
+}
+
+.slidev-layout h6 {
+  font-size: var(--bd-h6-size);
+}
+
+.slidev-layout em,
+.slidev-layout i {
+  font-family: var(--bd-font-italic-stack);
+  font-style: normal;
 }
 
 .slidev-layout a {
-  color: var(--bd-donkerblauw);
+  color: var(--bd-contrastkleur-lintblauw);
 }
 
 .slidev-layout ul {
@@ -70,41 +224,68 @@
   margin-bottom: 0.35rem;
 }
 
-/* ---- Utility classes ---- */
-.placeholder {
-  border: 2px dashed var(--bd-donkerblauw);
-  background: var(--bd-lichtblauw);
-  border-radius: 8px;
-  padding: 1rem;
-  margin-top: 0.8rem;
-  color: var(--bd-donkerblauw);
-  font-weight: 600;
-}
-
-.placeholder-sub {
+.bd-ro-icon {
+  display: inline-block;
+  font-family: "RO Icons", sans-serif;
+  font-style: normal;
   font-weight: 400;
-  margin-top: 0.4rem;
+  line-height: 1;
+  letter-spacing: 0;
+  text-rendering: geometricPrecision;
+  font-variant-ligatures: contextual common-ligatures discretionary-ligatures;
+  white-space: nowrap;
 }
 
-.breakpoint {
-  background: #eef5f9;
-  border-left: 10px solid var(--bd-donkerblauw);
-  padding: 1rem;
-  margin-top: 0.8rem;
+/* ---- Code blocks ---- */
+
+/* Block code: square corners, themed border, controlled spacing */
+.slidev-layout .slidev-code {
+  margin: 0.6em 0;
 }
 
-/* ---- Ribbon (applied via global-top.vue) ---- */
-.rijks-ribbon {
-  position: fixed;
-  top: -18px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  pointer-events: none;
+.slidev-layout .slidev-code pre,
+.slidev-layout pre.shiki,
+.slidev-layout pre {
+  border-radius: 0 !important;
+  border: 1px solid var(--bd-domeinkleur-lichtblauw-45) !important;
+  padding: 0.65em 1em !important;
+  margin: 0;
+  font-size: calc(var(--bd-body-size) * 0.88);
+  line-height: 1.6;
 }
 
-.rijks-ribbon img {
-  width: 34px;
-  height: 85px;
-  display: block;
+/* Reset any inner code element overrides from Shiki */
+.slidev-layout .slidev-code pre code {
+  border-radius: 0;
+  padding: 0;
+  background: transparent !important;
+  font-size: inherit;
+  line-height: inherit;
 }
+
+/* Inline code: matches the flat vlak aesthetic */
+.slidev-layout :not(pre) > code {
+  border-radius: 0 !important;
+  background: var(--bd-domeinkleur-lichtblauw-15) !important;
+  border: 1px solid var(--bd-domeinkleur-lichtblauw-45);
+  color: var(--bd-contrastkleur-lintblauw);
+  padding: 0.1em 0.35em;
+  font-size: 0.9em;
+}
+
+/* ---- Shared layout bases ---- */
+/*
+ * Applied via either .bd-surface-base or .bd-layout-canvas.
+ * Both classes now use the same cqw-derived ribbon token system.
+ */
+.bd-surface-base,
+.bd-layout-canvas {
+  container-type: size;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ffffff;
+  padding: 0 !important;
+}
+

@@ -1,14 +1,25 @@
+<script setup>
+import Surface from "../components/internal/Surface.vue";
+
+defineProps({
+  background: { type: String, default: "#ffffff" },
+});
+</script>
+
 <template>
-  <div class="slidev-layout bd-default">
-    <slot />
-  </div>
+  <Surface class="bd-default-bd" :background="background">
+    <div class="bd-default-bd-inner">
+      <slot />
+    </div>
+  </Surface>
 </template>
 
 <style scoped>
-.bd-default {
-  padding: 2rem 3rem;
+.bd-default-bd-inner {
   height: 100%;
-  width: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--ribbon-x-half) var(--ribbon-x-half) 0;
+  color: var(--bd-contrastkleur-lintblauw);
   overflow: hidden;
 }
 </style>

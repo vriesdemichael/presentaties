@@ -1,6 +1,5 @@
 {
     "slidev.include": [
-        "**/slides.md",
-        "presentations/zeepkist-agentic-coding/slides.md"
+        "**/slides.md"
     ]
 }
