@@ -20,6 +20,8 @@
     "lz4js": "^0.2.0",
     "prettier": "^3.8.1",
     "prettier-plugin-slidev": "^1.0.5",
+    "slidev-theme-belastingdienst": "workspace:*",
+    "slidev-theme-belastingdienst-legacy": "workspace:*",
     "sql.js": "^1.14.1"
   }
 }
