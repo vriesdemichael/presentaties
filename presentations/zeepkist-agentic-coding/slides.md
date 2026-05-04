@@ -1,4 +1,4 @@
-﻿---
+---
 theme: slidev-theme-belastingdienst-legacy
 title: Agentic Coding - Deel 1
 addons:

@@ -1,4 +1,4 @@
-﻿---
+---
 theme: slidev-theme-belastingdienst
 addons:
   - bd-examples
