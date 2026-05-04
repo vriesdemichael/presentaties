@@ -117,7 +117,7 @@ Linkerkolom met tekst.
 
 ::right::
 
-<img src="/images/voorbeeld.png" alt="" />
+<img :src="$withBase('/images/voorbeeld.png')" alt="" />
 ```
 
 ### `content-image`
@@ -191,6 +191,29 @@ Eigen footer-inhoud
 - Keep this README aligned with the actual files in `theme/layouts/`.
 - If a layout changes from prop-only to slot-capable, document the exact precedence.
 - If a layout is removed, remove it from this file in the same change.
+
+## Public image paths and `$withBase`
+
+Images placed in a deck's `public/images/` folder must be referenced differently depending on where they appear:
+
+**Layout props** (`coverBg`, `image`, `backgroundImage`, etc.) — pass the root-relative path as usual. The layout resolves it internally via `withBase()`:
+
+```md
+---
+layout: cover
+coverBg: /images/cover-bg.jpg
+---
+```
+
+**Inline `<img>` tags in slide markdown** — Vite does *not* rewrite absolute `public/` paths in template HTML when the build base is not `/` (e.g. gh-pages). You must use the `$withBase` global helper:
+
+```md
+<img :src="$withBase('/images/foo.png')" alt="" />
+```
+
+`$withBase` is registered by `theme/setup/main.ts` and `import.meta.env.BASE_URL` is inlined at build time (e.g. `/presentaties/my-deck/`). In local dev (`base = /`) the path is returned unchanged.
+
+Do **not** write `src="/images/foo.png"` in slide markdown — images will break on deployed gh-pages builds.
 
 ## Component reference
 

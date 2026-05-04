@@ -1,7 +1,9 @@
 <script setup>
+import { computed } from 'vue'
 import SplitMerktegelSurface from '../components/internal/SplitMerktegelSurface.vue'
+import { withBase } from '../lib/with-base'
 
-defineProps({
+const props = defineProps({
   variant: { type: String, default: 'full-bleed-image' },
   chapterNumber: { type: String, default: '' },
   chapterTitle: { type: String, default: '' },
@@ -9,6 +11,8 @@ defineProps({
   image: { type: String, default: '' },
   mirror: { type: Boolean, default: false },
 })
+
+const resolvedImage = computed(() => withBase(props.image))
 </script>
 
 <template>
@@ -47,7 +51,7 @@ defineProps({
         </slot>
       </div>
       <div v-else-if="image" class="bd-chapter-bd-image">
-        <img :src="image" alt="" />
+        <img :src="resolvedImage" alt="" />
       </div>
     </template>
   </SplitMerktegelSurface>

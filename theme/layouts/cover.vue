@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import beeldmerkSvg from '../assets/beeldmerk-rijksoverheid.svg?raw'
 import woordmerkPng from '../assets/woordmerk-belastingdienst.png'
 import MerktegelBase from '../components/internal/MerktegelBase.vue'
+import { withBase } from '../lib/with-base'
 
 const beeldmerkUrl = `data:image/svg+xml,${encodeURIComponent(beeldmerkSvg)}`
 
@@ -22,6 +23,7 @@ const props = defineProps({
 })
 
 const subtitleLines = computed(() => (props.subtitle ? props.subtitle.split('\n') : []))
+const resolvedCoverBg = computed(() => withBase(props.coverBg))
 </script>
 
 <template>
@@ -41,7 +43,7 @@ const subtitleLines = computed(() => (props.subtitle ? props.subtitle.split('\n'
         objectPosition: coverBgObjectPosition,
         transform: coverBgScale !== 1 ? `scale(${coverBgScale})` : undefined,
       }"
-      :src="coverBg"
+      :src="resolvedCoverBg"
       alt=""
     />
 

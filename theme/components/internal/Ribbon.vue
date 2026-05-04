@@ -1,20 +1,24 @@
 <script setup>
+import { computed } from 'vue'
 import logoTileSvg from '../../assets/beeldmerk-rijksoverheid.svg?raw'
+import { withBase } from '../../lib/with-base'
 
 const logoTileUrl = `data:image/svg+xml,${encodeURIComponent(logoTileSvg)}`
 
-defineProps({
+const props = defineProps({
   logoSrc: { type: String, default: '' },
   left: { type: String, default: 'var(--ribbon-left)' },
   top: { type: String, default: '0' },
   width: { type: String, default: 'var(--ribbon-width)' },
   height: { type: String, default: 'var(--ribbon-height)' },
 })
+
+const resolvedLogoSrc = computed(() => withBase(props.logoSrc) || logoTileUrl)
 </script>
 
 <template>
   <div class="bd-ribbon" :style="{ left, top, width, height }" aria-hidden="true">
-    <img :src="logoSrc || logoTileUrl" alt="" />
+    <img :src="resolvedLogoSrc" alt="" />
   </div>
 </template>
 

@@ -1,4 +1,4 @@
----
+﻿---
 theme: slidev-theme-belastingdienst-legacy
 title: Sprint Review - Product 104 Temporal
 info: |
@@ -16,7 +16,7 @@ coverBgRightHalf: true
 ::background::
 
 <img
-  src="/images/pipeline-image.png"
+  :src="$withBase('/images/pipeline-image.png')"
   alt=""
   style="width: 100%; height: 100%; object-fit: contain; object-position: right bottom; display: block;"
 />
@@ -50,7 +50,7 @@ layout: agenda
 ::right::
 
 <img
-  src="/images/human-agenda.png"
+  :src="$withBase('/images/human-agenda.png')"
   alt=""
   style="width: 100%; height: 100%; object-fit: contain; object-position: center bottom; display: block;"
 />
@@ -70,7 +70,7 @@ layout: text-image-right
 ::image::
 
 <img
-  src="/images/iced-transparent.png"
+  :src="$withBase('/images/iced-transparent.png')"
   alt=""
   style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; mix-blend-mode: multiply;"
 />
@@ -91,7 +91,7 @@ layout: text-image-left
 ::image::
 
 <img
-  src="/images/temporal-logo-white.svg"
+  :src="$withBase('/images/temporal-logo-white.svg')"
   alt=""
   style="max-width: 180%; max-height: 180%; object-fit: contain; display: block; mix-blend-mode: multiply;"
 />
@@ -124,7 +124,7 @@ Maar wel:
 ::image::
 
 <img
-  src="/images/emoji-questioning.png"
+  :src="$withBase('/images/emoji-questioning.png')"
   alt=""
   style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; mix-blend-mode: multiply;"
 />
@@ -175,7 +175,7 @@ Focus verleggen:
 ::image::
 
 <img
-  src="/images/pydantic-logo-darkblue.svg"
+  :src="$withBase('/images/pydantic-logo-darkblue.svg')"
   alt=""
   style="width: 58%; height: auto; object-fit: contain; display: block; mix-blend-mode: multiply;"
 />

@@ -1,4 +1,4 @@
----
+﻿---
 theme: belastingdienst-legacy
 title: Innovatieweek april 2026 - Michael
 info: |
@@ -35,7 +35,7 @@ layout: agenda
   style="width: 100%; height: 100%; padding-top: 2rem; box-sizing: border-box; display: flex; align-items: flex-end; justify-content: center;"
 >
   <img
-    src="/images/human-agenda.png"
+    :src="$withBase('/images/human-agenda.png')"
     alt=""
     style="width: 100%; height: 100%; object-fit: contain; object-position: center bottom; display: block;"
   />
@@ -53,7 +53,7 @@ layout: text-image-right
 ::image::
 
 <img
-  src="/images/clipboard-todo.png"
+  :src="$withBase('/images/clipboard-todo.png')"
   alt="Clipboard met checklist"
   style="width: 100%; height: 100%; object-fit: contain; object-position: center center; display: block;"
 />
@@ -78,7 +78,7 @@ layout: text-image-left
 
 <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
   <img
-    src="/images/keycloak-operator.svg"
+    :src="$withBase('/images/keycloak-operator.svg')"
     alt="Keycloak operator logo"
     style="width: 92%; height: 92%; max-width: none; max-height: none; object-fit: contain; object-position: center center; display: block; margin: 0 auto;"
   />
@@ -101,7 +101,7 @@ layout: text-image-right
 ::image::
 
 <img
-  src="/images/keycloak-diff.png"
+  :src="$withBase('/images/keycloak-diff.png')"
   alt="Keycloak wijzigingenoverzicht"
   style="width: 100%; height: 100%; object-fit: contain; object-position: center center; display: block;"
 />
@@ -129,7 +129,7 @@ layout: text-image-left
 ::image::
 
 <img
-  src="/images/slidev.png"
+  :src="$withBase('/images/slidev.png')"
   alt="Slidev illustratie"
   style="width: 100%; height: 100%; object-fit: contain; object-position: center center; display: block;"
 />
@@ -154,7 +154,7 @@ Kort gezegd: de `gh` CLI voor ons Bitbucket.
 ::image::
 
 <img
-  src="/images/bitbucket-svgrepo-com.svg"
+  :src="$withBase('/images/bitbucket-svgrepo-com.svg')"
   alt="Bitbucket logo"
   style="width: 100%; height: 100%; object-fit: contain; object-position: center center; display: block;"
 />
@@ -172,7 +172,7 @@ layout: text-image-right
 ::image::
 
 <img
-  src="/images/bb-diff.png"
+  :src="$withBase('/images/bb-diff.png')"
   alt="Bitbucket CLI diff"
   style="width: 100%; height: 100%; object-fit: contain; object-position: center center; display: block;"
 />
@@ -183,7 +183,7 @@ class: pause-slide-page
 
 <div class="pause-slide">
   <img
-    src="/images/break-coffee-machine.png"
+    :src="$withBase('/images/break-coffee-machine.png')"
     alt=""
     class="pause-slide-bg"
   >
@@ -197,7 +197,7 @@ class: pause-slide-page
 
   <div class="pause-slide-qr">
     <img
-      src="/images/qr-code.png"
+      :src="$withBase('/images/qr-code.png')"
       alt="QR-code naar de bron van deze presentatie"
       class="pause-slide-qr-image"
     >
