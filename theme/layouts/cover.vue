@@ -73,13 +73,13 @@ const resolvedCoverBg = computed(() => withBase(props.coverBg))
       <div class="bd-cover-title" role="heading" aria-level="1">
         <slot name="title">{{ coverTitle }}</slot>
       </div>
-      <p v-if="$slots.subtitle || subtitleLines.length" class="bd-cover-subtitle">
+      <div v-if="$slots.subtitle || subtitleLines.length" class="bd-cover-subtitle">
         <slot name="subtitle">
           <span v-for="(line, i) in subtitleLines" :key="i">
             {{ line }}<br v-if="i < subtitleLines.length - 1" />
           </span>
         </slot>
-      </p>
+      </div>
       <div v-if="$slots.default" class="bd-cover-body">
         <slot />
       </div>
@@ -243,7 +243,21 @@ const resolvedCoverBg = computed(() => withBase(props.coverBg))
   font-size: var(--cover-subtitle-size);
   font-weight: 400;
   line-height: 1.3;
-  max-width: 22ch;
+}
+
+.bd-cover-subtitle :deep(p) {
+  margin: 0;
+}
+
+.bd-cover-subtitle :deep(p + p) {
+  margin-top: 0.35em;
+}
+
+.bd-cover-subtitle :deep(h1),
+.bd-cover-subtitle :deep(h2),
+.bd-cover-subtitle :deep(h3) {
+  font: inherit;
+  margin: 0;
 }
 
 .bd-cover-body {
