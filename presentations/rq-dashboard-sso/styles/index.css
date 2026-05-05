@@ -1,0 +1,4 @@
+/* Reduce cover subtitle font size so it fits on one line without overlapping the footer tab */
+.slidev-page-1 .bd-cover-subtitle {
+  font-size: 11pt !important;
+}

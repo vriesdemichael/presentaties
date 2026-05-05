@@ -13,7 +13,7 @@ transition: slide-left
 colorSchema: light
 layout: cover
 brandText: COG Platform
-date: 2026
+date: 04-05-2026
 coverBg: /images/pedestrian-walking-people-road-street-sidewalk-940311-pxhere.com.jpg
 coverBgObjectPosition: "center center"
 ---
@@ -24,9 +24,11 @@ RQ-Dashboard
 
 ::subtitle::
 
-Van LDAP naar Keycloak SSO
+Van LDAP naar Keycloak SSO · AI Platform Team · Review 2026Q2.2
 
 ::footer::
+
+<div>04-05-2026</div>
 
 ---
 layout: full-width
