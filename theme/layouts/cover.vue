@@ -241,6 +241,7 @@ const resolvedCoverBg = computed(() => withBase(props.coverBg))
 
 .bd-cover-subtitle {
   margin: 0.95rem 0 0;
+  padding-left: var(--cover-title-padding-left);
   color: var(--bd-contrastkleur-lintblauw);
   font-size: var(--cover-subtitle-size);
   font-weight: 400;
