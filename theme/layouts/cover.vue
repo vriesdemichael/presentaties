@@ -196,7 +196,9 @@ const resolvedCoverBg = computed(() => withBase(props.coverBg))
   left: var(--ribbon-side-margin);
   top: 16.46%;
   width: calc(50% - (var(--ribbon-side-margin) * 2));
-  height: var(--cover-title-box-height);
+  /* Extend to half a margin above the footer tab so subtitle never bleeds in */
+  bottom: calc(100% - 51.8382% + var(--ribbon-x-half));
+  overflow: hidden;
   z-index: 4;
 }
 
@@ -204,7 +206,7 @@ const resolvedCoverBg = computed(() => withBase(props.coverBg))
   display: flex;
   align-items: flex-start;
   width: 100%;
-  height: 100%;
+  height: var(--cover-title-box-height);
   margin: 0;
   padding:
     var(--cover-title-padding-top)
