@@ -24,7 +24,9 @@ RQ-Dashboard
 
 ::subtitle::
 
-Van LDAP naar Keycloak SSO<br>AI Platform Team · Review 2026Q2.2
+Van LDAP naar Keycloak SSO
+
+AI Platform Team · Review 2026Q2.2
 
 ::footer::
 

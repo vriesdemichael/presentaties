@@ -203,10 +203,9 @@ const resolvedCoverBg = computed(() => withBase(props.coverBg))
 }
 
 .bd-cover-title {
-  display: flex;
-  align-items: flex-start;
+  display: block;
   width: 100%;
-  height: var(--cover-title-box-height);
+  overflow: hidden;
   margin: 0;
   padding:
     var(--cover-title-padding-top)
@@ -235,7 +234,10 @@ const resolvedCoverBg = computed(() => withBase(props.coverBg))
 }
 
 .bd-cover-title :deep(p) {
-  margin: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   max-width: 100%;
 }
 
